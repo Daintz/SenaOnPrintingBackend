@@ -1,0 +1,72 @@
+# Archivos y directorios generados por las herramientas de .NET
+bin/
+obj/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.dll
+*.pdb
+*.bak
+*.cache
+*.config
+*.csproj.user
+*.dbmdl
+*.jfm
+*.pidb
+*.pool
+*.suo
+*.vsp
+*.vspscc
+*.vssscc
+*.bak.*
+*.bak_*
+*.[Cc]ache
+*.log
+
+# Archivos de Visual Studio
+.vs/
+
+# Archivos de ReSharper
+_ReSharper*/
+*resharper
+
+# Archivos de NCrunch
+_NCrunch*
+*.ncrunchsolution
+*.ncrunchproject
+*.ncrunch*.config
+
+# Archivos generados por el sistema
+thumbs.db
+.DS_Store
+
+# Archivos de paquetes
+*.nupkg
+packages/
+
+# Archivos de configuración local
+*.local.settings.json
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+appsettings.Test.json
+
+# Otros archivos y directorios que pueden no ser necesarios
+notes.txt
+*.bak
+*.sw?
+*~
+*.bak.*
+*.bak_*
+*.tmp
+*.tmp.*
+log/
+tmp/
+*.log
+*.ldb
+*.DS_Store
+node_modules/
+wwwroot/lib/
+*.pfx
+*.publishsettings
