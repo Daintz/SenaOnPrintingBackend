@@ -2,3 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 npm version patch --no-git-tag-version
+conventional-changelog -i CHANGELOG.md -s -r 0
