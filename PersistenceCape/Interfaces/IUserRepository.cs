@@ -1,14 +1,13 @@
-﻿using DataCape;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataCape.Items;
 
 namespace PersistenceCape.Interfaces
 {
     public interface IUserRepository
     {
         IEnumerable<UserItem> GetUsers();
+        UserItem GetById(int id);
+        void Add(UserItem item);
+        void Update(UserItem item);
+        void Delete(int id);
     }
 }

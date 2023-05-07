@@ -1,11 +1,6 @@
-﻿using BusinessCape;
-using DataCape;
+﻿using BusinessCape.Services;
+using DataCape.Items;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControllersCape
 {
@@ -21,34 +16,47 @@ namespace ControllersCape
         }
 
         [HttpGet]
-        public IEnumerable<UserItem> GetAll()
+        public IEnumerable<UserItem> GetUsers()
         {
             return _service.GetUsers();
         }
 
-        //// GET api/<UserController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpGet("{id}")]
+        public ActionResult<UserItem> GetById(int id)
+        {
+            var item = _service.GetById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
 
-        //// POST api/<UserController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+            return item;
+        }
 
-        //// PUT api/<UserController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        [HttpPost]
+        public ActionResult<UserItem> Add(UserItem item)
+        {
+            _service.Add(item);
+            return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
+        }
 
-        //// DELETE api/<UserController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, UserItem item)
+        {
+            if (id != item.Id)
+            {
+                return BadRequest();
+            }
+
+            _service.Update(item);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _service.Delete(id);
+            return NoContent();
+        }
     }
 }
