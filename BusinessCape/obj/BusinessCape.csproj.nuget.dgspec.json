@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\BusinessCape\\BusinessCape.csproj": {}
+    "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\BusinessCape\\BusinessCape.csproj": {}
   },
   "projects": {
-    "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\BusinessCape\\BusinessCape.csproj": {
+    "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\BusinessCape\\BusinessCape.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\BusinessCape\\BusinessCape.csproj",
+        "projectUniqueName": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\BusinessCape\\BusinessCape.csproj",
         "projectName": "BusinessCape",
-        "projectPath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\BusinessCape\\BusinessCape.csproj",
+        "projectPath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\BusinessCape\\BusinessCape.csproj",
         "packagesPath": "C:\\Users\\danic\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\BusinessCape\\obj\\",
+        "outputPath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\BusinessCape\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\danic\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\DataCape\\DataCape.csproj": {
-                "projectPath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\DataCape\\DataCape.csproj"
+              "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\DataCape\\DataCape.csproj": {
+                "projectPath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\DataCape\\DataCape.csproj"
               },
-              "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\PersistenceCape\\PersistenceCape.csproj": {
-                "projectPath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\PersistenceCape\\PersistenceCape.csproj"
+              "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\PersistenceCape\\PersistenceCape.csproj": {
+                "projectPath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\PersistenceCape\\PersistenceCape.csproj"
               }
             }
           }
@@ -80,14 +80,14 @@
         }
       }
     },
-    "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\DataCape\\DataCape.csproj": {
+    "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\DataCape\\DataCape.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\DataCape\\DataCape.csproj",
+        "projectUniqueName": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\DataCape\\DataCape.csproj",
         "projectName": "DataCape",
-        "projectPath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\DataCape\\DataCape.csproj",
+        "projectPath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\DataCape\\DataCape.csproj",
         "packagesPath": "C:\\Users\\danic\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\DataCape\\obj\\",
+        "outputPath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\DataCape\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\danic\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -171,14 +171,14 @@
         }
       }
     },
-    "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\PersistenceCape\\PersistenceCape.csproj": {
+    "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\PersistenceCape\\PersistenceCape.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\PersistenceCape\\PersistenceCape.csproj",
+        "projectUniqueName": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\PersistenceCape\\PersistenceCape.csproj",
         "projectName": "PersistenceCape",
-        "projectPath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\PersistenceCape\\PersistenceCape.csproj",
+        "projectPath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\PersistenceCape\\PersistenceCape.csproj",
         "packagesPath": "C:\\Users\\danic\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\PersistenceCape\\obj\\",
+        "outputPath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\PersistenceCape\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\danic\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -195,8 +195,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\DataCape\\DataCape.csproj": {
-                "projectPath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\DataCape\\DataCape.csproj"
+              "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\DataCape\\DataCape.csproj": {
+                "projectPath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\DataCape\\DataCape.csproj"
               }
             }
           }

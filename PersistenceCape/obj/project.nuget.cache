@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6e6QxYqDZeMMuC5PzXDdCBXvUysFifn/4pe+OE9ypX6qohf3S4RMd8menih5tybbyL90CWYPpsytvZi6ctzCAg==",
+  "dgSpecHash": "2HbdGiFMzo4MEjoprPa4L2M5NWVXFcCRrLaFNNT9vAanrxZ3wmitEfkO8XSAacaodZecjT8/QMrrQSAXkSKNIg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\PersistenceCape\\PersistenceCape.csproj",
+  "projectFilePath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\PersistenceCape\\PersistenceCape.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danic\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\danic\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",

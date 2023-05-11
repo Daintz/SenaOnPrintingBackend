@@ -26,3 +26,17 @@ C:\Users\danic\source\repos\SENACOSTONPRINTING\DataCape\obj\Debug\net6.0\refint\
 C:\Users\danic\source\repos\SENACOSTONPRINTING\DataCape\obj\Debug\net6.0\DataCape.pdb
 C:\Users\danic\source\repos\SENACOSTONPRINTING\DataCape\obj\Debug\net6.0\DataCape.genruntimeconfig.cache
 C:\Users\danic\source\repos\SENACOSTONPRINTING\DataCape\obj\Debug\net6.0\ref\DataCape.dll
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\bin\Debug\net6.0\DataCape.deps.json
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\bin\Debug\net6.0\DataCape.runtimeconfig.json
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\bin\Debug\net6.0\DataCape.dll
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\bin\Debug\net6.0\DataCape.pdb
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\obj\Debug\net6.0\DataCape.csproj.AssemblyReference.cache
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\obj\Debug\net6.0\DataCape.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\obj\Debug\net6.0\DataCape.AssemblyInfoInputs.cache
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\obj\Debug\net6.0\DataCape.AssemblyInfo.cs
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\obj\Debug\net6.0\DataCape.csproj.CoreCompileInputs.cache
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\obj\Debug\net6.0\DataCape.dll
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\obj\Debug\net6.0\refint\DataCape.dll
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\obj\Debug\net6.0\DataCape.pdb
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\obj\Debug\net6.0\DataCape.genruntimeconfig.cache
+C:\Users\danic\OneDrive\Escritorio\PROJECTS\SenaOnPrintingBackend\DataCape\obj\Debug\net6.0\ref\DataCape.dll

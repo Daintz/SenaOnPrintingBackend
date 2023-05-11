@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Dt4vRIvJge1fJ/tsY06LzzldMwpsPQZhGP7/rvycUAaofKEE5igjXnJ08rPHQobe4A7IlQXoXlMAOtA9JUOy4w==",
+  "dgSpecHash": "tDSHXv0giPOS29lHUFeUwXIsIRjZW3ULdnX+xewyZaUIljHEjQpQZMJ3dSErsIEVKwr0XqCHS8roQc6ixOKFig==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\BusinessCape\\BusinessCape.csproj",
+  "projectFilePath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\BusinessCape\\BusinessCape.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danic\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\danic\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",

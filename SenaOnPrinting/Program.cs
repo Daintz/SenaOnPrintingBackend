@@ -1,7 +1,7 @@
 using BusinessCape.Services;
 using BusinessCape.Entensions;
 using PersistenceCape.Interfaces;
-using PersistenceCape.Logic;
+using PersistenceCape.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -14,8 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Configurar las interfaces para que el controlador las pueda usar
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<SupplyCategoryService>();
+builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
 
 var app = builder.Build();
 

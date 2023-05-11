@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4okkjrzcF9uX0kastVKMrd2uwlBYeoNq5VO2v/TG0jI0ETF1TS1ReCE1njrDI931bNdcl5eV0yagPPJW62D+4w==",
+  "dgSpecHash": "hi2H8bIUIYMaonWjO2k4x54YgGjsSt7KPiOjg+314ehPxzXYOsDv54uwmXB986P8tCbJAT5EjL3m4O6Z5adIBg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danic\\source\\repos\\SENACOSTONPRINTING\\DataCape\\DataCape.csproj",
+  "projectFilePath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\DataCape\\DataCape.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danic\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\danic\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
