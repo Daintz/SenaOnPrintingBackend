@@ -1,8 +1,11 @@
-﻿namespace DataCape.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace DataCape.Models
 {
     public partial class TypeDocumentModel
     {
-        public long IdTypeDocument { get; set; }
+        public Guid IdTypeDocument { get; set; }
         public string Name { get; set; } = null!;
         public string Abbreviation { get; set; } = null!;
         public bool? StatedAt { get; set; }

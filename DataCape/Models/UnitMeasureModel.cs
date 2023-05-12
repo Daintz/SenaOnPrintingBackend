@@ -1,8 +1,11 @@
-﻿namespace DataCape.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace DataCape.Models
 {
     public partial class UnitMeasureModel
     {
-        public long IdUnitMeasur { get; set; }
+        public Guid IdUnitMeasur { get; set; }
         public string Name { get; set; } = null!;
         public int Abbreviation { get; set; }
         public int Type { get; set; }

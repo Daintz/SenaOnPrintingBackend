@@ -17,7 +17,7 @@ namespace PersistenceCape.Contexts
 
         public virtual DbSet<PermissionModel> Permissions { get; set; } = null!;
         public virtual DbSet<PermissionsXRoleModel> PermissionsXRoles { get; set; } = null!;
-        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<RoleModel> Roles { get; set; } = null!;
         public virtual DbSet<SupplyModel> Supplies { get; set; } = null!;
         public virtual DbSet<SupplyCategoriesXSupplyModel> SupplyCategoriesXSupplies { get; set; } = null!;
         public virtual DbSet<SupplyCategoryModel> SupplyCategories { get; set; } = null!;
@@ -81,7 +81,7 @@ namespace PersistenceCape.Contexts
                     .HasConstraintName("permissions_x_roles_id_role_foreign");
             });
 
-            modelBuilder.Entity<Role>(entity =>
+            modelBuilder.Entity<RoleModel>(entity =>
             {
                 entity.HasKey(e => e.IdRole)
                     .HasName("roles_id_role_primary");
@@ -106,66 +106,6 @@ namespace PersistenceCape.Contexts
                     .IsRequired()
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("('1')");
-            });
-
-            modelBuilder.Entity<SupplyModel>(entity =>
-            {
-                entity.HasKey(e => e.IdSupply)
-                    .HasName("supplies_id_supply_primary");
-
-                entity.ToTable("SUPPLIES");
-
-                entity.HasIndex(e => e.IdWarehouse, "supplies_id_warehouse_unique")
-                    .IsUnique();
-
-                entity.HasIndex(e => e.MinimunUnitMeasureId, "supplies_minimun_unit_measure_id_unique")
-                    .IsUnique();
-
-                entity.Property(e => e.IdSupply)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id_supply");
-
-                entity.Property(e => e.Advices)
-                    .HasMaxLength(255)
-                    .HasColumnName("advices");
-
-                entity.Property(e => e.AverageCost)
-                    .HasColumnType("decimal(8, 2)")
-                    .HasColumnName("average_cost");
-
-                entity.Property(e => e.DangerIndicators)
-                    .HasMaxLength(255)
-                    .HasColumnName("danger_indicators");
-
-                entity.Property(e => e.IdWarehouse).HasColumnName("id_warehouse");
-
-                entity.Property(e => e.MinimunUnitMeasureId).HasColumnName("minimun_unit_measure_id");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
-
-                entity.Property(e => e.Quantity).HasColumnName("quantity");
-
-                entity.Property(e => e.SortingWord).HasColumnName("sorting_word");
-
-                entity.Property(e => e.StatedAt)
-                    .IsRequired()
-                    .HasColumnName("stated_at")
-                    .HasDefaultValueSql("('1')");
-
-                entity.Property(e => e.SupplyType).HasColumnName("supply_type");
-
-                entity.Property(e => e.UseInstructions)
-                    .HasMaxLength(255)
-                    .HasColumnName("use_instructions");
-
-                entity.HasOne(d => d.IdWarehouseNavigation)
-                    .WithOne(p => p.Supply)
-                    .HasForeignKey<SupplyModel>(d => d.IdWarehouse)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("supplies_id_warehouse_foreign");
             });
 
             modelBuilder.Entity<SupplyCategoriesXSupplyModel>(entity =>

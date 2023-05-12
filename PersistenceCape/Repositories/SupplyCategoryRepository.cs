@@ -19,7 +19,7 @@ namespace PersistenceCape.Repositories
             return await _context.SupplyCategories.ToListAsync();
         }
 
-        public async Task<SupplyCategoryModel> GetByIdAsync(long id)
+        public async Task<SupplyCategoryModel> GetByIdAsync(Guid id)
         {
             return await _context.SupplyCategories.FindAsync(id);
         }
@@ -37,7 +37,7 @@ namespace PersistenceCape.Repositories
             return supplyCategory;
         }
 
-        public async Task DeleteAsync(long id)
+        public async Task DeleteAsync(Guid id)
         {
             var supplyCategory = await _context.SupplyCategories.FindAsync(id);
             _context.SupplyCategories.Remove(supplyCategory);

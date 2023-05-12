@@ -6,11 +6,11 @@ namespace SenaOnPrinting.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SupplyCategoryController : ControllerBase
+    public class SupplyController : ControllerBase
     {
-        private readonly SupplyCategoryService _supplyCategoryService;
+        private readonly SupplyService _supplyCategoryService;
 
-        public SupplyCategoryController(SupplyCategoryService supplyCategoryService)
+        public SupplyController(SupplyService supplyCategoryService)
         {
             _supplyCategoryService = supplyCategoryService;
         }
@@ -34,19 +34,15 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(SupplyCategoryModel supplyCategory)
+        public async Task<IActionResult> Add(SupplyModel supplyCategory)
         {
             await _supplyCategoryService.AddAsync(supplyCategory);
             return Ok(supplyCategory);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, SupplyCategoryModel supplyCategory)
+        public async Task<IActionResult> Update(Guid id, SupplyModel supplyCategory)
         {
-            if (id != supplyCategory.IdSupplyCategory)
-            {
-                return BadRequest();
-            }
             await _supplyCategoryService.UpdateAsync(supplyCategory);
             return NoContent();
         }
