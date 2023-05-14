@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "tDSHXv0giPOS29lHUFeUwXIsIRjZW3ULdnX+xewyZaUIljHEjQpQZMJ3dSErsIEVKwr0XqCHS8roQc6ixOKFig==",
+  "dgSpecHash": "K3y38yJ1ViCttwMQ6MeUgWa3fSSV0vatVHfWRpqoZpkejYqixZ/PvebgJP88BYDA9mo2tOogwPELLhpWXmZrCw==",
   "success": true,
   "projectFilePath": "C:\\Users\\danic\\OneDrive\\Escritorio\\PROJECTS\\SenaOnPrintingBackend\\BusinessCape\\BusinessCape.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\danic\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\danic\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\danic\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\danic\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\danic\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\danic\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\danic\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.16\\microsoft.entityframeworkcore.6.0.16.nupkg.sha512",
