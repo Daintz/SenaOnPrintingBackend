@@ -7,9 +7,9 @@ namespace BusinessCape.Services
     {
         private readonly ISupplyRepository _supplyRepository;
 
-        public SupplyService(ISupplyRepository supplyCategoryRepository)
+        public SupplyService(ISupplyRepository supplyRepository)
         {
-            _supplyRepository = supplyCategoryRepository;
+            _supplyRepository = supplyRepository;
         }
 
         public async Task<IEnumerable<SupplyModel>> GetAllAsync()
