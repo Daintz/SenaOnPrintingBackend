@@ -1,4 +1,6 @@
-﻿using BusinessCape.Services;
+﻿using AutoMapper;
+using BusinessCape.DTOs.Supply;
+using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,24 +10,26 @@ namespace SenaOnPrinting.Controllers
     [Route("api/[controller]")]
     public class SupplyController : ControllerBase
     {
-        private readonly SupplyService _supplyCategoryService;
+        private readonly SupplyService _supplyService;
+        private readonly IMapper _mapper;
 
-        public SupplyController(SupplyService supplyCategoryService)
+        public SupplyController(SupplyService supplyService, IMapper mapper)
         {
-            _supplyCategoryService = supplyCategoryService;
+            _supplyService = supplyService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var supplyCategories = await _supplyCategoryService.GetAllAsync();
+            var supplyCategories = await _supplyService.GetAllAsync();
             return Ok(supplyCategories);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var supplyCategory = await _supplyCategoryService.GetByIdAsync(id);
+            var supplyCategory = await _supplyService.GetByIdAsync(id);
             if (supplyCategory == null)
             {
                 return NotFound();
@@ -34,23 +38,27 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(SupplyModel supplyCategory)
+        public async Task<IActionResult> Add(SupplyCreateDto supplyDto)
         {
-            await _supplyCategoryService.AddAsync(supplyCategory);
-            return Ok(supplyCategory);
+            var supplyToCreate = _mapper.Map<SupplyModel>(supplyDto);
+
+            await _supplyService.AddAsync(supplyToCreate);
+            return Ok(supplyToCreate);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, SupplyModel supplyCategory)
+        public async Task<IActionResult> Update(Guid id, SupplyUpdateDto supplyDto)
         {
-            await _supplyCategoryService.UpdateAsync(supplyCategory);
+            var supplyToUpdate = await _supplyService.GetByIdAsync(supplyDto.IdSupply);
+
+            await _supplyService.UpdateAsync(supplyToUpdate);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _supplyCategoryService.DeleteAsync(id);
+            await _supplyService.DeleteAsync(id);
             return NoContent();
         }
     }

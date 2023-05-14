@@ -1,6 +1,7 @@
 ﻿using DataCape.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 
 namespace PersistenceCape.Contexts.Configurations
 {
@@ -14,7 +15,6 @@ namespace PersistenceCape.Contexts.Configurations
             builder.ToTable("SUPPLY_CATEGORIES");
 
             builder.Property(e => e.IdSupplyCategory)
-                .ValueGeneratedNever()
                 .HasColumnName("id_supply_category");
 
             builder.Property(e => e.Description)
@@ -28,8 +28,7 @@ namespace PersistenceCape.Contexts.Configurations
 
             builder.Property(e => e.StatedAt)
                 .IsRequired()
-                .HasColumnName("stated_at")
-                .HasDefaultValueSql("('1')");
+                .HasColumnName("stated_at");
         }
     }
 }

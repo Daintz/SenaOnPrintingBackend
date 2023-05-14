@@ -2,6 +2,7 @@ using BusinessCape.Services;
 using BusinessCape.Entensions;
 using PersistenceCape.Interfaces;
 using PersistenceCape.Repositories;
+using BusinessCape.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -16,6 +17,7 @@ builder.Services.AddSwaggerGen();
 // Configurar las interfaces para que el controlador las pueda usar
 builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 var app = builder.Build();
 
