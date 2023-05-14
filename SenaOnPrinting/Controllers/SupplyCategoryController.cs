@@ -1,4 +1,5 @@
-﻿using BusinessCape.Services;
+﻿using BusinessCape.DTOs.SupplyCategory;
+using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,21 +35,31 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(SupplyCategoryModel supplyCategory)
+        public async Task<IActionResult> Add(SupplyCategoryCreateDto supplyCategoryDto)
         {
-            await _supplyCategoryService.AddAsync(supplyCategory);
-            return Ok(supplyCategory);
+            var supplyToCreate = new SupplyCategoryModel();
+            supplyToCreate.Name = supplyCategoryDto.Name;
+            supplyToCreate.Description = supplyCategoryDto.Description;
+            supplyToCreate.StatedAt = true;
+            await _supplyCategoryService.AddAsync(supplyToCreate);
+            return Ok(supplyToCreate);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, SupplyCategoryModel supplyCategory)
+        public async Task<IActionResult> Update(Guid id, SupplyCategoryUpdateDto supplyCategoryDto)
         {
-            if (id != supplyCategory.IdSupplyCategory)
+            if (id != supplyCategoryDto.IdSupplyCategory)
             {
                 return BadRequest();
             }
-            await _supplyCategoryService.UpdateAsync(supplyCategory);
-            return NoContent();
+
+            var supplyToUpdate = await _supplyCategoryService.GetByIdAsync(supplyCategoryDto.IdSupplyCategory);
+
+            supplyToUpdate.Name = supplyCategoryDto.Name;
+            supplyToUpdate.Description = supplyCategoryDto.Description;
+
+            await _supplyCategoryService.UpdateAsync(supplyToUpdate);
+            return Ok(supplyToUpdate);
         }
 
         [HttpDelete("{id}")]
