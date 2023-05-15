@@ -5,7 +5,7 @@ namespace DataCape.Models
 {
     public partial class UnitMeasureModel
     {
-        public Guid IdUnitMeasur { get; set; }
+        public long IdUnitMeasur { get; set; }
         public string Name { get; set; } = null!;
         public int Abbreviation { get; set; }
         public int Type { get; set; }
