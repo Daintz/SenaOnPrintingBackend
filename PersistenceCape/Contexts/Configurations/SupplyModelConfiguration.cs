@@ -19,9 +19,7 @@ namespace PersistenceCape.Contexts.Configurations
             builder.HasIndex(e => e.MinimunUnitMeasureId, "supplies_minimun_unit_measure_id_unique")
                 .IsUnique();
 
-            builder.Property(e => e.IdSupply)
-                .ValueGeneratedNever()
-                .HasColumnName("id_supply");
+            builder.Property(e => e.IdSupply).HasColumnName("id_supply");
 
             builder.Property(e => e.Advices)
                 .HasMaxLength(255)

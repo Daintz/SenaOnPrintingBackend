@@ -7,9 +7,9 @@ namespace PersistenceCape.Repositories
 {
     public class SupplyCategoryRepository : ISupplyCategoryRepository
     {
-        private readonly SENAContext _context;
+        private readonly SENAONPRINTINGContext _context;
 
-        public SupplyCategoryRepository(SENAContext context)
+        public SupplyCategoryRepository(SENAONPRINTINGContext context)
         {
             _context = context;
         }
