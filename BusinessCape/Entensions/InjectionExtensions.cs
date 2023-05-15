@@ -9,9 +9,9 @@ namespace BusinessCape.Entensions
     {
         public static IServiceCollection AddInjectionInfraestructure(this IServiceCollection services, IConfiguration configuration) 
         {
-            var assembly = typeof(SENAContext).Assembly.FullName;
+            var assembly = typeof(SENAONPRINTINGContext).Assembly.FullName;
             var conn = configuration.GetConnectionString("AppConnection");
-            services.AddDbContext<SENAContext>(
+            services.AddDbContext<SENAONPRINTINGContext>(
                 options => options.UseSqlServer(
                     conn, b => b.MigrationsAssembly(assembly)), ServiceLifetime.Transient);
             return services;

@@ -14,8 +14,7 @@ namespace PersistenceCape.Contexts.Configurations
 
             builder.ToTable("SUPPLY_CATEGORIES");
 
-            builder.Property(e => e.IdSupplyCategory)
-                .HasColumnName("id_supply_category");
+            builder.Property(e => e.IdSupplyCategory).HasColumnName("id_supply_category");
 
             builder.Property(e => e.Description)
                 .HasMaxLength(255)

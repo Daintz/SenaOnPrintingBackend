@@ -5,12 +5,13 @@ namespace DataCape.Models
 {
     public partial class WarehouseModel
     {
-        public Guid IdWarehouse { get; set; }
+        public long IdWarehouse { get; set; }
         public string Name { get; set; } = null!;
-        public string TypeWarehouse { get; set; } = null!;
         public string Ubication { get; set; } = null!;
         public bool? StatedAt { get; set; }
+        public long? IdTypeWarehouse { get; set; }
 
+        public virtual WarehouseTypeModel? IdTypeWarehouseNavigation { get; set; }
         public virtual SupplyModel? Supply { get; set; }
     }
 }
