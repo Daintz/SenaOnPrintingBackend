@@ -9,6 +9,17 @@ var Configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddInjectionInfraestructure(Configuration);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyReactAppPolicy",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -17,6 +28,8 @@ builder.Services.AddSwaggerGen();
 // Configurar las interfaces para que el controlador las pueda usar
 builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
+builder.Services.AddScoped<SupplyService>();
+builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 var app = builder.Build();

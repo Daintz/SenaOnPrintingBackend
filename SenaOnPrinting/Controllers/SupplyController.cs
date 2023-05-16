@@ -27,7 +27,7 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        public async Task<IActionResult> GetById(long id)
         {
             var supplyCategory = await _supplyService.GetByIdAsync(id);
             if (supplyCategory == null)
@@ -47,7 +47,7 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, SupplyUpdateDto supplyDto)
+        public async Task<IActionResult> Update(long id, SupplyUpdateDto supplyDto)
         {
             var supplyToUpdate = await _supplyService.GetByIdAsync(supplyDto.IdSupply);
 
@@ -56,7 +56,7 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(long id)
         {
             await _supplyService.DeleteAsync(id);
             return NoContent();
