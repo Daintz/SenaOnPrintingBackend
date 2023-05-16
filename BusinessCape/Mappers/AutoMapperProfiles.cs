@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessCape.DTOs.Machine;
 using BusinessCape.DTOs.Supply;
 using BusinessCape.DTOs.SupplyCategory;
 using DataCape.Models;
@@ -7,7 +8,7 @@ namespace BusinessCape.Mappers
 {
     public class AutoMapperProfiles : Profile
     {
-        public AutoMapperProfiles() 
+        public AutoMapperProfiles()
         {
             //=======================|SUPPLY CATEGORY|=======================//
             // POST OR CREATE //
@@ -20,6 +21,12 @@ namespace BusinessCape.Mappers
             CreateMap<SupplyCreateDto, SupplyModel>();
             // PUT OR UPDATE //
             CreateMap<SupplyUpdateDto, SupplyModel>();
+            //============================|Machine|==========================//
+
+            CreateMap<MachineCreateDto, MachineModel>();
+
+            CreateMap<MachineUpdateDto, MachineModel>();
+
         }
     }
 }

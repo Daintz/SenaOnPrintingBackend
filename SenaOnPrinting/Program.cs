@@ -3,9 +3,11 @@ using BusinessCape.Entensions;
 using PersistenceCape.Interfaces;
 using PersistenceCape.Repositories;
 using BusinessCape.Mappers;
+using System.Reflection.PortableExecutable;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
+
 // Add services to the container.
 builder.Services.AddInjectionInfraestructure(Configuration);
 
@@ -17,6 +19,11 @@ builder.Services.AddSwaggerGen();
 // Configurar las interfaces para que el controlador las pueda usar
 builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
+builder.Services.AddScoped<MachineService>();
+builder.Services.AddScoped<IMachinesRepository, MachinesRepository>();
+
+
+
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 var app = builder.Build();
