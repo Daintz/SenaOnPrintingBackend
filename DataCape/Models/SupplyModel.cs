@@ -12,7 +12,7 @@ namespace DataCape.Models
 
         public long IdSupply { get; set; }
         public string Name { get; set; } = null!;
-        public Guid MinimunUnitMeasureId { get; set; }
+        public long MinimunUnitMeasureId { get; set; }
         public string? DangerIndicators { get; set; }
         public string? UseInstructions { get; set; }
         public string? Advices { get; set; }

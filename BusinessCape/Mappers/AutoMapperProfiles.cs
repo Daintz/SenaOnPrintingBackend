@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using BusinessCape.DTOs.Provider;
 using BusinessCape.DTOs.Supply;
 using BusinessCape.DTOs.SupplyCategory;
+using BusinessCape.DTOs.Warehause;
 using DataCape.Models;
 
 namespace BusinessCape.Mappers
@@ -20,6 +22,17 @@ namespace BusinessCape.Mappers
             CreateMap<SupplyCreateDto, SupplyModel>();
             // PUT OR UPDATE //
             CreateMap<SupplyUpdateDto, SupplyModel>();
+            //============================|PROVIDERS|==========================//
+            // POST OR CREATE //
+            CreateMap<ProviderCreateDto, ProviderModel>();
+            // PUT OR UPDATE //
+            CreateMap<ProviderUpdateDto, ProviderModel>();
+            //============================|Warehause|==========================//
+            // POST OR CREATE //
+            CreateMap<WarehauseCreateDto, WarehouseModel>();
+            // PUT OR UPDATE //
+            CreateMap<WarehauseUpdateDto, WarehouseModel>();
+
         }
     }
 }

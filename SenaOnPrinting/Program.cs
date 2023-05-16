@@ -17,6 +17,10 @@ builder.Services.AddSwaggerGen();
 // Configurar las interfaces para que el controlador las pueda usar
 builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
+
+
+builder.Services.AddScoped<ProviderService>(); 
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 var app = builder.Build();

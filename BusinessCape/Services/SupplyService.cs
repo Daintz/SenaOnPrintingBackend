@@ -17,7 +17,7 @@ namespace BusinessCape.Services
             return await _supplyRepository.GetAllAsync();
         }
 
-        public async Task<SupplyModel> GetByIdAsync(Guid id)
+        public async Task<SupplyModel> GetByIdAsync(long id)
         {
             return await _supplyRepository.GetByIdAsync(id);
         }
@@ -32,7 +32,7 @@ namespace BusinessCape.Services
             await _supplyRepository.UpdateAsync(supplyCategory);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(long id)
         {
             await _supplyRepository.DeleteAsync(id);
         }

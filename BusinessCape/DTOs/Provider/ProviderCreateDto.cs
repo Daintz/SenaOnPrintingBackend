@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataCape.Models
+namespace BusinessCape.DTOs.Provider
 {
-    public partial class ProviderModel
+    public class ProviderCreateDto
     {
-        public ProviderModel()
-        {
-            QuotationProviders = new HashSet<QuotationProviderModel>();
-            SupplyDetails = new HashSet<SupplyDetailModel>();
-        }
-
-      
         public long IdProvider { get; set; }
         public bool? StatedAt { get; set; }
         public string NameCompany { get; set; } = null!;
@@ -21,7 +17,5 @@ namespace DataCape.Models
         public string Phone { get; set; } = null!;
         public string CompanyAddress { get; set; } = null!;
 
-        public virtual ICollection<QuotationProviderModel> QuotationProviders { get; set; }
-        public virtual ICollection<SupplyDetailModel> SupplyDetails { get; set; }
     }
 }
