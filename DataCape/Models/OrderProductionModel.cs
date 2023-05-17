@@ -21,8 +21,8 @@ namespace DataCape.Models
         public long? IdPaperCutSize { get; set; }
         public byte[]? Image { get; set; }
         public string? Observations { get; set; }
-        public bool? StatedAt { get; set; }
-        public bool OrderStatus { get; set; }
+        public bool? StatedAt { get; set; } 
+        public bool OrderStatus { get; set; } 
 
         public virtual GrammajeCaliberModel? IdGrammageNavigation { get; set; }
         public virtual LineatureModel? IdLineatureNavigation { get; set; }

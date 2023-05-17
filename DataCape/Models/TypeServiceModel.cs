@@ -11,7 +11,7 @@ namespace DataCape.Models
         }
 
         public long IdTypeService { get; set; }
-        public bool? StatedAt { get; set; }
+        public bool? StatedAt { get; set; } 
         public string Name { get; set; } = null!;
 
         public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
