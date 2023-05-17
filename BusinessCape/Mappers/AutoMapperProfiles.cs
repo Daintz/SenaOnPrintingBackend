@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessCape.DTOs.Finish;
 using BusinessCape.DTOs.Machine;
 using BusinessCape.DTOs.Supply;
 using BusinessCape.DTOs.SupplyCategory;
@@ -26,6 +27,12 @@ namespace BusinessCape.Mappers
             CreateMap<MachineCreateDto, MachineModel>();
 
             CreateMap<MachineUpdateDto, MachineModel>();
+
+            //============================|Finish|==========================//
+
+            CreateMap<FinishDtoCreate, FinishModel>();
+
+            CreateMap<FinishDtoUpdate, FinishModel>();
 
         }
     }

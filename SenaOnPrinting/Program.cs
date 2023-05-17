@@ -21,6 +21,8 @@ builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
 builder.Services.AddScoped<MachineService>();
 builder.Services.AddScoped<IMachinesRepository, MachinesRepository>();
+builder.Services.AddScoped<FinishServices>();
+builder.Services.AddScoped<IFinishs, FinishRepository>();
 
 
 
