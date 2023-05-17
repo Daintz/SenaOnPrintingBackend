@@ -20,6 +20,8 @@ namespace BusinessCape.Mappers
             CreateMap<QuotationCreateDto, QuotationClientModel>();
             // PUT OR UPDATE //
             CreateMap<QuotationUpdateDto, QuotationClientModel>();
+            // PUT OR UPDATE STATUS //
+            CreateMap<QuotationUpdateStatusDTO, QuotationClientModel>();
             //=======================|SUPPLY CATEGORY|=======================//
             // POST OR CREATE //
             CreateMap<SupplyCategoryCreateDto, SupplyCategoryModel>();

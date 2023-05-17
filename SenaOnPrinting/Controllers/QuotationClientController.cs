@@ -58,9 +58,11 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> Update(long id, QuotationUpdateStatusDTO quotationUpdateStatusDto)
         {
-            await _quotationclientservice.DeleteAsync(id);
+            var quotationclientToUpdateStatus = await _quotationclientservice.GetByIdAsync(quotationUpdateStatusDto.IdQuotationClient);
+            _mapper.Map(quotationUpdateStatusDto, quotationclientToUpdateStatus);
+            await _quotationclientservice.UpdateAsync(quotationclientToUpdateStatus);
             return NoContent();
         }
     }
