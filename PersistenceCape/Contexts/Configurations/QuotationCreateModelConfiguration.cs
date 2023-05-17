@@ -70,35 +70,6 @@ namespace PersistenceCape.Contexts.Configurations
 
                 builder.Property(e => e.UnitValue).HasColumnName("unit_value");
 
-                builder.HasOne(d => d.IdClientNavigation)
-                    .WithMany(p => p.QuotationClients)
-                    .HasForeignKey(d => d.IdClient)
-                    .HasConstraintName("id_client");
-
-                builder.HasOne(d => d.IdFinishesNavigation)
-                    .WithMany(p => p.QuotationClients)
-                    .HasForeignKey(d => d.IdFinishes)
-                    .HasConstraintName("id_finish");
-
-                builder.HasOne(d => d.IdMachineNavigation)
-                    .WithMany(p => p.QuotationClients)
-                    .HasForeignKey(d => d.IdMachine)
-                    .HasConstraintName("id_machine");
-
-                builder.HasOne(d => d.IdProductNavigation)
-                    .WithMany(p => p.QuotationClients)
-                    .HasForeignKey(d => d.IdProduct)
-                    .HasConstraintName("id_product");
-
-                builder.HasOne(d => d.IdTypeServiceNavigation)
-                    .WithMany(p => p.QuotationClients)
-                    .HasForeignKey(d => d.IdTypeService)
-                    .HasConstraintName("id_type_service");
-
-                builder.HasOne(d => d.IdUserNavigation)
-                    .WithMany(p => p.QuotationClients)
-                    .HasForeignKey(d => d.IdUser)
-                    .HasConstraintName("FK_QUOTATION_CLIENTS_USERS");
             }
         }
     }
