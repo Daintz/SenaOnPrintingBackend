@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using BusinessCape.DTOs.Role;
 using BusinessCape.DTOs.Supply;
 using BusinessCape.DTOs.SupplyCategory;
+using BusinessCape.DTOs.TypeDocument;
+using BusinessCape.DTOs.User;
 using DataCape.Models;
 
 namespace BusinessCape.Mappers
@@ -11,15 +14,33 @@ namespace BusinessCape.Mappers
         {
             //=======================|SUPPLY CATEGORY|=======================//
             // POST OR CREATE //
-            CreateMap<SupplyCategoryCreateDto, SupplyCategoryModel>();
+            CreateMap<SupplyCategoryCreateDto, SupplyCategory>();
             // PUT OR UPDATE //
-            CreateMap<SupplyCategoryUpdateDto, SupplyCategoryModel>();
+            CreateMap<SupplyCategoryUpdateDto, SupplyCategory>();
 
             //============================|SUPPLY|==========================//
             // POST OR CREATE //
-            CreateMap<SupplyCreateDto, SupplyModel>();
+            CreateMap<SupplyCreateDto, Supply>();
             // PUT OR UPDATE //
-            CreateMap<SupplyUpdateDto, SupplyModel>();
+            CreateMap<SupplyUpdateDto, Supply>();
+
+            //============================|ROLE|==========================//
+            // POST OR CREATE //
+            CreateMap<RoleCreateDto, Role>();
+            // PUT OR UPDATE //
+            CreateMap<RoleUpdateDto, Role>();
+
+            //============================|TYPE DOCUMENT|==========================//
+            // POST OR CREATE //
+            CreateMap<TypeDocumentCreateDto, TypeDocument>();
+            // PUT OR UPDATE //
+            CreateMap<TypeDocumentUpdateDto, TypeDocument>();
+
+            //============================|USER|==========================//
+            // POST OR CREATE //
+            CreateMap<UserCreateDto, User>();
+            // PUT OR UPDATE //
+            CreateMap<UserUpdateDto, User>();
         }
     }
 }

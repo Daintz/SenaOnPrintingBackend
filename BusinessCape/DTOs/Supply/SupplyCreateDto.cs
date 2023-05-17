@@ -4,9 +4,9 @@ namespace BusinessCape.DTOs.Supply
 {
     public class SupplyCreateDto
     {
-        public Guid IdSupply { get; set; }
+        public long IdSupply { get; set; }
         public string Name { get; set; } = null!;
-        public Guid MinimunUnitMeasureId { get; set; }
+        public long MinimunUnitMeasureId { get; set; }
         public string? DangerIndicators { get; set; }
         public string? UseInstructions { get; set; }
         public string? Advices { get; set; }
@@ -15,8 +15,8 @@ namespace BusinessCape.DTOs.Supply
         public int Quantity { get; set; }
         public decimal? AverageCost { get; set; }
         public bool? StatedAt { get; set; }
-        public Guid IdWarehouse { get; set; }
+        public long IdWarehouse { get; set; }
 
-        public virtual WarehouseModel IdWarehouseNavigation { get; set; } = null!;
+        public virtual Warehouse IdWarehouseNavigation { get; set; } = null!;
     }
 }

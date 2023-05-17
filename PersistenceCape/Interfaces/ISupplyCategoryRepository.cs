@@ -4,10 +4,10 @@ namespace PersistenceCape.Interfaces
 {
     public interface ISupplyCategoryRepository
     {
-        Task<IEnumerable<SupplyCategoryModel>> GetAllAsync();
-        Task<SupplyCategoryModel> GetByIdAsync(Guid id);
-        Task<SupplyCategoryModel> AddAsync(SupplyCategoryModel supplyCategory);
-        Task UpdateAsync(SupplyCategoryModel supplyCategory);
-        Task DeleteAsync(Guid id);
+        Task<IEnumerable<SupplyCategory>> GetAllAsync();
+        Task<SupplyCategory> GetByIdAsync(long id);
+        Task<SupplyCategory> AddAsync(SupplyCategory supplyCategory);
+        Task UpdateAsync(SupplyCategory supplyCategory);
+        Task DeleteAsync(long id);
     }
 }

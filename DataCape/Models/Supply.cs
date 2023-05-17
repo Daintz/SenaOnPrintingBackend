@@ -1,9 +1,15 @@
-﻿using DataCape.Models;
+﻿using System;
+using System.Collections.Generic;
 
-namespace BusinessCape.DTOs.Supply
+namespace DataCape.Models
 {
-    public class SupplyUpdateDto
+    public partial class Supply
     {
+        public Supply()
+        {
+            SupplyDetails = new HashSet<SupplyDetail>();
+        }
+
         public long IdSupply { get; set; }
         public string Name { get; set; } = null!;
         public long MinimunUnitMeasureId { get; set; }
@@ -14,9 +20,10 @@ namespace BusinessCape.DTOs.Supply
         public int SortingWord { get; set; }
         public int Quantity { get; set; }
         public decimal? AverageCost { get; set; }
-        public bool? StatedAt { get; set; }
         public long IdWarehouse { get; set; }
+        public bool? StatedAt { get; set; }
 
         public virtual Warehouse IdWarehouseNavigation { get; set; } = null!;
+        public virtual ICollection<SupplyDetail> SupplyDetails { get; set; }
     }
 }

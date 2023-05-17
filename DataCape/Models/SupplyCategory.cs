@@ -1,9 +1,13 @@
-﻿namespace BusinessCape.DTOs.SupplyCategory
+﻿using System;
+using System.Collections.Generic;
+
+namespace DataCape.Models
 {
-    public class SupplyCategoryUpdateDto
+    public partial class SupplyCategory
     {
         public long IdSupplyCategory { get; set; }
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
+        public bool? StatedAt { get; set; }
     }
 }
