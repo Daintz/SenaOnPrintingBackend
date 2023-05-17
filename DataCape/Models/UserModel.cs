@@ -21,7 +21,7 @@ namespace DataCape.Models
         public string PasswordDigest { get; set; } = null!;
         public long IdRole { get; set; }
         public long IdTypeDocument { get; set; }
-        public bool? StatedAt { get; set; }
+        public bool? StatedAt { get; set; } 
 
         public virtual RoleModel IdRoleNavigation { get; set; } = null!;
         public virtual TypeDocumentModel IdTypeDocumentNavigation { get; set; } = null!;

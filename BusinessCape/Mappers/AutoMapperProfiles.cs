@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+
+using BusinessCape.DTOs.QuotationClient;
 using BusinessCape.DTOs.Supply;
 using BusinessCape.DTOs.SupplyCategory;
+
 using DataCape.Models;
 
 namespace BusinessCape.Mappers
@@ -9,6 +12,14 @@ namespace BusinessCape.Mappers
     {
         public AutoMapperProfiles() 
         {
+          
+            
+
+            //=======================|Quotation Client|=======================//
+            // POST OR CREATE //
+            CreateMap<QuotationCreateDto, QuotationClientModel>();
+            // PUT OR UPDATE //
+            CreateMap<QuotationUpdateDto, QuotationClientModel>();
             //=======================|SUPPLY CATEGORY|=======================//
             // POST OR CREATE //
             CreateMap<SupplyCategoryCreateDto, SupplyCategoryModel>();
