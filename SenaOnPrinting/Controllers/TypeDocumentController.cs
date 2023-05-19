@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace SenaOnPrinting.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/type_document")]
     public class TypeDocumentController : ControllerBase
     {
         private readonly TypeDocumentService _typeDocumentService;

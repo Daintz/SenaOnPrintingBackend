@@ -47,6 +47,16 @@ builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>(
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("NewCORSPolicy", app =>
+    {
+        app.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -57,6 +67,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("NewCORSPolicy");
 
 app.UseAuthorization();
 

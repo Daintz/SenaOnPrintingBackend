@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace SenaOnPrinting.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/user")]
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;

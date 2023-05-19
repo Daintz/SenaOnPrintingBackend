@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace SenaOnPrinting.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/role")]
     public class RoleController : ControllerBase
     {
         private readonly RoleService _roleService;
