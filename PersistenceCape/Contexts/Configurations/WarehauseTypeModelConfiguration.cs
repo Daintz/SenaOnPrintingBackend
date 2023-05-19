@@ -20,6 +20,13 @@ namespace PersistenceCape.Contexts.Configurations
 
             builder.Property(e => e.IdTypeWarehouse).HasColumnName("id_type_warehouse");
 
+
+            builder.HasMany(t => t.Warehouse)
+                .WithOne(e => e.IdTypeWarehouseNavigation)
+                .HasForeignKey(e => e.IdTypeWarehouse)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
             builder.Property(e => e.Description)
                 .IsUnicode(false)
                 .HasColumnName("description");

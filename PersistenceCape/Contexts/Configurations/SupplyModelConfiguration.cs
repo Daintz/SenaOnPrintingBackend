@@ -57,11 +57,7 @@ namespace PersistenceCape.Contexts.Configurations
                 .HasMaxLength(255)
                 .HasColumnName("use_instructions");
 
-            builder.HasOne(d => d.IdWarehouseNavigation)
-                .WithOne(p => p.Supply)
-                .HasForeignKey<SupplyModel>(d => d.IdWarehouse)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("supplies_id_warehouse_foreign");
+           
         }
     }
 }

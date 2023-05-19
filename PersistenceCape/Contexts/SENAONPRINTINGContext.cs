@@ -1006,7 +1006,7 @@ namespace PersistenceCape.Contexts
 
                 entity.ToTable("WAREHOUSE");
 
-                entity.HasIndex(e => e.IdTypeWarehouse, "unq_WAREHOUSE_id_type_warehouse")
+                entity.HasIndex(e => e.IdTypeWarehouse, "warehause_id_type_warehouse_unique")
                     .IsUnique();
 
                 entity.Property(e => e.IdWarehouse).HasColumnName("id_warehouse");
@@ -1028,10 +1028,7 @@ namespace PersistenceCape.Contexts
                     .IsUnicode(false)
                     .HasColumnName("ubication");
 
-                entity.HasOne(d => d.IdTypeWarehouseNavigation)
-                    .WithOne(p => p.Warehouse)
-                    .HasForeignKey<WarehouseModel>(d => d.IdTypeWarehouse)
-                    .HasConstraintName("fk_warehouse_warehouse_type");
+                
             });
 
             modelBuilder.Entity<WarehouseTypeModel>(entity =>

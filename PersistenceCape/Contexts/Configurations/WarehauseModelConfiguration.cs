@@ -18,17 +18,21 @@ namespace PersistenceCape.Contexts.Configurations
 
             builder.ToTable("WAREHOUSE");
 
-            builder.HasIndex(e => e.IdTypeWarehouse, "unq_WAREHOUSE_id_type_warehouse")
-                .IsUnique();
+            builder.HasIndex(e => e.IdTypeWarehouse, "warehause_id_type_warehouse_unique")
+                     .IsUnique()
+                     .HasDatabaseName("warehause_id_type_warehouse_unique");
 
-            builder.Property(e => e.IdWarehouse).HasColumnName("id_warehouse");
+            builder.Property(e => e.IdWarehouse)
+                   .HasColumnName("id_warehouse")
+                   .HasColumnType("bigint");
 
             builder.Property(e => e.IdTypeWarehouse).HasColumnName("id_type_warehouse");
 
             builder.Property(e => e.Name)
                 .HasMaxLength(255)
                 .IsUnicode(false)
-                .HasColumnName("name");
+                .HasColumnName("name")
+                .IsRequired();
 
             builder.Property(e => e.StatedAt)
                 .IsRequired()
@@ -39,11 +43,6 @@ namespace PersistenceCape.Contexts.Configurations
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("ubication");
-
-            builder.HasOne(d => d.IdTypeWarehouseNavigation)
-                .WithOne(p => p.Warehouse)
-                .HasForeignKey<WarehouseModel>(d => d.IdTypeWarehouse)
-                .HasConstraintName("fk_warehouse_warehouse_type");
         }
     }
 }

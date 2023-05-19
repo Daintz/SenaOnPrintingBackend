@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace BusinessCape.DTOs.WarehauseType
 {
-    internal class WarehauseTypeCreateDto
+    public class WarehauseTypeCreateDto
     {
         public long IdTypeWarehouse { get; set; }
         public bool? StatedAt { get; set; }
-        public string? Nametype { get; set; }
+        public string? Nametype { get; set; } = null!;
         public string? Description { get; set; }
 
-        public virtual WarehouseModel? Warehouse { get; set; }
+        
+
     }
 }

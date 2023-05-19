@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessCape.DTOs.Warehause
 {
-    internal class WarehauseCreateDto
+    public class WarehauseCreateDto
     {
         public long IdWarehouse { get; set; }
         public string Name { get; set; } = null!;
@@ -15,7 +15,5 @@ namespace BusinessCape.DTOs.Warehause
         public bool? StatedAt { get; set; }
         public long? IdTypeWarehouse { get; set; }
 
-        public virtual WarehouseTypeModel? IdTypeWarehouseNavigation { get; set; }
-        public virtual SupplyModel? Supply { get; set; }
     }
 }
