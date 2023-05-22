@@ -1,6 +1,7 @@
-## <small>1.0.17 (2023-05-15)</small>
+## <small>1.0.18 (2023-05-16)</small>
 
 * refactor: :card_file_box: general changes ([0cca1e7](https://github.com/Daintz/SENACOSTONPRINTING/commit/0cca1e7))
+* refactor: :construction: work in progress ([e3693f8](https://github.com/Daintz/SENACOSTONPRINTING/commit/e3693f8))
 * refactor: :recycle: accommodate structure ([bd8b13e](https://github.com/Daintz/SENACOSTONPRINTING/commit/bd8b13e))
 * refactor: 🔨 refactor code and foldered ([011971f](https://github.com/Daintz/SENACOSTONPRINTING/commit/011971f))
 * feat: :sparkles: Add DTOs ([0ea6ab7](https://github.com/Daintz/SENACOSTONPRINTING/commit/0ea6ab7))

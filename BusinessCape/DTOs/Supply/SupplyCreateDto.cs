@@ -1,12 +1,10 @@
-﻿using DataCape.Models;
-
-namespace BusinessCape.DTOs.Supply
+﻿namespace BusinessCape.DTOs.Supply
 {
     public class SupplyCreateDto
     {
         public long IdSupply { get; set; }
         public string Name { get; set; } = null!;
-        public long MinimunUnitMeasureId { get; set; }
+        public long IdUnitMeasure { get; set; }
         public string? DangerIndicators { get; set; }
         public string? UseInstructions { get; set; }
         public string? Advices { get; set; }
@@ -14,9 +12,7 @@ namespace BusinessCape.DTOs.Supply
         public int SortingWord { get; set; }
         public int Quantity { get; set; }
         public decimal? AverageCost { get; set; }
-        public bool? StatedAt { get; set; }
         public long IdWarehouse { get; set; }
-
-        public virtual WarehouseModel IdWarehouseNavigation { get; set; } = null!;
+        public bool? StatedAt { get; set; }
     }
 }

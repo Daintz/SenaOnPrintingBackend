@@ -16,7 +16,7 @@ namespace PersistenceCape.Contexts.Configurations
             builder.HasIndex(e => e.IdWarehouse, "supplies_id_warehouse_unique")
                 .IsUnique();
 
-            builder.HasIndex(e => e.MinimunUnitMeasureId, "supplies_minimun_unit_measure_id_unique")
+            builder.HasIndex(e => e.IdUnitMeasure, "supplies_minimun_unit_measure_id_unique")
                 .IsUnique();
 
             builder.Property(e => e.IdSupply).HasColumnName("id_supply");
@@ -33,9 +33,9 @@ namespace PersistenceCape.Contexts.Configurations
                 .HasMaxLength(255)
                 .HasColumnName("danger_indicators");
 
-            builder.Property(e => e.IdWarehouse).HasColumnName("id_warehouse");
+            builder.Property(e => e.IdUnitMeasure).HasColumnName("id_unit_measure");
 
-            builder.Property(e => e.MinimunUnitMeasureId).HasColumnName("minimun_unit_measure_id");
+            builder.Property(e => e.IdWarehouse).HasColumnName("id_warehouse");
 
             builder.Property(e => e.Name)
                 .HasMaxLength(255)

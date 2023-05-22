@@ -47,12 +47,12 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(long id, SupplyUpdateDto supplyDto)
+        public async Task<IActionResult> Update(SupplyUpdateDto supplyDto)
         {
             var supplyToUpdate = await _supplyService.GetByIdAsync(supplyDto.IdSupply);
 
             await _supplyService.UpdateAsync(supplyToUpdate);
-            return NoContent();
+            return Ok(supplyToUpdate);
         }
 
         [HttpDelete("{id}")]
@@ -60,6 +60,20 @@ namespace SenaOnPrinting.Controllers
         {
             await _supplyService.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpDelete("status/{id}")]
+        public async Task<IActionResult> ChangeStatus(long id, bool statedAt)
+        {
+            var supplyToUpdate = await _supplyService.GetByIdAsync(id);
+            if (supplyToUpdate == null)
+            {
+                return NotFound("Supply wasn't found");
+            }
+            supplyToUpdate.StatedAt = statedAt;
+
+            await _supplyService.UpdateAsync(supplyToUpdate);
+            return Ok(supplyToUpdate);
         }
     }
 }

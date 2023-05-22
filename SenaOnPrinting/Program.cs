@@ -9,16 +9,15 @@ var Configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddInjectionInfraestructure(Configuration);
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("MyReactAppPolicy",
-        builder =>
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("CorsPolicy", builder =>
         {
-            builder.WithOrigins("http://localhost:5173")
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
         });
-});
+    });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -33,6 +32,8 @@ builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 var app = builder.Build();
+
+app.UseCors("CorsPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

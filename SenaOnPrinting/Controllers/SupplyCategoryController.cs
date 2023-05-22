@@ -74,5 +74,19 @@ namespace SenaOnPrinting.Controllers
             await _supplyCategoryService.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpDelete("status/{id}")]
+        public async Task<IActionResult> ChangeStatus(long id, bool statedAt)
+        {
+            var supplyToUpdate = await _supplyCategoryService.GetByIdAsync(id);
+            if (supplyToUpdate == null)
+            {
+                return NotFound("Supply wasn't found");
+            }
+            supplyToUpdate.StatedAt = statedAt;
+
+            await _supplyCategoryService.UpdateAsync(supplyToUpdate);
+            return Ok(supplyToUpdate);
+        }
     }
 }

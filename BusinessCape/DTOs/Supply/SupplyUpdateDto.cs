@@ -1,6 +1,4 @@
-﻿using DataCape.Models;
-
-namespace BusinessCape.DTOs.Supply
+﻿namespace BusinessCape.DTOs.Supply
 {
     public class SupplyUpdateDto
     {
@@ -16,7 +14,5 @@ namespace BusinessCape.DTOs.Supply
         public decimal? AverageCost { get; set; }
         public bool? StatedAt { get; set; }
         public long IdWarehouse { get; set; }
-
-        public virtual WarehouseModel IdWarehouseNavigation { get; set; } = null!;
     }
 }
