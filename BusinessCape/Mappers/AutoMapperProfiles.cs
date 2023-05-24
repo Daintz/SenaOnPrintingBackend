@@ -23,6 +23,8 @@ namespace BusinessCape.Mappers
             CreateMap<FinishDtoCreate, FinishModel>();
 
             CreateMap<FinishDtoUpdate, FinishModel>();
+            CreateMap<FinishDtoUpdate_state, FinishModel>();
+
 
         }
     }
