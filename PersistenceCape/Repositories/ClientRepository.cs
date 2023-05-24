@@ -45,7 +45,14 @@ namespace PersistenceCape.Repositories
         public async Task DeleteAsync(long id)
         {
             var client = await _context.Clients.FindAsync(id);
-            _context.Clients.Remove(client);
+            if (client.StatedAt == true)
+            {
+                client.StatedAt = false;
+            }
+            else
+            {
+                client.StatedAt = true;
+            }
             await _context.SaveChangesAsync();
         }
     }
