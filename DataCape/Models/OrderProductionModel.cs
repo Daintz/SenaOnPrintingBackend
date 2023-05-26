@@ -17,9 +17,14 @@ namespace DataCape
         public long? PaperCutId { get; set; }
         public byte[]? Image { get; set; }
         public string? Observations { get; set; }
+<<<<<<< HEAD
         public bool StatedAt { get; set; }
         public bool OrderStatus { get; set; }
         public string? Program { get; set; }
+=======
+        public bool? StatedAt { get; set; } 
+        public bool OrderStatus { get; set; } 
+>>>>>>> 95dc0272dbf0fdf0da8f821efeeb82009668680d
 
         public virtual PaperCutModel? PaperCut { get; set; }
         public virtual QuotationClientDetail? QuotationClientDetail { get; set; }

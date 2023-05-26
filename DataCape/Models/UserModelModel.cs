@@ -21,7 +21,13 @@ namespace DataCape
         public string Email { get; set; } = null!;
         public long RoleId { get; set; }
         public string PasswordDigest { get; set; } = null!;
+<<<<<<< HEAD:DataCape/Models/UserModelModel.cs
         public bool? StatedAt { get; set; }
+=======
+        public long IdRole { get; set; }
+        public long IdTypeDocument { get; set; }
+        public bool? StatedAt { get; set; } 
+>>>>>>> 95dc0272dbf0fdf0da8f821efeeb82009668680d:DataCape/Models/UserModel.cs
 
         public virtual RoleModel Role { get; set; } = null!;
         public virtual TypeDocumentModel TypeDocument { get; set; } = null!;
