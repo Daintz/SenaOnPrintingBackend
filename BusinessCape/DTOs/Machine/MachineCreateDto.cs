@@ -8,8 +8,7 @@ namespace BusinessCape.DTOs.Machine
 {
     public class MachineCreateDto
     {
-        public long IdMachine { get; set; }
-        public bool? StatedAt { get; set; }
+        public long Id { get; set; }
         public string? Name { get; set; }
         public decimal? MinimumHeight { get; set; }
         public decimal? MinimumWidth { get; set; }
@@ -17,5 +16,6 @@ namespace BusinessCape.DTOs.Machine
         public decimal? MaximumWidth { get; set; }
         public decimal? CostByUnit { get; set; }
         public decimal? CostByHour { get; set; }
+        public bool? StatedAt { get; set; }
     }
 }

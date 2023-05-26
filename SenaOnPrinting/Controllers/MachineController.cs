@@ -2,7 +2,7 @@
 using BusinessCape.DTOs.Machine;
 
 using BusinessCape.Services;
-using DataCape.Models;
+using DataCape;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -52,7 +52,7 @@ namespace SenaOnPrinting.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, MachineCreateDto machineDto)
         {
-            var MachineToCreate = await _machineServices.GetByIdAsync(machineDto.IdMachine);
+            var MachineToCreate = await _machineServices.GetByIdAsync(machineDto.Id);
             _mapper.Map(machineDto, MachineToCreate);
             await _machineServices.UpdateAsync(MachineToCreate);
             return NoContent();

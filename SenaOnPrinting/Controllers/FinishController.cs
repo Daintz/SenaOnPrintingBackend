@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BusinessCape.DTOs.Finish;
 using BusinessCape.Services;
-using DataCape.Models;
+using DataCape;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -52,18 +52,16 @@ namespace SenaOnPrinting.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, FinishDtoUpdate finishDto)
         {
-            var FinishToUpdate = await _finishServices.GetByIdAsync(finishDto.IdFinish);
+            var FinishToUpdate = await _finishServices.GetByIdAsync(finishDto.Id);
             _mapper.Map(finishDto, FinishToUpdate);
             await _finishServices.UpdateAsync(FinishToUpdate);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Update(long id, FinishDtoUpdate_state finishDtoUpdate_state)
+        public async Task<IActionResult> Delete(long id)
         {
-            var FinishToUpdate = await _finishServices.GetByIdAsync(finishDtoUpdate_state.IdFinish);
-            _mapper.Map(finishDtoUpdate_state, FinishToUpdate);
-            await _finishServices.UpdateAsync(FinishToUpdate);
+            await _finishServices.DeleteAsync(id);
             return NoContent();
         }
     }

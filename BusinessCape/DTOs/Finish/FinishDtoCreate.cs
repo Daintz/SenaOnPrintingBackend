@@ -9,9 +9,9 @@ namespace BusinessCape.DTOs.Finish
     public class FinishDtoCreate
     {
 
-        public long IdFinish { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; } = null!;
         public bool? StatedAt { get; set; }
-        public string? FinishName { get; set; }
 
     }
 }

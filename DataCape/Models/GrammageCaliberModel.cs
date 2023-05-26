@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace DataCape
 {
-    public partial class LineatureModel
+    public partial class GrammageCaliberModel
     {
         public long Id { get; set; }
-        public string Lineature1 { get; set; } = null!;
-        public string? TypePoint { get; set; }
+        public string Type { get; set; } = null!;
+        public string? Name { get; set; }
         public bool? StatedAt { get; set; }
     }
 }

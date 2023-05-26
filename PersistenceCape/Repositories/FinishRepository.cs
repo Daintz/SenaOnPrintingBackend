@@ -1,10 +1,12 @@
-﻿using DataCape.Models;
+﻿
+using DataCape;
 using Microsoft.EntityFrameworkCore;
-using PersistenceCape.Contexts;
+
 using PersistenceCape.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,10 +49,13 @@ namespace PersistenceCape.Repositories
 
             public async Task DeleteAsync(long id)
             {
-                var finish = await _context.Finishes.FindAsync(id);
-                _context.Finishes.Update(finish);
-                await _context.SaveChangesAsync();
-            }
+                var Finish= await _context.Finishes.FindAsync(id);
+
+            Finish.StatedAt = !Finish.StatedAt;
+            await _context.SaveChangesAsync();
+
+        }
+
         }
     }
 

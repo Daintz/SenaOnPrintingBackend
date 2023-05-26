@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataCape.Models
+namespace DataCape
 {
     public partial class SupplyPictogramModel
     {
-        public long IdPictogram { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; } = null!;
-        public byte[] Pictogram { get; set; } = null!;
+        public string? Description { get; set; }
+        public byte[]? PictogramFile { get; set; }
         public bool? StatedAt { get; set; }
     }
 }

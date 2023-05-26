@@ -2,7 +2,7 @@
 using BusinessCape.DTOs.Finish;
 using BusinessCape.DTOs.Machine;
 
-using DataCape.Models;
+using DataCape;
 
 namespace BusinessCape.Mappers
 {
@@ -23,7 +23,7 @@ namespace BusinessCape.Mappers
             CreateMap<FinishDtoCreate, FinishModel>();
 
             CreateMap<FinishDtoUpdate, FinishModel>();
-            CreateMap<FinishDtoUpdate_state, FinishModel>();
+       
 
 
         }

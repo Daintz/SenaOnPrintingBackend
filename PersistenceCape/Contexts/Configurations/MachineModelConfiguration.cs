@@ -1,4 +1,5 @@
-﻿using DataCape.Models;
+﻿
+using DataCape;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Reflection.Emit;
@@ -9,12 +10,11 @@ namespace PersistenceCape.Contexts.Configurations
     {
         public void Configure(EntityTypeBuilder<MachineModel> builder)
         {
-            builder.HasKey(e => e.IdMachine)
-                   .HasName("pk_MACHINES");
+            
 
-            builder.ToTable("MACHINES");
+            builder.ToTable("machines");
 
-            builder.Property(e => e.IdMachine).HasColumnName("id_machine");
+            builder.Property(e => e.Id).HasColumnName("id");
 
             builder.Property(e => e.CostByHour)
                 .HasColumnType("decimal(18, 0)")
@@ -41,14 +41,13 @@ namespace PersistenceCape.Contexts.Configurations
                 .HasColumnName("minimum_width");
 
             builder.Property(e => e.Name)
-                .HasMaxLength(90)
+                .HasMaxLength(150)
                 .IsUnicode(false)
                 .HasColumnName("name");
 
             builder.Property(e => e.StatedAt)
-                .IsRequired()
                 .HasColumnName("stated_at")
-                .HasDefaultValueSql("('1')");
+                .HasDefaultValueSql("((1))");
         }
     }
 }
