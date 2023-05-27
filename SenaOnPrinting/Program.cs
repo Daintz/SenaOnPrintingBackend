@@ -25,8 +25,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Configurar las interfaces para que el controlador las pueda usar
-//builder.Services.AddScoped<SupplyCategoryService>();
-//builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
+builder.Services.AddScoped<SupplyCategoryService>();
+builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
 
 
 builder.Services.AddScoped<ProviderService>(); 
