@@ -5,10 +5,13 @@ using PersistenceCape.Repositories;
 using BusinessCape.Mappers;
 using FluentValidation.AspNetCore;
 using BusinessCape.DTOs.Supply.Validators;
+using BusinessCape.DTOs.SupplyCategory.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
-// Add services to the container.
+
+//===================================================================|SERVICES|==================================================================//
+
 builder.Services.AddInjectionInfraestructure(Configuration);
 
 builder.Services.AddCors(options =>
@@ -23,25 +26,33 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configurar las interfaces para que el controlador las pueda usar
+//=======================|SUPPLY CATEGORY|======================//
 builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCategoryCreateDtoValidator>());
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCategoryUpdateDtoValidator>());
+//==============================================================//
+
+//============================|SUPPLY|==========================//
 builder.Services.AddScoped<SupplyService>();
 builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
-
-//Declaration validators
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCreateDtoValidator>());
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyUpdateDtoValidator>());
+//==============================================================//
+
+//=============================================================================================================================================//
+
+
+//===================================================================|BUILDS|==================================================================//
 
 var app = builder.Build();
-
 app.UseCors("CorsPolicy");
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -55,3 +66,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+//=============================================================================================================================================//

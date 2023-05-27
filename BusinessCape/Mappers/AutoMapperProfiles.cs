@@ -14,12 +14,14 @@ namespace BusinessCape.Mappers
             CreateMap<SupplyCategoryCreateDto, SupplyCategoryModel>();
             // PUT OR UPDATE //
             CreateMap<SupplyCategoryUpdateDto, SupplyCategoryModel>();
+            //==============================================================//
 
             //============================|SUPPLY|==========================//
             // POST OR CREATE //
             CreateMap<SupplyCreateDto, SupplyModel>();
             // PUT OR UPDATE //
             CreateMap<SupplyUpdateDto, SupplyModel>();
+            //==============================================================//
         }
     }
 }
