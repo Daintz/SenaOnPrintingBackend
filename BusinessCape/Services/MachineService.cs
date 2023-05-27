@@ -19,22 +19,22 @@ namespace BusinessCape.Services
             _MachineRepository = MachineRepository;
         }
 
-        public async Task<IEnumerable<Machine>> GetAllAsync()
+        public async Task<IEnumerable<MachineModel>> GetAllAsync()
         {
             return await _MachineRepository.GetAllAsync();
         }
 
-        public async Task<Machine> GetByIdAsync(long id)
+        public async Task<MachineModel> GetByIdAsync(long id)
         {
             return await _MachineRepository.GetByIdAsync(id);
         }
 
-        public async Task AddAsync(Machine machine)
+        public async Task AddAsync(MachineModel machine)
         {
             await  _MachineRepository.AddAsync(machine);
         }
 
-        public async Task UpdateAsync(Machine machine)
+        public async Task UpdateAsync(MachineModel machine)
         {
             await _MachineRepository.UpdateAsync(machine);
         }

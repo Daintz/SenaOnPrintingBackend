@@ -6,9 +6,9 @@ using System.Reflection.Emit;
 
 namespace PersistenceCape.Contexts.Configurations
 {
-    public class MachineModelConfiguration : IEntityTypeConfiguration<Machine>
+    public class MachineModelConfiguration : IEntityTypeConfiguration<MachineModel>
     {
-        public void Configure(EntityTypeBuilder<Machine> builder)
+        public void Configure(EntityTypeBuilder<MachineModel> builder)
         {
             
 

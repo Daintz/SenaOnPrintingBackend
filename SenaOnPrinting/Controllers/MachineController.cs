@@ -43,7 +43,7 @@ namespace SenaOnPrinting.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(MachineCreateDto machineDto)
         {
-            var MachineToCreate = _mapper.Map<Machine>(machineDto);
+            var MachineToCreate = _mapper.Map<MachineModel>(machineDto);
 
             await _machineServices.AddAsync(MachineToCreate);
             return Ok(MachineToCreate);

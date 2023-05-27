@@ -43,7 +43,7 @@ namespace SenaOnPrinting.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(FinishDtoCreate finishDto)
         {
-            var FinishToCreate = _mapper.Map<Finish>(finishDto);
+            var FinishToCreate = _mapper.Map<FinishModel>(finishDto);
 
             await _finishServices.AddAsync(FinishToCreate);
             return Ok(FinishToCreate);

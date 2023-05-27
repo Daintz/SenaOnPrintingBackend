@@ -18,22 +18,22 @@ namespace BusinessCape.Services
             _FinishRepository = finishRepository;
         }
 
-        public async Task<IEnumerable<Finish>> GetAllAsync()
+        public async Task<IEnumerable<FinishModel>> GetAllAsync()
         {
             return await _FinishRepository.GetAllAsync();
         }
 
-        public async Task<Finish> GetByIdAsync(long id)
+        public async Task<FinishModel> GetByIdAsync(long id)
         {
             return await _FinishRepository.GetByIdAsync(id);
         }
 
-        public async Task AddAsync(Finish finish)
+        public async Task AddAsync(FinishModel finish)
         {
             await _FinishRepository.AddAsync(finish);
         }
 
-        public async Task UpdateAsync(Finish finish)
+        public async Task UpdateAsync(FinishModel finish)
         {
             await _FinishRepository.UpdateAsync(finish);
         }

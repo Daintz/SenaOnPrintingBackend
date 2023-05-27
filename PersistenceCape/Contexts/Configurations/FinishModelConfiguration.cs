@@ -6,9 +6,9 @@ using System.Reflection.Emit;
 
 namespace PersistenceCape.Contexts.Configurations
 {
-    public class FinishModelConfiguration : IEntityTypeConfiguration<Finish>
+    public class FinishModelConfiguration : IEntityTypeConfiguration<FinishModel>
     {
-        public void Configure(EntityTypeBuilder<Finish> builder)
+        public void Configure(EntityTypeBuilder<FinishModel> builder)
         {
             builder.ToTable("finishes");
 

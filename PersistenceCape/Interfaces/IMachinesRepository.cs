@@ -10,10 +10,10 @@ namespace PersistenceCape.Interfaces
 {
     public interface IMachinesRepository
     {
-        Task<IEnumerable<Machine>> GetAllAsync();
-        Task<Machine> GetByIdAsync(long id);
-        Task<Machine> AddAsync(Machine machine);
-        Task UpdateAsync(Machine machine);
+        Task<IEnumerable<MachineModel>> GetAllAsync();
+        Task<MachineModel> GetByIdAsync(long id);
+        Task<MachineModel> AddAsync(MachineModel machine);
+        Task UpdateAsync(MachineModel machine);
         Task DeleteAsync(long id);
     }
 }

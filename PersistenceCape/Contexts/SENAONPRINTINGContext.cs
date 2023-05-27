@@ -16,43 +16,43 @@ namespace DataCape
         {
         }
 
-        public virtual DbSet<ApplicationPermission> ApplicationPermissions { get; set; } = null!;
+        public virtual DbSet<ApplicationPermissionModel> ApplicationPermissions { get; set; } = null!;
         public virtual DbSet<Client> Clients { get; set; } = null!;
-        public virtual DbSet<Finish> Finishes { get; set; } = null!;
-        public virtual DbSet<FinishXQuotationClientDetail> FinishXQuotationClientDetails { get; set; } = null!;
-        public virtual DbSet<GrammageCaliber> GrammageCalibers { get; set; } = null!;
-        public virtual DbSet<GrammageCaliberXQuotationClientDetail> GrammageCaliberXQuotationClientDetails { get; set; } = null!;
-        public virtual DbSet<ImpositionPlanch> ImpositionPlanches { get; set; } = null!;
-        public virtual DbSet<ImpositionPlanchXOrderProduction> ImpositionPlanchXOrderProductions { get; set; } = null!;
-        public virtual DbSet<Lineature> Lineatures { get; set; } = null!;
-        public virtual DbSet<LineatureXOrderProduction> LineatureXOrderProductions { get; set; } = null!;
-        public virtual DbSet<Machine> Machines { get; set; } = null!;
-        public virtual DbSet<MachinesXQuotationClient> MachinesXQuotationClients { get; set; } = null!;
-        public virtual DbSet<OrderProduction> OrderProductions { get; set; } = null!;
-        public virtual DbSet<PaperCut> PaperCuts { get; set; } = null!;
-        public virtual DbSet<PermissionsByRole> PermissionsByRoles { get; set; } = null!;
-        public virtual DbSet<Product> Products { get; set; } = null!;
-        public virtual DbSet<Provider> Providers { get; set; } = null!;
-        public virtual DbSet<QuotationClient> QuotationClients { get; set; } = null!;
-        public virtual DbSet<QuotationClientDetail> QuotationClientDetails { get; set; } = null!;
-        public virtual DbSet<QuotationProvider> QuotationProviders { get; set; } = null!;
-        public virtual DbSet<Role> Roles { get; set; } = null!;
-        public virtual DbSet<Substrate> Substrates { get; set; } = null!;
-        public virtual DbSet<SubstrateXQuotationClientDetail> SubstrateXQuotationClientDetails { get; set; } = null!;
-        public virtual DbSet<Supply> Supplies { get; set; } = null!;
-        public virtual DbSet<SupplyCategoriesXSupply> SupplyCategoriesXSupplies { get; set; } = null!;
-        public virtual DbSet<SupplyCategory> SupplyCategories { get; set; } = null!;
-        public virtual DbSet<SupplyDetail> SupplyDetails { get; set; } = null!;
-        public virtual DbSet<SupplyPictogram> SupplyPictograms { get; set; } = null!;
-        public virtual DbSet<SupplyXProduct> SupplyXProducts { get; set; } = null!;
-        public virtual DbSet<SupplyXSupplyPictogram> SupplyXSupplyPictograms { get; set; } = null!;
-        public virtual DbSet<TypeDocument> TypeDocuments { get; set; } = null!;
-        public virtual DbSet<TypeService> TypeServices { get; set; } = null!;
-        public virtual DbSet<UnitMeasure> UnitMeasures { get; set; } = null!;
-        public virtual DbSet<UnitMeasuresXSupply> UnitMeasuresXSupplies { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
-        public virtual DbSet<Warehouse> Warehouses { get; set; } = null!;
-        public virtual DbSet<WarehouseType> WarehouseTypes { get; set; } = null!;
+        public virtual DbSet<FinishModel> Finishes { get; set; } = null!;
+        public virtual DbSet<FinishXQuotationClientDetailModel> FinishXQuotationClientDetails { get; set; } = null!;
+        public virtual DbSet<GrammageCaliberModel> GrammageCalibers { get; set; } = null!;
+        public virtual DbSet<GrammageCaliberXQuotationClientDetailModel> GrammageCaliberXQuotationClientDetails { get; set; } = null!;
+        public virtual DbSet<ImpositionPlanchModel> ImpositionPlanches { get; set; } = null!;
+        public virtual DbSet<ImpositionPlanchXOrderProductionModel> ImpositionPlanchXOrderProductions { get; set; } = null!;
+        public virtual DbSet<LineatureModel> Lineatures { get; set; } = null!;
+        public virtual DbSet<LineatureXOrderProductionModel> LineatureXOrderProductions { get; set; } = null!;
+        public virtual DbSet<MachineModel> Machines { get; set; } = null!;
+        public virtual DbSet<MachinesXQuotationClientModel> MachinesXQuotationClients { get; set; } = null!;
+        public virtual DbSet<OrderProductionModel> OrderProductions { get; set; } = null!;
+        public virtual DbSet<PaperCutModel> PaperCuts { get; set; } = null!;
+        public virtual DbSet<PermissionsByRoleModel> PermissionsByRoles { get; set; } = null!;
+        public virtual DbSet<ProductModel> Products { get; set; } = null!;
+        public virtual DbSet<ProviderModel> Providers { get; set; } = null!;
+        public virtual DbSet<QuotationClientModel> QuotationClients { get; set; } = null!;
+        public virtual DbSet<QuotationClientDetailModel> QuotationClientDetails { get; set; } = null!;
+        public virtual DbSet<QuotationProviderModel> QuotationProviders { get; set; } = null!;
+        public virtual DbSet<RoleModel> Roles { get; set; } = null!;
+        public virtual DbSet<SubstrateModel> Substrates { get; set; } = null!;
+        public virtual DbSet<SubstrateXQuotationClientDetailModel> SubstrateXQuotationClientDetails { get; set; } = null!;
+        public virtual DbSet<SupplyModel> Supplies { get; set; } = null!;
+        public virtual DbSet<SupplyCategoriesXSupplyModel> SupplyCategoriesXSupplies { get; set; } = null!;
+        public virtual DbSet<SupplyCategoryModel> SupplyCategories { get; set; } = null!;
+        public virtual DbSet<SupplyDetailModel> SupplyDetails { get; set; } = null!;
+        public virtual DbSet<SupplyPictogramModel> SupplyPictograms { get; set; } = null!;
+        public virtual DbSet<SupplyXProductModel> SupplyXProducts { get; set; } = null!;
+        public virtual DbSet<SupplyXSupplyPictogramModel> SupplyXSupplyPictograms { get; set; } = null!;
+        public virtual DbSet<TypeDocumentModel> TypeDocuments { get; set; } = null!;
+        public virtual DbSet<TypeServiceModel> TypeServices { get; set; } = null!;
+        public virtual DbSet<UnitMeasureModel> UnitMeasures { get; set; } = null!;
+        public virtual DbSet<UnitMeasuresXSupplyModel> UnitMeasuresXSupplies { get; set; } = null!;
+        public virtual DbSet<UserModel> Users { get; set; } = null!;
+        public virtual DbSet<WarehouseModel> Warehouses { get; set; } = null!;
+        public virtual DbSet<WarehouseTypeModel> WarehouseTypes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -65,7 +65,7 @@ namespace DataCape
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ApplicationPermission>(entity =>
+            modelBuilder.Entity<ApplicationPermissionModel>(entity =>
             {
                 entity.ToTable("application_permissions");
 
@@ -121,7 +121,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<Finish>(entity =>
+            modelBuilder.Entity<FinishModel>(entity =>
             {
                 entity.ToTable("finishes");
 
@@ -137,7 +137,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<FinishXQuotationClientDetail>(entity =>
+            modelBuilder.Entity<FinishXQuotationClientDetailModel>(entity =>
             {
                 entity.HasNoKey();
 
@@ -158,7 +158,7 @@ namespace DataCape
                     .HasConstraintName("FK__finish_x___quota__236943A5");
             });
 
-            modelBuilder.Entity<GrammageCaliber>(entity =>
+            modelBuilder.Entity<GrammageCaliberModel>(entity =>
             {
                 entity.ToTable("grammage_caliber");
 
@@ -179,7 +179,7 @@ namespace DataCape
                     .HasColumnName("type");
             });
 
-            modelBuilder.Entity<GrammageCaliberXQuotationClientDetail>(entity =>
+            modelBuilder.Entity<GrammageCaliberXQuotationClientDetailModel>(entity =>
             {
                 entity.HasNoKey();
 
@@ -200,7 +200,7 @@ namespace DataCape
                     .HasConstraintName("FK__grammage___order__2645B050");
             });
 
-            modelBuilder.Entity<ImpositionPlanch>(entity =>
+            modelBuilder.Entity<ImpositionPlanchModel>(entity =>
             {
                 entity.ToTable("imposition_planch");
 
@@ -218,7 +218,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<ImpositionPlanchXOrderProduction>(entity =>
+            modelBuilder.Entity<ImpositionPlanchXOrderProductionModel>(entity =>
             {
                 entity.HasNoKey();
 
@@ -239,7 +239,7 @@ namespace DataCape
                     .HasConstraintName("FK__impositio__order__29221CFB");
             });
 
-            modelBuilder.Entity<Lineature>(entity =>
+            modelBuilder.Entity<LineatureModel>(entity =>
             {
                 entity.ToTable("lineature");
 
@@ -260,7 +260,7 @@ namespace DataCape
                     .HasColumnName("type_point");
             });
 
-            modelBuilder.Entity<LineatureXOrderProduction>(entity =>
+            modelBuilder.Entity<LineatureXOrderProductionModel>(entity =>
             {
                 entity.HasNoKey();
 
@@ -281,7 +281,7 @@ namespace DataCape
                     .HasConstraintName("FK__lineature__order__2BFE89A6");
             });
 
-            modelBuilder.Entity<Machine>(entity =>
+            modelBuilder.Entity<MachineModel>(entity =>
             {
                 entity.ToTable("machines");
 
@@ -321,7 +321,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<MachinesXQuotationClient>(entity =>
+            modelBuilder.Entity<MachinesXQuotationClientModel>(entity =>
             {
                 entity.HasNoKey();
 
@@ -342,7 +342,7 @@ namespace DataCape
                     .HasConstraintName("FK__machines___quota__2EDAF651");
             });
 
-            modelBuilder.Entity<OrderProduction>(entity =>
+            modelBuilder.Entity<OrderProductionModel>(entity =>
             {
                 entity.ToTable("order_production");
 
@@ -408,7 +408,7 @@ namespace DataCape
                     .HasConstraintName("FK__order_pro__user___1F98B2C1");
             });
 
-            modelBuilder.Entity<PaperCut>(entity =>
+            modelBuilder.Entity<PaperCutModel>(entity =>
             {
                 entity.ToTable("paper_cut");
 
@@ -424,7 +424,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<PermissionsByRole>(entity =>
+            modelBuilder.Entity<PermissionsByRoleModel>(entity =>
             {
                 entity.ToTable("permissions_by_role");
 
@@ -449,7 +449,7 @@ namespace DataCape
                     .HasConstraintName("FK__permissio__role___3C69FB99");
             });
 
-            modelBuilder.Entity<Product>(entity =>
+            modelBuilder.Entity<ProductModel>(entity =>
             {
                 entity.ToTable("products");
 
@@ -474,7 +474,7 @@ namespace DataCape
                     .HasColumnName("type_product");
             });
 
-            modelBuilder.Entity<Provider>(entity =>
+            modelBuilder.Entity<ProviderModel>(entity =>
             {
                 entity.ToTable("providers");
 
@@ -513,7 +513,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<QuotationClient>(entity =>
+            modelBuilder.Entity<QuotationClientModel>(entity =>
             {
                 entity.ToTable("quotation_clients");
 
@@ -555,7 +555,7 @@ namespace DataCape
                     .HasConstraintName("FK__quotation__user___114A936A");
             });
 
-            modelBuilder.Entity<QuotationClientDetail>(entity =>
+            modelBuilder.Entity<QuotationClientDetailModel>(entity =>
             {
                 entity.ToTable("quotation_client_details");
 
@@ -599,7 +599,7 @@ namespace DataCape
                     .HasConstraintName("FK__quotation__quota__17036CC0");
             });
 
-            modelBuilder.Entity<QuotationProvider>(entity =>
+            modelBuilder.Entity<QuotationProviderModel>(entity =>
             {
                 entity.ToTable("quotation_providers");
 
@@ -625,7 +625,7 @@ namespace DataCape
                     .HasConstraintName("FK__quotation__provi__32AB8735");
             });
 
-            modelBuilder.Entity<Role>(entity =>
+            modelBuilder.Entity<RoleModel>(entity =>
             {
                 entity.ToTable("roles");
 
@@ -646,7 +646,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<Substrate>(entity =>
+            modelBuilder.Entity<SubstrateModel>(entity =>
             {
                 entity.ToTable("substrates");
 
@@ -662,7 +662,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<SubstrateXQuotationClientDetail>(entity =>
+            modelBuilder.Entity<SubstrateXQuotationClientDetailModel>(entity =>
             {
                 entity.HasNoKey();
 
@@ -683,7 +683,7 @@ namespace DataCape
                     .HasConstraintName("FK__substrate__subst__367C1819");
             });
 
-            modelBuilder.Entity<Supply>(entity =>
+            modelBuilder.Entity<SupplyModel>(entity =>
             {
                 entity.ToTable("supplies");
 
@@ -728,7 +728,7 @@ namespace DataCape
                     .HasConstraintName("FK__supplies__wareho__5FB337D6");
             });
 
-            modelBuilder.Entity<SupplyCategoriesXSupply>(entity =>
+            modelBuilder.Entity<SupplyCategoriesXSupplyModel>(entity =>
             {
                 entity.HasNoKey();
 
@@ -749,7 +749,7 @@ namespace DataCape
                     .HasConstraintName("FK__supply_ca__suppl__656C112C");
             });
 
-            modelBuilder.Entity<SupplyCategory>(entity =>
+            modelBuilder.Entity<SupplyCategoryModel>(entity =>
             {
                 entity.ToTable("supply_categories");
 
@@ -770,7 +770,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<SupplyDetail>(entity =>
+            modelBuilder.Entity<SupplyDetailModel>(entity =>
             {
                 entity.ToTable("supply_details");
 
@@ -821,7 +821,7 @@ namespace DataCape
                     .HasConstraintName("FK__supply_de__suppl__693CA210");
             });
 
-            modelBuilder.Entity<SupplyPictogram>(entity =>
+            modelBuilder.Entity<SupplyPictogramModel>(entity =>
             {
                 entity.ToTable("supply_pictograms");
 
@@ -844,7 +844,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<SupplyXProduct>(entity =>
+            modelBuilder.Entity<SupplyXProductModel>(entity =>
             {
                 entity.HasNoKey();
 
@@ -865,7 +865,7 @@ namespace DataCape
                     .HasConstraintName("FK__supply_x___suppl__0E6E26BF");
             });
 
-            modelBuilder.Entity<SupplyXSupplyPictogram>(entity =>
+            modelBuilder.Entity<SupplyXSupplyPictogramModel>(entity =>
             {
                 entity.HasNoKey();
 
@@ -886,7 +886,7 @@ namespace DataCape
                     .HasConstraintName("FK__supply_x___suppl__70DDC3D8");
             });
 
-            modelBuilder.Entity<TypeDocument>(entity =>
+            modelBuilder.Entity<TypeDocumentModel>(entity =>
             {
                 entity.ToTable("type_documents");
 
@@ -907,7 +907,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<TypeService>(entity =>
+            modelBuilder.Entity<TypeServiceModel>(entity =>
             {
                 entity.ToTable("type_service");
 
@@ -923,7 +923,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<UnitMeasure>(entity =>
+            modelBuilder.Entity<UnitMeasureModel>(entity =>
             {
                 entity.ToTable("unit_measures");
 
@@ -957,7 +957,7 @@ namespace DataCape
                     .HasConstraintName("FK__unit_meas__base___73BA3083");
             });
 
-            modelBuilder.Entity<UnitMeasuresXSupply>(entity =>
+            modelBuilder.Entity<UnitMeasuresXSupplyModel>(entity =>
             {
                 entity.HasNoKey();
 
@@ -978,7 +978,7 @@ namespace DataCape
                     .HasConstraintName("FK__unit_meas__unit___778AC167");
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<UserModel>(entity =>
             {
                 entity.ToTable("users");
 
@@ -1046,7 +1046,7 @@ namespace DataCape
                     .HasConstraintName("FK__users__type_docu__45F365D3");
             });
 
-            modelBuilder.Entity<Warehouse>(entity =>
+            modelBuilder.Entity<WarehouseModel>(entity =>
             {
                 entity.ToTable("warehouse");
 
@@ -1074,7 +1074,7 @@ namespace DataCape
                     .HasConstraintName("FK__warehouse__wareh__5BE2A6F2");
             });
 
-            modelBuilder.Entity<WarehouseType>(entity =>
+            modelBuilder.Entity<WarehouseTypeModel>(entity =>
             {
                 entity.ToTable("warehouse_type");
 

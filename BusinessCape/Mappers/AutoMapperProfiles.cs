@@ -14,15 +14,15 @@ namespace BusinessCape.Mappers
         {   
             //============================|Machine|==========================//
 
-            CreateMap<MachineCreateDto, Machine>();
+            CreateMap<MachineCreateDto, MachineModel>();
 
-            CreateMap<MachineUpdateDto, Machine>();
+            CreateMap<MachineUpdateDto, MachineModel>();
 
             //============================|Finish|==========================//
 
-            CreateMap<FinishDtoCreate, Finish>();
+            CreateMap<FinishDtoCreate, FinishModel>();
 
-            CreateMap<FinishDtoUpdate, Finish>();
+            CreateMap<FinishDtoUpdate, FinishModel>();
        
 
          
