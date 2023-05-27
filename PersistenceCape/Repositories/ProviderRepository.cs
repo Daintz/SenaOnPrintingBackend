@@ -17,33 +17,36 @@ namespace PersistenceCape.Repositories
         {
             _context = context;
         }
-        public async Task<IEnumerable<ProviderModel>> GetAllAsync()
+        public async Task<IEnumerable<Provider>> GetAllAsync()
         {
             return await _context.Providers.ToListAsync();
         }
-        public async Task<ProviderModel> GetByIdAsync(long id)
+        public async Task<Provider> GetByIdAsync(long id)
         {
             return await _context.Providers.FindAsync(id);
         }
-        public async Task UpdateAsync(ProviderModel Provider)
+        public async Task UpdateAsync(Provider provider)
         {
-            _context.Entry(Provider).State = EntityState.Modified;
+            _context.Entry(provider).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ProviderModel> AddAsync(ProviderModel Provider)
+        public async Task<Provider> AddAsync(Provider provider)
         {
-          await _context.Providers.AddAsync(Provider);
+          await _context.Providers.AddAsync(provider);
           await _context.SaveChangesAsync();
-          return Provider;
+          return provider;
 
         }
 
         public async Task DeleteAsync(long id)
         {
-          var provider=await _context.Providers.FindAsync(id);
-          _context.Remove(provider);
-          await _context.SaveChangesAsync();
+          
+
+            var provider=await _context.Providers.FindAsync(id);
+
+            provider.StatedAt = !provider.StatedAt;
+            await _context.SaveChangesAsync();
         }
 
 

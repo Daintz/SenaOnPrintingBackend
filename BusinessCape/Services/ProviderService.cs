@@ -17,7 +17,7 @@ namespace BusinessCape.Services
             _providerRepository = providerRepository;
         }
 
-        public async Task AddAsync(ProviderModel Provider)
+        public async Task AddAsync(Provider Provider)
         {
            await _providerRepository.AddAsync( Provider );
         }
@@ -27,17 +27,17 @@ namespace BusinessCape.Services
             return _providerRepository.DeleteAsync(id );
         }
 
-        public Task<IEnumerable<ProviderModel>> GetAllAsync()
+        public Task<IEnumerable<Provider>> GetAllAsync()
         {
             return _providerRepository.GetAllAsync();
         }
 
-        public Task<ProviderModel> GetByIdAsync(long id)
+        public Task<Provider> GetByIdAsync(long id)
         {
             return _providerRepository.GetByIdAsync( id );
         }
 
-        public Task UpdateAsync(ProviderModel Provider)
+        public Task UpdateAsync(Provider Provider)
         {
             return _providerRepository.UpdateAsync( Provider );
         }

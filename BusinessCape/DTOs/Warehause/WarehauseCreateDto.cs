@@ -9,11 +9,12 @@ namespace BusinessCape.DTOs.Warehause
 {
     public class WarehauseCreateDto
     {
-        public long IdWarehouse { get; set; }
+        public long? WarehouseTypeId { get; set; }
         public string Name { get; set; } = null!;
-        public string Ubication { get; set; } = null!;
+        public string? Ubication { get; set; }
         public bool? StatedAt { get; set; }
-        public long? IdTypeWarehouse { get; set; }
+
+        public virtual WarehouseType? WarehouseType { get; set; }
 
     }
 }

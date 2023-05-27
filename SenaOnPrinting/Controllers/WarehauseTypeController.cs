@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using BusinessCape.DTOs.Provider;
-using BusinessCape.DTOs.Supply;
 using BusinessCape.DTOs.WarehauseType;
 using BusinessCape.Services;
 using DataCape.Models;
@@ -44,7 +42,7 @@ namespace SenaOnPrinting.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(WarehauseTypeCreateDto WarehauseTypeDto)
         {
-            var warehauseToCreate = _mapper.Map<WarehouseTypeModel>(WarehauseTypeDto);
+            var warehauseToCreate = _mapper.Map<WarehouseType>(WarehauseTypeDto);
 
             await _warehauseTypeService.AddAsync(warehauseToCreate);
             return Ok(warehauseToCreate);
@@ -53,12 +51,12 @@ namespace SenaOnPrinting.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, WarehauseTypeUpdateDto WarehauseTypeDto)
         {
-            if (id != WarehauseTypeDto.IdTypeWarehouse)
+            if (id != WarehauseTypeDto.Id)
             {
                 return BadRequest();
             }
 
-            var warehauseType = await _warehauseTypeService.GetByIdAsync(WarehauseTypeDto.IdTypeWarehouse);
+            var warehauseType = await _warehauseTypeService.GetByIdAsync(WarehauseTypeDto.Id);
 
             //supplyToUpdate.Name = supplyCategoryDto.Name;
             //supplyToUpdate.Description = supplyCategoryDto.Description;

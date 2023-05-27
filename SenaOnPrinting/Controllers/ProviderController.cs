@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BusinessCape.DTOs.Provider;
-using BusinessCape.DTOs.SupplyCategory;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +47,7 @@ namespace SenaOnPrinting.Controllers
             //supplyToCreate.Name = supplyCategoryDto.Name;
             //supplyToCreate.Description = supplyCategoryDto.Description;
             //supplyToCreate.StatedAt = true;
-            var ProviderCreate = _mapper.Map<ProviderModel>(providerCreateDto);
+            var ProviderCreate = _mapper.Map<Provider>(providerCreateDto);
 
             await _providerService.AddAsync(ProviderCreate);
             return Ok(ProviderCreate);
@@ -57,12 +56,12 @@ namespace SenaOnPrinting.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, ProviderUpdateDto providerUpdateDto)
         {
-            if (id != providerUpdateDto.IdProvider)
+            if (id != providerUpdateDto.Id)
             {
                 return BadRequest();
             }
 
-            var provider = await _providerService.GetByIdAsync(providerUpdateDto.IdProvider);
+            var provider = await _providerService.GetByIdAsync(providerUpdateDto.Id);
 
             //supplyToUpdate.Name = supplyCategoryDto.Name;
             //supplyToUpdate.Description = supplyCategoryDto.Description;

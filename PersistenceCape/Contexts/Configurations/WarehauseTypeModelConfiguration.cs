@@ -9,36 +9,27 @@ using System.Threading.Tasks;
 
 namespace PersistenceCape.Contexts.Configurations
 {
-    internal class WarehauseTypeModelConfiguration : IEntityTypeConfiguration<WarehouseTypeModel>
+    internal class WarehauseTypeModelConfiguration : IEntityTypeConfiguration<WarehouseType>
     {
-        public void Configure(EntityTypeBuilder<WarehouseTypeModel> builder)
+        public void Configure(EntityTypeBuilder<WarehouseType> builder)
         {
-            builder.HasKey(e => e.IdTypeWarehouse)
-                   .HasName("pk_Tbl");
+            builder.ToTable("warehouse_type");
 
-            builder.ToTable("WAREHOUSE_TYPE");
-
-            builder.Property(e => e.IdTypeWarehouse).HasColumnName("id_type_warehouse");
-
-
-            builder.HasMany(t => t.Warehouse)
-                .WithOne(e => e.IdTypeWarehouseNavigation)
-                .HasForeignKey(e => e.IdTypeWarehouse)
-                .OnDelete(DeleteBehavior.Restrict);
-
+            builder.Property(e => e.Id).HasColumnName("id");
 
             builder.Property(e => e.Description)
+                .HasMaxLength(150)
                 .IsUnicode(false)
                 .HasColumnName("description");
 
-            builder.Property(e => e.Nametype)
+            builder.Property(e => e.Name)
+                .HasMaxLength(100)
                 .IsUnicode(false)
-                .HasColumnName("nametype");
+                .HasColumnName("name");
 
             builder.Property(e => e.StatedAt)
-                .IsRequired()
                 .HasColumnName("stated_at")
-                .HasDefaultValueSql("('1')");
+                .HasDefaultValueSql("((1))");
         }
     }
 }

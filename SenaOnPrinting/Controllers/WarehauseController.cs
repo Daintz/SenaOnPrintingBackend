@@ -42,7 +42,7 @@ namespace SenaOnPrinting.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(WarehauseCreateDto WarehauseDto)
         {
-            var warehauseToCreate = _mapper.Map<WarehouseModel>(WarehauseDto);
+            var warehauseToCreate = _mapper.Map<Warehouse>(WarehauseDto);
 
             await _warehauseService.AddAsync(warehauseToCreate);
             return Ok(warehauseToCreate);
@@ -51,12 +51,12 @@ namespace SenaOnPrinting.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, WarehauseUpdateDto WarehauseDto)
         {
-            if (id != WarehauseDto.IdWarehouse)
+            if (id != WarehauseDto.Id)
             {
                 return BadRequest();
             }
 
-            var warehauseType = await _warehauseService.GetByIdAsync(WarehauseDto.IdWarehouse);
+            var warehauseType = await _warehauseService.GetByIdAsync(WarehauseDto.Id);
 
             //supplyToUpdate.Name = supplyCategoryDto.Name;
             //supplyToUpdate.Description = supplyCategoryDto.Description;

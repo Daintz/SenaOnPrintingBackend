@@ -9,12 +9,13 @@ namespace BusinessCape.DTOs.WarehauseType
 {
     public class WarehauseTypeCreateDto
     {
-        public long IdTypeWarehouse { get; set; }
-        public bool? StatedAt { get; set; }
-        public string? Nametype { get; set; } = null!;
+        public string Name { get; set; } = null!;
         public string? Description { get; set; }
+        public bool? StatedAt { get; set; }
 
-        
+
+
+
 
     }
 }

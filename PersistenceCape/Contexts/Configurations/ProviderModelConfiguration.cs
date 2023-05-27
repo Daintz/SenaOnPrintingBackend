@@ -9,43 +9,45 @@ using System.Threading.Tasks;
 
 namespace PersistenceCape.Contexts.Configurations
 {
-    public class ProviderModelConfiguration : IEntityTypeConfiguration<ProviderModel>
+    public class ProviderModelConfiguration : IEntityTypeConfiguration<Provider>
     {
-        public void Configure(EntityTypeBuilder<ProviderModel> builder)
+        public void Configure(EntityTypeBuilder<Provider> builder)
         {
-            builder.HasKey(e => e.IdProvider)
-                   .HasName("pk_PROVIDERS");
+            builder.ToTable("providers");
 
-            builder.ToTable("PROVIDERS");
+            builder.HasIndex(e => e.Email, "UQ__provider__AB6E616458EEF016")
+                .IsUnique();
 
-            builder.Property(e => e.IdProvider).HasColumnName("id_provider");
+            builder.Property(e => e.Id).HasColumnName("id");
 
             builder.Property(e => e.CompanyAddress)
-                .HasMaxLength(255)
+                .HasMaxLength(150)
                 .IsUnicode(false)
                 .HasColumnName("company_address");
 
             builder.Property(e => e.Email)
-                .HasMaxLength(255)
+                .HasMaxLength(110)
                 .IsUnicode(false)
                 .HasColumnName("email");
 
             builder.Property(e => e.NameCompany)
-                .HasMaxLength(255)
+                .HasMaxLength(250)
                 .IsUnicode(false)
                 .HasColumnName("name_company");
 
-            builder.Property(e => e.NitCompany).HasColumnName("nit_company");
+            builder.Property(e => e.NitCompany)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("nit_company");
 
             builder.Property(e => e.Phone)
-                .HasMaxLength(255)
+                .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("phone");
 
             builder.Property(e => e.StatedAt)
-                .IsRequired()
                 .HasColumnName("stated_at")
-                .HasDefaultValueSql("('1')");
+                .HasDefaultValueSql("((1))");
         }
     }
 }

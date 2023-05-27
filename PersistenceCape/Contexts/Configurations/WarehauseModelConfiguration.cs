@@ -9,40 +9,34 @@ using System.Threading.Tasks;
 
 namespace PersistenceCape.Contexts.Configurations
 {
-    internal class WarehauseModelConfiguration : IEntityTypeConfiguration<WarehouseModel>
+    internal class WarehauseModelConfiguration : IEntityTypeConfiguration<Warehouse>
     {
-        public void Configure(EntityTypeBuilder<WarehouseModel> builder)
+        public void Configure(EntityTypeBuilder<Warehouse> builder)
         {
-            builder.HasKey(e => e.IdWarehouse)
-                    .HasName("warehouse_id_warehouse_primary");
+            builder.ToTable("warehouse");
 
-            builder.ToTable("WAREHOUSE");
-
-            builder.HasIndex(e => e.IdTypeWarehouse, "warehause_id_type_warehouse_unique")
-                     .IsUnique()
-                     .HasDatabaseName("warehause_id_type_warehouse_unique");
-
-            builder.Property(e => e.IdWarehouse)
-                   .HasColumnName("id_warehouse")
-                   .HasColumnType("bigint");
-
-            builder.Property(e => e.IdTypeWarehouse).HasColumnName("id_type_warehouse");
+            builder.Property(e => e.Id).HasColumnName("id");
 
             builder.Property(e => e.Name)
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .IsUnicode(false)
-                .HasColumnName("name")
-                .IsRequired();
+                .HasColumnName("name");
 
             builder.Property(e => e.StatedAt)
-                .IsRequired()
                 .HasColumnName("stated_at")
-                .HasDefaultValueSql("('1')");
+                .HasDefaultValueSql("((1))");
 
             builder.Property(e => e.Ubication)
-                .HasMaxLength(255)
+                .HasMaxLength(150)
                 .IsUnicode(false)
                 .HasColumnName("ubication");
+
+            builder.Property(e => e.WarehouseTypeId).HasColumnName("warehouse_type_id");
+
+            builder.HasOne(d => d.WarehouseType)
+                .WithMany(p => p.Warehouses)
+                .HasForeignKey(d => d.WarehouseTypeId)
+                .HasConstraintName("FK__warehouse__wareh__5812160E");
         }
     }
 }

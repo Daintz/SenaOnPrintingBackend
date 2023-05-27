@@ -9,13 +9,12 @@ namespace BusinessCape.DTOs.Provider
 {
     public class ProviderCreateDto
     {
-        public long IdProvider { get; set; }
-        public bool? StatedAt { get; set; }
         public string NameCompany { get; set; } = null!;
-        public long NitCompany { get; set; }
+        public string NitCompany { get; set; } = null!;
         public string Email { get; set; } = null!;
-        public string Phone { get; set; } = null!;
-        public string CompanyAddress { get; set; } = null!;
+        public string? Phone { get; set; }
+        public string? CompanyAddress { get; set; }
+        public bool? StatedAt { get; set; }
 
     }
 }
