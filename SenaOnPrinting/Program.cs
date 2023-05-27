@@ -20,6 +20,17 @@ builder.Services.AddCors(options =>
     });
 });
 
+//cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -35,17 +46,28 @@ builder.Services.AddScoped<IFinishs, FinishRepository>();
 builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
 
+builder.Services.AddScoped<OrderProductionService>();
+builder.Services.AddScoped<IOrderProductionRepository, OrderProductionRepository>();
+
+builder.Services.AddScoped<LineatureService>();
+builder.Services.AddScoped<ILineatureRepository, LineatureRepository>();
+
+builder.Services.AddScoped<ImpositionPlateService>();
+builder.Services.AddScoped<IImpositionPlateRepository, ImpositionPlateRepository>();
+
 builder.Services.AddScoped<ClientService>();
 builder.Services.AddScoped<IClientsRepository, ClientRepository>();
 
 builder.Services.AddScoped<QuotationClientService>();
 builder.Services.AddScoped<IQuotationClientRepository, QuotationClientRepository>();
 
-
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 
 var app = builder.Build();
+app.UseCors("CorsPolicy");
+
+//Use cors
 app.UseCors("CorsPolicy");
 
 // Configure the HTTP request pipeline.
