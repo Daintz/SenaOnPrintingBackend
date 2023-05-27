@@ -12,22 +12,22 @@ namespace BusinessCape.Services
             _roleRepository = roleRepository;
         }
 
-        public async Task<IEnumerable<Role>> Index()
+        public async Task<IEnumerable<RoleModel>> Index()
         {
             return await _roleRepository.Index();
         }
 
-        public async Task<Role> Show(long id)
+        public async Task<RoleModel> Show(long id)
         {
             return await _roleRepository.Show(id);
         }
 
-        public async Task Create(Role role)
+        public async Task Create(RoleModel role)
         {
             await _roleRepository.Create(role);
         }
 
-        public async Task Update(Role role)
+        public async Task Update(RoleModel role)
         {
             await _roleRepository.Update(role);
         }

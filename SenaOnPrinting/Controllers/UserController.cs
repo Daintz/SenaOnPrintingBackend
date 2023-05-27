@@ -41,7 +41,7 @@ namespace SenaOnPrinting.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(UserCreateDto userDto)
         {
-            var user = _mapper.Map<User>(userDto);
+            var user = _mapper.Map<UserModel>(userDto);
             user.PasswordDigest = encryptPassword(user.PasswordDigest);
 
             await _userService.Create(user);
@@ -67,7 +67,7 @@ namespace SenaOnPrinting.Controllers
 
         private string encryptPassword(string password)
         {
-            var passwordHasher = new PasswordHasher<User>();
+            var passwordHasher = new PasswordHasher<UserModel>();
 
             string password_digest = passwordHasher.HashPassword(null, password);
 

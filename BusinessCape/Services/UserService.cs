@@ -12,22 +12,22 @@ namespace BusinessCape.Services
             _userRepository = userRepository;
         }
 
-        public async Task<IEnumerable<User>> Index()
+        public async Task<IEnumerable<UserModel>> Index()
         {
             return await _userRepository.Index();
         }
 
-        public async Task<User> Show(long id)
+        public async Task<UserModel> Show(long id)
         {
             return await _userRepository.Show(id);
         }
 
-        public async Task Create(User user)
+        public async Task Create(UserModel user)
         {
             await _userRepository.Create(user);
         }
 
-        public async Task Update(User user)
+        public async Task Update(UserModel user)
         {
             await _userRepository.Update(user);
         }

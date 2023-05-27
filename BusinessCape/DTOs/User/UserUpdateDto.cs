@@ -16,7 +16,5 @@ namespace BusinessCape.DTOs.User
         public bool? StatedAt { get; set; }
         public string PasswordDigest { get; set; } = null!;
 
-        public virtual DataCape.Models.Role? Role { get; set; }
-        public virtual DataCape.Models.TypeDocument? TypeDocument { get; set; }
     }
 }

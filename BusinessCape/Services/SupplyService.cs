@@ -12,22 +12,22 @@ namespace BusinessCape.Services
             _supplyRepository = supplyRepository;
         }
 
-        public async Task<IEnumerable<Supply>> GetAllAsync()
+        public async Task<IEnumerable<SupplyModel>> GetAllAsync()
         {
             return await _supplyRepository.GetAllAsync();
         }
 
-        public async Task<Supply> GetByIdAsync(long id)
+        public async Task<SupplyModel> GetByIdAsync(long id)
         {
             return await _supplyRepository.GetByIdAsync(id);
         }
 
-        public async Task AddAsync(Supply supplyCategory)
+        public async Task AddAsync(SupplyModel supplyCategory)
         {
             await _supplyRepository.AddAsync(supplyCategory);
         }
 
-        public async Task UpdateAsync(Supply supplyCategory)
+        public async Task UpdateAsync(SupplyModel supplyCategory)
         {
             await _supplyRepository.UpdateAsync(supplyCategory);
         }

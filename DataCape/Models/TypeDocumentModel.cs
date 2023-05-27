@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class TypeDocument
+    public class TypeDocumentModel
     {
-        public TypeDocument()
+        public TypeDocumentModel()
         {
-            Users = new HashSet<User>();
+            Users = new HashSet<UserModel>();
         }
 
         public long Id { get; set; }
@@ -15,6 +15,6 @@ namespace DataCape.Models
         public string Abbreviation { get; set; } = null!;
         public bool? StatedAt { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserModel> Users { get; set; }
     }
 }

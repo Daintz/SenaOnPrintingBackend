@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class SupplyCategory
+    public class FinishModel
     {
-        public long IdSupplyCategory { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
         public bool? StatedAt { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace PersistenceCape.Interfaces
 {
     public interface IRoleRepository
     {
-        Task<IEnumerable<Role>> Index();
-        Task<Role> Show(long id);
-        Task<Role> Create(Role role);
-        Task Update(Role role);
+        Task<IEnumerable<RoleModel>> Index();
+        Task<RoleModel> Show(long id);
+        Task<RoleModel> Create(RoleModel role);
+        Task Update(RoleModel role);
         Task Delete(long id);
     }
 }

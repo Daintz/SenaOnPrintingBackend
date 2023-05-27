@@ -15,24 +15,24 @@ namespace PersistenceCape.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<User>> Index()
+        public async Task<IEnumerable<UserModel>> Index()
         {
             return await _context.Users.ToListAsync();
         }
 
-        public async Task<User> Show(long id)
+        public async Task<UserModel> Show(long id)
         {
             return await _context.Users.FindAsync(id);
         }
 
-        public async Task Update(User user)
+        public async Task Update(UserModel user)
         {
             //user.PasswordDigest = encryptPassword(user.PasswordDigest);
             _context.Entry(user).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task<User> Create(User user)
+        public async Task<UserModel> Create(UserModel user)
         {
             //user.PasswordDigest = encryptPassword(user.PasswordDigest);
             await _context.Users.AddAsync(user);

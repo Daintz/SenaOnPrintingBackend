@@ -9,10 +9,10 @@ namespace PersistenceCape.Interfaces
 {
     public interface ITypeDocumentRepository
     {
-        Task<IEnumerable<TypeDocument>> Index();
-        Task<TypeDocument> Show(long id);
-        Task<TypeDocument> Create(TypeDocument typeDocument);
-        Task Update(TypeDocument typeDocument);
+        Task<IEnumerable<TypeDocumentModel>> Index();
+        Task<TypeDocumentModel> Show(long id);
+        Task<TypeDocumentModel> Create(TypeDocumentModel typeDocument);
+        Task Update(TypeDocumentModel typeDocument);
         Task Delete(long id);
     }
 }

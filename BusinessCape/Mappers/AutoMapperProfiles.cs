@@ -14,33 +14,33 @@ namespace BusinessCape.Mappers
         {
             //=======================|SUPPLY CATEGORY|=======================//
             // POST OR CREATE //
-            CreateMap<SupplyCategoryCreateDto, SupplyCategory>();
+            CreateMap<SupplyCategoryCreateDto, SupplyCategoryModel>();
             // PUT OR UPDATE //
-            CreateMap<SupplyCategoryUpdateDto, SupplyCategory>();
+            CreateMap<SupplyCategoryUpdateDto, SupplyCategoryModel>();
 
             //============================|SUPPLY|==========================//
             // POST OR CREATE //
-            CreateMap<SupplyCreateDto, Supply>();
+            CreateMap<SupplyCreateDto, SupplyModel>();
             // PUT OR UPDATE //
-            CreateMap<SupplyUpdateDto, Supply>();
+            CreateMap<SupplyUpdateDto, SupplyModel>();
 
             //============================|ROLE|==========================//
             // POST OR CREATE //
-            CreateMap<RoleCreateDto, Role>();
+            CreateMap<RoleCreateDto, RoleModel>();
             // PUT OR UPDATE //
-            CreateMap<RoleUpdateDto, Role>();
+            CreateMap<RoleUpdateDto, RoleModel>();
 
             //============================|TYPE DOCUMENT|==========================//
             // POST OR CREATE //
-            CreateMap<TypeDocumentCreateDto, TypeDocument>();
+            CreateMap<TypeDocumentCreateDto, TypeDocumentModel>();
             // PUT OR UPDATE //
-            CreateMap<TypeDocumentUpdateDto, TypeDocument>();
+            CreateMap<TypeDocumentUpdateDto, TypeDocumentModel>();
 
             //============================|USER|==========================//
             // POST OR CREATE //
-            CreateMap<UserCreateDto, User>();
+            CreateMap<UserCreateDto, UserModel>();
             // PUT OR UPDATE //
-            CreateMap<UserUpdateDto, User>();
+            CreateMap<UserUpdateDto, UserModel>();
         }
     }
 }

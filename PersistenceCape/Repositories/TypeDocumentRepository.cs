@@ -14,23 +14,23 @@ namespace PersistenceCape.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<TypeDocument>> Index()
+        public async Task<IEnumerable<TypeDocumentModel>> Index()
         {
             return await _context.TypeDocuments.ToListAsync();
         }
 
-        public async Task<TypeDocument> Show(long id)
+        public async Task<TypeDocumentModel> Show(long id)
         {
             return await _context.TypeDocuments.FindAsync(id);
         }
 
-        public async Task Update(TypeDocument typeDocument)
+        public async Task Update(TypeDocumentModel typeDocument)
         {
             _context.Entry(typeDocument).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task<TypeDocument> Create(TypeDocument typeDocument)
+        public async Task<TypeDocumentModel> Create(TypeDocumentModel typeDocument)
         {
             await _context.TypeDocuments.AddAsync(typeDocument);
             await _context.SaveChangesAsync();

@@ -14,23 +14,23 @@ namespace PersistenceCape.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Role>> Index()
+        public async Task<IEnumerable<RoleModel>> Index()
         {
             return await _context.Roles.ToListAsync();
         }
 
-        public async Task<Role> Show(long id)
+        public async Task<RoleModel> Show(long id)
         {
             return await _context.Roles.FindAsync(id);
         }
 
-        public async Task Update(Role role)
+        public async Task Update(RoleModel role)
         {
             _context.Entry(role).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Role> Create(Role role)
+        public async Task<RoleModel> Create(RoleModel role)
         {
             await _context.Roles.AddAsync(role);
             await _context.SaveChangesAsync();

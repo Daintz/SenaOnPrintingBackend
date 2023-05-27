@@ -20,7 +20,7 @@ namespace PersistenceCape.Repositories
 
         public bool Authenticate(string email, string password)
         {
-            User user = _context.Users.Where(us => us.Email == email).FirstOrDefault();
+            UserModel user = _context.Users.Where(us => us.Email == email).FirstOrDefault();
             if (user == null)
             {
                 return false;
@@ -43,9 +43,9 @@ namespace PersistenceCape.Repositories
             return true;
         }
 
-        private bool VerifyPassword(string password, User user)
+        private bool VerifyPassword(string password, UserModel user)
         {
-            var passwordHasher = new PasswordHasher<User>();
+            var passwordHasher = new PasswordHasher<UserModel>();
 
             var is_valid = passwordHasher.VerifyHashedPassword(user, user.PasswordDigest, password);
 

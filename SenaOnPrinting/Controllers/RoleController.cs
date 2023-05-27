@@ -40,7 +40,7 @@ namespace SenaOnPrinting.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(RoleCreateDto roleDto)
         {
-            var role = _mapper.Map<Role>(roleDto);
+            var role = _mapper.Map<RoleModel>(roleDto);
 
             await _roleService.Create(role);
             return Ok(role);

@@ -17,6 +17,6 @@ namespace BusinessCape.DTOs.Supply
         public bool? StatedAt { get; set; }
         public long IdWarehouse { get; set; }
 
-        public virtual Warehouse IdWarehouseNavigation { get; set; } = null!;
+        public virtual WarehouseModel IdWarehouseNavigation { get; set; } = null!;
     }
 }

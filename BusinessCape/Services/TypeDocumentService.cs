@@ -12,22 +12,22 @@ namespace BusinessCape.Services
             _typeDocumentRepository = typeDocumentRepository;
         }
 
-        public async Task<IEnumerable<TypeDocument>> Index()
+        public async Task<IEnumerable<TypeDocumentModel>> Index()
         {
             return await _typeDocumentRepository.Index();
         }
 
-        public async Task<TypeDocument> Show(long id)
+        public async Task<TypeDocumentModel> Show(long id)
         {
             return await _typeDocumentRepository.Show(id);
         }
 
-        public async Task Create(TypeDocument typeDocument)
+        public async Task Create(TypeDocumentModel typeDocument)
         {
             await _typeDocumentRepository.Create(typeDocument);
         }
 
-        public async Task Update(TypeDocument typeDocument)
+        public async Task Update(TypeDocumentModel typeDocument)
         {
             await _typeDocumentRepository.Update(typeDocument);
         }

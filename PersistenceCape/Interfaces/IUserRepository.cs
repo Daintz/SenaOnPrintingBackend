@@ -9,10 +9,10 @@ namespace PersistenceCape.Interfaces
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> Index();
-        Task<User> Show(long id);
-        Task<User> Create(User user);
-        Task Update(User user);
+        Task<IEnumerable<UserModel>> Index();
+        Task<UserModel> Show(long id);
+        Task<UserModel> Create(UserModel user);
+        Task Update(UserModel user);
         Task Delete(long id);
     }
 }
