@@ -16,43 +16,43 @@ namespace DataCape
         {
         }
 
-        public virtual DbSet<ApplicationPermissionModel> ApplicationPermissions { get; set; } = null!;
-        public virtual DbSet<ClientModel> Clients { get; set; } = null!;
-        public virtual DbSet<FinishModel> Finishes { get; set; } = null!;
-        public virtual DbSet<FinishXQuotationClientDetailModel> FinishXQuotationClientDetails { get; set; } = null!;
-        public virtual DbSet<GrammageCaliberModel> GrammageCalibers { get; set; } = null!;
-        public virtual DbSet<GrammageCaliberXOrderProductionModel> GrammageCaliberXOrderProductions { get; set; } = null!;
-        public virtual DbSet<ImpositionPlanchModel> ImpositionPlanches { get; set; } = null!;
-        public virtual DbSet<ImpositionPlanchXOrderProductionModel> ImpositionPlanchXOrderProductions { get; set; } = null!;
-        public virtual DbSet<LineatureModel> Lineatures { get; set; } = null!;
-        public virtual DbSet<LineatureXOrderProductionModel> LineatureXOrderProductions { get; set; } = null!;
-        public virtual DbSet<MachineModel> Machines { get; set; } = null!;
-        public virtual DbSet<MachinesXQuotationClientModel> MachinesXQuotationClients { get; set; } = null!;
-        public virtual DbSet<OrderProductionModel> OrderProductions { get; set; } = null!;
-        public virtual DbSet<PaperCutModel> PaperCuts { get; set; } = null!;
-        public virtual DbSet<PermissionsByRoleModel> PermissionsByRoles { get; set; } = null!;
-        public virtual DbSet<ProductModel> Products { get; set; } = null!;
-        public virtual DbSet<ProviderModel> Providers { get; set; } = null!;
-        public virtual DbSet<QuotationClientModel> QuotationClients { get; set; } = null!;
+        public virtual DbSet<ApplicationPermission> ApplicationPermissions { get; set; } = null!;
+        public virtual DbSet<Client> Clients { get; set; } = null!;
+        public virtual DbSet<Finish> Finishes { get; set; } = null!;
+        public virtual DbSet<FinishXQuotationClientDetail> FinishXQuotationClientDetails { get; set; } = null!;
+        public virtual DbSet<GrammageCaliber> GrammageCalibers { get; set; } = null!;
+        public virtual DbSet<GrammageCaliberXQuotationClientDetail> GrammageCaliberXQuotationClientDetails { get; set; } = null!;
+        public virtual DbSet<ImpositionPlanch> ImpositionPlanches { get; set; } = null!;
+        public virtual DbSet<ImpositionPlanchXOrderProduction> ImpositionPlanchXOrderProductions { get; set; } = null!;
+        public virtual DbSet<Lineature> Lineatures { get; set; } = null!;
+        public virtual DbSet<LineatureXOrderProduction> LineatureXOrderProductions { get; set; } = null!;
+        public virtual DbSet<Machine> Machines { get; set; } = null!;
+        public virtual DbSet<MachinesXQuotationClient> MachinesXQuotationClients { get; set; } = null!;
+        public virtual DbSet<OrderProduction> OrderProductions { get; set; } = null!;
+        public virtual DbSet<PaperCut> PaperCuts { get; set; } = null!;
+        public virtual DbSet<PermissionsByRole> PermissionsByRoles { get; set; } = null!;
+        public virtual DbSet<Product> Products { get; set; } = null!;
+        public virtual DbSet<Provider> Providers { get; set; } = null!;
+        public virtual DbSet<QuotationClient> QuotationClients { get; set; } = null!;
         public virtual DbSet<QuotationClientDetail> QuotationClientDetails { get; set; } = null!;
-        public virtual DbSet<QuotationProviderModel> QuotationProviders { get; set; } = null!;
-        public virtual DbSet<RoleModel> Roles { get; set; } = null!;
-        public virtual DbSet<SubstrateModel> Substrates { get; set; } = null!;
-        public virtual DbSet<SubstrateXQuotationClientDetailModel> SubstrateXQuotationClientDetails { get; set; } = null!;
-        public virtual DbSet<SupplyModel> Supplies { get; set; } = null!;
+        public virtual DbSet<QuotationProvider> QuotationProviders { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<Substrate> Substrates { get; set; } = null!;
+        public virtual DbSet<SubstrateXQuotationClientDetail> SubstrateXQuotationClientDetails { get; set; } = null!;
+        public virtual DbSet<Supply> Supplies { get; set; } = null!;
         public virtual DbSet<SupplyCategoriesXSupply> SupplyCategoriesXSupplies { get; set; } = null!;
         public virtual DbSet<SupplyCategory> SupplyCategories { get; set; } = null!;
         public virtual DbSet<SupplyDetail> SupplyDetails { get; set; } = null!;
-        public virtual DbSet<SupplyPictogramModel> SupplyPictograms { get; set; } = null!;
-        public virtual DbSet<SupplyXProductModel> SupplyXProducts { get; set; } = null!;
-        public virtual DbSet<SupplyXSupplyPictogramModel> SupplyXSupplyPictograms { get; set; } = null!;
-        public virtual DbSet<TypeDocumentModel> TypeDocuments { get; set; } = null!;
-        public virtual DbSet<TypeServiceModelModel> TypeServices { get; set; } = null!;
-        public virtual DbSet<UnitMeasureModelModel> UnitMeasures { get; set; } = null!;
-        public virtual DbSet<UnitMeasuresXSupplyModel> UnitMeasuresXSupplies { get; set; } = null!;
-        public virtual DbSet<UserModelModel> Users { get; set; } = null!;
-        public virtual DbSet<WarehouseModelModel> Warehouses { get; set; } = null!;
-        public virtual DbSet<WarehouseTypeModel> WarehouseTypes { get; set; } = null!;
+        public virtual DbSet<SupplyPictogram> SupplyPictograms { get; set; } = null!;
+        public virtual DbSet<SupplyXProduct> SupplyXProducts { get; set; } = null!;
+        public virtual DbSet<SupplyXSupplyPictogram> SupplyXSupplyPictograms { get; set; } = null!;
+        public virtual DbSet<TypeDocument> TypeDocuments { get; set; } = null!;
+        public virtual DbSet<TypeService> TypeServices { get; set; } = null!;
+        public virtual DbSet<UnitMeasure> UnitMeasures { get; set; } = null!;
+        public virtual DbSet<UnitMeasuresXSupply> UnitMeasuresXSupplies { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<Warehouse> Warehouses { get; set; } = null!;
+        public virtual DbSet<WarehouseType> WarehouseTypes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -65,7 +65,7 @@ namespace DataCape
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ApplicationPermissionModel>(entity =>
+            modelBuilder.Entity<ApplicationPermission>(entity =>
             {
                 entity.ToTable("application_permissions");
 
@@ -77,11 +77,11 @@ namespace DataCape
                     .HasColumnName("name");
             });
 
-            modelBuilder.Entity<ClientModel>(entity =>
+            modelBuilder.Entity<Client>(entity =>
             {
                 entity.ToTable("clients");
 
-                entity.HasIndex(e => e.Email, "UQ__clients__AB6E616471CFA90D")
+                entity.HasIndex(e => e.Email, "UQ__clients__AB6E6164DFAEF4DA")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -121,7 +121,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<FinishModel>(entity =>
+            modelBuilder.Entity<Finish>(entity =>
             {
                 entity.ToTable("finishes");
 
@@ -137,7 +137,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<FinishXQuotationClientDetailModel>(entity =>
+            modelBuilder.Entity<FinishXQuotationClientDetail>(entity =>
             {
                 entity.HasNoKey();
 
@@ -150,15 +150,15 @@ namespace DataCape
                 entity.HasOne(d => d.Finish)
                     .WithMany()
                     .HasForeignKey(d => d.FinishId)
-                    .HasConstraintName("FK__finish_x___finis__1EA48E88");
+                    .HasConstraintName("FK__finish_x___finis__245D67DE");
 
                 entity.HasOne(d => d.QuotationClientDetail)
                     .WithMany()
                     .HasForeignKey(d => d.QuotationClientDetailId)
-                    .HasConstraintName("FK__finish_x___quota__1DB06A4F");
+                    .HasConstraintName("FK__finish_x___quota__236943A5");
             });
 
-            modelBuilder.Entity<GrammageCaliberModel>(entity =>
+            modelBuilder.Entity<GrammageCaliber>(entity =>
             {
                 entity.ToTable("grammage_caliber");
 
@@ -179,11 +179,11 @@ namespace DataCape
                     .HasColumnName("type");
             });
 
-            modelBuilder.Entity<GrammageCaliberXOrderProductionModel>(entity =>
+            modelBuilder.Entity<GrammageCaliberXQuotationClientDetail>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToTable("grammage_caliber_x_order_production");
+                entity.ToTable("grammage_caliber_x_quotation_client_detail");
 
                 entity.Property(e => e.GrammageCaliberId).HasColumnName("grammage_caliber_id");
 
@@ -192,15 +192,15 @@ namespace DataCape
                 entity.HasOne(d => d.GrammageCaliber)
                     .WithMany()
                     .HasForeignKey(d => d.GrammageCaliberId)
-                    .HasConstraintName("FK__grammage___gramm__2180FB33");
+                    .HasConstraintName("FK__grammage___gramm__2739D489");
 
                 entity.HasOne(d => d.OrderProduction)
                     .WithMany()
                     .HasForeignKey(d => d.OrderProductionId)
-                    .HasConstraintName("FK__grammage___order__208CD6FA");
+                    .HasConstraintName("FK__grammage___order__2645B050");
             });
 
-            modelBuilder.Entity<ImpositionPlanchModel>(entity =>
+            modelBuilder.Entity<ImpositionPlanch>(entity =>
             {
                 entity.ToTable("imposition_planch");
 
@@ -218,7 +218,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<ImpositionPlanchXOrderProductionModel>(entity =>
+            modelBuilder.Entity<ImpositionPlanchXOrderProduction>(entity =>
             {
                 entity.HasNoKey();
 
@@ -231,15 +231,15 @@ namespace DataCape
                 entity.HasOne(d => d.ImpositionPlanch)
                     .WithMany()
                     .HasForeignKey(d => d.ImpositionPlanchId)
-                    .HasConstraintName("FK__impositio__impos__245D67DE");
+                    .HasConstraintName("FK__impositio__impos__2A164134");
 
                 entity.HasOne(d => d.OrderProduction)
                     .WithMany()
                     .HasForeignKey(d => d.OrderProductionId)
-                    .HasConstraintName("FK__impositio__order__236943A5");
+                    .HasConstraintName("FK__impositio__order__29221CFB");
             });
 
-            modelBuilder.Entity<LineatureModel>(entity =>
+            modelBuilder.Entity<Lineature>(entity =>
             {
                 entity.ToTable("lineature");
 
@@ -260,7 +260,7 @@ namespace DataCape
                     .HasColumnName("type_point");
             });
 
-            modelBuilder.Entity<LineatureXOrderProductionModel>(entity =>
+            modelBuilder.Entity<LineatureXOrderProduction>(entity =>
             {
                 entity.HasNoKey();
 
@@ -273,15 +273,15 @@ namespace DataCape
                 entity.HasOne(d => d.Lineature)
                     .WithMany()
                     .HasForeignKey(d => d.LineatureId)
-                    .HasConstraintName("FK__lineature__linea__2739D489");
+                    .HasConstraintName("FK__lineature__linea__2CF2ADDF");
 
                 entity.HasOne(d => d.OrderProduction)
                     .WithMany()
                     .HasForeignKey(d => d.OrderProductionId)
-                    .HasConstraintName("FK__lineature__order__2645B050");
+                    .HasConstraintName("FK__lineature__order__2BFE89A6");
             });
 
-            modelBuilder.Entity<MachineModel>(entity =>
+            modelBuilder.Entity<Machine>(entity =>
             {
                 entity.ToTable("machines");
 
@@ -321,7 +321,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<MachinesXQuotationClientModel>(entity =>
+            modelBuilder.Entity<MachinesXQuotationClient>(entity =>
             {
                 entity.HasNoKey();
 
@@ -334,15 +334,15 @@ namespace DataCape
                 entity.HasOne(d => d.Machine)
                     .WithMany()
                     .HasForeignKey(d => d.MachineId)
-                    .HasConstraintName("FK__machines___machi__2A164134");
+                    .HasConstraintName("FK__machines___machi__2FCF1A8A");
 
                 entity.HasOne(d => d.QuotationClient)
                     .WithMany()
                     .HasForeignKey(d => d.QuotationClientId)
-                    .HasConstraintName("FK__machines___quota__29221CFB");
+                    .HasConstraintName("FK__machines___quota__2EDAF651");
             });
 
-            modelBuilder.Entity<OrderProductionModel>(entity =>
+            modelBuilder.Entity<OrderProduction>(entity =>
             {
                 entity.ToTable("order_production");
 
@@ -351,6 +351,8 @@ namespace DataCape
                 entity.Property(e => e.ColorProfile)
                     .HasMaxLength(255)
                     .HasColumnName("color_profile");
+
+                entity.Property(e => e.IdPaperCut).HasColumnName("id_paper_cut");
 
                 entity.Property(e => e.Image).HasColumnName("image");
 
@@ -371,8 +373,6 @@ namespace DataCape
 
                 entity.Property(e => e.OrderStatus).HasColumnName("order_status");
 
-                entity.Property(e => e.PaperCutId).HasColumnName("paper_cut_id");
-
                 entity.Property(e => e.Program)
                     .HasMaxLength(50)
                     .IsUnicode(false)
@@ -392,23 +392,23 @@ namespace DataCape
 
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 
-                entity.HasOne(d => d.PaperCut)
+                entity.HasOne(d => d.IdPaperCutNavigation)
                     .WithMany(p => p.OrderProductions)
-                    .HasForeignKey(d => d.PaperCutId)
-                    .HasConstraintName("FK__order_pro__paper__1BC821DD");
+                    .HasForeignKey(d => d.IdPaperCut)
+                    .HasConstraintName("FK__order_pro__id_pa__208CD6FA");
 
                 entity.HasOne(d => d.QuotationClientDetail)
                     .WithMany(p => p.OrderProductions)
                     .HasForeignKey(d => d.QuotationClientDetailId)
-                    .HasConstraintName("FK__order_pro__quota__19DFD96B");
+                    .HasConstraintName("FK__order_pro__quota__1EA48E88");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.OrderProductions)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__order_pro__user___1AD3FDA4");
+                    .HasConstraintName("FK__order_pro__user___1F98B2C1");
             });
 
-            modelBuilder.Entity<PaperCutModel>(entity =>
+            modelBuilder.Entity<PaperCut>(entity =>
             {
                 entity.ToTable("paper_cut");
 
@@ -424,7 +424,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<PermissionsByRoleModel>(entity =>
+            modelBuilder.Entity<PermissionsByRole>(entity =>
             {
                 entity.ToTable("permissions_by_role");
 
@@ -449,7 +449,7 @@ namespace DataCape
                     .HasConstraintName("FK__permissio__role___3C69FB99");
             });
 
-            modelBuilder.Entity<ProductModel>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("products");
 
@@ -474,11 +474,11 @@ namespace DataCape
                     .HasColumnName("type_product");
             });
 
-            modelBuilder.Entity<ProviderModel>(entity =>
+            modelBuilder.Entity<Provider>(entity =>
             {
                 entity.ToTable("providers");
 
-                entity.HasIndex(e => e.Email, "UQ__provider__AB6E61648B48DA25")
+                entity.HasIndex(e => e.Email, "UQ__provider__AB6E6164AAE57760")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -513,7 +513,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<QuotationClientModel>(entity =>
+            modelBuilder.Entity<QuotationClient>(entity =>
             {
                 entity.ToTable("quotation_clients");
 
@@ -542,17 +542,17 @@ namespace DataCape
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.QuotationClients)
                     .HasForeignKey(d => d.ClientId)
-                    .HasConstraintName("FK__quotation__clien__0D7A0286");
+                    .HasConstraintName("FK__quotation__clien__123EB7A3");
 
                 entity.HasOne(d => d.TypeService)
                     .WithMany(p => p.QuotationClients)
                     .HasForeignKey(d => d.TypeServiceId)
-                    .HasConstraintName("FK__quotation__type___0E6E26BF");
+                    .HasConstraintName("FK__quotation__type___1332DBDC");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.QuotationClients)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__quotation__user___0C85DE4D");
+                    .HasConstraintName("FK__quotation__user___114A936A");
             });
 
             modelBuilder.Entity<QuotationClientDetail>(entity =>
@@ -591,15 +591,15 @@ namespace DataCape
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.QuotationClientDetails)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__quotation__produ__1332DBDC");
+                    .HasConstraintName("FK__quotation__produ__17F790F9");
 
                 entity.HasOne(d => d.QuotationClient)
                     .WithMany(p => p.QuotationClientDetails)
                     .HasForeignKey(d => d.QuotationClientId)
-                    .HasConstraintName("FK__quotation__quota__123EB7A3");
+                    .HasConstraintName("FK__quotation__quota__17036CC0");
             });
 
-            modelBuilder.Entity<QuotationProviderModel>(entity =>
+            modelBuilder.Entity<QuotationProvider>(entity =>
             {
                 entity.ToTable("quotation_providers");
 
@@ -622,10 +622,10 @@ namespace DataCape
                 entity.HasOne(d => d.Provider)
                     .WithMany(p => p.QuotationProviders)
                     .HasForeignKey(d => d.ProviderId)
-                    .HasConstraintName("FK__quotation__provi__2CF2ADDF");
+                    .HasConstraintName("FK__quotation__provi__32AB8735");
             });
 
-            modelBuilder.Entity<RoleModel>(entity =>
+            modelBuilder.Entity<Role>(entity =>
             {
                 entity.ToTable("roles");
 
@@ -646,7 +646,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<SubstrateModel>(entity =>
+            modelBuilder.Entity<Substrate>(entity =>
             {
                 entity.ToTable("substrates");
 
@@ -662,7 +662,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<SubstrateXQuotationClientDetailModel>(entity =>
+            modelBuilder.Entity<SubstrateXQuotationClientDetail>(entity =>
             {
                 entity.HasNoKey();
 
@@ -675,15 +675,15 @@ namespace DataCape
                 entity.HasOne(d => d.QuotationClientDetail)
                     .WithMany()
                     .HasForeignKey(d => d.QuotationClientDetailId)
-                    .HasConstraintName("FK__substrate__quota__2FCF1A8A");
+                    .HasConstraintName("FK__substrate__quota__3587F3E0");
 
                 entity.HasOne(d => d.Substrate)
                     .WithMany()
                     .HasForeignKey(d => d.SubstrateId)
-                    .HasConstraintName("FK__substrate__subst__30C33EC3");
+                    .HasConstraintName("FK__substrate__subst__367C1819");
             });
 
-            modelBuilder.Entity<SupplyModel>(entity =>
+            modelBuilder.Entity<Supply>(entity =>
             {
                 entity.ToTable("supplies");
 
@@ -725,7 +725,7 @@ namespace DataCape
                 entity.HasOne(d => d.Warehouse)
                     .WithMany(p => p.Supplies)
                     .HasForeignKey(d => d.WarehouseId)
-                    .HasConstraintName("FK__supplies__wareho__5AEE82B9");
+                    .HasConstraintName("FK__supplies__wareho__5FB337D6");
             });
 
             modelBuilder.Entity<SupplyCategoriesXSupply>(entity =>
@@ -741,12 +741,12 @@ namespace DataCape
                 entity.HasOne(d => d.SupplyCategoryNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyCategory)
-                    .HasConstraintName("FK__supply_ca__suppl__619B8048");
+                    .HasConstraintName("FK__supply_ca__suppl__66603565");
 
                 entity.HasOne(d => d.Supply)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__supply_ca__suppl__60A75C0F");
+                    .HasConstraintName("FK__supply_ca__suppl__656C112C");
             });
 
             modelBuilder.Entity<SupplyCategory>(entity =>
@@ -813,15 +813,15 @@ namespace DataCape
                 entity.HasOne(d => d.Provider)
                     .WithMany(p => p.SupplyDetails)
                     .HasForeignKey(d => d.ProviderId)
-                    .HasConstraintName("FK__supply_de__provi__656C112C");
+                    .HasConstraintName("FK__supply_de__provi__6A30C649");
 
                 entity.HasOne(d => d.Supply)
                     .WithMany(p => p.SupplyDetails)
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__supply_de__suppl__6477ECF3");
+                    .HasConstraintName("FK__supply_de__suppl__693CA210");
             });
 
-            modelBuilder.Entity<SupplyPictogramModel>(entity =>
+            modelBuilder.Entity<SupplyPictogram>(entity =>
             {
                 entity.ToTable("supply_pictograms");
 
@@ -844,7 +844,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<SupplyXProductModel>(entity =>
+            modelBuilder.Entity<SupplyXProduct>(entity =>
             {
                 entity.HasNoKey();
 
@@ -857,15 +857,15 @@ namespace DataCape
                 entity.HasOne(d => d.Product)
                     .WithMany()
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__supply_x___produ__08B54D69");
+                    .HasConstraintName("FK__supply_x___produ__0D7A0286");
 
                 entity.HasOne(d => d.Supply)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__supply_x___suppl__09A971A2");
+                    .HasConstraintName("FK__supply_x___suppl__0E6E26BF");
             });
 
-            modelBuilder.Entity<SupplyXSupplyPictogramModel>(entity =>
+            modelBuilder.Entity<SupplyXSupplyPictogram>(entity =>
             {
                 entity.HasNoKey();
 
@@ -878,15 +878,15 @@ namespace DataCape
                 entity.HasOne(d => d.Supply)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__supply_x___suppl__6B24EA82");
+                    .HasConstraintName("FK__supply_x___suppl__6FE99F9F");
 
                 entity.HasOne(d => d.SupplyPictogram)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyPictogramId)
-                    .HasConstraintName("FK__supply_x___suppl__6C190EBB");
+                    .HasConstraintName("FK__supply_x___suppl__70DDC3D8");
             });
 
-            modelBuilder.Entity<TypeDocumentModel>(entity =>
+            modelBuilder.Entity<TypeDocument>(entity =>
             {
                 entity.ToTable("type_documents");
 
@@ -907,7 +907,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<TypeServiceModelModel>(entity =>
+            modelBuilder.Entity<TypeService>(entity =>
             {
                 entity.ToTable("type_service");
 
@@ -923,7 +923,7 @@ namespace DataCape
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<UnitMeasureModelModel>(entity =>
+            modelBuilder.Entity<UnitMeasure>(entity =>
             {
                 entity.ToTable("unit_measures");
 
@@ -954,10 +954,10 @@ namespace DataCape
                 entity.HasOne(d => d.Base)
                     .WithMany(p => p.InverseBase)
                     .HasForeignKey(d => d.BaseId)
-                    .HasConstraintName("FK__unit_meas__base___6EF57B66");
+                    .HasConstraintName("FK__unit_meas__base___73BA3083");
             });
 
-            modelBuilder.Entity<UnitMeasuresXSupplyModel>(entity =>
+            modelBuilder.Entity<UnitMeasuresXSupply>(entity =>
             {
                 entity.HasNoKey();
 
@@ -970,22 +970,22 @@ namespace DataCape
                 entity.HasOne(d => d.Supply)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__unit_meas__suppl__71D1E811");
+                    .HasConstraintName("FK__unit_meas__suppl__76969D2E");
 
                 entity.HasOne(d => d.UnitMeasure)
                     .WithMany()
                     .HasForeignKey(d => d.UnitMeasureId)
-                    .HasConstraintName("FK__unit_meas__unit___72C60C4A");
+                    .HasConstraintName("FK__unit_meas__unit___778AC167");
             });
 
-            modelBuilder.Entity<UserModelModel>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("users");
 
-                entity.HasIndex(e => e.Email, "UQ__users__AB6E61642418C154")
+                entity.HasIndex(e => e.Email, "UQ__users__AB6E616499F1E775")
                     .IsUnique();
 
-                entity.HasIndex(e => e.DocumentNumber, "UQ__users__C8FE0D8C043A4DC0")
+                entity.HasIndex(e => e.DocumentNumber, "UQ__users__C8FE0D8C56163ED1")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -1037,16 +1037,16 @@ namespace DataCape
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__users__role_id__45F365D3");
+                    .HasConstraintName("FK__users__role_id__46E78A0C");
 
                 entity.HasOne(d => d.TypeDocument)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.TypeDocumentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__users__type_docu__44FF419A");
+                    .HasConstraintName("FK__users__type_docu__45F365D3");
             });
 
-            modelBuilder.Entity<WarehouseModelModel>(entity =>
+            modelBuilder.Entity<Warehouse>(entity =>
             {
                 entity.ToTable("warehouse");
 
@@ -1071,10 +1071,10 @@ namespace DataCape
                 entity.HasOne(d => d.WarehouseType)
                     .WithMany(p => p.Warehouses)
                     .HasForeignKey(d => d.WarehouseTypeId)
-                    .HasConstraintName("FK__warehouse__wareh__571DF1D5");
+                    .HasConstraintName("FK__warehouse__wareh__5BE2A6F2");
             });
 
-            modelBuilder.Entity<WarehouseTypeModel>(entity =>
+            modelBuilder.Entity<WarehouseType>(entity =>
             {
                 entity.ToTable("warehouse_type");
 

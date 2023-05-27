@@ -17,7 +17,7 @@ namespace DataCape
         public int? ActualQuantity { get; set; }
         public bool? StatedAt { get; set; }
 
-        public virtual ProviderModel? Provider { get; set; }
-        public virtual SupplyModel? Supply { get; set; }
+        public virtual Provider? Provider { get; set; }
+        public virtual Supply? Supply { get; set; }
     }
 }

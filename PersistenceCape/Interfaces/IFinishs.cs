@@ -10,10 +10,10 @@ namespace PersistenceCape.Interfaces
 {
     public interface IFinishs
     {
-        Task<IEnumerable<FinishModel>> GetAllAsync();
-        Task<FinishModel> GetByIdAsync(long id);
-        Task<FinishModel> AddAsync(FinishModel finish);
-        Task UpdateAsync(FinishModel finish);
+        Task<IEnumerable<Finish>> GetAllAsync();
+        Task<Finish> GetByIdAsync(long id);
+        Task<Finish> AddAsync(Finish finish);
+        Task UpdateAsync(Finish finish);
         Task DeleteAsync(long id);
     }
 }

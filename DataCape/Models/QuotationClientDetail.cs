@@ -7,7 +7,7 @@ namespace DataCape
     {
         public QuotationClientDetail()
         {
-            OrderProductions = new HashSet<OrderProductionModel>();
+            OrderProductions = new HashSet<OrderProduction>();
         }
 
         public long Id { get; set; }
@@ -23,8 +23,8 @@ namespace DataCape
         public double? FullValue { get; set; }
         public bool? StatedAt { get; set; }
 
-        public virtual ProductModel? Product { get; set; }
-        public virtual QuotationClientModel? QuotationClient { get; set; }
-        public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }
+        public virtual Product? Product { get; set; }
+        public virtual QuotationClient? QuotationClient { get; set; }
+        public virtual ICollection<OrderProduction> OrderProductions { get; set; }
     }
 }

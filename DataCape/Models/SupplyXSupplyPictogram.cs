@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace DataCape
 {
-    public partial class SupplyCategoriesXSupply
+    public partial class SupplyXSupplyPictogram
     {
         public long? SupplyId { get; set; }
-        public long? SupplyCategory { get; set; }
+        public long? SupplyPictogramId { get; set; }
 
         public virtual Supply? Supply { get; set; }
-        public virtual SupplyCategory? SupplyCategoryNavigation { get; set; }
+        public virtual SupplyPictogram? SupplyPictogram { get; set; }
     }
 }
