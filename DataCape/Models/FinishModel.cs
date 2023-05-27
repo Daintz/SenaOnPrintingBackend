@@ -3,17 +3,10 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class FinishModel
+    public class FinishModel
     {
-        public FinishModel()
-        {
-            QuotationClients = new HashSet<QuotationClientModel>();
-        }
-
-        public long IdFinish { get; set; }
-        public bool? StatedAt { get; set; } = true;
-        public string? FinishName { get; set; }
-
-        public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; } = null!;
+        public bool? StatedAt { get; set; }
     }
 }

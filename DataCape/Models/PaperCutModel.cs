@@ -10,8 +10,8 @@ namespace DataCape.Models
             OrderProductions = new HashSet<OrderProductionModel>();
         }
 
-        public long IdPaperCut { get; set; }
-        public string PaperCut1 { get; set; } = null!;
+        public long Id { get; set; }
+        public string Name { get; set; } = null!;
         public bool? StatedAt { get; set; }
 
         public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }

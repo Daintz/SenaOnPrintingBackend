@@ -10,9 +10,9 @@ namespace DataCape.Models
             QuotationClients = new HashSet<QuotationClientModel>();
         }
 
-        public long IdTypeService { get; set; }
-        public bool? StatedAt { get; set; } 
+        public long Id { get; set; }
         public string Name { get; set; } = null!;
+        public bool? StatedAt { get; set; }
 
         public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
     }

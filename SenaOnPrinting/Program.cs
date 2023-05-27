@@ -20,17 +20,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-//cors
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("CorsPolicy", builder =>
-    {
-        builder.AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader();
-    });
-});
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -42,6 +31,15 @@ builder.Services.AddScoped<FinishServices>();
 builder.Services.AddScoped<IFinishs, FinishRepository>();
 
 // Configurar las interfaces para que el controlador las pueda usar
+
+builder.Services.AddScoped<ProviderService>(); 
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
+
+builder.Services.AddScoped<WarehauseTypeService>();
+builder.Services.AddScoped<IWarehausetypeRepository,WarehauseTypeRepository>();
+
+builder.Services.AddScoped<WarehauseService>();
+builder.Services.AddScoped<IWarehauseRepository, WarehauseRepository>();
 
 builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
@@ -65,9 +63,6 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 
 var app = builder.Build();
-app.UseCors("CorsPolicy");
-
-//Use cors
 app.UseCors("CorsPolicy");
 
 // Configure the HTTP request pipeline.

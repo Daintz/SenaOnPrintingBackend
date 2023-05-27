@@ -5,13 +5,18 @@ namespace DataCape.Models
 {
     public partial class WarehouseModel
     {
-        public long IdWarehouse { get; set; }
-        public string Name { get; set; } = null!;
-        public string Ubication { get; set; } = null!;
-        public bool? StatedAt { get; set; }
-        public long? IdTypeWarehouse { get; set; }
+        public WarehouseModel()
+        {
+            Supplies = new HashSet<SupplyModel>();
+        }
 
-        public virtual WarehouseTypeModel? IdTypeWarehouseNavigation { get; set; }
-        public virtual SupplyModel? Supply { get; set; }
+        public long Id { get; set; }
+        public long? WarehouseTypeId { get; set; }
+        public string Name { get; set; } = null!;
+        public string? Ubication { get; set; }
+        public bool? StatedAt { get; set; }
+
+        public virtual WarehouseTypeModel? WarehouseType { get; set; }
+        public virtual ICollection<SupplyModel> Supplies { get; set; }
     }
 }

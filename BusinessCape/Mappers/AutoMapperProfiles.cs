@@ -1,19 +1,16 @@
 using AutoMapper;
+using BusinessCape.DTOs.Provider;
+using BusinessCape.DTOs.Warehause;
+using BusinessCape.DTOs.WarehauseType;
 using BusinessCape.DTOs.ImpositionPlate;
 using BusinessCape.DTOs.Lineature;
 using BusinessCape.DTOs.OrderProduction;
-
-using AutoMapper;
 using BusinessCape.DTOs.Client;
-using AutoMapper;
-
 using BusinessCape.DTOs.Finish;
 using BusinessCape.DTOs.Machine;
 using BusinessCape.DTOs.QuotationClient;
-
 using BusinessCape.DTOs.Supply;
 using BusinessCape.DTOs.SupplyCategory;
-
 using DataCape.Models;
 
 namespace BusinessCape.Mappers
@@ -29,15 +26,11 @@ namespace BusinessCape.Mappers
             CreateMap<ClientUpdateDto, ClientModel>();
 
             //============================|Machine|==========================//
-
             CreateMap<MachineCreateDto, MachineModel>();
-
             CreateMap<MachineUpdateDto, MachineModel>();
 
             //============================|Finish|==========================//
-
             CreateMap<FinishDtoCreate, FinishModel>();
-
             CreateMap<FinishDtoUpdate, FinishModel>();
             CreateMap<FinishDtoUpdate_state, FinishModel>();
 
@@ -49,17 +42,23 @@ namespace BusinessCape.Mappers
             // PUT OR UPDATE STATUS //
             CreateMap<QuotationUpdateStatusDTO, QuotationClientModel>();
             
-            //=======================|SUPPLY CATEGORY|=======================//
+            //============================|PROVIDERS|==========================//
             // POST OR CREATE //
-            CreateMap<SupplyCategoryCreateDto, SupplyCategoryModel>();
+            CreateMap<ProviderCreateDto, Provider>();
             // PUT OR UPDATE //
-            CreateMap<SupplyCategoryUpdateDto, SupplyCategoryModel>();
-
-            //============================|SUPPLY|==========================//
+            CreateMap<ProviderUpdateDto, Provider>();
+            
+            //============================|WarehauseType|==========================//
             // POST OR CREATE //
-            CreateMap<SupplyCreateDto, SupplyModel>();
+            CreateMap<WarehauseTypeCreateDto,WarehouseType>();
             // PUT OR UPDATE //
-            CreateMap<SupplyUpdateDto, SupplyModel>();
+            CreateMap<WarehauseTypeUpdateDto, WarehouseType>();
+            
+            //============================|Warehause|==========================//
+            // POST OR CREATE //
+            CreateMap<WarehauseCreateDto, Warehouse>();
+            // PUT OR UPDATE //
+            CreateMap<WarehauseUpdateDto, Warehouse>();
 
             //============================|ORDER PRODUCTION|==========================//
             // POST OR CREATE //
