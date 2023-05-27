@@ -17,21 +17,21 @@ namespace PersistenceCape.Repositories
         {
             _context = context;
         }
-        public async Task<IEnumerable<Provider>> GetAllAsync()
+        public async Task<IEnumerable<ProviderModel>> GetAllAsync()
         {
             return await _context.Providers.ToListAsync();
         }
-        public async Task<Provider> GetByIdAsync(long id)
+        public async Task<ProviderModel> GetByIdAsync(long id)
         {
             return await _context.Providers.FindAsync(id);
         }
-        public async Task UpdateAsync(Provider provider)
+        public async Task UpdateAsync(ProviderModel provider)
         {
             _context.Entry(provider).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Provider> AddAsync(Provider provider)
+        public async Task<ProviderModel> AddAsync(ProviderModel provider)
         {
           await _context.Providers.AddAsync(provider);
           await _context.SaveChangesAsync();

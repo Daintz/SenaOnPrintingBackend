@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace PersistenceCape.Contexts.Configurations
 {
-    internal class WarehauseTypeModelConfiguration : IEntityTypeConfiguration<WarehouseType>
+    internal class WarehauseTypeModelConfiguration : IEntityTypeConfiguration<WarehouseTypeModel>
     {
-        public void Configure(EntityTypeBuilder<WarehouseType> builder)
+        public void Configure(EntityTypeBuilder<WarehouseTypeModel> builder)
         {
             builder.ToTable("warehouse_type");
 

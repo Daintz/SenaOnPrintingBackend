@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace PersistenceCape.Contexts.Configurations
 {
-    public class ProviderModelConfiguration : IEntityTypeConfiguration<Provider>
+    public class ProviderModelConfiguration : IEntityTypeConfiguration<ProviderModel>
     {
-        public void Configure(EntityTypeBuilder<Provider> builder)
+        public void Configure(EntityTypeBuilder<ProviderModel> builder)
         {
             builder.ToTable("providers");
 

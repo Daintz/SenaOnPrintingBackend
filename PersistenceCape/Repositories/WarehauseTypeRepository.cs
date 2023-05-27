@@ -17,21 +17,21 @@ namespace PersistenceCape.Repositories
         {
             _context = context;
         }
-        public async Task<IEnumerable<WarehouseType>> GetAllAsync()
+        public async Task<IEnumerable<WarehouseTypeModel>> GetAllAsync()
         {
             return await _context.WarehouseTypes.ToListAsync();
         }
-        public async Task<WarehouseType> GetByIdAsync(long id)
+        public async Task<WarehouseTypeModel> GetByIdAsync(long id)
         {
             return await _context.WarehouseTypes.FindAsync(id);
         }
-        public async Task UpdateAsync(WarehouseType warehouseType)
+        public async Task UpdateAsync(WarehouseTypeModel warehouseType)
         {
             _context.Entry(warehouseType).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task<WarehouseType> AddAsync(WarehouseType warehouseType)
+        public async Task<WarehouseTypeModel> AddAsync(WarehouseTypeModel warehouseType)
         {
             await _context.WarehouseTypes.AddAsync(warehouseType);
             await _context.SaveChangesAsync();

@@ -9,10 +9,10 @@ namespace PersistenceCape.Interfaces
 {
     public interface IProviderRepository
     {
-        Task<IEnumerable<Provider>> GetAllAsync();
-        Task<Provider> GetByIdAsync(long id);
-        Task<Provider> AddAsync(Provider Provider);
-        Task UpdateAsync(Provider Provider);
+        Task<IEnumerable<ProviderModel>> GetAllAsync();
+        Task<ProviderModel> GetByIdAsync(long id);
+        Task<ProviderModel> AddAsync(ProviderModel Provider);
+        Task UpdateAsync(ProviderModel Provider);
         Task DeleteAsync(long id);
     }
 }

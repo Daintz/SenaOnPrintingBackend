@@ -17,7 +17,7 @@ namespace BusinessCape.Services
             _WarehauseRepository = WarehauseRepository;
         }
 
-        public async Task AddAsync(Warehouse Warehause)
+        public async Task AddAsync(WarehouseModel Warehause)
         {
             await _WarehauseRepository.AddAsync(Warehause);
         }
@@ -27,17 +27,17 @@ namespace BusinessCape.Services
             return _WarehauseRepository.DeleteAsync(id);
         }
 
-        public Task<IEnumerable<Warehouse>> GetAllAsync()
+        public Task<IEnumerable<WarehouseModel>> GetAllAsync()
         {
             return _WarehauseRepository.GetAllAsync();
         }
 
-        public Task<Warehouse> GetByIdAsync(long id)
+        public Task<WarehouseModel> GetByIdAsync(long id)
         {
             return _WarehauseRepository.GetByIdAsync(id);
         }
 
-        public Task UpdateAsync(Warehouse Warehause)
+        public Task UpdateAsync(WarehouseModel Warehause)
         {
             return _WarehauseRepository.UpdateAsync(Warehause);
         }
