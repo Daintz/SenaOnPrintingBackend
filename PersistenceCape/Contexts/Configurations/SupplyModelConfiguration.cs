@@ -13,11 +13,9 @@ namespace PersistenceCape.Contexts.Configurations
 
             builder.ToTable("SUPPLIES");
 
-            builder.HasIndex(e => e.IdWarehouse, "supplies_id_warehouse_unique")
-                .IsUnique();
+            builder.HasIndex(e => e.IdWarehouse, "supplies_id_warehouse_unique");
 
-            builder.HasIndex(e => e.IdUnitMeasure, "supplies_minimun_unit_measure_id_unique")
-                .IsUnique();
+            builder.HasIndex(e => e.IdUnitMeasure, "supplies_minimun_unit_measure_id_unique");
 
             builder.Property(e => e.IdSupply).HasColumnName("id_supply");
 

@@ -3,21 +3,23 @@ using BusinessCape.Entensions;
 using PersistenceCape.Interfaces;
 using PersistenceCape.Repositories;
 using BusinessCape.Mappers;
+using FluentValidation.AspNetCore;
+using BusinessCape.DTOs.Supply.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddInjectionInfraestructure(Configuration);
 
-    builder.Services.AddCors(options =>
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
     {
-        options.AddPolicy("CorsPolicy", builder =>
-        {
-            builder.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-        });
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
     });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -30,6 +32,10 @@ builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>(
 builder.Services.AddScoped<SupplyService>();
 builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCreateDtoValidator>());
+
+
 
 var app = builder.Build();
 

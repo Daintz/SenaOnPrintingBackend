@@ -1,16 +1,17 @@
-## <small>1.0.18 (2023-05-16)</small>
+## <small>1.0.19 (2023-05-22)</small>
 
-* refactor: :card_file_box: general changes ([0cca1e7](https://github.com/Daintz/SENACOSTONPRINTING/commit/0cca1e7))
-* refactor: :construction: work in progress ([e3693f8](https://github.com/Daintz/SENACOSTONPRINTING/commit/e3693f8))
-* refactor: :recycle: accommodate structure ([bd8b13e](https://github.com/Daintz/SENACOSTONPRINTING/commit/bd8b13e))
-* refactor: 🔨 refactor code and foldered ([011971f](https://github.com/Daintz/SENACOSTONPRINTING/commit/011971f))
 * feat: :sparkles: Add DTOs ([0ea6ab7](https://github.com/Daintz/SENACOSTONPRINTING/commit/0ea6ab7))
 * feat: :sparkles: add mappers ([abba3f9](https://github.com/Daintz/SENACOSTONPRINTING/commit/abba3f9))
 * feat: :sparkles: add mappers on controller ([bc5b735](https://github.com/Daintz/SENACOSTONPRINTING/commit/bc5b735))
+* feat: :sparkles: add status change in controllers ([a37b30b](https://github.com/Daintz/SENACOSTONPRINTING/commit/a37b30b))
 * feat: :sparkles: Add supply category module ([3e9ea13](https://github.com/Daintz/SENACOSTONPRINTING/commit/3e9ea13))
 * feat: :sparkles: add supply DTO ([c251f1c](https://github.com/Daintz/SENACOSTONPRINTING/commit/c251f1c))
 * feat: :sparkles: add supply mapper ([3e6ae4f](https://github.com/Daintz/SENACOSTONPRINTING/commit/3e6ae4f))
 * feat: :sparkles: Add supply module ([cd57334](https://github.com/Daintz/SENACOSTONPRINTING/commit/cd57334))
+* refactor: :card_file_box: general changes ([0cca1e7](https://github.com/Daintz/SENACOSTONPRINTING/commit/0cca1e7))
+* refactor: :construction: work in progress ([e3693f8](https://github.com/Daintz/SENACOSTONPRINTING/commit/e3693f8))
+* refactor: :recycle: accommodate structure ([bd8b13e](https://github.com/Daintz/SENACOSTONPRINTING/commit/bd8b13e))
+* refactor: 🔨 refactor code and foldered ([011971f](https://github.com/Daintz/SENACOSTONPRINTING/commit/011971f))
 * docs: :memo: add bug report ([7869ff9](https://github.com/Daintz/SENACOSTONPRINTING/commit/7869ff9))
 * docs: :memo: Add docs bug ([f227c32](https://github.com/Daintz/SENACOSTONPRINTING/commit/f227c32))
 * docs: :memo: add enhancement request ([e0284bc](https://github.com/Daintz/SENACOSTONPRINTING/commit/e0284bc))
