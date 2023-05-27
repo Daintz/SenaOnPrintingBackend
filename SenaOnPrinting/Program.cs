@@ -31,12 +31,19 @@ builder.Services.AddScoped<FinishServices>();
 builder.Services.AddScoped<IFinishs, FinishRepository>();
 
 // Configurar las interfaces para que el controlador las pueda usar
+
 builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
+
+builder.Services.AddScoped<ClientService>();
+builder.Services.AddScoped<IClientsRepository, ClientRepository>();
+
 builder.Services.AddScoped<QuotationClientService>();
 builder.Services.AddScoped<IQuotationClientRepository, QuotationClientRepository>();
 
+
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
 
 var app = builder.Build();
 app.UseCors("CorsPolicy");

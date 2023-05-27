@@ -1,3 +1,6 @@
+
+using AutoMapper;
+using BusinessCape.DTOs.Client;
 using AutoMapper;
 
 using BusinessCape.DTOs.Finish;
@@ -12,6 +15,15 @@ namespace BusinessCape.Mappers
 {
     public class AutoMapperProfiles : Profile
     {
+        public AutoMapperProfiles() 
+        {
+            //=======================|CLIENT|=======================//
+            // POST OR CREATE //
+            CreateMap<ClientCreateDto, ClientModel>();
+            // PUT OR UPDATE //
+            CreateMap<ClientUpdateDto, ClientModel>();
+
+
         public AutoMapperProfiles()
         {   
             //============================|Machine|==========================//
@@ -34,6 +46,7 @@ namespace BusinessCape.Mappers
             CreateMap<QuotationUpdateDto, QuotationClientModel>();
             // PUT OR UPDATE STATUS //
             CreateMap<QuotationUpdateStatusDTO, QuotationClientModel>();
+            
             //=======================|SUPPLY CATEGORY|=======================//
             // POST OR CREATE //
             CreateMap<SupplyCategoryCreateDto, SupplyCategoryModel>();
