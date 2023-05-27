@@ -1,5 +1,10 @@
-## <small>1.0.19 (2023-05-22)</small>
+## <small>1.0.20 (2023-05-27)</small>
 
+* chore: :heavy_plus_sign: add husky ([1f8a29b](https://github.com/Daintz/SENACOSTONPRINTING/commit/1f8a29b))
+* chore: :sparkles: add fluent validations ([3f0fbe8](https://github.com/Daintz/SENACOSTONPRINTING/commit/3f0fbe8))
+* chore: :wrench: add hook ([f8bc279](https://github.com/Daintz/SENACOSTONPRINTING/commit/f8bc279))
+* chore: :wrench: add hook ([f726ae0](https://github.com/Daintz/SENACOSTONPRINTING/commit/f726ae0))
+* chore: 🎉 project structure ([14908b4](https://github.com/Daintz/SENACOSTONPRINTING/commit/14908b4))
 * feat: :sparkles: Add DTOs ([0ea6ab7](https://github.com/Daintz/SENACOSTONPRINTING/commit/0ea6ab7))
 * feat: :sparkles: add mappers ([abba3f9](https://github.com/Daintz/SENACOSTONPRINTING/commit/abba3f9))
 * feat: :sparkles: add mappers on controller ([bc5b735](https://github.com/Daintz/SENACOSTONPRINTING/commit/bc5b735))
@@ -22,10 +27,6 @@
 * docs: :memo: Add template ([b67a84d](https://github.com/Daintz/SENACOSTONPRINTING/commit/b67a84d))
 * test: :test_tube: test husky hook ([385acb3](https://github.com/Daintz/SENACOSTONPRINTING/commit/385acb3))
 * test: :test_tube: test husky hook ([8e82ebe](https://github.com/Daintz/SENACOSTONPRINTING/commit/8e82ebe))
-* chore: :heavy_plus_sign: add husky ([1f8a29b](https://github.com/Daintz/SENACOSTONPRINTING/commit/1f8a29b))
-* chore: :wrench: add hook ([f8bc279](https://github.com/Daintz/SENACOSTONPRINTING/commit/f8bc279))
-* chore: :wrench: add hook ([f726ae0](https://github.com/Daintz/SENACOSTONPRINTING/commit/f726ae0))
-* chore: 🎉 project structure ([14908b4](https://github.com/Daintz/SENACOSTONPRINTING/commit/14908b4))
 
 
 
