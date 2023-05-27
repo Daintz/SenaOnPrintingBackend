@@ -3,10 +3,13 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public class FinishModel
+    public partial class Role
     {
-        public long Id { get; set; }
+        public long IdRole { get; set; }
         public string Name { get; set; } = null!;
+        public string Description { get; set; } = null!;
         public bool? StatedAt { get; set; }
+
+        public virtual User? User { get; set; }
     }
 }
