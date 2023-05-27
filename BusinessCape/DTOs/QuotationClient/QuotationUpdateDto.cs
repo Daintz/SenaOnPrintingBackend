@@ -1,15 +1,14 @@
-﻿using System;
+﻿using DataCape.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataCape.Models
+namespace BusinessCape.DTOs.QuotationClient
 {
-    public partial class QuotationClientModel
+    public class QuotationUpdateDto
     {
-        public QuotationClientModel()
-        {
-            OrderProductions = new HashSet<OrderProductionModel>();
-        }
-
         public long IdQuotationClient { get; set; }
         public long? IdUser { get; set; }
         public long? IdClient { get; set; }
@@ -31,12 +30,6 @@ namespace DataCape.Models
         public bool? StatedAt { get; set; } = true;
         public bool QuotationStatus { get; set; } = true;
 
-        public virtual ClientModel? IdClientNavigation { get; set; }
-        public virtual FinishModel? IdFinishesNavigation { get; set; }
-        public virtual MachineModel? IdMachineNavigation { get; set; }
-        public virtual ProductModel? IdProductNavigation { get; set; }
-        public virtual TypeServiceModel? IdTypeServiceNavigation { get; set; }
-        public virtual UserModel? IdUserNavigation { get; set; }
-        public virtual ICollection<OrderProductionModel>? OrderProductions { get; set; }
+        
     }
 }
