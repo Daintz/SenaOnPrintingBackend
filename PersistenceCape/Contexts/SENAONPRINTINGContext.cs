@@ -40,8 +40,8 @@ namespace DataCape
         public virtual DbSet<SubstrateModel> Substrates { get; set; } = null!;
         public virtual DbSet<SubstrateXQuotationClientDetailModel> SubstrateXQuotationClientDetails { get; set; } = null!;
         public virtual DbSet<SupplyModel> Supplies { get; set; } = null!;
-        public virtual DbSet<SupplyCategoriesXSupplyModel> SupplyCategoriesXSupplies { get; set; } = null!;
-        public virtual DbSet<SupplyCategoryModel> SupplyCategories { get; set; } = null!;
+      
+   
         public virtual DbSet<SupplyDetailModel> SupplyDetails { get; set; } = null!;
         public virtual DbSet<SupplyPictogramModel> SupplyPictograms { get; set; } = null!;
         public virtual DbSet<SupplyXProductModel> SupplyXProducts { get; set; } = null!;
@@ -728,47 +728,7 @@ namespace DataCape
                     .HasConstraintName("FK__supplies__wareho__5FB337D6");
             });
 
-            modelBuilder.Entity<SupplyCategoriesXSupplyModel>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("supply_categories_x_supply");
-
-                entity.Property(e => e.SupplyCategory).HasColumnName("supply_category");
-
-                entity.Property(e => e.SupplyId).HasColumnName("supply_id");
-
-                entity.HasOne(d => d.SupplyCategoryNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.SupplyCategory)
-                    .HasConstraintName("FK__supply_ca__suppl__66603565");
-
-                entity.HasOne(d => d.Supply)
-                    .WithMany()
-                    .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__supply_ca__suppl__656C112C");
-            });
-
-            modelBuilder.Entity<SupplyCategoryModel>(entity =>
-            {
-                entity.ToTable("supply_categories");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Description)
-                    .HasMaxLength(150)
-                    .IsUnicode(false)
-                    .HasColumnName("description");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
-
-                entity.Property(e => e.StatedAt)
-                    .HasColumnName("stated_at")
-                    .HasDefaultValueSql("((1))");
-            });
+           
 
             modelBuilder.Entity<SupplyDetailModel>(entity =>
             {
