@@ -2,8 +2,8 @@ using AutoMapper;
 
 using BusinessCape.DTOs.Finish;
 using BusinessCape.DTOs.Machine;
-
-
+using BusinessCape.DTOs.UnitMesureCreate;
+using BusinessCape.DTOs.UnitMesureUpdate;
 using DataCape;
 
 namespace BusinessCape.Mappers
@@ -23,9 +23,14 @@ namespace BusinessCape.Mappers
             CreateMap<FinishDtoCreate, FinishModel>();
 
             CreateMap<FinishDtoUpdate, FinishModel>();
-       
 
-         
+            CreateMap<UnitMesureCreate, UnitMeasureModel>();
+
+            CreateMap<UnitMesureUpdate, UnitMeasureModel>();
+
+
+
+
         }
     }
 }

@@ -29,6 +29,8 @@ builder.Services.AddScoped<MachineService>();
 builder.Services.AddScoped<IMachinesRepository, MachinesRepository>();
 builder.Services.AddScoped<FinishServices>();
 builder.Services.AddScoped<IFinishs, FinishRepository>();
+builder.Services.AddScoped<UnitMesureServices>();
+builder.Services.AddScoped<IUnitMesure, UnitMeasurreRepository>();
 
 // Configurar las interfaces para que el controlador las pueda usar
 
