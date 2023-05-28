@@ -25,6 +25,10 @@ namespace BusinessCape.DTOs.SupplyCategory.Validators
             RuleFor(x => x.Description).MinimumLength(10).WithMessage("The description must contain more than 3 letters");
             RuleFor(x => x.Description).MaximumLength(255).WithMessage("The description must contain less than 20 letters");
 
+            // VALIDATION FOR STATEDAT FIELD //
+            RuleFor(x => x.StatedAt).NotNull().WithMessage("StatedAt can't be null");
+            RuleFor(x => x.StatedAt).NotEmpty().WithMessage("StatedAt is required");
+            RuleFor(x => x.StatedAt).Must(x => x == true || x == false).WithMessage("StatedAt value is invalid");
         }
     }
 }

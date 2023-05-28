@@ -1,7 +1,8 @@
 ﻿using FluentValidation;
 using System.Text.RegularExpressions;
 
-namespace BusinessCape.DTOs.Supply.Validators
+namespace BusinessCape.DTOs.Supply.Validators 
+{
     public class SupplyUpdateDtoValidator : AbstractValidator<SupplyUpdateDto>
 {
     public SupplyUpdateDtoValidator()

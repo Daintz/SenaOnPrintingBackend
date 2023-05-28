@@ -1,5 +1,6 @@
-## <small>1.0.21 (2023-05-27)</small>
+## <small>1.0.22 (2023-05-27)</small>
 
+* build: :safety_vest: add more validations ([4bb27b8](https://github.com/Daintz/SENACOSTONPRINTING/commit/4bb27b8))
 * chore: :heavy_plus_sign: add husky ([1f8a29b](https://github.com/Daintz/SENACOSTONPRINTING/commit/1f8a29b))
 * chore: :safety_vest: add DTOs validators ([87a60a9](https://github.com/Daintz/SENACOSTONPRINTING/commit/87a60a9))
 * chore: :sparkles: add fluent validations ([3f0fbe8](https://github.com/Daintz/SENACOSTONPRINTING/commit/3f0fbe8))
