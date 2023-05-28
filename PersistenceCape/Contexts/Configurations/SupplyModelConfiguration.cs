@@ -8,19 +8,12 @@ namespace PersistenceCape.Contexts.Configurations
     {
         public void Configure(EntityTypeBuilder<SupplyModel> builder)
         {
-            builder.HasKey(e => e.IdSupply)
-                    .HasName("supplies_id_supply_primary");
+            builder.ToTable("supplies");
 
-            builder.ToTable("SUPPLIES");
-
-            builder.HasIndex(e => e.IdWarehouse, "supplies_id_warehouse_unique");
-
-            builder.HasIndex(e => e.IdUnitMeasure, "supplies_minimun_unit_measure_id_unique");
-
-            builder.Property(e => e.IdSupply).HasColumnName("id_supply");
+            builder.Property(e => e.Id).HasColumnName("id");
 
             builder.Property(e => e.Advices)
-                .HasMaxLength(255)
+                .HasColumnType("text")
                 .HasColumnName("advices");
 
             builder.Property(e => e.AverageCost)
@@ -28,15 +21,11 @@ namespace PersistenceCape.Contexts.Configurations
                 .HasColumnName("average_cost");
 
             builder.Property(e => e.DangerIndicators)
-                .HasMaxLength(255)
+                .HasColumnType("text")
                 .HasColumnName("danger_indicators");
 
-            builder.Property(e => e.IdUnitMeasure).HasColumnName("id_unit_measure");
-
-            builder.Property(e => e.IdWarehouse).HasColumnName("id_warehouse");
-
             builder.Property(e => e.Name)
-                .HasMaxLength(255)
+                .HasMaxLength(200)
                 .IsUnicode(false)
                 .HasColumnName("name");
 
@@ -45,21 +34,21 @@ namespace PersistenceCape.Contexts.Configurations
             builder.Property(e => e.SortingWord).HasColumnName("sorting_word");
 
             builder.Property(e => e.StatedAt)
-                .IsRequired()
                 .HasColumnName("stated_at")
-                .HasDefaultValueSql("('1')");
+                .HasDefaultValueSql("((1))");
 
             builder.Property(e => e.SupplyType).HasColumnName("supply_type");
 
             builder.Property(e => e.UseInstructions)
-                .HasMaxLength(255)
+                .HasColumnType("text")
                 .HasColumnName("use_instructions");
 
-            builder.HasOne(d => d.IdWarehouseNavigation)
-                .WithOne(p => p.Supply)
-                .HasForeignKey<SupplyModel>(d => d.IdWarehouse)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("supplies_id_warehouse_foreign");
+            builder.Property(e => e.WarehouseId).HasColumnName("warehouse_id");
+
+            builder.HasOne(d => d.Warehouse)
+                .WithMany(p => p.Supplies)
+                .HasForeignKey(d => d.WarehouseId)
+                .HasConstraintName("FK__supplies__wareho__5BE2A6F2");
         }
     }
 }

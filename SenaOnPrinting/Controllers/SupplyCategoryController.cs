@@ -53,12 +53,12 @@ namespace SenaOnPrinting.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, SupplyCategoryUpdateDto supplyCategoryDto)
         {
-            if (id != supplyCategoryDto.IdSupplyCategory)
+            if (id != supplyCategoryDto.Id)
             {
                 return BadRequest();
             }
 
-            var supplyToUpdate = await _supplyCategoryService.GetByIdAsync(supplyCategoryDto.IdSupplyCategory);
+            var supplyToUpdate = await _supplyCategoryService.GetByIdAsync(supplyCategoryDto.Id);
 
             //supplyToUpdate.Name = supplyCategoryDto.Name;
             //supplyToUpdate.Description = supplyCategoryDto.Description;

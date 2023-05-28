@@ -9,25 +9,23 @@ namespace PersistenceCape.Contexts.Configurations
     {
         public void Configure(EntityTypeBuilder<SupplyCategoryModel> builder)
         {
-            builder.HasKey(e => e.IdSupplyCategory)
-                    .HasName("supply_categories_id_supply_category_primary");
+            builder.ToTable("supply_categories");
 
-            builder.ToTable("SUPPLY_CATEGORIES");
-
-            builder.Property(e => e.IdSupplyCategory).HasColumnName("id_supply_category");
+            builder.Property(e => e.Id).HasColumnName("id");
 
             builder.Property(e => e.Description)
-                .HasMaxLength(255)
+                .HasMaxLength(150)
+                .IsUnicode(false)
                 .HasColumnName("description");
 
             builder.Property(e => e.Name)
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("name");
 
             builder.Property(e => e.StatedAt)
-                .IsRequired()
-                .HasColumnName("stated_at");
+                .HasColumnName("stated_at")
+                .HasDefaultValueSql("((1))");
         }
     }
 }

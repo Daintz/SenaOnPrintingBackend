@@ -5,10 +5,10 @@ namespace DataCape.Models
 {
     public partial class UnitMeasuresXSupplyModel
     {
-        public long IdUnitMeasure { get; set; }
-        public long IdSupply { get; set; }
+        public long? SupplyId { get; set; }
+        public long? UnitMeasureId { get; set; }
 
-        public virtual SupplyModel IdSupplyNavigation { get; set; } = null!;
-        public virtual UnitMeasureModel IdUnitMeasureNavigation { get; set; } = null!;
+        public virtual SupplyModel? Supply { get; set; }
+        public virtual UnitMeasureModel? UnitMeasure { get; set; }
     }
 }

@@ -1,5 +1,6 @@
-## <small>1.0.22 (2023-05-27)</small>
+## <small>1.0.23 (2023-05-28)</small>
 
+* fix: :goal_net: update supply category dto ([33a5f32](https://github.com/Daintz/SENACOSTONPRINTING/commit/33a5f32))
 * build: :safety_vest: add more validations ([4bb27b8](https://github.com/Daintz/SENACOSTONPRINTING/commit/4bb27b8))
 * chore: :heavy_plus_sign: add husky ([1f8a29b](https://github.com/Daintz/SENACOSTONPRINTING/commit/1f8a29b))
 * chore: :safety_vest: add DTOs validators ([87a60a9](https://github.com/Daintz/SENACOSTONPRINTING/commit/87a60a9))
