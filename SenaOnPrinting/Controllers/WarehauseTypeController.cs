@@ -42,7 +42,7 @@ namespace SenaOnPrinting.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(WarehauseTypeCreateDto WarehauseTypeDto)
         {
-            var warehauseToCreate = _mapper.Map<WarehouseType>(WarehauseTypeDto);
+            var warehauseToCreate = _mapper.Map<WarehouseTypeModel>(WarehauseTypeDto);
 
             await _warehauseTypeService.AddAsync(warehauseToCreate);
             return Ok(warehauseToCreate);

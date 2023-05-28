@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace PersistenceCape.Contexts
 {
-    public class SENAONPRINTINGContext : DbContext
+    public partial class SENAONPRINTINGContext : DbContext
     {
         public SENAONPRINTINGContext()
         {
@@ -45,7 +45,7 @@ namespace PersistenceCape.Contexts
         public virtual DbSet<SupplyCategoryModel> SupplyCategories { get; set; } = null!;
         public virtual DbSet<SupplyDetailModel> SupplyDetails { get; set; } = null!;
         public virtual DbSet<SupplyPictogramModel> SupplyPictograms { get; set; } = null!;
-        public virtual DbSet<SupplyXProduct> SupplyXProducts { get; set; } = null!;
+        public virtual DbSet<SupplyXProductModel> SupplyXProducts { get; set; } = null!;
         public virtual DbSet<SupplyXSupplyPictogramModel> SupplyXSupplyPictograms { get; set; } = null!;
         public virtual DbSet<TypeDocumentModel> TypeDocuments { get; set; } = null!;
         public virtual DbSet<TypeServiceModel> TypeServices { get; set; } = null!;
@@ -848,7 +848,7 @@ namespace PersistenceCape.Contexts
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<SupplyXProduct>(entity =>
+            modelBuilder.Entity<SupplyXProductModel>(entity =>
             {
                 entity.HasNoKey();
 

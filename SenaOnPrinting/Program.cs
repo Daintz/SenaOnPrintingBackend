@@ -47,11 +47,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 // Configurar las interfaces para que el controlador las pueda usar
 
-builder.Services.AddScoped<MachineService>();
-builder.Services.AddScoped<IMachinesRepository, MachinesRepository>();
+//builder.Services.AddScoped<MachineService>();
+//builder.Services.AddScoped<IMachinesRepository, MachinesRepository>();
 
-builder.Services.AddScoped<FinishServices>();
-builder.Services.AddScoped<IFinishs, FinishRepository>();
+//builder.Services.AddScoped<FinishServices>();
+//builder.Services.AddScoped<IFinishs, FinishRepository>();
 
 builder.Services.AddScoped<RoleService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
@@ -74,23 +74,23 @@ builder.Services.AddScoped<IWarehausetypeRepository,WarehauseTypeRepository>();
 builder.Services.AddScoped<WarehauseService>();
 builder.Services.AddScoped<IWarehauseRepository, WarehauseRepository>();
 
-builder.Services.AddScoped<SupplyCategoryService>();
-builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
+//builder.Services.AddScoped<SupplyCategoryService>();
+//builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
 
-builder.Services.AddScoped<OrderProductionService>();
-builder.Services.AddScoped<IOrderProductionRepository, OrderProductionRepository>();
+//builder.Services.AddScoped<OrderProductionService>();
+//builder.Services.AddScoped<IOrderProductionRepository, OrderProductionRepository>();
 
-builder.Services.AddScoped<LineatureService>();
-builder.Services.AddScoped<ILineatureRepository, LineatureRepository>();
+//builder.Services.AddScoped<LineatureService>();
+//builder.Services.AddScoped<ILineatureRepository, LineatureRepository>();
 
-builder.Services.AddScoped<ImpositionPlateService>();
-builder.Services.AddScoped<IImpositionPlateRepository, ImpositionPlateRepository>();
+//builder.Services.AddScoped<ImpositionPlanchService>();
+//builder.Services.AddScoped<IImpositionPlanchRepository, ImpositionPlanchRepository>();
 
-builder.Services.AddScoped<ClientService>();
-builder.Services.AddScoped<IClientsRepository, ClientRepository>();
+//builder.Services.AddScoped<ClientService>();
+//builder.Services.AddScoped<IClientsRepository, ClientRepository>();
 
-builder.Services.AddScoped<QuotationClientService>();
-builder.Services.AddScoped<IQuotationClientRepository, QuotationClientRepository>();
+//builder.Services.AddScoped<QuotationClientService>();
+//builder.Services.AddScoped<IQuotationClientRepository, QuotationClientRepository>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
