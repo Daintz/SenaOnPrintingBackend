@@ -13,47 +13,46 @@ namespace PersistenceCape.Contexts.Configurations
     {
         public void Configure(EntityTypeBuilder<ClientModel> builder)
         {
-            builder.HasKey(e => e.IdClient)
-                     .HasName("pk_CLIENTS");
+            builder.ToTable("clients");
 
-            builder.ToTable("CLIENTS");
+                builder.HasIndex(e => e.Email, "UQ__clients__AB6E6164160CA661")
+                    .IsUnique();
 
-            builder.Property(e => e.IdClient).HasColumnName("id_client");
+                builder.Property(e => e.Id).HasColumnName("id");
 
-            builder.Property(e => e.Area)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("area");
+                builder.Property(e => e.Area)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("area");
 
-            builder.Property(e => e.Center)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("center");
+                builder.Property(e => e.Center)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("center");
 
-            builder.Property(e => e.Email)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("email");
+                builder.Property(e => e.Email)
+                    .HasMaxLength(110)
+                    .IsUnicode(false)
+                    .HasColumnName("email");
 
-            builder.Property(e => e.Name)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("name");
+                builder.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("name");
 
-            builder.Property(e => e.Phone)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("phone");
+                builder.Property(e => e.Phone)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("phone");
 
-            builder.Property(e => e.Regional)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("regional");
+                builder.Property(e => e.Regional)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("regional");
 
-            builder.Property(e => e.StatedAt)
-                .IsRequired()
-                .HasColumnName("stated_at")
-                .HasDefaultValueSql("('1')");
+                builder.Property(e => e.StatedAt)
+                    .HasColumnName("stated_at")
+                    .HasDefaultValueSql("((1))");
         }
     }
 }

@@ -3,13 +3,18 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class WarehouseTypeModel
+    public class WarehouseTypeModel
     {
-        public long IdTypeWarehouse { get; set; }
-        public bool? StatedAt { get; set; }
-        public string? Nametype { get; set; }
-        public string? Description { get; set; }
+        public WarehouseTypeModel()
+        {
+            Warehouses = new HashSet<WarehouseModel>();
+        }
 
-        public virtual WarehouseModel? Warehouse { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; } = null!;
+        public string? Description { get; set; }
+        public bool? StatedAt { get; set; }
+
+        public virtual ICollection<WarehouseModel> Warehouses { get; set; }
     }
 }

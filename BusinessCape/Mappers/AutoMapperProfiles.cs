@@ -1,14 +1,9 @@
 
 using AutoMapper;
 using BusinessCape.DTOs.Client;
-using AutoMapper;
-
-using BusinessCape.DTOs.Finish;
-using BusinessCape.DTOs.Machine;
-using BusinessCape.DTOs.QuotationClient;
-using BusinessCape.DTOs.Supply;
-using BusinessCape.DTOs.SupplyCategory;
-
+using BusinessCape.DTOs.GrammageCaliber;
+using BusinessCape.DTOs.PaperCut;
+using BusinessCape.DTOs.Substrate;
 using DataCape.Models;
 
 namespace BusinessCape.Mappers
@@ -22,42 +17,22 @@ namespace BusinessCape.Mappers
             CreateMap<ClientCreateDto, ClientModel>();
             // PUT OR UPDATE //
             CreateMap<ClientUpdateDto, ClientModel>();
-
-
-        public AutoMapperProfiles()
-        {   
-            //============================|Machine|==========================//
-
-            CreateMap<MachineCreateDto, MachineModel>();
-
-            CreateMap<MachineUpdateDto, MachineModel>();
-
-            //============================|Finish|==========================//
-
-            CreateMap<FinishDtoCreate, FinishModel>();
-
-            CreateMap<FinishDtoUpdate, FinishModel>();
-            CreateMap<FinishDtoUpdate_state, FinishModel>();
-
-            //=======================|Quotation Client|=======================//
+            //=======================|GRAMMAGE CALIBER|=======================//
             // POST OR CREATE //
-            CreateMap<QuotationCreateDto, QuotationClientModel>();
+            CreateMap<GrammageCaliberCreateDto, GrammageCaliberModel>();
             // PUT OR UPDATE //
-            CreateMap<QuotationUpdateDto, QuotationClientModel>();
-            // PUT OR UPDATE STATUS //
-            CreateMap<QuotationUpdateStatusDTO, QuotationClientModel>();
-            
-            //=======================|SUPPLY CATEGORY|=======================//
+            CreateMap<GrammageCaliberUpdateDto, GrammageCaliberModel>();
+            //=======================|PAPER CUT|=======================//
             // POST OR CREATE //
-            CreateMap<SupplyCategoryCreateDto, SupplyCategoryModel>();
+            CreateMap<PaperCutCreateDto, PaperCutModel>();
             // PUT OR UPDATE //
-            CreateMap<SupplyCategoryUpdateDto, SupplyCategoryModel>();
+            CreateMap<PaperCutUpdateDto, PaperCutModel>();
+            //=======================|SUBSTRATES|=======================//
+            // POST OR CREATE //
+            CreateMap<SubstrateCreateDto, SubstrateModel>();
+            // PUT OR UPDATE //
+            CreateMap<SubstrateUpdateDto, SubstrateModel>();
 
-            //============================|SUPPLY|==========================//
-            // POST OR CREATE //
-            CreateMap<SupplyCreateDto, SupplyModel>();
-            // PUT OR UPDATE //
-            CreateMap<SupplyUpdateDto, SupplyModel>();
         }
     }
 }

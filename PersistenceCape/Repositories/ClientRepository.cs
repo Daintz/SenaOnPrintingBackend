@@ -1,6 +1,5 @@
 ﻿using DataCape.Models;
 using Microsoft.EntityFrameworkCore;
-using PersistenceCape.Contexts;
 using PersistenceCape.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -45,14 +44,7 @@ namespace PersistenceCape.Repositories
         public async Task DeleteAsync(long id)
         {
             var client = await _context.Clients.FindAsync(id);
-            if (client.StatedAt == true)
-            {
-                client.StatedAt = false;
-            }
-            else
-            {
-                client.StatedAt = true;
-            }
+            client.StatedAt = !client.StatedAt;
             await _context.SaveChangesAsync();
         }
     }
