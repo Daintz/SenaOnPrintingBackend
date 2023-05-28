@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class LineatureXOrderProductionModel
+    public class LineatureXOrderProductionModel
     {
         public long? OrderProductionId { get; set; }
         public long? LineatureId { get; set; }

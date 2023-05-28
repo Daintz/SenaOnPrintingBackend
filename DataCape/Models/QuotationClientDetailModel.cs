@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class QuotationClientDetailModel
+    public class QuotationClientDetailModel
     {
         public QuotationClientDetailModel()
         {

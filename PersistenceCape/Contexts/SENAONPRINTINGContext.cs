@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataCape.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DataCape.Models
+namespace PersistenceCape.Contexts
 {
-    public partial class SENAONPRINTINGContext : DbContext
+    public class SENAONPRINTINGContext : DbContext
     {
         public SENAONPRINTINGContext()
         {
@@ -59,7 +60,7 @@ namespace DataCape.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= DESKTOP-PU5U2BA\\SANTIAGO;Database=sena_on_printing;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=sena_on_printing;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
             }
         }
 
@@ -81,7 +82,7 @@ namespace DataCape.Models
             {
                 entity.ToTable("clients");
 
-                entity.HasIndex(e => e.Email, "UQ__clients__AB6E61645AA4795E")
+                entity.HasIndex(e => e.Email, "UQ__clients__AB6E6164047C20FA")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -150,12 +151,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Finish)
                     .WithMany()
                     .HasForeignKey(d => d.FinishId)
-                    .HasConstraintName("FK__finish_x___finis__1F98B2C1");
+                    .HasConstraintName("FK__finish_x___finis__1EA48E88");
 
                 entity.HasOne(d => d.QuotationClientDetail)
                     .WithMany()
                     .HasForeignKey(d => d.QuotationClientDetailId)
-                    .HasConstraintName("FK__finish_x___quota__1EA48E88");
+                    .HasConstraintName("FK__finish_x___quota__1DB06A4F");
             });
 
             modelBuilder.Entity<GrammageCaliberModel>(entity =>
@@ -192,12 +193,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.GrammageCaliber)
                     .WithMany()
                     .HasForeignKey(d => d.GrammageCaliberId)
-                    .HasConstraintName("FK__grammage___gramm__22751F6C");
+                    .HasConstraintName("FK__grammage___gramm__2180FB33");
 
                 entity.HasOne(d => d.OrderProduction)
                     .WithMany()
                     .HasForeignKey(d => d.OrderProductionId)
-                    .HasConstraintName("FK__grammage___order__2180FB33");
+                    .HasConstraintName("FK__grammage___order__208CD6FA");
             });
 
             modelBuilder.Entity<ImpositionPlanchModel>(entity =>
@@ -231,12 +232,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.ImpositionPlanch)
                     .WithMany()
                     .HasForeignKey(d => d.ImpositionPlanchId)
-                    .HasConstraintName("FK__impositio__impos__25518C17");
+                    .HasConstraintName("FK__impositio__impos__245D67DE");
 
                 entity.HasOne(d => d.OrderProduction)
                     .WithMany()
                     .HasForeignKey(d => d.OrderProductionId)
-                    .HasConstraintName("FK__impositio__order__245D67DE");
+                    .HasConstraintName("FK__impositio__order__236943A5");
             });
 
             modelBuilder.Entity<LineatureModel>(entity =>
@@ -273,12 +274,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Lineature)
                     .WithMany()
                     .HasForeignKey(d => d.LineatureId)
-                    .HasConstraintName("FK__lineature__linea__282DF8C2");
+                    .HasConstraintName("FK__lineature__linea__2739D489");
 
                 entity.HasOne(d => d.OrderProduction)
                     .WithMany()
                     .HasForeignKey(d => d.OrderProductionId)
-                    .HasConstraintName("FK__lineature__order__2739D489");
+                    .HasConstraintName("FK__lineature__order__2645B050");
             });
 
             modelBuilder.Entity<MachineModel>(entity =>
@@ -334,12 +335,11 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Machine)
                     .WithMany()
                     .HasForeignKey(d => d.MachineId)
-                    .HasConstraintName("FK__machines___machi__2B0A656D");
-
+                    .HasConstraintName("FK__machines___machi__2A164134");
                 entity.HasOne(d => d.QuotationClient)
                     .WithMany()
                     .HasForeignKey(d => d.QuotationClientId)
-                    .HasConstraintName("FK__machines___quota__2A164134");
+                    .HasConstraintName("FK__machines___quota__29221CFB");
             });
 
             modelBuilder.Entity<OrderProductionModel>(entity =>
@@ -395,17 +395,17 @@ namespace DataCape.Models
                 entity.HasOne(d => d.IdPaperCutNavigation)
                     .WithMany(p => p.OrderProductions)
                     .HasForeignKey(d => d.IdPaperCut)
-                    .HasConstraintName("FK__order_pro__id_pa__1CBC4616");
+                    .HasConstraintName("FK__order_pro__id_pa__1BC821DD");
 
                 entity.HasOne(d => d.QuotationClientDetail)
                     .WithMany(p => p.OrderProductions)
                     .HasForeignKey(d => d.QuotationClientDetailId)
-                    .HasConstraintName("FK__order_pro__quota__1AD3FDA4");
+                    .HasConstraintName("FK__order_pro__quota__19DFD96B");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.OrderProductions)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__order_pro__user___1BC821DD");
+                    .HasConstraintName("FK__order_pro__user___1AD3FDA4");
             });
 
             modelBuilder.Entity<PaperCutModel>(entity =>
@@ -441,12 +441,11 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Permission)
                     .WithMany(p => p.PermissionsByRoles)
                     .HasForeignKey(d => d.PermissionId)
-                    .HasConstraintName("FK__permissio__permi__3C69FB99");
-
+                    .HasConstraintName("FK__permissio__permi__3B75D760");
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.PermissionsByRoles)
                     .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK__permissio__role___3D5E1FD2");
+                    .HasConstraintName("FK__permissio__role___3C69FB99");
             });
 
             modelBuilder.Entity<ProductModel>(entity =>
@@ -478,7 +477,7 @@ namespace DataCape.Models
             {
                 entity.ToTable("providers");
 
-                entity.HasIndex(e => e.Email, "UQ__provider__AB6E616458EEF016")
+                entity.HasIndex(e => e.Email, "UQ__provider__AB6E6164B50CE394")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -542,17 +541,17 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.QuotationClients)
                     .HasForeignKey(d => d.ClientId)
-                    .HasConstraintName("FK__quotation__clien__0E6E26BF");
+                    .HasConstraintName("FK__quotation__clien__0D7A0286");
 
                 entity.HasOne(d => d.TypeService)
                     .WithMany(p => p.QuotationClients)
                     .HasForeignKey(d => d.TypeServiceId)
-                    .HasConstraintName("FK__quotation__type___0F624AF8");
+                    .HasConstraintName("FK__quotation__type___0E6E26BF");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.QuotationClients)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__quotation__user___0D7A0286");
+                    .HasConstraintName("FK__quotation__user___0C85DE4D");
             });
 
             modelBuilder.Entity<QuotationClientDetailModel>(entity =>
@@ -591,12 +590,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.QuotationClientDetails)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__quotation__produ__14270015");
+                    .HasConstraintName("FK__quotation__produ__1332DBDC");
 
                 entity.HasOne(d => d.QuotationClient)
                     .WithMany(p => p.QuotationClientDetails)
                     .HasForeignKey(d => d.QuotationClientId)
-                    .HasConstraintName("FK__quotation__quota__1332DBDC");
+                    .HasConstraintName("FK__quotation__quota__123EB7A3");
             });
 
             modelBuilder.Entity<QuotationProviderModel>(entity =>
@@ -622,7 +621,7 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Provider)
                     .WithMany(p => p.QuotationProviders)
                     .HasForeignKey(d => d.ProviderId)
-                    .HasConstraintName("FK__quotation__provi__2DE6D218");
+                    .HasConstraintName("FK__quotation__provi__2CF2ADDF");
             });
 
             modelBuilder.Entity<RoleModel>(entity =>
@@ -675,12 +674,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.QuotationClientDetail)
                     .WithMany()
                     .HasForeignKey(d => d.QuotationClientDetailId)
-                    .HasConstraintName("FK__substrate__quota__30C33EC3");
+                    .HasConstraintName("FK__substrate__quota__2FCF1A8A");
 
                 entity.HasOne(d => d.Substrate)
                     .WithMany()
                     .HasForeignKey(d => d.SubstrateId)
-                    .HasConstraintName("FK__substrate__subst__31B762FC");
+                    .HasConstraintName("FK__substrate__subst__30C33EC3");
             });
 
             modelBuilder.Entity<SupplyModel>(entity =>
@@ -725,7 +724,7 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Warehouse)
                     .WithMany(p => p.Supplies)
                     .HasForeignKey(d => d.WarehouseId)
-                    .HasConstraintName("FK__supplies__wareho__5BE2A6F2");
+                    .HasConstraintName("FK__supplies__wareho__5AEE82B9");
             });
 
             modelBuilder.Entity<SupplyCategoriesXSupplyModel>(entity =>
@@ -741,12 +740,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.SupplyCategoryNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyCategory)
-                    .HasConstraintName("FK__supply_ca__suppl__628FA481");
+                    .HasConstraintName("FK__supply_ca__suppl__619B8048");
 
                 entity.HasOne(d => d.Supply)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__supply_ca__suppl__619B8048");
+                    .HasConstraintName("FK__supply_ca__suppl__60A75C0F");
             });
 
             modelBuilder.Entity<SupplyCategoryModel>(entity =>
@@ -813,12 +812,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Provider)
                     .WithMany(p => p.SupplyDetails)
                     .HasForeignKey(d => d.ProviderId)
-                    .HasConstraintName("FK__supply_de__provi__66603565");
+                    .HasConstraintName("FK__supply_de__provi__656C112C");
 
                 entity.HasOne(d => d.Supply)
                     .WithMany(p => p.SupplyDetails)
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__supply_de__suppl__656C112C");
+                    .HasConstraintName("FK__supply_de__suppl__6477ECF3");
             });
 
             modelBuilder.Entity<SupplyPictogramModel>(entity =>
@@ -826,6 +825,11 @@ namespace DataCape.Models
                 entity.ToTable("supply_pictograms");
 
                 entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("code");
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(150)
@@ -857,12 +861,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Product)
                     .WithMany()
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__supply_x___produ__09A971A2");
+                    .HasConstraintName("FK__supply_x___produ__08B54D69");
 
                 entity.HasOne(d => d.Supply)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__supply_x___suppl__0A9D95DB");
+                    .HasConstraintName("FK__supply_x___suppl__09A971A2");
             });
 
             modelBuilder.Entity<SupplyXSupplyPictogramModel>(entity =>
@@ -878,12 +882,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Supply)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__supply_x___suppl__6C190EBB");
+                    .HasConstraintName("FK__supply_x___suppl__6B24EA82");
 
                 entity.HasOne(d => d.SupplyPictogram)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyPictogramId)
-                    .HasConstraintName("FK__supply_x___suppl__6D0D32F4");
+                    .HasConstraintName("FK__supply_x___suppl__6C190EBB");
             });
 
             modelBuilder.Entity<TypeDocumentModel>(entity =>
@@ -954,7 +958,7 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Base)
                     .WithMany(p => p.InverseBase)
                     .HasForeignKey(d => d.BaseId)
-                    .HasConstraintName("FK__unit_meas__base___6FE99F9F");
+                    .HasConstraintName("FK__unit_meas__base___6EF57B66");
             });
 
             modelBuilder.Entity<UnitMeasuresXSupplyModel>(entity =>
@@ -970,22 +974,22 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Supply)
                     .WithMany()
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__unit_meas__suppl__72C60C4A");
+                    .HasConstraintName("FK__unit_meas__suppl__71D1E811");
 
                 entity.HasOne(d => d.UnitMeasure)
                     .WithMany()
                     .HasForeignKey(d => d.UnitMeasureId)
-                    .HasConstraintName("FK__unit_meas__unit___73BA3083");
+                    .HasConstraintName("FK__unit_meas__unit___72C60C4A");
             });
 
             modelBuilder.Entity<UserModel>(entity =>
             {
                 entity.ToTable("users");
 
-                entity.HasIndex(e => e.Email, "UQ__users__AB6E6164C77AB614")
+                entity.HasIndex(e => e.Email, "UQ__users__AB6E61649D4066DB")
                     .IsUnique();
 
-                entity.HasIndex(e => e.DocumentNumber, "UQ__users__C8FE0D8C1A8C9CB9")
+                entity.HasIndex(e => e.DocumentNumber, "UQ__users__C8FE0D8CB1737385")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -1037,13 +1041,13 @@ namespace DataCape.Models
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__users__role_id__46E78A0C");
+                    .HasConstraintName("FK__users__role_id__45F365D3");
 
                 entity.HasOne(d => d.TypeDocument)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.TypeDocumentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__users__type_docu__45F365D3");
+                    .HasConstraintName("FK__users__type_docu__44FF419A");
             });
 
             modelBuilder.Entity<WarehouseModel>(entity =>
@@ -1071,7 +1075,7 @@ namespace DataCape.Models
                 entity.HasOne(d => d.WarehouseType)
                     .WithMany(p => p.Warehouses)
                     .HasForeignKey(d => d.WarehouseTypeId)
-                    .HasConstraintName("FK__warehouse__wareh__5812160E");
+                    .HasConstraintName("FK__warehouse__wareh__571DF1D5");
             });
 
             modelBuilder.Entity<WarehouseTypeModel>(entity =>

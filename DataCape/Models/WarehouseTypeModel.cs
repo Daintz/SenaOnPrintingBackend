@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class WarehouseTypeModel
+    public class WarehouseTypeModel
     {
         public WarehouseTypeModel()
         {

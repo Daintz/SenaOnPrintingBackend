@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class GrammageCaliberXQuotationClientDetailModel
+    public class GrammageCaliberXQuotationClientDetailModel
     {
         public long? OrderProductionId { get; set; }
         public long? GrammageCaliberId { get; set; }
