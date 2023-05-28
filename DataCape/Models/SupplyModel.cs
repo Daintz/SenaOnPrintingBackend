@@ -5,9 +5,9 @@ namespace DataCape.Models
 {
     public class SupplyModel
     {
-        public SupplyModel()
+        public Supply()
         {
-            SupplyDetails = new HashSet<SupplyDetailModel>();
+            SupplyDetails = new HashSet<SupplyDetail>();
         }
 
         public long Id { get; set; }

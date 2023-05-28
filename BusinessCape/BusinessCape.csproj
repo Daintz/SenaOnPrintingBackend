@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTOs\ProductionOrder\**" />
+    <EmbeddedResource Remove="DTOs\ProductionOrder\**" />
+    <None Remove="DTOs\ProductionOrder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DataCape\DataCape.csproj" />
     <ProjectReference Include="..\PersistenceCape\PersistenceCape.csproj" />
   </ItemGroup>
