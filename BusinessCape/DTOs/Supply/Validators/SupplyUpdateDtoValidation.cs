@@ -13,7 +13,7 @@ namespace BusinessCape.DTOs.Supply.Validators
         // VALIDATION FOR NAME FIELD //
         RuleFor(x => x.Name).NotNull().WithMessage("Name can't be null");
         RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required");
-        RuleFor(x => x.Name).NotEqual(x => x.Name).WithMessage("There is already another supply with this name");
+        RuleFor(x => x.Name).Equal(x => x.Name).WithMessage("There is already another supply with this name");
         RuleFor(x => x.Name).MinimumLength(3).WithMessage("The name must contain more than 3 letters");
         RuleFor(x => x.Name).MaximumLength(20).WithMessage("The name must contain less than 20 letters");
         RuleFor(x => x.Name).Matches(regexOnlyLetters).WithMessage("The name is invalid");
@@ -26,20 +26,20 @@ namespace BusinessCape.DTOs.Supply.Validators
         // VALIDATION FOR DANGERINDICATORS FIELD //
         RuleFor(x => x.DangerIndicators).NotNull().WithMessage("DangerIndicators can't be null");
         RuleFor(x => x.DangerIndicators).NotEmpty().WithMessage("DangerIndicators is required");
-        RuleFor(x => x.DangerIndicators).MinimumLength(10).WithMessage("The dangerIndicators must contain more than 3 letters");
-        RuleFor(x => x.DangerIndicators).MaximumLength(255).WithMessage("The dangerIndicators must contain less than 20 letters");
+        RuleFor(x => x.DangerIndicators).MinimumLength(10).WithMessage("The dangerIndicators must contain more than 10 letters");
+        RuleFor(x => x.DangerIndicators).MaximumLength(255).WithMessage("The dangerIndicators must contain less than 255 letters");
 
         // VALIDATION FOR USEINSTRUCTIONS FIELD //
         RuleFor(x => x.UseInstructions).NotNull().WithMessage("UseInstructions can't be null");
         RuleFor(x => x.UseInstructions).NotEmpty().WithMessage("UseInstructions is required");
-        RuleFor(x => x.UseInstructions).MinimumLength(10).WithMessage("The useInstructions must contain more than 3 letters");
-        RuleFor(x => x.UseInstructions).MaximumLength(255).WithMessage("The useInstructions must contain less than 20 letters");
+        RuleFor(x => x.UseInstructions).MinimumLength(10).WithMessage("The useInstructions must contain more than 10 letters");
+        RuleFor(x => x.UseInstructions).MaximumLength(255).WithMessage("The useInstructions must contain less than 255 letters");
 
         // VALIDATION FOR ADVICES FIELD //
         RuleFor(x => x.Advices).NotNull().WithMessage("Advices can't be null");
         RuleFor(x => x.Advices).NotEmpty().WithMessage("Advices is required");
-        RuleFor(x => x.Advices).MinimumLength(10).WithMessage("The advices must contain more than 3 letters");
-        RuleFor(x => x.Advices).MaximumLength(255).WithMessage("The advices must contain less than 20 letters");
+        RuleFor(x => x.Advices).MinimumLength(10).WithMessage("The advices must contain more than 10 letters");
+        RuleFor(x => x.Advices).MaximumLength(255).WithMessage("The advices must contain less than 255 letters");
 
         // VALIDATION FOR SUPPLYTYPE FIELD //
         RuleFor(x => x.SupplyType).NotNull().WithMessage("SupplyType can't be null");

@@ -1,13 +1,14 @@
-## <small>1.0.23 (2023-05-28)</small>
+## <small>1.0.24 (2023-05-28)</small>
 
-* fix: :goal_net: update supply category dto ([33a5f32](https://github.com/Daintz/SENACOSTONPRINTING/commit/33a5f32))
-* build: :safety_vest: add more validations ([4bb27b8](https://github.com/Daintz/SENACOSTONPRINTING/commit/4bb27b8))
+* chore: :construction: update scaffold ([f30ff28](https://github.com/Daintz/SENACOSTONPRINTING/commit/f30ff28))
 * chore: :heavy_plus_sign: add husky ([1f8a29b](https://github.com/Daintz/SENACOSTONPRINTING/commit/1f8a29b))
 * chore: :safety_vest: add DTOs validators ([87a60a9](https://github.com/Daintz/SENACOSTONPRINTING/commit/87a60a9))
 * chore: :sparkles: add fluent validations ([3f0fbe8](https://github.com/Daintz/SENACOSTONPRINTING/commit/3f0fbe8))
 * chore: :wrench: add hook ([f8bc279](https://github.com/Daintz/SENACOSTONPRINTING/commit/f8bc279))
 * chore: :wrench: add hook ([f726ae0](https://github.com/Daintz/SENACOSTONPRINTING/commit/f726ae0))
 * chore: 🎉 project structure ([14908b4](https://github.com/Daintz/SENACOSTONPRINTING/commit/14908b4))
+* fix: :goal_net: update supply category dto ([33a5f32](https://github.com/Daintz/SENACOSTONPRINTING/commit/33a5f32))
+* build: :safety_vest: add more validations ([4bb27b8](https://github.com/Daintz/SENACOSTONPRINTING/commit/4bb27b8))
 * feat: :sparkles: Add DTOs ([0ea6ab7](https://github.com/Daintz/SENACOSTONPRINTING/commit/0ea6ab7))
 * feat: :sparkles: add mappers ([abba3f9](https://github.com/Daintz/SENACOSTONPRINTING/commit/abba3f9))
 * feat: :sparkles: add mappers on controller ([bc5b735](https://github.com/Daintz/SENACOSTONPRINTING/commit/bc5b735))

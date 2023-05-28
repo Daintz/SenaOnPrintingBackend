@@ -6,6 +6,7 @@ using BusinessCape.Mappers;
 using FluentValidation.AspNetCore;
 using BusinessCape.DTOs.Supply.Validators;
 using BusinessCape.DTOs.SupplyCategory.Validators;
+using BusinessCape.DTOs.Product.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -30,6 +31,12 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//============================|PRODUCT|==========================//
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductCreateDtoValidator>());
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductUpdateDtoValidator>());
 
 //=======================|SUPPLY CATEGORY|======================//
 builder.Services.AddScoped<SupplyCategoryService>();

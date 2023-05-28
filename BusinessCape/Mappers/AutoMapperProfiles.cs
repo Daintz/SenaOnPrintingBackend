@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessCape.DTOs.Product;
 using BusinessCape.DTOs.Supply;
 using BusinessCape.DTOs.SupplyCategory;
 using DataCape.Models;
@@ -9,6 +10,13 @@ namespace BusinessCape.Mappers
     {
         public AutoMapperProfiles() 
         {
+            //============================|PRODUCT|==========================//
+            // POST OR CREATE //
+            CreateMap<ProductCreateDto, ProductModel>();
+            // PUT OR UPDATE //
+            CreateMap<ProductUpdateDto, ProductModel>();
+            //==============================================================//
+
             //=======================|SUPPLY CATEGORY|=======================//
             // POST OR CREATE //
             CreateMap<SupplyCategoryCreateDto, SupplyCategoryModel>();

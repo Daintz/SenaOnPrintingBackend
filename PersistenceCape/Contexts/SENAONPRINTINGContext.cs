@@ -443,31 +443,6 @@ namespace PersistenceCape.Contexts
                     .HasConstraintName("FK__permissio__role___3D5E1FD2");
             });
 
-            modelBuilder.Entity<ProductModel>(entity =>
-            {
-                entity.ToTable("products");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Characteristics)
-                    .HasColumnType("text")
-                    .HasColumnName("characteristics");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
-
-                entity.Property(e => e.StatedAt)
-                    .HasColumnName("stated_at")
-                    .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.TypeProduct)
-                    .HasMaxLength(150)
-                    .IsUnicode(false)
-                    .HasColumnName("type_product");
-            });
-
             modelBuilder.Entity<ProviderModel>(entity =>
             {
                 entity.ToTable("providers");
