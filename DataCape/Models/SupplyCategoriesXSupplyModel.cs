@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public class SupplyCategoriesXSupply
+    public class SupplyCategoriesXSupplyModel
     {
         public long? SupplyId { get; set; }
         public long? SupplyCategory { get; set; }

@@ -7,13 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTOs\ProductionOrder\**" />
+    <EmbeddedResource Remove="DTOs\ProductionOrder\**" />
+    <None Remove="DTOs\ProductionOrder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DataCape\DataCape.csproj" />
     <ProjectReference Include="..\PersistenceCape\PersistenceCape.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
