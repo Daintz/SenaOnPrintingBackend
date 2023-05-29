@@ -1,4 +1,4 @@
-using BusinessCape.Services;
+
 using BusinessCape.Entensions;
 using PersistenceCape.Interfaces;
 using PersistenceCape.Repositories;
@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Reflection.PortableExecutable;
+using BusinessCape.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -55,8 +56,20 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 
-
 // Configurar las interfaces para que el controlador las pueda usar
+
+// -------------  CLIENTS --------------//
+builder.Services.AddScoped<ClientService>();
+builder.Services.AddScoped<IClientsRepository, ClientRepository>();
+// -------------  SUBSTRATES --------------//
+builder.Services.AddScoped<SubstrateService>();
+builder.Services.AddScoped<ISubstratesRepository, SubstrateRepository>();
+// -------------  PAPER CUT --------------//
+builder.Services.AddScoped<PaperCutService>();
+builder.Services.AddScoped<IPaperCutRepository, PaperCutRepository>();
+// -------------  GRAMMAGE CALIBER --------------//
+builder.Services.AddScoped<GrammageCaliberService>();
+builder.Services.AddScoped<IGrammageCaliberRepository, GrammageCaliberRepository>();
 
 builder.Services.AddScoped<OrderProductionService>();
 builder.Services.AddScoped<IOrderProductionRepository, OrderProductionRepository>();

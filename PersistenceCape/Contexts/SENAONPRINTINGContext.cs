@@ -52,7 +52,7 @@ namespace PersistenceCape.Contexts
         public virtual DbSet<SupplyXSupplyPictogramModel> SupplyXSupplyPictograms { get; set; } = null!;
 
         public virtual DbSet<TypeDocumentModel> TypeDocuments { get; set; } = null!;
-      
+
         public virtual DbSet<UserModel> Users { get; set; } = null!;
         public virtual DbSet<WarehouseModel> Warehouses { get; set; } = null!;
         public virtual DbSet<WarehouseTypeModel> WarehouseTypes { get; set; } = null!;
@@ -89,7 +89,7 @@ namespace PersistenceCape.Contexts
             {
                 entity.ToTable("clients");
 
-                entity.HasIndex(e => e.Email, "UQ__clients__AB6E6164095496DF")
+                entity.HasIndex(e => e.Email, "UQ__clients__AB6E6164160CA661")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -109,34 +109,27 @@ namespace PersistenceCape.Contexts
                     .IsUnicode(false)
                     .HasColumnName("email");
 
-                //{
-                //    entity.ToTable("application_permissions");
+                entity.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("name");
 
-                //    entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("phone");
+
+                entity.Property(e => e.Regional)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("regional");
+
+                entity.Property(e => e.StatedAt)
+                    .HasColumnName("stated_at")
+                    .HasDefaultValueSql("((1))");
 
 
-                //    entity.Property(e => e.Name)
-                //        .HasMaxLength(50)
-                //        .IsUnicode(false)
-                //        .HasColumnName("name");
-
-
-                //    entity.Property(e => e.Phone)
-                //        .HasMaxLength(10)
-                //        .IsUnicode(false)
-                //        .HasColumnName("phone");
-
-                //    entity.Property(e => e.Regional)
-                //        .HasMaxLength(250)
-                //        .IsUnicode(false)
-                //        .HasColumnName("regional");
-
-                //    entity.Property(e => e.StatedAt)
-                //        .HasColumnName("stated_at")
-                //        .HasDefaultValueSql("((1))");
-
-                //}
-            }); 
+            });
 
             modelBuilder.Entity<FinishModel>(entity =>
             {
@@ -1148,3 +1141,4 @@ namespace PersistenceCape.Contexts
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
+

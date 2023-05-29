@@ -1,11 +1,7 @@
-
-﻿using AutoMapper;
+using AutoMapper;
 using BusinessCape.DTOs.ImpositionPlanch;
 using BusinessCape.DTOs.Lineature;
 using BusinessCape.DTOs.OrderProduction;
-
-
-using AutoMapper;
 using BusinessCape.DTOs.Role;
 using BusinessCape.DTOs.TypeDocument;
 using BusinessCape.DTOs.User;
@@ -23,15 +19,19 @@ using BusinessCape.DTOs.WarehauseType;
 //using BusinessCape.DTOs.SupplyCategory;
 
 using DataCape.Models;
+using BusinessCape.DTOs.Client;
+using BusinessCape.DTOs.GrammageCaliber;
+using BusinessCape.DTOs.PaperCut;
+using BusinessCape.DTOs.Substrate;
 
 namespace BusinessCape.Mappers
 {
     public class AutoMapperProfiles : Profile
     {
-        public AutoMapperProfiles() 
+        public AutoMapperProfiles()
         {
 
-            
+
 
             //============================|ORDER PRODUCTION|==========================//
             // POST OR CREATE //
@@ -71,9 +71,9 @@ namespace BusinessCape.Mappers
 
             //=======================|CLIENT|=======================//
             // POST OR CREATE //
-            //CreateMap<ClientCreateDto, ClientModel>();
+            CreateMap<ClientCreateDto, ClientModel>();
             // PUT OR UPDATE //
-            //CreateMap<ClientUpdateDto, ClientModel>();
+            CreateMap<ClientUpdateDto, ClientModel>();
 
             //============================|Machine|==========================//
             //CreateMap<MachineCreateDto, MachineModel>();
@@ -91,42 +91,40 @@ namespace BusinessCape.Mappers
             //CreateMap<QuotationUpdateDto, QuotationClientModel>();
             // PUT OR UPDATE STATUS //
             //CreateMap<QuotationUpdateStatusDTO, QuotationClientModel>();
-            
+
             //============================|PROVIDERS|==========================//
             // POST OR CREATE //
             CreateMap<ProviderCreateDto, ProviderModel>();
             // PUT OR UPDATE //
             CreateMap<ProviderUpdateDto, ProviderModel>();
-            
+
             //============================|WarehauseType|==========================//
             // POST OR CREATE //
             CreateMap<WarehauseTypeCreateDto, WarehouseTypeModel>();
             // PUT OR UPDATE //
             CreateMap<WarehauseTypeUpdateDto, WarehouseTypeModel>();
-            
+
             //============================|Warehause|==========================//
             // POST OR CREATE //
             CreateMap<WarehauseCreateDto, WarehouseModel>();
             // PUT OR UPDATE //
             CreateMap<WarehauseUpdateDto, WarehouseModel>();
 
-            //============================|ORDER PRODUCTION|==========================//
+            //=======================|GRAMMAGE CALIBER|=======================//
             // POST OR CREATE //
-            //CreateMap<OrderProductionCreateDto, OrderProductionModel>();
+            CreateMap<GrammageCaliberCreateDto, GrammageCaliberModel>();
             // PUT OR UPDATE //
-            //CreateMap<OrderProductionUpdateDto, OrderProductionModel>();
-
-            //============================|LINEATURE|==========================//
+            CreateMap<GrammageCaliberUpdateDto, GrammageCaliberModel>();
+            //=======================|PAPER CUT|=======================//
             // POST OR CREATE //
-            //CreateMap<LineatureCreateDto, LineatureModel>();
+            CreateMap<PaperCutCreateDto, PaperCutModel>();
             // PUT OR UPDATE //
-            //CreateMap<LineatureUpdateDto, LineatureModel>();
-
-            //============================|IMPOSITION PLATE|==========================//
+            CreateMap<PaperCutUpdateDto, PaperCutModel>();
+            //=======================|SUBSTRATES|=======================//
             // POST OR CREATE //
-            //CreateMap<ImpositionPlateCreateDto, ImpositionPlanchModel>();
+            CreateMap<SubstrateCreateDto, SubstrateModel>();
             // PUT OR UPDATE //
-            //CreateMap<ImpositionPlanchUpdateDto, ImpositionPlanchModel>();
+            CreateMap<SubstrateUpdateDto, SubstrateModel>();
 
         }
     }
