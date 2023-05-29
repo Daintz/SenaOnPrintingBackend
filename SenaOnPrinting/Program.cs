@@ -7,6 +7,7 @@ using FluentValidation.AspNetCore;
 using BusinessCape.DTOs.Supply.Validators;
 using BusinessCape.DTOs.SupplyCategory.Validators;
 using BusinessCape.DTOs.Product.Validators;
+using persistencecape.repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -50,6 +51,11 @@ builder.Services.AddScoped<SupplyService>();
 builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCreateDtoValidator>());
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyUpdateDtoValidator>());
+//==============================================================//
+
+//============================|SUPPLYDETAILS|==========================//
+builder.Services.AddScoped<SupplyDetailsService>();
+builder.Services.AddScoped<ISupplyDetailsRepository, SupplyDetailsRepository>();
 //==============================================================//
 
 //=============================================================================================================================================//
