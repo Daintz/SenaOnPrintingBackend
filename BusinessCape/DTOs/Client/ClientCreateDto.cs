@@ -9,7 +9,6 @@ namespace BusinessCape.DTOs.Client
 {
     public class ClientCreateDto
     {
-
         public string Name { get; set; } = null!;
         public string? Phone { get; set; }
         public string Email { get; set; } = null!;
