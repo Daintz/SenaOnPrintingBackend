@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class UserModel
+    public class UserModel
     {
         public UserModel()
         {
@@ -11,20 +11,20 @@ namespace DataCape.Models
             QuotationClients = new HashSet<QuotationClientModel>();
         }
 
-        public long IdUser { get; set; }
+        public long Id { get; set; }
+        public long TypeDocumentId { get; set; }
         public string DocumentNumber { get; set; } = null!;
+        public string Names { get; set; } = null!;
         public string Surnames { get; set; } = null!;
-        public string LastNames { get; set; } = null!;
-        public string Phone { get; set; } = null!;
-        public string Address { get; set; } = null!;
+        public string? Phone { get; set; }
+        public string? Address { get; set; }
         public string Email { get; set; } = null!;
+        public long RoleId { get; set; }
         public string PasswordDigest { get; set; } = null!;
-        public long IdRole { get; set; }
-        public long IdTypeDocument { get; set; }
         public bool? StatedAt { get; set; }
 
-        public virtual RoleModel IdRoleNavigation { get; set; } = null!;
-        public virtual TypeDocumentModel IdTypeDocumentNavigation { get; set; } = null!;
+        public virtual RoleModel Role { get; set; } = null!;
+        public virtual TypeDocumentModel TypeDocument { get; set; } = null!;
         public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }
         public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
     }

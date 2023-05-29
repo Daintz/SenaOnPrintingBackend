@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class SubstrateModel
+    public class SubstrateModel
     {
-        public long IdSubstrate { get; set; }
-        public bool StatedAt { get; set; }
-        public string? SubstratumName { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; } = null!;
+        public bool? StatedAt { get; set; }
     }
 }
