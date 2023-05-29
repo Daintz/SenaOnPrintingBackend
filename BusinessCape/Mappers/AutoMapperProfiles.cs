@@ -1,4 +1,11 @@
 using AutoMapper;
+
+
+using BusinessCape.DTOs.Machine;
+using BusinessCape.DTOs.UnitMesureCreate;
+using BusinessCape.DTOs.UnitMesureUpdate;
+using DataCape;
+
 using BusinessCape.DTOs.ImpositionPlanch;
 using BusinessCape.DTOs.Lineature;
 using BusinessCape.DTOs.OrderProduction;
@@ -25,6 +32,7 @@ using BusinessCape.DTOs.PaperCut;
 using BusinessCape.DTOs.QuotationClient;
 using BusinessCape.DTOs.QuotationClientDetail;
 using BusinessCape.DTOs.Substrate;
+using BusinessCape.DTOs.Finish;
 
 namespace BusinessCape.Mappers
 {
@@ -89,10 +97,23 @@ namespace BusinessCape.Mappers
             CreateMap<ClientUpdateDto, ClientModel>();
 
             //============================|Machine|==========================//
-            //CreateMap<MachineCreateDto, MachineModel>();
-            //CreateMap<MachineUpdateDto, MachineModel>();
+            CreateMap<MachineCreateDto, MachineModel>();
+            CreateMap<MachineUpdateDto, MachineModel>();
 
             //============================|Finish|==========================//
+
+
+            CreateMap<FinishDtoCreate, FinishModel>();
+
+            CreateMap<FinishDtoUpdate, FinishModel>();
+
+            CreateMap<UnitMesureCreate, UnitMeasureModel>();
+
+            CreateMap<UnitMesureUpdate, UnitMeasureModel>();
+
+
+
+
             //CreateMap<FinishDtoCreate, FinishModel>();
             //CreateMap<FinishDtoUpdate, FinishModel>();
             //CreateMap<FinishDtoUpdate_state, FinishModel>();
@@ -138,6 +159,7 @@ namespace BusinessCape.Mappers
             CreateMap<SubstrateCreateDto, SubstrateModel>();
             // PUT OR UPDATE //
             CreateMap<SubstrateUpdateDto, SubstrateModel>();
+
 
         }
     }

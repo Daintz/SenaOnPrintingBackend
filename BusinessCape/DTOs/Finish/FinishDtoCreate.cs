@@ -4,18 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessCape.DTOs.GrammageCaliber
+namespace BusinessCape.DTOs.Finish
 {
-    public class GrammageCaliberCreateDto
+    public class FinishDtoCreate
     {
-
 
         public long Id { get; set; }
         public string Name { get; set; } = null!;
         public bool? StatedAt { get; set; }
-
-
-
 
     }
 }

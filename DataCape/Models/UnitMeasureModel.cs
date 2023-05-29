@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataCape.Models
+namespace DataCape
 {
+
+
     public class UnitMeasureModel
+
     {
         public UnitMeasureModel()
         {

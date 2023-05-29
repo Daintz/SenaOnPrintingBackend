@@ -40,6 +40,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<MachineService>();
+builder.Services.AddScoped<IMachinesRepository, MachinesRepository>();
+builder.Services.AddScoped<FinishServices>();
+builder.Services.AddScoped<IFinishs, FinishRepository>();
+builder.Services.AddScoped<UnitMesureServices>();
+builder.Services.AddScoped<IUnitMesure, UnitMeasurreRepository>();
+
+// Configurar las interfaces para que el controlador las pueda usar
+
   // Configuration for JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -129,6 +138,7 @@ builder.Services.AddScoped<IWarehauseRepository, WarehauseRepository>();
 
 //builder.Services.AddScoped<QuotationClientService>();
 //builder.Services.AddScoped<IQuotationClientRepository, QuotationClientRepository>();
+
 
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
