@@ -22,6 +22,8 @@ using DataCape.Models;
 using BusinessCape.DTOs.Client;
 using BusinessCape.DTOs.GrammageCaliber;
 using BusinessCape.DTOs.PaperCut;
+using BusinessCape.DTOs.QuotationClient;
+using BusinessCape.DTOs.QuotationClientDetail;
 using BusinessCape.DTOs.Substrate;
 
 namespace BusinessCape.Mappers
@@ -30,6 +32,17 @@ namespace BusinessCape.Mappers
     {
         public AutoMapperProfiles()
         {
+
+            //=======================|Quotation Client Detail|=======================//
+            // POST OR CREATE //
+            CreateMap<QuotationClientDetailCreateDto, QuotationClientDetailModel>();
+            // PUT OR UPDATE //
+            CreateMap<QuotationClientDetailUpdateDto, QuotationClientDetailModel>();
+            //=======================|Quotation Client|=======================//
+            // POST OR CREATE //
+            CreateMap<QuotationClientCreateDto, QuotationClientModel>();
+            // PUT OR UPDATE //
+            CreateMap<QuotationClientUpdateDto, QuotationClientModel>();
 
 
 
