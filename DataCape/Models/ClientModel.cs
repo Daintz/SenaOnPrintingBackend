@@ -7,7 +7,7 @@ namespace DataCape.Models
     {
         public ClientModel()
         {
-            //QuotationClients = new HashSet<QuotationClientModel>();
+            QuotationClients = new HashSet<QuotationClientModel>();
         }
 
         public long Id { get; set; }
@@ -19,6 +19,6 @@ namespace DataCape.Models
         public string Regional { get; set; } = null!;
         public bool? StatedAt { get; set; }
 
-        //public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
+        public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
     }
 }
