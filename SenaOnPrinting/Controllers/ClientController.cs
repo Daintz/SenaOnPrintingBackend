@@ -54,7 +54,7 @@ namespace SenaOnPrinting.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, ClientUpdateDto clientDto)
         {
-            var clientToUpdate = await _clientService.GetByIdAsync(clientDto.IdClient);
+            var clientToUpdate = await _clientService.GetByIdAsync(clientDto.Id);
             _mapper.Map(clientDto, clientToUpdate);
             await _clientService.UpdateAsync(clientToUpdate);
             return NoContent();

@@ -8,9 +8,9 @@ namespace BusinessCape.DTOs.GrammageCaliber
 {
     public class GrammageCaliberUpdateDto
     {
-        public long Id { get; set; }
-        public string? Type { get; set; }
+        public long Id { get; set; } 
+        public string Type { get; set; } = null!;
         public string? Name { get; set; }
-        public bool? StatedAt { get; set; }
+        public bool? StatedAt { get; set; } 
     }
 }

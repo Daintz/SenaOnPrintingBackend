@@ -8,7 +8,7 @@ namespace BusinessCape.DTOs.Substrate
 {
     public class SubstrateCreateDto
     {
-        public string? Name { get; set; }
+        public string Name { get; set; } = null!;
         public bool? StatedAt { get; set; }
     }
 }
