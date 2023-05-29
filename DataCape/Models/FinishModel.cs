@@ -3,7 +3,11 @@ using System.Collections.Generic;
 
 namespace DataCape
 {
-    public  class FinishModel
+
+
+
+    public class FinishModel
+
     {
         public long Id { get; set; }
         public string Name { get; set; } = null!;

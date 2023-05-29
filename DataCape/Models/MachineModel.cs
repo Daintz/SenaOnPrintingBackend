@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace DataCape
 {
-    public  class MachineModel
+
+
+    public class MachineModel
+
     {
         public long Id { get; set; }
         public string? Name { get; set; }

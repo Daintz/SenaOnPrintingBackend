@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessCape.DTOs.Machine;
 using BusinessCape.DTOs.UnitMesureCreate;
+using BusinessCape.DTOs.UnitMesureUpdate;
 using BusinessCape.Services;
 using DataCape;
 using Microsoft.AspNetCore.Mvc;
@@ -50,7 +51,7 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(long id, MachineCreateDto UnitDto)
+        public async Task<IActionResult> Update(long id, UnitMesureUpdate UnitDto)
         {
             var UnitToCreate = await _UnitServices.GetByIdAsync(UnitDto.Id);
             _mapper.Map(UnitDto, UnitToCreate);

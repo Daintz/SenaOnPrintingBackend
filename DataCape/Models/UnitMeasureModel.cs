@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace DataCape
 {
-    public  class UnitMeasureModel
+
+
+    public class UnitMeasureModel
+
     {
         public UnitMeasureModel()
         {

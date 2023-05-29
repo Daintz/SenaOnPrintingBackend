@@ -15,7 +15,7 @@ namespace BusinessCape.DTOs.UnitMesureUpdate
         public int Type { get; set; }
         public long? BaseId { get; set; }
         public decimal? ConversionFactor { get; set; }
-        public bool? StatedAt { get; set; }
+       public bool? StatedAt { get; set; }
 
     }
 }
