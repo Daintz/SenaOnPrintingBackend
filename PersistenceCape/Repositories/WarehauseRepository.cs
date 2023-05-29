@@ -25,24 +25,24 @@ namespace PersistenceCape.Repositories
         {
             return await _context.Warehouses.FindAsync(id);
         }
-        public async Task UpdateAsync(WarehouseModel Warehouse)
+        public async Task UpdateAsync(WarehouseModel WarehouseModel)
         {
-            _context.Entry(Warehouse).State = EntityState.Modified;
+            _context.Entry(WarehouseModel).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task<WarehouseModel> AddAsync(WarehouseModel Warehouse)
+        public async Task<WarehouseModel> AddAsync(WarehouseModel WarehouseModel)
         {
-            await _context.Warehouses.AddAsync(Warehouse);
+            await _context.Warehouses.AddAsync(WarehouseModel);
             await _context.SaveChangesAsync();
-            return Warehouse;
+            return WarehouseModel;
 
         }
 
         public async Task DeleteAsync(long id)
         {
-            var Warehouse = await _context.Warehouses.FindAsync(id);
-            Warehouse.StatedAt = !Warehouse.StatedAt;
+            var WarehouseModel = await _context.Warehouses.FindAsync(id);
+            WarehouseModel.StatedAt = !WarehouseModel.StatedAt;
             await _context.SaveChangesAsync();
 
         }

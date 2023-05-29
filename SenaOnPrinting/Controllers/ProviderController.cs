@@ -47,7 +47,7 @@ namespace SenaOnPrinting.Controllers
             //supplyToCreate.Name = supplyCategoryDto.Name;
             //supplyToCreate.Description = supplyCategoryDto.Description;
             //supplyToCreate.StatedAt = true;
-            var ProviderCreate = _mapper.Map<Provider>(providerCreateDto);
+            var ProviderCreate = _mapper.Map<ProviderModel>(providerCreateDto);
 
             await _providerService.AddAsync(ProviderCreate);
             return Ok(ProviderCreate);

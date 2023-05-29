@@ -11,8 +11,8 @@ namespace PersistenceCape.Interfaces
     {
         Task<IEnumerable<WarehouseModel>> GetAllAsync();
         Task<WarehouseModel> GetByIdAsync(long id);
-        Task<WarehouseModel> AddAsync(WarehouseModel Warehouse);
-        Task UpdateAsync(WarehouseModel Warehouse);
+        Task<WarehouseModel>AddAsync(WarehouseModel WarehouseModel);
+        Task UpdateAsync(WarehouseModel WarehouseModel);
         Task DeleteAsync(long id);
     }
 }

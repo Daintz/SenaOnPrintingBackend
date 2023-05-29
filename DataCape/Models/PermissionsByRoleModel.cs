@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class PermissionsByRoleModel
+    public class PermissionsByRoleModel
+
     {
         public long Id { get; set; }
         public long? PermissionId { get; set; }
