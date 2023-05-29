@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class GrammajeCaliber
+    public partial class GrammajeCaliberModel
     {
-        public GrammajeCaliber()
+        public GrammajeCaliberModel()
         {
-            OrderProductions = new HashSet<OrderProduction>();
+            OrderProductions = new HashSet<OrderProductionModel>();
         }
 
         public long IdGrammajeCaliber { get; set; }
         public string TypeGrammajeCaliber { get; set; } = null!;
         public string GrammajeCaliber1 { get; set; } = null!;
 
-        public virtual ICollection<OrderProduction> OrderProductions { get; set; }
+        public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }
     }
 }

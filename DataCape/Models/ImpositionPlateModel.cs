@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class ImpositionPlate
+    public  class ImpositionPlateModel
     {
-        public ImpositionPlate()
+        public ImpositionPlateModel()
         {
-            OrderProductions = new HashSet<OrderProduction>();
+            OrderProductions = new HashSet<OrderProductionModel>();
         }
 
         public long IdImpositionPlate { get; set; }
@@ -15,6 +15,6 @@ namespace DataCape.Models
         public byte[] Scheme { get; set; } = null!;
         public bool? StatedAt { get; set; }
 
-        public virtual ICollection<OrderProduction> OrderProductions { get; set; }
+        public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }
     }
 }

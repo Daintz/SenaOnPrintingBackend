@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class Supply
+    public partial class SupplyModel
     {
-        public Supply()
+        public SupplyModel()
         {
-            SupplyDetails = new HashSet<SupplyDetail>();
+            SupplyDetails = new HashSet<SupplyDetailModel>();
         }
 
         public long Id { get; set; }
@@ -22,7 +22,7 @@ namespace DataCape.Models
         public long? WarehouseId { get; set; }
         public bool? StatedAt { get; set; }
 
-        public virtual Warehouse? Warehouse { get; set; }
-        public virtual ICollection<SupplyDetail> SupplyDetails { get; set; }
+        public virtual WarehouseModel? Warehouse { get; set; }
+        public virtual ICollection<SupplyDetailModel> SupplyDetails { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace PersistenceCape.Interfaces
 {
     public interface IWarehauseRepository
     {
-        Task<IEnumerable<Warehouse>> GetAllAsync();
-        Task<Warehouse> GetByIdAsync(long id);
-        Task<Warehouse>AddAsync(Warehouse Warehouse);
-        Task UpdateAsync(Warehouse Warehouse);
+        Task<IEnumerable<WarehouseModel>> GetAllAsync();
+        Task<WarehouseModel> GetByIdAsync(long id);
+        Task<WarehouseModel> AddAsync(WarehouseModel Warehouse);
+        Task UpdateAsync(WarehouseModel Warehouse);
         Task DeleteAsync(long id);
     }
 }
