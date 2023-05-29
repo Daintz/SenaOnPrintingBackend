@@ -1,3 +1,10 @@
+
+﻿using AutoMapper;
+using BusinessCape.DTOs.ImpositionPlanch;
+using BusinessCape.DTOs.Lineature;
+using BusinessCape.DTOs.OrderProduction;
+
+
 using AutoMapper;
 using BusinessCape.DTOs.Role;
 using BusinessCape.DTOs.TypeDocument;
@@ -14,6 +21,7 @@ using BusinessCape.DTOs.WarehauseType;
 //using BusinessCape.DTOs.QuotationClient;
 //using BusinessCape.DTOs.Supply;
 //using BusinessCape.DTOs.SupplyCategory;
+
 using DataCape.Models;
 
 namespace BusinessCape.Mappers
@@ -22,6 +30,27 @@ namespace BusinessCape.Mappers
     {
         public AutoMapperProfiles() 
         {
+
+            
+
+            //============================|ORDER PRODUCTION|==========================//
+            // POST OR CREATE //
+            CreateMap<OrderProductionCreateDto, OrderProductionModel>();
+            // PUT OR UPDATE //
+            CreateMap<OrderProductionUpdateDto, OrderProductionModel>();
+
+            //============================|LINEATURE|==========================//
+            // POST OR CREATE //
+            CreateMap<LineatureCreateDto, LineatureModel>();
+            // PUT OR UPDATE //
+            CreateMap<LineatureUpdateDto, LineatureModel>();
+
+            //============================|IMPOSITION PLANCH|==========================//
+            // POST OR CREATE //
+            CreateMap<ImpositionPlanchCreateDto, ImpositionPlanchModel>();
+            // PUT OR UPDATE //
+            CreateMap<ImpositionPlanchUpdateDto, ImpositionPlanchModel>();
+
             //============================|ROLE|==========================//
             // POST OR CREATE //
             CreateMap<RoleCreateDto, RoleModel>();
@@ -98,6 +127,7 @@ namespace BusinessCape.Mappers
             //CreateMap<ImpositionPlateCreateDto, ImpositionPlanchModel>();
             // PUT OR UPDATE //
             //CreateMap<ImpositionPlanchUpdateDto, ImpositionPlanchModel>();
+
         }
     }
 }
