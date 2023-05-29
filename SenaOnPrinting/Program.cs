@@ -29,7 +29,12 @@ builder.Services.AddSwaggerGen();
 
 
 // Configurar las interfaces para que el controlador las pueda usar
-
+// -------------  Quotation Client Detail --------------//
+builder.Services.AddScoped<QuotationClientDetailService>();
+builder.Services.AddScoped<IQuotationClientDetailRepository, QuotationClientDetailRepository>();
+// -------------  Quotation Client --------------//
+builder.Services.AddScoped<QuotationClientService>();
+builder.Services.AddScoped<IQuotationClientRepository, QuotationClientRepository>();
 // -------------  CLIENTS --------------//
 builder.Services.AddScoped<ClientService>();
 builder.Services.AddScoped<IClientsRepository, ClientRepository>();
