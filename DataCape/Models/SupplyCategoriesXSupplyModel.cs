@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class SupplyCategoriesXSupplyModel
+    public class SupplyCategoriesXSupplyModel
     {
-        public long IdSupply { get; set; }
-        public long IdSupplyCategory { get; set; }
+        public long? SupplyId { get; set; }
+        public long? SupplyCategory { get; set; }
 
-        public virtual SupplyCategoryModel IdSupplyCategoryNavigation { get; set; } = null!;
-        public virtual SupplyModel IdSupplyNavigation { get; set; } = null!;
+        public virtual SupplyModel? Supply { get; set; }
+        public virtual SupplyCategoryModel? SupplyCategoryNavigation { get; set; }
     }
 }

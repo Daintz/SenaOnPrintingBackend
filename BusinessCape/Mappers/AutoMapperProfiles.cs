@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using BusinessCape.DTOs.Supply;
-using BusinessCape.DTOs.SupplyCategory;
+using BusinessCape.DTOs.ImpositionPlanch;
+using BusinessCape.DTOs.Lineature;
+using BusinessCape.DTOs.OrderProduction;
+
 using DataCape.Models;
 
 namespace BusinessCape.Mappers
@@ -9,17 +11,25 @@ namespace BusinessCape.Mappers
     {
         public AutoMapperProfiles() 
         {
-            //=======================|SUPPLY CATEGORY|=======================//
-            // POST OR CREATE //
-            CreateMap<SupplyCategoryCreateDto, SupplyCategoryModel>();
-            // PUT OR UPDATE //
-            CreateMap<SupplyCategoryUpdateDto, SupplyCategoryModel>();
+            
 
-            //============================|SUPPLY|==========================//
+            //============================|ORDER PRODUCTION|==========================//
             // POST OR CREATE //
-            CreateMap<SupplyCreateDto, SupplyModel>();
+            CreateMap<OrderProductionCreateDto, OrderProductionModel>();
             // PUT OR UPDATE //
-            CreateMap<SupplyUpdateDto, SupplyModel>();
+            CreateMap<OrderProductionUpdateDto, OrderProductionModel>();
+
+            //============================|LINEATURE|==========================//
+            // POST OR CREATE //
+            CreateMap<LineatureCreateDto, LineatureModel>();
+            // PUT OR UPDATE //
+            CreateMap<LineatureUpdateDto, LineatureModel>();
+
+            //============================|IMPOSITION PLANCH|==========================//
+            // POST OR CREATE //
+            CreateMap<ImpositionPlanchCreateDto, ImpositionPlanchModel>();
+            // PUT OR UPDATE //
+            CreateMap<ImpositionPlanchUpdateDto, ImpositionPlanchModel>();
         }
     }
 }
