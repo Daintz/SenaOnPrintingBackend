@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using DataCape.Models;
 using Microsoft.EntityFrameworkCore;
 
+using Microsoft.EntityFrameworkCore.Metadata;
+
+
 namespace PersistenceCape.Contexts
 {
     public partial class SENAONPRINTINGContext : DbContext
@@ -17,6 +20,7 @@ namespace PersistenceCape.Contexts
         }
 
         public virtual DbSet<ApplicationPermissionModel> ApplicationPermissions { get; set; } = null!;
+
         public virtual DbSet<ClientModel> Clients { get; set; } = null!;
         public virtual DbSet<FinishModel> Finishes { get; set; } = null!;
         public virtual DbSet<FinishXQuotationClientDetailModel> FinishXQuotationClientDetails { get; set; } = null!;
@@ -46,10 +50,9 @@ namespace PersistenceCape.Contexts
         public virtual DbSet<SupplyPictogramModel> SupplyPictograms { get; set; } = null!;
         public virtual DbSet<SupplyXProductModel> SupplyXProducts { get; set; } = null!;
         public virtual DbSet<SupplyXSupplyPictogramModel> SupplyXSupplyPictograms { get; set; } = null!;
+
         public virtual DbSet<TypeDocumentModel> TypeDocuments { get; set; } = null!;
-        public virtual DbSet<TypeServiceModel> TypeServices { get; set; } = null!;
-        public virtual DbSet<UnitMeasureModel> UnitMeasures { get; set; } = null!;
-        public virtual DbSet<UnitMeasuresXSupplyModel> UnitMeasuresXSupplies { get; set; } = null!;
+      
         public virtual DbSet<UserModel> Users { get; set; } = null!;
         public virtual DbSet<WarehouseModel> Warehouses { get; set; } = null!;
         public virtual DbSet<WarehouseTypeModel> WarehouseTypes { get; set; } = null!;
@@ -59,13 +62,18 @@ namespace PersistenceCape.Contexts
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+
                 optionsBuilder.UseSqlServer("Server=LAPTOP-FSNABTS4;Database=sena_on_printing;Trusted_Connection=True;");
+
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=sena_on_printing;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ApplicationPermissionModel>(entity =>
+
             {
                 entity.ToTable("application_permissions");
 
@@ -101,28 +109,38 @@ namespace PersistenceCape.Contexts
                     .IsUnicode(false)
                     .HasColumnName("email");
 
-                entity.Property(e => e.Name)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
+                //{
+                //    entity.ToTable("application_permissions");
 
-                entity.Property(e => e.Phone)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("phone");
+                //    entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Regional)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("regional");
 
-                entity.Property(e => e.StatedAt)
-                    .HasColumnName("stated_at")
-                    .HasDefaultValueSql("((1))");
-            });
+                //    entity.Property(e => e.Name)
+                //        .HasMaxLength(50)
+                //        .IsUnicode(false)
+                //        .HasColumnName("name");
+
+
+                //    entity.Property(e => e.Phone)
+                //        .HasMaxLength(10)
+                //        .IsUnicode(false)
+                //        .HasColumnName("phone");
+
+                //    entity.Property(e => e.Regional)
+                //        .HasMaxLength(250)
+                //        .IsUnicode(false)
+                //        .HasColumnName("regional");
+
+                //    entity.Property(e => e.StatedAt)
+                //        .HasColumnName("stated_at")
+                //        .HasDefaultValueSql("((1))");
+
+                //}
+            }); 
 
             modelBuilder.Entity<FinishModel>(entity =>
             {
+
                 entity.ToTable("finishes");
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -422,6 +440,7 @@ namespace PersistenceCape.Contexts
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
+
             });
 
             modelBuilder.Entity<PermissionsByRoleModel>(entity =>
@@ -478,7 +497,11 @@ namespace PersistenceCape.Contexts
             {
                 entity.ToTable("providers");
 
-                entity.HasIndex(e => e.Email, "UQ__provider__AB6E6164A71623EA")
+
+                entity.HasIndex(e => e.Email, "UQ__provider__AB6E6164A71623EA");
+
+                entity.HasIndex(e => e.Email, "UQ__provider__AB6E6164B50CE394")
+
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -511,6 +534,7 @@ namespace PersistenceCape.Contexts
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
+
             });
 
             modelBuilder.Entity<QuotationClientModel>(entity =>
@@ -623,6 +647,7 @@ namespace PersistenceCape.Contexts
                     .WithMany(p => p.QuotationProviders)
                     .HasForeignKey(d => d.ProviderId)
                     .HasConstraintName("FK__quotation__provi__2DE6D218");
+
             });
 
             modelBuilder.Entity<RoleModel>(entity =>
@@ -644,6 +669,7 @@ namespace PersistenceCape.Contexts
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
+
             });
 
             modelBuilder.Entity<SubstrateModel>(entity =>
@@ -889,6 +915,7 @@ namespace PersistenceCape.Contexts
                     .WithMany()
                     .HasForeignKey(d => d.SupplyPictogramId)
                     .HasConstraintName("FK__supply_x___suppl__6D0D32F4");
+
             });
 
             modelBuilder.Entity<TypeDocumentModel>(entity =>
@@ -910,6 +937,7 @@ namespace PersistenceCape.Contexts
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
+
             });
 
             modelBuilder.Entity<TypeServiceModel>(entity =>
@@ -981,16 +1009,24 @@ namespace PersistenceCape.Contexts
                     .WithMany()
                     .HasForeignKey(d => d.UnitMeasureId)
                     .HasConstraintName("FK__unit_meas__unit___73BA3083");
+
             });
 
             modelBuilder.Entity<UserModel>(entity =>
             {
                 entity.ToTable("users");
 
+
                 entity.HasIndex(e => e.Email, "UQ__users__AB6E616405D80F4C")
                     .IsUnique();
 
-                entity.HasIndex(e => e.DocumentNumber, "UQ__users__C8FE0D8CE22CBB7C")
+                entity.HasIndex(e => e.DocumentNumber, "UQ__users__C8FE0D8CE22CBB7C");
+
+                entity.HasIndex(e => e.Email, "UQ__users__AB6E61649D4066DB")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.DocumentNumber, "UQ__users__C8FE0D8CB1737385")
+
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -1042,13 +1078,17 @@ namespace PersistenceCape.Contexts
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
+
                     .HasConstraintName("FK__users__role_id__46E78A0C");
+
 
                 entity.HasOne(d => d.TypeDocument)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.TypeDocumentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
+
                     .HasConstraintName("FK__users__type_docu__45F365D3");
+
             });
 
             modelBuilder.Entity<WarehouseModel>(entity =>
@@ -1076,7 +1116,9 @@ namespace PersistenceCape.Contexts
                 entity.HasOne(d => d.WarehouseType)
                     .WithMany(p => p.Warehouses)
                     .HasForeignKey(d => d.WarehouseTypeId)
+
                     .HasConstraintName("FK__warehouse__wareh__5812160E");
+
             });
 
             modelBuilder.Entity<WarehouseTypeModel>(entity =>
