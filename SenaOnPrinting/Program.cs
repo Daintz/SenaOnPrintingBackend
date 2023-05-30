@@ -10,6 +10,10 @@ using System.Reflection.PortableExecutable;
 using BusinessCape.Services;
 using DataCape.Models;
 using persistencecape.repositories;
+using FluentValidation.AspNetCore;
+using BusinessCape.DTOs.SupplyCategory.Validators;
+using BusinessCape.DTOs.Product.Validators;
+using BusinessCape.DTOs.Supply.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -155,6 +159,26 @@ builder.Services.AddScoped<ISupplyPictogramsRepository, SupplyPictogramsReposito
 //============================|SUPPLYDETAILS|==========================//
 builder.Services.AddScoped<SupplyDetailsService>();
 builder.Services.AddScoped<ISupplyDetailsRepository, SupplyDetailsRepository>();
+//==============================================================//
+
+//============================|PRODUCT|==========================//
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductCreateDtoValidator>());
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductUpdateDtoValidator>());
+
+//=======================|SUPPLY CATEGORY|======================//
+builder.Services.AddScoped<SupplyCategoryService>();
+builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCategoryCreateDtoValidator>());
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCategoryUpdateDtoValidator>());
+//==============================================================//
+
+//============================|SUPPLY|==========================//
+builder.Services.AddScoped<SupplyService>();
+builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCreateDtoValidator>());
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyUpdateDtoValidator>());
 //==============================================================//
 
 
