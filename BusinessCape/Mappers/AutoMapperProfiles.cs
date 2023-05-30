@@ -36,6 +36,7 @@ using BusinessCape.DTOs.Finish;
 using BusinessCape.DTOs.QuotationProviders;
 using BusinessCape.DTOs.TypeServices;
 using BusinessCape.DTOs.SupplyPictograms;
+using BusinessCape.DTOs.SupplyDetails;
 
 namespace BusinessCape.Mappers
 {
@@ -177,6 +178,11 @@ namespace BusinessCape.Mappers
             CreateMap<SupplyPictogramsCreateDto, SupplyPictogramModel>();
             // PUT OR UPDATE //
             CreateMap<SupplyPictogramsUpdateDto, SupplyPictogramModel>();
+            //SupplyDetails //
+            // POST OR CREATE //
+            CreateMap<SupplyDetailsCreateDto, SupplyDetailModel>();
+            // PUT OR UPDATE //
+            CreateMap<SupplyDetailsUpdateDto, SupplyDetailModel>();
 
         }
     }
