@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Reflection.PortableExecutable;
 using BusinessCape.Services;
+using DataCape.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -66,6 +67,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 
 // Configurar las interfaces para que el controlador las pueda usar
+
 // -------------  Quotation Client Detail --------------//
 builder.Services.AddScoped<QuotationClientDetailService>();
 builder.Services.AddScoped<IQuotationClientDetailRepository, QuotationClientDetailRepository>();
@@ -138,6 +140,17 @@ builder.Services.AddScoped<IWarehauseRepository, WarehauseRepository>();
 
 //builder.Services.AddScoped<QuotationClientService>();
 //builder.Services.AddScoped<IQuotationClientRepository, QuotationClientRepository>();
+
+//------------------Quotation Provider----------------//
+builder.Services.AddScoped<QuotationProvidersServices>();
+builder.Services.AddScoped<IQuotationProviderRepository, QuotationProviderRepository>();
+//----------------------Type Services -----------------//
+builder.Services.AddScoped<TypeServicesServices>();
+builder.Services.AddScoped<ITypeServicesRepository, TypeServicesRepository>();
+//--------------------------Supply Pictograms------------------------//
+builder.Services.AddScoped<SupplyPictogramsServices>();
+builder.Services.AddScoped<ISupplyPictogramsRepository, SupplyPictogramsRepository>();
+
 
 
 

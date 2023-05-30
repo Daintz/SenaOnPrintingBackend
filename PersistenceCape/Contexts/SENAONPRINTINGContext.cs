@@ -52,7 +52,7 @@ namespace PersistenceCape.Contexts
         public virtual DbSet<SupplyXProductModel> SupplyXProducts { get; set; } = null!;
         public virtual DbSet<SupplyXSupplyPictogramModel> SupplyXSupplyPictograms { get; set; } = null!;
 
-        
+        public virtual DbSet<TypeServiceModel> TypeServices { get; set; } = null!;
         public virtual DbSet<TypeDocumentModel> TypeDocuments { get; set; } = null!;
 
         public virtual DbSet<UserModel> Users { get; set; } = null!;
@@ -936,6 +936,25 @@ namespace PersistenceCape.Contexts
 
             });
 
+            modelBuilder.Entity<TypeServiceModel>(entity =>
+            {
+                entity.HasKey(e => e.Id)
+                    .HasName("pk_TYPE_SERVICE");
+
+                entity.ToTable("TYPE_SERVICE");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.StatedAt)
+                    .IsRequired()
+                    .HasColumnName("stated_at")
+                    .HasDefaultValueSql("('1')");
+            });
             modelBuilder.Entity<TypeServiceModel>(entity =>
             {
                 entity.ToTable("type_service");
