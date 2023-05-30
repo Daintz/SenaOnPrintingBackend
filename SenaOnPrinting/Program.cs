@@ -9,6 +9,7 @@ using System.Text;
 using System.Reflection.PortableExecutable;
 using BusinessCape.Services;
 using DataCape.Models;
+using persistencecape.repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -151,6 +152,10 @@ builder.Services.AddScoped<ITypeServicesRepository, TypeServicesRepository>();
 builder.Services.AddScoped<SupplyPictogramsServices>();
 builder.Services.AddScoped<ISupplyPictogramsRepository, SupplyPictogramsRepository>();
 
+//============================|SUPPLYDETAILS|==========================//
+builder.Services.AddScoped<SupplyDetailsService>();
+builder.Services.AddScoped<ISupplyDetailsRepository, SupplyDetailsRepository>();
+//==============================================================//
 
 
 
