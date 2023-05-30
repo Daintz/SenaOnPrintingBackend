@@ -70,9 +70,9 @@ namespace SenaOnPrinting.Controllers
 
         // DELETE api/<OrderProductionController>/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> ChangeState(long id)
         {
-            await _orderProductionService.DeleteAsync(id);
+            await _orderProductionService.ChangeState(id);
             return NoContent();
         }
     }

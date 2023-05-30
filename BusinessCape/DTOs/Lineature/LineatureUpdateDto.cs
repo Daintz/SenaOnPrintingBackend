@@ -9,7 +9,7 @@ namespace BusinessCape.DTOs.Lineature
 {
     public class LineatureUpdateDto
     {
-        public long IdLineature { get; set; }
+        public long Id { get; set; }
 
         public string? Lineature { get; set; } = null!;
         public string? TypePoint { get; set; } = null!;

@@ -17,8 +17,8 @@ namespace DataCape.Models
         public long? IdPaperCut { get; set; }
         public byte[]? Image { get; set; }
         public string? Observations { get; set; }
-        public bool StatedAt { get; set; }
-        public bool OrderStatus { get; set; }
+        public bool? StatedAt { get; set; }
+        public bool? OrderStatus { get; set; }
         public string? Program { get; set; }
 
         public virtual PaperCutModel? IdPaperCutNavigation { get; set; }

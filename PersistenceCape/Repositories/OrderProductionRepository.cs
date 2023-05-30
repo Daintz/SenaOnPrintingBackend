@@ -40,6 +40,7 @@ namespace PersistenceCape.Repositories
         public async Task ChangeState(long id)
         {
             var orderProduction = await _context.OrderProductions.FindAsync(id);
+            orderProduction.StatedAt = !orderProduction.StatedAt;
             await _context.SaveChangesAsync();
         }      
 

@@ -56,12 +56,12 @@ namespace SenaOnPrinting.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, LineatureUpdateDto lineatureDto)
         {
-            if (id != lineatureDto.IdLineature)
+            if (id != lineatureDto.Id)
             {
                 return BadRequest();
             }
 
-            var lineatureToUpdate = await _lineatureService.GetByIdAsync(lineatureDto.IdLineature);
+            var lineatureToUpdate = await _lineatureService.GetByIdAsync(lineatureDto.Id);
 
             _mapper.Map(lineatureDto, lineatureToUpdate);
 
