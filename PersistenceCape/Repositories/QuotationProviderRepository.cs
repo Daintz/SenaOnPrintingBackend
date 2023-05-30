@@ -45,7 +45,7 @@ namespace PersistenceCape.Repositories
         public async Task DeleteAsync(long id)
         {
             var quotationProvider = await _context.QuotationProviders.FindAsync(id);
-            _context.QuotationProviders.Remove(quotationProvider);
+            quotationProvider.StatedAt=!quotationProvider.StatedAt;
             await _context.SaveChangesAsync();
         }
     }
