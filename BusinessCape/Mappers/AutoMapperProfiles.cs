@@ -33,6 +33,10 @@ using BusinessCape.DTOs.QuotationClient;
 using BusinessCape.DTOs.QuotationClientDetail;
 using BusinessCape.DTOs.Substrate;
 using BusinessCape.DTOs.Finish;
+using BusinessCape.DTOs.QuotationProviders;
+using BusinessCape.DTOs.TypeServices;
+using BusinessCape.DTOs.SupplyPictograms;
+using BusinessCape.DTOs.SupplyDetails;
 
 namespace BusinessCape.Mappers
 {
@@ -159,7 +163,26 @@ namespace BusinessCape.Mappers
             CreateMap<SubstrateCreateDto, SubstrateModel>();
             // PUT OR UPDATE //
             CreateMap<SubstrateUpdateDto, SubstrateModel>();
-
+            //========================|QUOTATION PROVIDER|===================//
+            // POST OR CREATE //
+            CreateMap<QuotationProvidersCreateDto, QuotationProviderModel>();
+            // PUT OR UPDATE //
+            CreateMap<QuotationProvidersUpdateDto, QuotationProviderModel>();
+            //============================|TYPE SERVICES|=======================//
+            // POST OR CREATE //
+            CreateMap<TypeServicesCreateDto, TypeServiceModel>();
+            // PUT OR UPDATE //
+            CreateMap<TypeServicesUpdateDto, TypeServiceModel>();
+            //===========================|SUPPLY PICTOGRMAS|=========================//
+            // POST OR CREATE //
+            CreateMap<SupplyPictogramsCreateDto, SupplyPictogramModel>();
+            // PUT OR UPDATE //
+            CreateMap<SupplyPictogramsUpdateDto, SupplyPictogramModel>();
+            //SupplyDetails //
+            // POST OR CREATE //
+            CreateMap<SupplyDetailsCreateDto, SupplyDetailModel>();
+            // PUT OR UPDATE //
+            CreateMap<SupplyDetailsUpdateDto, SupplyDetailModel>();
 
         }
     }
