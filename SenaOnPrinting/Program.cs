@@ -20,15 +20,6 @@ var Configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddInjectionInfraestructure(Configuration);
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("CorsPolicy", builder =>
-    {
-        builder.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
-});
 
 //cors
 builder.Services.AddCors(options =>
