@@ -39,9 +39,10 @@ namespace PersistenceCape.Repositories
 
         public async Task DeleteAsync(long id)
         {
-            var product = await _context.Products.FindAsync(id);
-            _context.Products.Remove(product);
+            var ProductsModel = await _context.Products.FindAsync(id);
+            ProductsModel.StatedAt = !ProductsModel.StatedAt;
             await _context.SaveChangesAsync();
         }
     }
+}
 }
