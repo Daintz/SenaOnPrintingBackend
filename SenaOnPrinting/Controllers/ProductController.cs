@@ -63,14 +63,10 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> ChangeStatus(long id)
+        public async Task<IActionResult> Delete(long id)
         {
-            var productToUpdate = await _productService.GetByIdAsync(id);
-
-            productToUpdate.StatedAt = !productToUpdate.StatedAt;
-
-            await _productService.UpdateAsync(productToUpdate);
-            return Ok(productToUpdate);
+            await _productService.DeleteAsync(id);
+            return NoContent();
         }
     }
 }
