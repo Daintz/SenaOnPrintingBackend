@@ -16,7 +16,6 @@ namespace BusinessCape.DTOs.QuotationClient
         public DateTime? OrderDate { get; set; }
         public DateTime? DeliverDate { get; set; }
         public bool QuotationStatus { get; set; }
-        public bool? StatedAt { get; set; }
 
     }
 }
