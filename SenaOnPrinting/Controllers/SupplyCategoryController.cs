@@ -71,7 +71,7 @@ namespace SenaOnPrinting.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
-            await _warehauseService.DeleteAsync(id);
+            await _supplyCategoryService.DeleteAsync(id);
             return NoContent();
         }
     }
