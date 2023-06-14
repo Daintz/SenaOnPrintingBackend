@@ -17,7 +17,6 @@ namespace BusinessCape.DTOs.Client
         public string Center { get; set; } = null!;
         public string Area { get; set; } = null!;
         public string Regional { get; set; } = null!;
-        public bool? StatedAt { get; set; }
 
         //public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
     }
