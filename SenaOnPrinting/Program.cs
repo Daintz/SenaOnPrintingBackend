@@ -14,6 +14,9 @@ using FluentValidation.AspNetCore;
 using BusinessCape.DTOs.SupplyCategory.Validators;
 using BusinessCape.DTOs.Product.Validators;
 using BusinessCape.DTOs.Supply.Validators;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -44,9 +47,11 @@ builder.Services.AddScoped<IFinishs, FinishRepository>();
 builder.Services.AddScoped<UnitMesureServices>();
 builder.Services.AddScoped<IUnitMesure, UnitMeasurreRepository>();
 
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\ImpositionPlanch")));
+
 // Configurar las interfaces para que el controlador las pueda usar
 
-  // Configuration for JWT Authentication
+// Configuration for JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -188,6 +193,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+    RequestPath = "/Images"
+});
 
 app.UseHttpsRedirection();
 

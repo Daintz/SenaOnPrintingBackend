@@ -31,4 +31,8 @@
     <ProjectReference Include="..\BusinessCape\BusinessCape.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\OrderProduction\" />
+  </ItemGroup>
+
 </Project>

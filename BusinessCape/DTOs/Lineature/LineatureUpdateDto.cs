@@ -13,7 +13,7 @@ namespace BusinessCape.DTOs.Lineature
 
         public string? Lineature { get; set; } = null!;
         public string? TypePoint { get; set; } = null!;
-        public bool? StatedAt { get; set; }
+        //public bool? StatedAt { get; set; }
 
 
     }

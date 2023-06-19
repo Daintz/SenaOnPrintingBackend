@@ -4,6 +4,9 @@ using BusinessCape.DTOs.Lineature;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,18 +18,29 @@ namespace SenaOnPrinting.Controllers
     {
         private readonly ImpositionPlanchService _impositionPlanchService;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public impositionPlanchController(ImpositionPlanchService impositionPlanchService, IMapper mapper)
+        public impositionPlanchController(ImpositionPlanchService impositionPlanchService, IMapper mapper, IWebHostEnvironment hostEnvironment)
         {
             _impositionPlanchService = impositionPlanchService;
             _mapper = mapper;
+            _hostEnvironment = hostEnvironment;
         }
         // GET: api/<LineatureController>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var impositionPlanch = await _impositionPlanchService.GetAllAsync();
-            return Ok(impositionPlanch);
+            var scheme = "https";
+            var host = Request.Host;
+            var pathBase = Request.PathBase.ToString();
+            var impositionPlanches = await _impositionPlanchService.GetAllAsync();
+            foreach (var impositionPlanch in impositionPlanches)
+            {
+                impositionPlanch.ImageSrc = string.Format("{0}://{1}/{2}Images/ImpositionPlanch/{3}",
+                    scheme, host, pathBase, impositionPlanch.Scheme);
+                impositionPlanch.Scheme = impositionPlanch.ImageSrc;
+            }
+            return Ok(impositionPlanches);
         }
 
         // GET api/<LineatureController>/5
@@ -43,17 +57,33 @@ namespace SenaOnPrinting.Controllers
 
         // POST api/<LineatureController>
         [HttpPost]
-        public async Task<IActionResult> Add(ImpositionPlanchCreateDto impositionPlanchDto)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Add([FromForm] ImpositionPlanchCreateDto impositionPlanchDto)
         {
+            impositionPlanchDto.Scheme = await SaveImages(impositionPlanchDto.SchemeInfo);
+
             var impositionPlanchToCreate = _mapper.Map<ImpositionPlanchModel>(impositionPlanchDto);
 
             await _impositionPlanchService.AddAsync(impositionPlanchToCreate);
             return Ok(impositionPlanchToCreate);
         }
+        [NonAction]
+        public async Task<string> SaveImages(Microsoft.AspNetCore.Http.IFormFile SchemeInfo)
+        {
+            string imageName = new string(Path.GetFileNameWithoutExtension(SchemeInfo.FileName).Take(10).ToArray()).Replace(' ', '_');
+            imageName = imageName + Path.GetExtension(SchemeInfo.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images\\ImpositionPlanch\\", imageName);
 
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await SchemeInfo.CopyToAsync(fileStream);
+            }
+            return imageName;
+        }
         // PUT api/<LineatureController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(long id, ImpositionPlanchUpdateDto impositionPlanchDto)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Update(long id, [FromForm] ImpositionPlanchUpdateDto impositionPlanchDto)
         {
             if (id != impositionPlanchDto.Id)
             {
@@ -61,6 +91,12 @@ namespace SenaOnPrinting.Controllers
             }
 
             var impositionPlanchToUpdate = await _impositionPlanchService.GetByIdAsync(impositionPlanchDto.Id);
+
+            
+
+                impositionPlanchToUpdate.Scheme = await SaveImages(impositionPlanchDto.SchemeInfo);
+
+            
 
             _mapper.Map(impositionPlanchDto, impositionPlanchToUpdate);
 
