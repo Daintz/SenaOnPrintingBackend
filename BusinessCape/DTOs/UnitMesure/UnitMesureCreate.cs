@@ -18,5 +18,9 @@ namespace BusinessCape.DTOs.UnitMesureCreate
         public decimal? ConversionFactor { get; set; }
         public bool? StatedAt { get; set; }
 
+        public UnitMesureCreate() { 
+        StatedAt = true;
+        
+        }
     }
 }

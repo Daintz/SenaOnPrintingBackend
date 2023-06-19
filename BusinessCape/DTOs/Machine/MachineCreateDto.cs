@@ -17,5 +17,12 @@ namespace BusinessCape.DTOs.Machine
         public decimal? CostByUnit { get; set; }
         public decimal? CostByHour { get; set; }
         public bool? StatedAt { get; set; }
+    
+        public MachineCreateDto() {
+            StatedAt = true;
+        
+        }
+
+
     }
 }

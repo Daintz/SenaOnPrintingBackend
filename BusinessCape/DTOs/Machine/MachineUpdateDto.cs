@@ -16,7 +16,7 @@ namespace BusinessCape.DTOs.Machine
         public decimal? MaximumWidth { get; set; }
         public decimal? CostByUnit { get; set; }
         public decimal? CostByHour { get; set; }
-        public bool? StatedAt { get; set; }
+
 
     }
 }
