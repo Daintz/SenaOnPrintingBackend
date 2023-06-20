@@ -1126,6 +1126,11 @@ namespace PersistenceCape.Contexts
 
                     .HasConstraintName("FK_userstype_docu_45F365D3");
 
+                entity.Property(e => e.ForgotPasswordToken)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("forgot_password_token");
+
             });
 
             modelBuilder.Entity<WarehouseModel>(entity =>

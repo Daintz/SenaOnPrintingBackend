@@ -22,7 +22,7 @@ namespace DataCape.Models
         public long RoleId { get; set; }
         public string PasswordDigest { get; set; } = null!;
         public bool? StatedAt { get; set; }
-
+        public string? ForgotPasswordToken { get; set; }
         public virtual RoleModel Role { get; set; } = null!;
         public virtual TypeDocumentModel TypeDocument { get; set; } = null!;
         public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }

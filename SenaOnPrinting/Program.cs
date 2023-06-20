@@ -14,6 +14,10 @@ using FluentValidation.AspNetCore;
 using BusinessCape.DTOs.SupplyCategory.Validators;
 using BusinessCape.DTOs.Product.Validators;
 using BusinessCape.DTOs.Supply.Validators;
+using PersistenceCape.EmailConfiguration;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
+using SenaOnPrinting.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -44,9 +48,21 @@ builder.Services.AddScoped<IFinishs, FinishRepository>();
 builder.Services.AddScoped<UnitMesureServices>();
 builder.Services.AddScoped<IUnitMesure, UnitMeasurreRepository>();
 
-// Configurar las interfaces para que el controlador las pueda usar
 
-  // Configuration for JWT Authentication
+// Configuration for SMTP Server
+var emailConfiguration = Configuration
+    .GetSection("EmailSenderConfiguration")
+    .Get<EmailConfiguration>();
+
+builder.Services.AddSingleton(emailConfiguration);
+
+// Configuration of token lifetime
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromHours(24);
+});
+
+// Configuration for JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -63,6 +79,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 
 // Configurar las interfaces para que el controlador las pueda usar
+
+// -------------  SMTP Server Configuration --------------//
+builder.Services.AddScoped<IEmailRepository, EmailRepository>();
 
 // -------------  Quotation Client Detail --------------//
 builder.Services.AddScoped<QuotationClientDetailService>();
@@ -176,6 +195,27 @@ builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidator
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
+builder.Services.AddSwaggerGen(option =>
+{
+    option.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "SENAonPrinting API",
+        Version = "v1"
+    });
+
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Por favor ingrese un token de acceso",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "bearer"
+    });
+
+    option.OperationFilter<AuthenticationFilter>();
+}
+);
 
 var app = builder.Build();
 
@@ -187,9 +227,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
