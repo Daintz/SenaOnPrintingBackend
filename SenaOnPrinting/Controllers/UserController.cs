@@ -10,7 +10,6 @@ namespace SenaOnPrinting.Controllers
 {
     [ApiController]
     [Route("api/user")]
-    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;

@@ -18,6 +18,9 @@ using PersistenceCape.EmailConfiguration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using SenaOnPrinting.Filters;
+using PersistenceCape.Seed;
+using Microsoft.AspNetCore.Authorization;
+using SenaOnPrinting.Permissions;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -39,7 +42,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<Seeder>();
 
 builder.Services.AddScoped<MachineService>();
 builder.Services.AddScoped<IMachinesRepository, MachinesRepository>();
@@ -76,6 +79,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
     };
 });
+
+// Permissions Handler Configuration
+builder.Services.AddAuthorization();
+builder.Services.AddSingleton<IAuthorizationHandler, AppPermissionAuthHandler>();
+builder.Services.AddSingleton<IAuthorizationPolicyProvider, AppPermissionAuthProvider>();
 
 
 // Configurar las interfaces para que el controlador las pueda usar
@@ -219,6 +227,21 @@ builder.Services.AddSwaggerGen(option =>
 
 var app = builder.Build();
 
+if (args.Length == 1 && args[0].ToLower() == "seed")
+{
+    SeedData(app);
+}
+
+void SeedData(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<Seeder>();
+        service.Seed();
+    }
+}
 
 app.UseCors("CorsPolicy");
 

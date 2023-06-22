@@ -98,7 +98,7 @@ namespace SenaOnPrinting.Controllers
             }
             else
             {
-                return StatusCode(StatusCodes.Status404NotFound, new { messaqe = "La direccion de correo proporcionada no se encuentra en el sistema." });
+                return StatusCode(StatusCodes.Status422UnprocessableEntity, new { message = "La direccion de correo proporcionada no se encuentra en el sistema." });
             }
         }
 

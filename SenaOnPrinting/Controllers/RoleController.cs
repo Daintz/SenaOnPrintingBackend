@@ -3,6 +3,9 @@ using BusinessCape.DTOs.Role;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
+using SenaOnPrinting.Filters;
+using SenaOnPrinting.Permissions;
+using System.Web.Http.Filters;
 
 namespace SenaOnPrinting.Controllers
 {
@@ -19,6 +22,7 @@ namespace SenaOnPrinting.Controllers
             _mapper = mapper;
         }
 
+        [AuthorizationFilter(ApplicationPermission.ReadRole)]
         [HttpGet]
         public async Task<IActionResult> Index()
         {

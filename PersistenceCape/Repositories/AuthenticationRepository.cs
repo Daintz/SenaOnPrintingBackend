@@ -80,8 +80,9 @@ namespace PersistenceCape.Repositories
                 {
                     if (password == confirmPassword)
                     {
-                        user.PasswordDigest = password;
+                        user.PasswordDigest = encryptPassword(password);
                         user.ForgotPasswordToken = null;
+
                         await _context.SaveChangesAsync();
 
                         return true;
@@ -103,6 +104,14 @@ namespace PersistenceCape.Repositories
             return is_valid == PasswordVerificationResult.Success;
         }
 
-        
+        private string encryptPassword(string password)
+        {
+            var passwordHasher = new PasswordHasher<UserModel>();
+
+            string password_digest = passwordHasher.HashPassword(null, password);
+
+            return password_digest;
+        }
+
     }
 }
