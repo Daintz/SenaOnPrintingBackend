@@ -54,7 +54,7 @@ namespace SenaOnPrinting.Controllers
         public async Task<IActionResult> Update(long id, RoleUpdateDto roleDto)
         {
             var role = await _roleService.Show(roleDto.Id);
-
+            _mapper.Map(roleDto, role);
             await _roleService.Update(role);
             return NoContent();
         }

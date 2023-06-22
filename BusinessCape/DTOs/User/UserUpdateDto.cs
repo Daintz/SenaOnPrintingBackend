@@ -13,7 +13,7 @@ namespace BusinessCape.DTOs.User
         public string? Address { get; set; }
         public string? Email { get; set; }
         public long? RoleId { get; set; }
-        public bool? StatedAt { get; set; }
+        //public bool? StatedAt { get; set; }
         public string PasswordDigest { get; set; }
 
     }
