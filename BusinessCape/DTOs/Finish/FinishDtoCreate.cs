@@ -13,5 +13,10 @@ namespace BusinessCape.DTOs.Finish
         public string Name { get; set; } = null!;
         public bool? StatedAt { get; set; }
 
+        public FinishDtoCreate()
+        {
+            StatedAt = true;
+        }
+
     }
 }
