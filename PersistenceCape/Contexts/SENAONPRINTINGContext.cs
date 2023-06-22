@@ -1134,10 +1134,6 @@ namespace PersistenceCape.Contexts
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Name)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
 
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")

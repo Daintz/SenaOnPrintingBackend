@@ -14,6 +14,5 @@ namespace BusinessCape.DTOs.Provider
         public string Email { get; set; } = null!;
         public string? Phone { get; set; }
         public string? CompanyAddress { get; set; }
-        public bool? StatedAt { get; set; }
     }
 }
