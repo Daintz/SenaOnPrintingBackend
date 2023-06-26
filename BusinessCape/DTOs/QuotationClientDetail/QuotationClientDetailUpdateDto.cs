@@ -19,6 +19,5 @@ namespace BusinessCape.DTOs.QuotationClientDetail
         public int? ProductQuantity { get; set; }
         public double? UnitValue { get; set; }
         public double? FullValue { get; set; }
-        public bool? StatedAt { get; set; }
     }
 }

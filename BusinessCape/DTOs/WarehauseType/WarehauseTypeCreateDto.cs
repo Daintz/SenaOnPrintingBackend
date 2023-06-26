@@ -14,7 +14,10 @@ namespace BusinessCape.DTOs.WarehauseType
         public bool? StatedAt { get; set; }
 
 
-
+        public WarehauseTypeCreateDto()
+        {
+            StatedAt = true;
+        }
 
 
     }

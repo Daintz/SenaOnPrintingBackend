@@ -7,6 +7,6 @@ namespace BusinessCape.DTOs.TypeDocument
         public long Id { get; set; }
         public string Name { get; set; } = null!;
         public string Abbreviation { get; set; } = null!;
-        public bool? StatedAt { get; set; }
+        //public bool? StatedAt { get; set; }
     }
 }

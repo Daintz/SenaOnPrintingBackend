@@ -14,7 +14,10 @@ namespace BusinessCape.DTOs.GrammageCaliber
         public string Type { get; set; } = null!;
         public string? Name { get; set; }
         public bool? StatedAt { get; set; }
-
+        public GrammageCaliberCreateDto()
+        {
+            StatedAt = true;
+        }
 
 
     }

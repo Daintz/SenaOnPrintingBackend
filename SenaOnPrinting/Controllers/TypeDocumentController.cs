@@ -41,7 +41,7 @@ namespace SenaOnPrinting.Controllers
         public async Task<IActionResult> Add(TypeDocumentCreateDto typeDocumentDto)
         {
             var typeDocument = _mapper.Map<TypeDocumentModel>(typeDocumentDto);
-
+            _mapper.Map(typeDocumentDto, typeDocument);
             await _typeDocumentService.Create(typeDocument);
             return Ok(typeDocument);
         }

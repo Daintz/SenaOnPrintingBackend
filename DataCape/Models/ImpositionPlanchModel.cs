@@ -8,10 +8,7 @@ namespace DataCape.Models
     {
         public long Id { get; set; }
         public string Name { get; set; } = null!;
-        public string? Scheme { get; set; }
         public bool? StatedAt { get; set; }
-        [NotMapped]
-        public string? ImageSrc { get; set; }
 
     }
 }

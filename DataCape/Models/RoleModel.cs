@@ -9,6 +9,7 @@ namespace DataCape.Models
         {
             PermissionsByRoles = new HashSet<PermissionsByRoleModel>();
             Users = new HashSet<UserModel>();
+            Permissions = new HashSet<ApplicationPermissionModel>();
         }
 
         public long Id { get; set; }
@@ -17,6 +18,7 @@ namespace DataCape.Models
         public bool? StatedAt { get; set; }
 
         public virtual ICollection<PermissionsByRoleModel> PermissionsByRoles { get; set; }
+        public virtual ICollection<ApplicationPermissionModel> Permissions { get; set; }
         public virtual ICollection<UserModel> Users { get; set; }
     }
 }

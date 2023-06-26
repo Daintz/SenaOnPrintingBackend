@@ -11,7 +11,10 @@ namespace BusinessCape.DTOs.PaperCut
 
         public string Name { get; set; } = null!;
         public bool? StatedAt { get; set; }
-
+        public PaperCutCreateDto()
+        {
+            StatedAt = true;
+        }
         //public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }
     }
 }
