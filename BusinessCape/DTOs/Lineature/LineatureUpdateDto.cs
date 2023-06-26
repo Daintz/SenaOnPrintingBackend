@@ -12,8 +12,7 @@ namespace BusinessCape.DTOs.Lineature
         public long Id { get; set; }
 
         public string? Lineature { get; set; } = null!;
-        public string? TypePoint { get; set; } = null!;
-        //public bool? StatedAt { get; set; }
+        
 
 
     }

@@ -28,14 +28,7 @@ namespace PersistenceCape.Repositories
 
         public async Task<IEnumerable<ImpositionPlanchModel>> GetAllAsync()
         {
-            return await _context.ImpositionPlanches
-                .Select(x => new ImpositionPlanchModel(){ 
-                    Id = x.Id,
-                    Name = x.Name,
-                    Scheme = x.Scheme,
-                    StatedAt = x.StatedAt
-                })
-                .ToListAsync();
+            return await _context.ImpositionPlanches.ToListAsync();
         }
         
         public async Task<ImpositionPlanchModel> GetByIdAsync(long id)

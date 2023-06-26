@@ -11,9 +11,6 @@ namespace BusinessCape.DTOs.ImpositionPlanch
     {
         public long Id { get; set; }
         public string Name { get; set; } = null!;
-        public string? Scheme { get; set; } = null!;
-        public IFormFile? SchemeInfo { get; set; } = null!;
-        //public bool? StatedAt { get; set; }
     };
     
 }
