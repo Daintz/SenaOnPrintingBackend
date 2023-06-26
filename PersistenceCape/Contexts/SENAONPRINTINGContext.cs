@@ -217,8 +217,6 @@ namespace PersistenceCape.Contexts
                     .IsUnicode(false)
                     .HasColumnName("name");
 
-                entity.Property(e => e.Scheme).HasColumnName("scheme");
-
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
@@ -260,10 +258,7 @@ namespace PersistenceCape.Contexts
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.TypePoint)
-                    .HasMaxLength(150)
-                    .IsUnicode(false)
-                    .HasColumnName("type_point");
+
             });
 
             modelBuilder.Entity<LineatureXOrderProductionModel>(entity =>
@@ -387,6 +382,12 @@ namespace PersistenceCape.Contexts
                 entity.Property(e => e.ProgramVersion)
                     .HasMaxLength(255)
                     .HasColumnName("program_version");
+                entity.Property(e => e.TypePoint)
+                    .HasMaxLength(150)
+                    .IsUnicode(false)
+                    .HasColumnName("type_point");
+                entity.Property(e => e.Scheme).HasColumnName("scheme");
+
 
                 entity.Property(e => e.QuotationClientDetailId).HasColumnName("quotation_client_detail_id");
 

@@ -14,6 +14,10 @@ using FluentValidation.AspNetCore;
 using BusinessCape.DTOs.SupplyCategory.Validators;
 using BusinessCape.DTOs.Product.Validators;
 using BusinessCape.DTOs.Supply.Validators;
+
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
+
 using PersistenceCape.EmailConfiguration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
@@ -21,6 +25,7 @@ using SenaOnPrinting.Filters;
 using PersistenceCape.Seed;
 using Microsoft.AspNetCore.Authorization;
 using SenaOnPrinting.Permissions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -51,6 +56,10 @@ builder.Services.AddScoped<IFinishs, FinishRepository>();
 builder.Services.AddScoped<UnitMesureServices>();
 builder.Services.AddScoped<IUnitMesure, UnitMeasurreRepository>();
 
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\ImpositionPlanch")));
+
+// Configurar las interfaces para que el controlador las pueda usar
+
 
 // Configuration for SMTP Server
 var emailConfiguration = Configuration
@@ -64,6 +73,7 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 {
     options.TokenLifespan = TimeSpan.FromHours(24);
 });
+
 
 // Configuration for JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -252,6 +262,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 
 }
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+    RequestPath = "/Images"
+});
 
 app.UseHttpsRedirection();
 

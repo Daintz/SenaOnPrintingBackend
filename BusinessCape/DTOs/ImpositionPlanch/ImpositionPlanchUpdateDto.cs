@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,6 @@ namespace BusinessCape.DTOs.ImpositionPlanch
     {
         public long Id { get; set; }
         public string Name { get; set; } = null!;
-        public byte[] Scheme { get; set; } = null!;
-        public bool? StatedAt { get; set; }
     };
     
 }

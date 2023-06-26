@@ -14,12 +14,13 @@ namespace BusinessCape.DTOs.OrderProduction
         public string? SpecialInk { get; set; }
         public string? InkCode { get; set; }
         public long? IdPaperCut { get; set; }
-        public byte[]? Image { get; set; }
+        public string? Image { get; set; }
         public string? Observations { get; set; }
         public bool? StatedAt { get; set; }
-        public bool OrderStatus { get; set; }
+        public int OrderStatus { get; set; }
         public string? Program { get; set; }
-
+        public string? TypePoint { get; set; }
+        public string? Scheme { get; set; }
 
     }
 }

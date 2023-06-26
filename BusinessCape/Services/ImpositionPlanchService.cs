@@ -1,4 +1,5 @@
 ﻿using DataCape.Models;
+using Microsoft.AspNetCore.Http;
 using PersistenceCape.Interfaces;
 
 
@@ -15,6 +16,7 @@ namespace BusinessCape.Services
 
         public async Task<IEnumerable<ImpositionPlanchModel>> GetAllAsync()
         {
+            
             return await _impositionPlanchRepository.GetAllAsync();
         }
 

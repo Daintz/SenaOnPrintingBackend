@@ -4,6 +4,9 @@ using BusinessCape.DTOs.Lineature;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,18 +18,20 @@ namespace SenaOnPrinting.Controllers
     {
         private readonly ImpositionPlanchService _impositionPlanchService;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public impositionPlanchController(ImpositionPlanchService impositionPlanchService, IMapper mapper)
+        public impositionPlanchController(ImpositionPlanchService impositionPlanchService, IMapper mapper, IWebHostEnvironment hostEnvironment)
         {
             _impositionPlanchService = impositionPlanchService;
             _mapper = mapper;
+            _hostEnvironment = hostEnvironment;
         }
         // GET: api/<LineatureController>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var impositionPlanch = await _impositionPlanchService.GetAllAsync();
-            return Ok(impositionPlanch);
+            var impositionPlanches = await _impositionPlanchService.GetAllAsync();
+            return Ok(impositionPlanches);
         }
 
         // GET api/<LineatureController>/5
@@ -43,14 +48,14 @@ namespace SenaOnPrinting.Controllers
 
         // POST api/<LineatureController>
         [HttpPost]
-        public async Task<IActionResult> Add(ImpositionPlanchCreateDto impositionPlanchDto)
+        public async Task<IActionResult> Add( ImpositionPlanchCreateDto impositionPlanchDto)
         {
             var impositionPlanchToCreate = _mapper.Map<ImpositionPlanchModel>(impositionPlanchDto);
 
             await _impositionPlanchService.AddAsync(impositionPlanchToCreate);
             return Ok(impositionPlanchToCreate);
         }
-
+        
         // PUT api/<LineatureController>/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, ImpositionPlanchUpdateDto impositionPlanchDto)
@@ -60,12 +65,12 @@ namespace SenaOnPrinting.Controllers
                 return BadRequest();
             }
 
-            var impositionPlanchToUpdate = await _impositionPlanchService.GetByIdAsync(impositionPlanchDto.Id);
+            var lineatureToUpdate = await _impositionPlanchService.GetByIdAsync(impositionPlanchDto.Id);
 
-            _mapper.Map(impositionPlanchDto, impositionPlanchToUpdate);
+            _mapper.Map(impositionPlanchDto, lineatureToUpdate);
 
-            await _impositionPlanchService.UpdateAsync(impositionPlanchToUpdate);
-            return Ok(impositionPlanchToUpdate);
+            await _impositionPlanchService.UpdateAsync(lineatureToUpdate);
+            return Ok(lineatureToUpdate);
         }
 
 
