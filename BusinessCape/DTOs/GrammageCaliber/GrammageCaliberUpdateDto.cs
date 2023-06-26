@@ -11,6 +11,5 @@ namespace BusinessCape.DTOs.GrammageCaliber
         public long Id { get; set; } 
         public string Type { get; set; } = null!;
         public string? Name { get; set; }
-        public bool? StatedAt { get; set; } 
     }
 }

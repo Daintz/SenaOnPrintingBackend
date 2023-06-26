@@ -24,6 +24,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DTOs\Provider\Validators\" />
+    <Folder Include="DTOs\WarehauseType\Validators\" />
+    <Folder Include="DTOs\Warehause\Validators\" />
   </ItemGroup>
 
 </Project>

@@ -17,6 +17,11 @@ namespace BusinessCape.DTOs.QuotationClient
         public bool QuotationStatus { get; set; }
         public bool? StatedAt { get; set; }
 
-    
+        public QuotationClientCreateDto()
+        {
+            StatedAt = true;
+        }
+
+
     }
 }

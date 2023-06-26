@@ -1,4 +1,6 @@
-﻿using PersistenceCape.Interfaces;
+﻿using DataCape.Models;
+using PersistenceCape.Interfaces;
+using PersistenceCape.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +18,27 @@ namespace BusinessCape.Services
             _repository = repository;
         }
 
-        public bool Authenticate(string email, string password)
+        /*public bool Authenticate(string email, string password)
         {
             return _repository.Authenticate(email, password);
-        }
+        }*/
 
+        public async Task<UserModel> Authenticate(string email, string password)
+        {
+            return await _repository.Authenticate(email, password);
+        }
         public void CloseSession(string token)
         {
             _repository.CloseSession(token);
+        }
+        public async Task<UserModel> ForgotPassword(string email)
+        {
+            return await _repository.ForgotPassword(email);
+        }
+
+        public async Task<bool> RecoveryPassword(string email, string token, string password, string confirmPassword)
+        {
+            return await _repository.RecoveryPassword(email, token, password, confirmPassword);
         }
     }
 }

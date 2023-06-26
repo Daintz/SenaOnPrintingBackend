@@ -2,6 +2,7 @@
 using BusinessCape.DTOs.User;
 using BusinessCape.Services;
 using DataCape.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,7 +54,7 @@ namespace SenaOnPrinting.Controllers
         {
             var user = await _userService.Show(userDto.Id);
             user.PasswordDigest = encryptPassword(user.PasswordDigest);
-
+            _mapper.Map(userDto, user);
             await _userService.Update(user);
             return NoContent();
         }
