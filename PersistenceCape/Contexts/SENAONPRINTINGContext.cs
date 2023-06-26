@@ -55,7 +55,7 @@ namespace PersistenceCape.Contexts
         public virtual DbSet<TypeServiceModel> TypeServices { get; set; } = null!;
         public virtual DbSet<TypeDocumentModel> TypeDocuments { get; set; } = null!;
 
-        public virtual DbSet<UserModel> Users { get; set; } = null!;
+        public virtual DbSet<UserModel> Users { get; set; } = null!;    
         public virtual DbSet<UnitMeasureModel> UnitMeasures { get; set; } = null!;
         public virtual DbSet<WarehouseModel> Warehouses { get; set; } = null!;
         public virtual DbSet<WarehouseTypeModel> WarehouseTypes { get; set; } = null!;

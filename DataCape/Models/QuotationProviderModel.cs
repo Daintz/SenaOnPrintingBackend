@@ -7,7 +7,7 @@ namespace DataCape.Models
     {
         public long Id { get; set; }
         public DateTime? QuotationDate { get; set; }
-        public byte[]? QuotationFile { get; set; }
+        public string? QuotationFile { get; set; }
         public double? FullValue { get; set; }
         public long? ProviderId { get; set; }
         public bool? StatedAt { get; set; }
