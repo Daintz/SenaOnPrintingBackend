@@ -6,7 +6,6 @@ using BusinessCape.Mappers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.Reflection.PortableExecutable;
 using BusinessCape.Services;
 using DataCape.Models;
 using persistencecape.repositories;
@@ -14,6 +13,7 @@ using FluentValidation.AspNetCore;
 using BusinessCape.DTOs.SupplyCategory.Validators;
 using BusinessCape.DTOs.Product.Validators;
 using BusinessCape.DTOs.Supply.Validators;
+using BusinessCape.DTOs.Finish.Validator;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -158,6 +158,15 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductCreateDtoValidator>());
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductUpdateDtoValidator>());
 
+
+
+//============================|Finish|==========================//
+builder.Services.AddScoped<FinishServices>();
+builder.Services.AddScoped<IFinishs, FinishRepository>();
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<FinishCreateDTOValidator>());
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<FinishUpdateDTOValidator>());
+
+
 //=======================|SUPPLY CATEGORY|======================//
 builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
@@ -171,6 +180,7 @@ builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCreateDtoValidator>());
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyUpdateDtoValidator>());
 //==============================================================//
+
 
 
 
