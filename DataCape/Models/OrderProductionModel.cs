@@ -28,7 +28,14 @@ namespace DataCape.Models
         [NotMapped]
         public string? SchemeSrc { get; set; }
         [NotMapped]
-        public string ClientName => QuotationClientDetail?.QuotationClient?.Client?.Name;
+        public DateTime? OrderDate { get; set; }
+        [NotMapped]
+        public string Name { get; set; } = null!;
+        [NotMapped]
+        public string Product { get; set; } = null!;
+        [NotMapped]
+        public DateTime? DeliverDate { get; set; }
+
 
         public virtual PaperCutModel? IdPaperCutNavigation { get; set; }
         public virtual QuotationClientDetailModel? QuotationClientDetail { get; set; }

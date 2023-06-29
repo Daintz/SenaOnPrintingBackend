@@ -19,9 +19,23 @@ namespace PersistenceCape.Repositories
         public async Task<IEnumerable<OrderProductionModel>> GetAllAsync()
         {
             return await _context.OrderProductions
-                .Include(op => op.QuotationClientDetail)
          .Where(op => op.QuotationClientDetail.QuotationClient.QuotationStatus == 2) // Comparar con el valor numérico para aprobado
+         .Include(op => op.QuotationClientDetail)
+            .ThenInclude(qcd => qcd.QuotationClient)
+                .ThenInclude(qc => qc.Client)
+        .Include(op => op.QuotationClientDetail)
+            .ThenInclude(qp => qp.Product)
+        .Select(op => new OrderProductionModel
+        {
+            Id = op.Id,
+            OrderDate = op.QuotationClientDetail.QuotationClient.OrderDate,
+            Name = op.QuotationClientDetail.QuotationClient.Client.Name,
+            Product = op.QuotationClientDetail.Product.Name,
+            DeliverDate = op.QuotationClientDetail.QuotationClient.DeliverDate,
+            OrderStatus = op.OrderStatus,
+        })
          .ToListAsync();
+
         }
 
         public async Task<OrderProductionModel> GetByIdAsync(long id)
