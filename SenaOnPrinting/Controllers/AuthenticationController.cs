@@ -11,6 +11,7 @@ using PersistenceCape.Interfaces;
 using PersistenceCape.EmailConfiguration;
 using NuGet.Common;
 using Microsoft.AspNetCore.Authorization;
+using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
@@ -21,6 +22,8 @@ namespace SenaOnPrinting.Controllers
         private readonly string secret_key;
 
         private readonly AuthenticationService _service;
+
+        private readonly IAppPermissionService _appPermissionService;
 
         private readonly IEmailRepository _emailRepository;
 
@@ -37,19 +40,21 @@ namespace SenaOnPrinting.Controllers
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] Dictionary<string, string> data_form)
-        {
+        {            
             string email = data_form.GetValueOrDefault("email", "");
             string password = data_form.GetValueOrDefault("password", "");
-            var user = await _service.Authenticate(email, password);
+            var user = await _service.Authenticate(email, password);            
 
             if (user != null)
             {
+                HashSet<String> appPermissions = await _appPermissionService.GetPermissionsAsync(user.Id);
                 var secret = Encoding.ASCII.GetBytes(secret_key);
                 var claims = new ClaimsIdentity();
 
                 claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Names));
                 claims.AddClaim(new Claim(ClaimTypes.Email, email));
                 claims.AddClaim(new Claim("role", user.RoleId.ToString()));
+                claims.AddClaim(new Claim("permissions", appPermissions.ToString()));
 
 
                 var token_descriptor = new SecurityTokenDescriptor

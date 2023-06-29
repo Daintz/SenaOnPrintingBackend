@@ -40,7 +40,7 @@ namespace PersistenceCape.Repositories
         public async Task Delete(long id)
         {
             var role = await _context.Roles.FindAsync(id);
-            role.StatedAt = false;
+            role.StatedAt = !role.StatedAt;
             await _context.SaveChangesAsync();
         }
     }

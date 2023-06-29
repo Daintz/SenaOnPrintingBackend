@@ -78,6 +78,8 @@ namespace PersistenceCape.Contexts
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("name");
+
+
             });
 
             modelBuilder.Entity<ClientModel>(entity =>
@@ -659,9 +661,9 @@ namespace PersistenceCape.Contexts
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
 
-                //entity.HasMany(e => e.Permissions)
-                //    .WithMany()
-                //    .UsingEntity<PermissionsByRoleModel>();
+                entity.HasMany(e => e.Permissions)
+                    .WithMany(p => p.Roles)
+                    .UsingEntity<PermissionsByRoleModel>();
 
             });
 
