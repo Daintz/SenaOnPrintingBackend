@@ -27,6 +27,8 @@ namespace DataCape.Models
         public string? ImageSrc { get; set; }
         [NotMapped]
         public string? SchemeSrc { get; set; }
+        [NotMapped]
+        public string ClientName => QuotationClientDetail?.QuotationClient?.Client?.Name;
 
         public virtual PaperCutModel? IdPaperCutNavigation { get; set; }
         public virtual QuotationClientDetailModel? QuotationClientDetail { get; set; }

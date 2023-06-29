@@ -43,8 +43,6 @@ namespace SenaOnPrinting.Controllers
                     scheme, host, pathBase, impositionPlanch.Scheme);
                 impositionPlanch.Scheme = impositionPlanch.ImageSrc;
             }
-            return Ok(impositionPlanches);
-
             return Ok(orderProduction);
         }
 

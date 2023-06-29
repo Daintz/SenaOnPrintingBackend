@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using PersistenceCape.Contexts;
 using PersistenceCape.Interfaces;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace PersistenceCape.Repositories
 {
@@ -16,7 +18,10 @@ namespace PersistenceCape.Repositories
 
         public async Task<IEnumerable<OrderProductionModel>> GetAllAsync()
         {
-            return await _context.OrderProductions.ToListAsync();
+            return await _context.OrderProductions
+                .Include(op => op.QuotationClientDetail)
+         .Where(op => op.QuotationClientDetail.QuotationClient.QuotationStatus == 2) // Comparar con el valor numérico para aprobado
+         .ToListAsync();
         }
 
         public async Task<OrderProductionModel> GetByIdAsync(long id)
