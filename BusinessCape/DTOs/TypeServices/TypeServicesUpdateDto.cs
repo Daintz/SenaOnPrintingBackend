@@ -11,5 +11,6 @@ namespace BusinessCape.DTOs.TypeServices
         public long IdTypeService { get; set; }
         public bool? StatedAt { get; set; }
         public string Name { get; set; } = null!;
+        public decimal? Costo { get; set; }
     }
 }

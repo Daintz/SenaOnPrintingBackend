@@ -23,7 +23,6 @@ namespace PersistenceCape.Repositories
         {
             return await _context.TypeServices.ToListAsync();
         }
-
         public async Task<TypeServiceModel> GetByIdAsync(long id)
         {
             return await _context.TypeServices.FindAsync(id);
