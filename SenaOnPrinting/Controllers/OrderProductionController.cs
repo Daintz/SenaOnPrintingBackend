@@ -19,13 +19,15 @@ namespace SenaOnPrinting.Controllers
     public class OrderProductionController : ControllerBase
     {
         private readonly OrderProductionService _orderProductionService;
+        private readonly QuotationClientService _quotationClientService;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _hostEnvironment;
-        public OrderProductionController(OrderProductionService orderProductionService, IMapper mapper, IWebHostEnvironment hostEnvironment)
+        public OrderProductionController(OrderProductionService orderProductionService, IMapper mapper, IWebHostEnvironment hostEnvironment, QuotationClientService quotationClientService)
         {
             _orderProductionService = orderProductionService;
             _mapper = mapper;
             _hostEnvironment = hostEnvironment;
+            _quotationClientService = quotationClientService;
         }
 
         // GET: api/<OrderProductionController>
@@ -63,24 +65,29 @@ namespace SenaOnPrinting.Controllers
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Add([FromForm] OrderProductionCreateDto orderProductionDto)
         {
-            orderProductionDto.Scheme = await SaveImages((Microsoft.AspNetCore.Http.IFormFile)orderProductionDto.SchemeInfo);
-            orderProductionDto.Image = await SaveImages((Microsoft.AspNetCore.Http.IFormFile)orderProductionDto.ImageInfo);
+            orderProductionDto.Scheme = await SaveImages(orderProductionDto.SchemeInfo);
+            orderProductionDto.Image = await SaveImages(orderProductionDto.ImageInfo);
             var orderProductionToCreate = _mapper.Map<OrderProductionModel>(orderProductionDto);
 
             await _orderProductionService.AddAsync(orderProductionToCreate);
+
             return Ok(orderProductionToCreate);
         }
 
+
+        // Método para realizar los cambios automáticos
+        
+
         [NonAction]
-        public async Task<string> SaveImages(Microsoft.AspNetCore.Http.IFormFile SchemeInfo)
+        public async Task<string> SaveImages(Microsoft.AspNetCore.Http.IFormFile img)
         {
-            string imageName = new string(Path.GetFileNameWithoutExtension(SchemeInfo.FileName).Take(10).ToArray()).Replace(' ', '_');
-            imageName = imageName + Path.GetExtension(SchemeInfo.FileName);
+            string imageName = new string(Path.GetFileNameWithoutExtension(img.FileName).Take(10).ToArray()).Replace(' ', '_');
+            imageName = imageName + Path.GetExtension(img.FileName);
             var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images\\OrderProduction\\", imageName);
 
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
-                await SchemeInfo.CopyToAsync(fileStream);
+                await img.CopyToAsync(fileStream);
             }
             return imageName;
         }
