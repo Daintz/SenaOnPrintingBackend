@@ -1,5 +1,9 @@
-﻿using DataCape.Models;
-
+﻿using System;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace BusinessCape.DTOs.OrderProduction
 {
@@ -21,7 +25,7 @@ namespace BusinessCape.DTOs.OrderProduction
         public string? Program { get; set; }
         public string? TypePoint { get; set; }
         public string? Scheme { get; set; }
-
-
+        public IFormFile? SchemeInfo { get; set; } = null!;
+        public IFormFile? ImageInfo { get; set; } = null!;
     }
 }

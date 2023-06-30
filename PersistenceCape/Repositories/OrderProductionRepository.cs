@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using PersistenceCape.Contexts;
 using PersistenceCape.Interfaces;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace PersistenceCape.Repositories
 {
@@ -16,7 +18,37 @@ namespace PersistenceCape.Repositories
 
         public async Task<IEnumerable<OrderProductionModel>> GetAllAsync()
         {
-            return await _context.OrderProductions.ToListAsync();
+            return await _context.OrderProductions
+         .Where(op => op.QuotationClientDetail.QuotationClient.QuotationStatus == 1) // Comparar con el valor numérico para aprobado
+         .Include(op => op.QuotationClientDetail)
+            .ThenInclude(qcd => qcd.QuotationClient)
+                .ThenInclude(qc => qc.Client)
+        .Include(op => op.QuotationClientDetail)
+            .ThenInclude(qp => qp.Product)
+        .Select(op => new OrderProductionModel
+        {
+            Id = op.Id,
+            QuotationClientDetailId = op.QuotationClientDetail.QuotationClient.Id,
+            OrderDate = op.QuotationClientDetail.QuotationClient.OrderDate,
+            Name = op.QuotationClientDetail.QuotationClient.Client.Name,
+            Product = op.QuotationClientDetail.Product.Name,
+            DeliverDate = op.QuotationClientDetail.QuotationClient.DeliverDate,
+            OrderStatus = op.OrderStatus,
+            StatedAt = op.StatedAt,
+            MaterialReception = op.MaterialReception,
+            ProgramVersion = op.ProgramVersion,
+            ColorProfile = op.ColorProfile,
+            SpecialInk = op.SpecialInk,
+            InkCode = op.InkCode,
+            IdPaperCut = op.IdPaperCut,
+            Image = op.Image,
+            Observations = op.Observations,
+            Program = op.Program,
+            TypePoint = op.TypePoint,
+            Scheme = op.Scheme
+    })
+         .ToListAsync();
+
         }
 
         public async Task<OrderProductionModel> GetByIdAsync(long id)
