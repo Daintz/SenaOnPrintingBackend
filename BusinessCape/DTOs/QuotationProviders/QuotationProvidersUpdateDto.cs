@@ -16,7 +16,6 @@ namespace BusinessCape.DTOs.QuotationProviders
         public DateTime? QuotationDate { get; set; }
         public string? QuotationFile { get; set; }
         public Microsoft.AspNetCore.Http.IFormFile? QuotationFileInfo { get; set; } = null!;
-
         public double? FullValue { get; set; }
         public long? ProviderId { get; set; }
         public bool? StatedAt { get; set; }

@@ -10,7 +10,7 @@ namespace DataCape.Models
         public bool? StatedAt { get; set; }
         public decimal? Costo { get; set; }
 
-        public virtual ICollection<QuotationClientModel> GetQuotationClients { get; set; }
+        //public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
 
     }
 }
