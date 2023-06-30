@@ -81,11 +81,11 @@ namespace BusinessCape.Mappers
 
             //============================|ROLE|==========================//
             // POST OR CREATE //
-            CreateMap<RoleCreateDto, RoleModel>()
-                .ForMember(dest => dest.Permissions, opt => opt.MapFrom(src => src.Permissions));
+            CreateMap<RoleCreateDto, RoleModel>();
+                //.ForMember(dest => dest.Permissions, opt => opt.MapFrom(src => src.Permissions));
             // PUT OR UPDATE //
-            CreateMap<RoleUpdateDto, RoleModel>()
-                .ForMember(dest => dest.Permissions, opt => opt.MapFrom(src => src.Permissions));
+            CreateMap<RoleUpdateDto, RoleModel>();
+                //.ForMember(dest => dest.Permissions, opt => opt.MapFrom(src => src.Permissions));
 
             //============================|TYPE DOCUMENT|==========================//
             // POST OR CREATE //
