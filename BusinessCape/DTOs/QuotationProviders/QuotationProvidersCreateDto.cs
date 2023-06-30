@@ -18,6 +18,10 @@ namespace BusinessCape.DTOs.QuotationProviders
         public double? FullValue { get; set; }
         public long? ProviderId { get; set; }
         public bool? StatedAt { get; set; }
+        public QuotationProvidersCreateDto()
+        {
+            StatedAt = true;
+        }
     }
 }
 

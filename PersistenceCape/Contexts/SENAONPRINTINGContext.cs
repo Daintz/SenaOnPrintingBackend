@@ -559,10 +559,10 @@ namespace PersistenceCape.Contexts
                     .HasForeignKey(d => d.ClientId)
                     .HasConstraintName("FK_quotationclien_0E6E26BF");
 
-                entity.HasOne(d => d.TypeService)
-                    .WithMany(p => p.QuotationClients)
-                    .HasForeignKey(d => d.TypeServiceId)
-                    .HasConstraintName("FK_quotationtype__0F624AF8");
+                //entity.HasOne(d => d.TypeService)
+                //    .WithMany(p => p.QuotationClients)
+                //    .HasForeignKey(d => d.TypeServiceId)
+                //    .HasConstraintName("FK_quotationtype__0F624AF8");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.QuotationClients)

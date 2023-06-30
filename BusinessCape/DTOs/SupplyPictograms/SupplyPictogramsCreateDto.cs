@@ -1,5 +1,4 @@
-﻿using DataCape.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +14,7 @@ namespace BusinessCape.DTOs.SupplyPictograms
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
         public string? PictogramFile { get; set; }
-        public Microsoft.AspNetCore.Http.IFormFile? PictogramFileInfo { get; set; } = null!;
+        public IFormFile? PictogramFileInfo { get; set; } = null!;
         public bool? StatedAt { get; set; }
     }
 
