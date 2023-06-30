@@ -43,7 +43,7 @@ namespace PersistenceCape.Repositories
         public async Task Delete(long id)
         {
             var user = await _context.Users.FindAsync(id);
-            user.StatedAt = false;
+            user.StatedAt = !user.StatedAt;
             await _context.SaveChangesAsync();
         }
     }

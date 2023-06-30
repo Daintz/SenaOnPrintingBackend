@@ -40,7 +40,7 @@ namespace PersistenceCape.Repositories
         public async Task Delete(long id)
         {
             var typeDocument = await _context.TypeDocuments.FindAsync(id);
-            typeDocument.StatedAt = false;
+            typeDocument.StatedAt = !typeDocument.StatedAt;
             await _context.SaveChangesAsync();
         }
     }
