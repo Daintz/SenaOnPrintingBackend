@@ -8,9 +8,8 @@ namespace BusinessCape.DTOs.TypeServices
 {
     public class TypeServicesUpdateDto
     {
-        public long IdTypeService { get; set; }
-        public bool? StatedAt { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; } = null!;
-        public decimal? Costo { get; set; }
+    
     }
 }

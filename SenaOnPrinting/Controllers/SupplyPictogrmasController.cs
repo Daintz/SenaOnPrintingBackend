@@ -68,7 +68,7 @@ namespace SenaOnPrinting.Controllers
             return Ok(supplyPictogramCreate);
         }
         [NonAction]
-
+          
         public async Task<string> SaveImages(Microsoft.AspNetCore.Http.IFormFile PictogramFileInfo)
         {
             //string imageName = new string(Path.GetFileNameWithoutExtension(PictogramFileInfo.FileName).Take(10).ToArray()).Replace(' ','_');

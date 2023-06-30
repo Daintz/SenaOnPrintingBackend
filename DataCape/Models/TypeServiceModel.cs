@@ -8,7 +8,7 @@ namespace DataCape.Models
         public long Id { get; set; }
         public string Name { get; set; } = null!;
         public bool? StatedAt { get; set; }
-        public decimal? Costo { get; set; }
+       
 
         //public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
 

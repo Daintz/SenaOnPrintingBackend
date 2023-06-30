@@ -43,8 +43,8 @@ namespace PersistenceCape.Repositories
 
         public async Task DeleteAsync(long id)
         {
-            var typeServices = await _context.Supplies.FindAsync(id);
-            _context.Supplies.Remove(typeServices);
+            var typeService = await _context.TypeServices.FindAsync(id);
+            typeService.StatedAt = !typeService.StatedAt;
             await _context.SaveChangesAsync();
         }
     }
