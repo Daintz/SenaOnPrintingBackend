@@ -247,7 +247,7 @@ namespace DataCape.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Lineature1)
+                entity.Property(e => e.Lineature)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("lineature");

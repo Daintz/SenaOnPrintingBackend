@@ -26,7 +26,7 @@ namespace PersistenceCape.Repositories
             _hostEnvironment = hostEnvironment;
 
         }
-        //===========================================================
+
         public async Task<IEnumerable<QuotationProviderModel>> GetAllAsync()
         {
             return await _context.QuotationProviders.Select(x => new QuotationProviderModel
