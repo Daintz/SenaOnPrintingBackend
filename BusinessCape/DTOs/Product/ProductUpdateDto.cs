@@ -6,5 +6,6 @@
         public string TypeProduct { get; set; } = null!;
         public string Name { get; set; } = null!;
         public string? Characteristics { get; set; }
+        public decimal? Cost { get; set; }
     }
 }

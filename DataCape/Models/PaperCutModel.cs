@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public class PaperCutModel
+    public  class PaperCutModel
     {
         public PaperCutModel()
         {

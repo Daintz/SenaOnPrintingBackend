@@ -16,8 +16,10 @@ namespace DataCape.Models
         public DateTime ExpirationDate { get; set; }
         public int? ActualQuantity { get; set; }
         public bool? StatedAt { get; set; }
+        public long? WarehouseId { get; set; }
 
         public virtual ProviderModel? Provider { get; set; }
         public virtual SupplyModel? Supply { get; set; }
+        public virtual WarehouseModel? Warehouse { get; set; }
     }
 }
