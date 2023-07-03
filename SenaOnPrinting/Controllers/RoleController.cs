@@ -3,7 +3,6 @@ using BusinessCape.DTOs.Role;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
-using PersistenceCape.Contexts;
 using SenaOnPrinting.Filters;
 using SenaOnPrinting.Permissions;
 using System.Web.Http.Filters;

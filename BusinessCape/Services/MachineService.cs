@@ -1,4 +1,5 @@
 ﻿using DataCape;
+using DataCape.Models;
 using PersistenceCape.Interfaces;
 using System;
 using System.Collections.Generic;

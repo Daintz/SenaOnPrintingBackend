@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public class SubstrateXQuotationClientDetailModel
+    public  class SubstrateXQuotationClientDetailModel
     {
         public long? QuotationClientDetailId { get; set; }
         public long? SubstrateId { get; set; }

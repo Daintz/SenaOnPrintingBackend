@@ -1,6 +1,5 @@
 ﻿using DataCape.Models;
 using Microsoft.EntityFrameworkCore;
-using PersistenceCape.Contexts;
 using PersistenceCape.Interfaces;
 using System.IO;
 using Microsoft.AspNetCore.Http;
@@ -27,7 +26,7 @@ namespace PersistenceCape.Repositories
             _hostEnvironment = hostEnvironment;
 
         }
-        //===========================================================
+
         public async Task<IEnumerable<QuotationProviderModel>> GetAllAsync()
         {
             return await _context.QuotationProviders.Select(x => new QuotationProviderModel
