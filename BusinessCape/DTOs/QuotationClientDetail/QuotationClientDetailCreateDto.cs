@@ -21,10 +21,12 @@ namespace BusinessCape.DTOs.QuotationClientDetail
         public double? FullValue { get; set; }
         public bool? StatedAt { get; set; }
 
+
         public QuotationClientDetailCreateDto()
         {
             StatedAt = true;
         }
+
 
     }
 }

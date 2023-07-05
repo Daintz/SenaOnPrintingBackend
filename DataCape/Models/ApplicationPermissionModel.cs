@@ -12,7 +12,7 @@ namespace DataCape.Models
 
         public long Id { get; set; }
         public string Name { get; set; } = null!;
-
+        public string Module { get; set; } = null!;
         public virtual ICollection<PermissionsByRoleModel> PermissionsByRoles { get; set; }
     }
 }

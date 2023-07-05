@@ -73,6 +73,11 @@ namespace PersistenceCape.Contexts
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("name");
+
+                entity.Property(e => e.Module)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("name");
             });
 
             modelBuilder.Entity<ClientModel>(entity =>
@@ -212,8 +217,6 @@ namespace PersistenceCape.Contexts
                     .IsUnicode(false)
                     .HasColumnName("name");
 
-                entity.Property(e => e.Scheme).HasColumnName("scheme");
-
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
@@ -255,10 +258,7 @@ namespace PersistenceCape.Contexts
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.TypePoint)
-                    .HasMaxLength(150)
-                    .IsUnicode(false)
-                    .HasColumnName("type_point");
+
             });
 
             modelBuilder.Entity<LineatureXOrderProductionModel>(entity =>
@@ -382,6 +382,12 @@ namespace PersistenceCape.Contexts
                 entity.Property(e => e.ProgramVersion)
                     .HasMaxLength(255)
                     .HasColumnName("program_version");
+                entity.Property(e => e.TypePoint)
+                    .HasMaxLength(150)
+                    .IsUnicode(false)
+                    .HasColumnName("type_point");
+                entity.Property(e => e.Scheme).HasColumnName("scheme");
+
 
                 entity.Property(e => e.QuotationClientDetailId).HasColumnName("quotation_client_detail_id");
 
@@ -430,7 +436,7 @@ namespace PersistenceCape.Contexts
             {
                 entity.ToTable("permissions_by_role");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id"); 
 
                 entity.Property(e => e.PermissionId).HasColumnName("permission_id");
 
@@ -652,6 +658,10 @@ namespace PersistenceCape.Contexts
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
+
+                //entity.HasMany(e => e.Permissions)
+                //    .WithMany()
+                //    .UsingEntity<PermissionsByRoleModel>();
 
             });
 
@@ -1126,6 +1136,11 @@ namespace PersistenceCape.Contexts
 
                     .HasConstraintName("FK_userstype_docu_45F365D3");
 
+                entity.Property(e => e.ForgotPasswordToken)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("forgot_password_token");
+
             });
 
             modelBuilder.Entity<WarehouseModel>(entity =>
@@ -1134,10 +1149,6 @@ namespace PersistenceCape.Contexts
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Name)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
 
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")

@@ -11,9 +11,7 @@ namespace BusinessCape.DTOs.Warehause
     {
         public long Id { get; set; }
         public long? WarehouseTypeId { get; set; }
-        public string Name { get; set; } = null!;
         public string? Ubication { get; set; }
-        public bool? StatedAt { get; set; }
 
         public virtual WarehouseTypeModel? WarehouseType { get; set; }
 

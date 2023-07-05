@@ -15,6 +15,18 @@ using BusinessCape.DTOs.Product.Validators;
 using BusinessCape.DTOs.Supply.Validators;
 using BusinessCape.DTOs.Finish.Validator;
 
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
+
+using PersistenceCape.EmailConfiguration;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
+using SenaOnPrinting.Filters;
+using PersistenceCape.Seed;
+using Microsoft.AspNetCore.Authorization;
+using SenaOnPrinting.Permissions;
+
+
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 
@@ -35,7 +47,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<Seeder>();
 
 builder.Services.AddScoped<MachineService>();
 builder.Services.AddScoped<IMachinesRepository, MachinesRepository>();
@@ -44,9 +56,26 @@ builder.Services.AddScoped<IFinishs, FinishRepository>();
 builder.Services.AddScoped<UnitMesureServices>();
 builder.Services.AddScoped<IUnitMesure, UnitMeasurreRepository>();
 
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\ImpositionPlanch")));
+
 // Configurar las interfaces para que el controlador las pueda usar
 
-  // Configuration for JWT Authentication
+
+// Configuration for SMTP Server
+var emailConfiguration = Configuration
+    .GetSection("EmailSenderConfiguration")
+    .Get<EmailConfiguration>();
+
+builder.Services.AddSingleton(emailConfiguration);
+
+// Configuration of token lifetime
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromHours(24);
+});
+
+
+// Configuration for JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -61,8 +90,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+// Permissions Handler Configuration
+builder.Services.AddAuthorization();
+builder.Services.AddSingleton<IAuthorizationHandler, AppPermissionAuthHandler>();
+builder.Services.AddSingleton<IAuthorizationPolicyProvider, AppPermissionAuthProvider>();
+
 
 // Configurar las interfaces para que el controlador las pueda usar
+
+// -------------  SMTP Server Configuration --------------//
+builder.Services.AddScoped<IEmailRepository, EmailRepository>();
 
 // -------------  Quotation Client Detail --------------//
 builder.Services.AddScoped<QuotationClientDetailService>();
@@ -186,9 +223,45 @@ builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidator
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
+builder.Services.AddSwaggerGen(option =>
+{
+    option.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "SENAonPrinting API",
+        Version = "v1"
+    });
+
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Por favor ingrese un token de acceso",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "bearer"
+    });
+
+    option.OperationFilter<AuthenticationFilter>();
+}
+);
 
 var app = builder.Build();
 
+if (args.Length == 1 && args[0].ToLower() == "seed")
+{
+    SeedData(app);
+}
+
+void SeedData(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<Seeder>();
+        service.Seed();
+    }
+}
 
 app.UseCors("CorsPolicy");
 
@@ -197,9 +270,18 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
 }
 
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+    RequestPath = "/Images"
+});
+
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

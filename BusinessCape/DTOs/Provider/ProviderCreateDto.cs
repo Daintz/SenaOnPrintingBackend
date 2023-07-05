@@ -15,6 +15,10 @@ namespace BusinessCape.DTOs.Provider
         public string? Phone { get; set; }
         public string? CompanyAddress { get; set; }
         public bool? StatedAt { get; set; }
+        public ProviderCreateDto()
+        {
+            StatedAt = true;
+        }
 
     }
 }
