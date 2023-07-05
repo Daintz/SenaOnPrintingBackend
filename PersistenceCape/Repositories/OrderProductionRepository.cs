@@ -4,31 +4,35 @@ using Microsoft.EntityFrameworkCore;
 using PersistenceCape.Interfaces;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace PersistenceCape.Repositories
 {
     public class OrderProductionRepository : IOrderProductionRepository
     {
         private readonly SENAONPRINTINGContext _context;
-
-        public OrderProductionRepository(SENAONPRINTINGContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public OrderProductionRepository(SENAONPRINTINGContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IEnumerable<OrderProductionModel>> GetAllAsync()
         {
+            var scheme = "https";
+            var host = _httpContextAccessor.HttpContext.Request.Host.Value;
+            var pathBase = _httpContextAccessor.HttpContext.Request.PathBase.Value;
             return await _context.OrderProductions
-         .Where(op => op.QuotationClientDetail.QuotationClient.QuotationStatus == 1) // Comparar con el valor numérico para aprobado
          .Include(op => op.QuotationClientDetail)
             .ThenInclude(qcd => qcd.QuotationClient)
                 .ThenInclude(qc => qc.Client)
         .Include(op => op.QuotationClientDetail)
             .ThenInclude(qp => qp.Product)
-        .Select(op => new OrderProductionModel
+        .Select(op => new OrderProductionModel()
         {
             Id = op.Id,
-            QuotationClientDetailId = op.QuotationClientDetail.QuotationClient.Id,
+            QuotationClientDetailId = op.QuotationClientDetail.Id,
             OrderDate = op.QuotationClientDetail.QuotationClient.OrderDate,
             Name = op.QuotationClientDetail.QuotationClient.Client.Name,
             Product = op.QuotationClientDetail.Product.Name,
@@ -41,15 +45,17 @@ namespace PersistenceCape.Repositories
             SpecialInk = op.SpecialInk,
             InkCode = op.InkCode,
             IdPaperCut = op.IdPaperCut,
-            Image = op.Image,
+            Image = $"{scheme}://{host}/{pathBase}Images/OrderProduction/{op.Image}",
             Observations = op.Observations,
             Program = op.Program,
             TypePoint = op.TypePoint,
-            Scheme = op.Scheme
-    })
+            Scheme = $"{scheme}://{host}/{pathBase}Images/OrderProduction/{op.Scheme}",
+            
+        })
          .ToListAsync();
 
-        }
+       }
+    
 
         public async Task<OrderProductionModel> GetByIdAsync(long id)
         {
@@ -74,7 +80,22 @@ namespace PersistenceCape.Repositories
             var orderProduction = await _context.OrderProductions.FindAsync(id);
             orderProduction.StatedAt = !orderProduction.StatedAt;
             await _context.SaveChangesAsync();
-        }      
-
+        }
+        public async Task ChangeOrderStatus(long id)
+        {
+            var orderProduction = await _context.OrderProductions.FindAsync(id);
+            if (orderProduction.OrderStatus == 2)
+            {
+                orderProduction.OrderStatus = 3;
+            }
+            else if (orderProduction.OrderStatus == 3) { 
+                orderProduction.OrderStatus = 4;
+            }
+            else
+            {
+                orderProduction.OrderStatus = 5;
+            }
+            await _context.SaveChangesAsync();
+        }
     }
 }

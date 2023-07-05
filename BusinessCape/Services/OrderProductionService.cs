@@ -37,5 +37,9 @@ namespace BusinessCape.Services
         {
             await _orderProductionRepository.ChangeState(id);
         }
+        public async Task ChangeOrderStatus(long id)
+        {
+            await _orderProductionRepository.ChangeOrderStatus(id);
+        }
     }
 }
