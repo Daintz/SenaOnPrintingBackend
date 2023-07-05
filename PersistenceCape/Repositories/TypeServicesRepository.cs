@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataCape.Models;
 using Microsoft.EntityFrameworkCore;
-using PersistenceCape.Contexts;
+
 using PersistenceCape.Interfaces;
 
 namespace PersistenceCape.Repositories
@@ -23,7 +23,6 @@ namespace PersistenceCape.Repositories
         {
             return await _context.TypeServices.ToListAsync();
         }
-
         public async Task<TypeServiceModel> GetByIdAsync(long id)
         {
             return await _context.TypeServices.FindAsync(id);
@@ -44,8 +43,8 @@ namespace PersistenceCape.Repositories
 
         public async Task DeleteAsync(long id)
         {
-            var typeServices = await _context.Supplies.FindAsync(id);
-            _context.Supplies.Remove(typeServices);
+            var typeService = await _context.TypeServices.FindAsync(id);
+            typeService.StatedAt = !typeService.StatedAt;
             await _context.SaveChangesAsync();
         }
     }

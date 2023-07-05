@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using BusinessCape.DTOs.ImpositionPlanch;
-using BusinessCape.DTOs.Lineature;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +6,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using BusinessCape.DTOs.QuotationProviders;
+using BusinessCape.DTOs.SupplyPictograms;
 
 namespace SenaOnPrinting.Controllers
 {
@@ -55,30 +54,33 @@ namespace SenaOnPrinting.Controllers
             }
             return Ok(quotation_providersCategory);
         }
-
+        // POST api/<ClientController>
         [HttpPost]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Add([FromForm] QuotationProvidersCreateDto quotationProviderDto)
+        public async Task<IActionResult> Add([FromForm] QuotationProvidersCreateDto quotationProvidersCreateDto)
         {
-            quotationProviderDto.QuotationFile = await SaveImages(quotationProviderDto.QuotationFileInfo);
+            quotationProvidersCreateDto.QuotationFile = await SaveImages(quotationProvidersCreateDto.QuotationFileInfo); //Aquí está la conversión Explicita
 
-            var QuotationProvidersToCreate = _mapper.Map<QuotationProviderModel>(quotationProviderDto);
+            var quotationProvidersCreate = _mapper.Map<QuotationProviderModel>(quotationProvidersCreateDto);
 
-            await _quotation_providersServices.AddAsync(QuotationProvidersToCreate);
-            return Ok(QuotationProvidersToCreate);
+            await _quotation_providersServices.AddAsync(quotationProvidersCreate);
+
+            return Ok(quotationProvidersCreate);
         }
         [NonAction]
+
         public async Task<string> SaveImages(Microsoft.AspNetCore.Http.IFormFile QuotationFileInfo)
         {
-            string quotationFileInfo = new string(Path.GetFileNameWithoutExtension(QuotationFileInfo.FileName).Take(10).ToArray()).Replace(' ', '_');
-            quotationFileInfo = quotationFileInfo + Path.GetExtension(QuotationFileInfo.FileName);
-            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images\\ImpositionPlanch\\", quotationFileInfo);
+            //string imageName = new string(Path.GetFileNameWithoutExtension(PictogramFileInfo.FileName).Take(10).ToArray()).Replace(' ','_');
+            string imageName = new string(Path.GetFileNameWithoutExtension(QuotationFileInfo.FileName).Take(10).ToArray()).Replace(' ', '_');
+            imageName = imageName + Path.GetExtension(QuotationFileInfo.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images\\SupplyPictogram\\", imageName);
 
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
                 await QuotationFileInfo.CopyToAsync(fileStream);
             }
-            return quotationFileInfo;
+            return imageName;
         }
 
         [HttpPut("{id}")]

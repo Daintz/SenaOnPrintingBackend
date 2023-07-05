@@ -3,7 +3,6 @@ using BusinessCape.DTOs.Role;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
-using PersistenceCape.Contexts;
 using SenaOnPrinting.Filters;
 using SenaOnPrinting.Permissions;
 using System.Web.Http.Filters;
@@ -49,15 +48,15 @@ namespace SenaOnPrinting.Controllers
         {
             var role = _mapper.Map<RoleModel>(roleDto);
 
-            foreach (var permissionId in roleDto.PermissionIds)
-            {
-                var permission = await _context.ApplicationPermissions.FindAsync(permissionId);
-                if (permission == null)
-                {
-                    return BadRequest("Uno de los Ids rol no existe, por favor rectifique");
-                }
-                role.Permissions.Add(permission);
-            }
+            //foreach (var permissionId in roleDto.PermissionIds)
+            //{
+            //    var permission = await _context.ApplicationPermissions.FindAsync(permissionId);
+            //    if (permission == null)
+            //    {
+            //        return BadRequest("Uno de los Ids rol no existe, por favor rectifique");
+            //    }
+            //    role.Permissions.Add(permission);
+            //}
 
             //var permissions = _context.ApplicationPermissions.Where(p => roleDto.PermissionIds.Contains(p.Id)).ToList();
             //role.Permissions = permissions; 

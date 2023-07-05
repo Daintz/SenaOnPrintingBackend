@@ -1,6 +1,5 @@
 ﻿using DataCape.Models;
 using Microsoft.AspNetCore.Authorization;
-using PersistenceCape.Contexts;
 using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Filters

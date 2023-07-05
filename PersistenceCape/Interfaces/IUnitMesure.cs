@@ -1,5 +1,6 @@
 ﻿
 using DataCape;
+using DataCape.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

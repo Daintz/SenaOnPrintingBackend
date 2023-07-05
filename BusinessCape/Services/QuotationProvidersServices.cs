@@ -10,36 +10,36 @@ namespace BusinessCape.Services
 {
     public class QuotationProvidersServices
     {
-        private readonly IQuotationProviderRepository _quotatioprovidersRepository;
+        private readonly IQuotationProviderRepository _QuotationProviderRepository;
 
-        public QuotationProvidersServices(IQuotationProviderRepository quotatioprovidersRepository)
+        public QuotationProvidersServices(IQuotationProviderRepository quotationProviderRepository)
         {
-            _quotatioprovidersRepository = quotatioprovidersRepository;
+            _QuotationProviderRepository = quotationProviderRepository;
         }
 
         public async Task<IEnumerable<QuotationProviderModel>> GetAllAsync()
         {
-            return await _quotatioprovidersRepository.GetAllAsync();
+            return await _QuotationProviderRepository.GetAllAsync();
         }
 
         public async Task<QuotationProviderModel> GetByIdAsync(long id)
         {
-            return await _quotatioprovidersRepository.GetByIdAsync(id);
+            return await _QuotationProviderRepository.GetByIdAsync(id);
         }
 
-        public async Task AddAsync(QuotationProviderModel quotatioproviders)
+        public async Task AddAsync(QuotationProviderModel quotationProviderRepository)
         {
-            await _quotatioprovidersRepository.AddAsync(quotatioproviders);
+            await _QuotationProviderRepository.AddAsync(quotationProviderRepository);
         }
 
-        public async Task UpdateAsync(QuotationProviderModel quotationprovider)
+        public async Task UpdateAsync(QuotationProviderModel quotationProviderRepository)
         {
-            await _quotatioprovidersRepository.UpdateAsync(quotationprovider);
+            await _QuotationProviderRepository.UpdateAsync(quotationProviderRepository);
         }
 
         public async Task DeleteAsync(long id)
         {
-            await _quotatioprovidersRepository.DeleteAsync(id);
+            await _QuotationProviderRepository.DeleteAsync(id);
         }
     }
 }

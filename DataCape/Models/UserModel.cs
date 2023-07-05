@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public class UserModel
+    public  class UserModel
     {
         public UserModel()
         {
@@ -23,6 +23,7 @@ namespace DataCape.Models
         public string PasswordDigest { get; set; } = null!;
         public bool? StatedAt { get; set; }
         public string? ForgotPasswordToken { get; set; }
+
         public virtual RoleModel Role { get; set; } = null!;
         public virtual TypeDocumentModel TypeDocument { get; set; } = null!;
         public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }
