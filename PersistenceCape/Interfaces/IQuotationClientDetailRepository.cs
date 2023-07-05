@@ -10,6 +10,7 @@ namespace PersistenceCape.Interfaces
     public interface IQuotationClientDetailRepository
     {
         Task<IEnumerable<QuotationClientDetailModel>> GetAllAsync();
+        Task<IEnumerable<QuotationClientDetailModel>> GetApprovedQuotationAsync();
         Task<QuotationClientDetailModel> GetByIdAsync(long id);
         Task<QuotationClientDetailModel> AddAsync(QuotationClientDetailModel quotationclientDetail);
         Task UpdateAsync(QuotationClientDetailModel quotationclientDetail);

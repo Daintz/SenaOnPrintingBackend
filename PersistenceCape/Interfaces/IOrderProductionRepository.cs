@@ -10,5 +10,6 @@ namespace PersistenceCape.Interfaces
         Task<OrderProductionModel> AddAsync(OrderProductionModel orderProduction);
         Task UpdateAsync(OrderProductionModel orderProduction);
         Task ChangeState(long id);
+        Task ChangeOrderStatus(long id);
     }
 }

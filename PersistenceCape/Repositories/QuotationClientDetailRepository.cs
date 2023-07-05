@@ -23,7 +23,43 @@ namespace PersistenceCape.Repositories
         {
             return await _context.QuotationClientDetails.ToListAsync();
         }
+        public async Task<IEnumerable<QuotationClientDetailModel>> GetApprovedQuotationAsync()
+        {
+            var quotationClientDetails = await _context.QuotationClientDetails
+        .Where(q => q.QuotationClient.QuotationStatus == 2)
+        .Include(qcd => qcd.QuotationClient)
+                .ThenInclude(qc => qc.Client)
+        .Include(qp => qp.Product)
+        .Include(ts => ts.QuotationClient.TypeService)
+        .ToListAsync();
 
+            var quotationClientIdsInProduction = await _context.OrderProductions
+        .Select(po => po.QuotationClientDetailId)
+        .Distinct()
+        .ToListAsync();
+            var filteredQuotationClientDetails = quotationClientDetails
+            .Where(qcd => !quotationClientIdsInProduction.Contains(qcd.Id))
+            .Select(qtd => new QuotationClientDetailModel
+            {
+                Id = qtd.Id,
+                OrderDate = qtd.QuotationClient.OrderDate,
+                DeliverDate = qtd.QuotationClient.DeliverDate,
+                ProductName = qtd.Product.Name,
+                Name = qtd.QuotationClient.Client.Name,
+                QuotationClientId = qtd.QuotationClientId,
+                PhoneClient = qtd.QuotationClient.Client.Phone,
+                EmailClient = qtd.QuotationClient.Client.Email,
+                ProductHeight = qtd.ProductHeight,
+                ProductWidth = qtd.ProductWidth,
+                ProductQuantity = qtd.ProductQuantity,
+                NumberOfPages = qtd.NumberOfPages,
+                InkQuantity = qtd.InkQuantity,
+                TechnicalSpecifications = qtd.TechnicalSpecifications,
+                TypeService = qtd.QuotationClient.TypeService.Name,
+            });
+
+        return filteredQuotationClientDetails;
+        }
         public async Task<QuotationClientDetailModel> GetByIdAsync(long id)
         {
             return await _context.QuotationClientDetails.FindAsync(id);

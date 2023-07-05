@@ -34,18 +34,8 @@ namespace SenaOnPrinting.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var orderProduction = await _orderProductionService.GetAllAsync();
-            var scheme = "https";
-            var host = Request.Host;
-            var pathBase = Request.PathBase.ToString();
-            var impositionPlanches = await _orderProductionService.GetAllAsync();
-            foreach (var impositionPlanch in impositionPlanches)
-            {
-                impositionPlanch.ImageSrc = string.Format("{0}://{1}/{2}Images/ImpositionPlanch/{3}",
-                    scheme, host, pathBase, impositionPlanch.Scheme);
-                impositionPlanch.Scheme = impositionPlanch.ImageSrc;
-            }
-            return Ok(orderProduction);
+            var orderProductions = await _orderProductionService.GetAllAsync();
+            return Ok(orderProductions);
         }
 
         // GET api/<OrderProductionController>/5
@@ -115,6 +105,12 @@ namespace SenaOnPrinting.Controllers
         public async Task<IActionResult> ChangeState(long id)
         {
             await _orderProductionService.ChangeState(id);
+            return NoContent();
+        }
+        [HttpDelete("ChangeStatus/{id}")]
+        public async Task<IActionResult> ChangeOrderStatus(long id)
+        {
+            await _orderProductionService.ChangeOrderStatus(id);
             return NoContent();
         }
     }

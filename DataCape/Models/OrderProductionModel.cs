@@ -24,10 +24,6 @@ namespace DataCape.Models
         public string? TypePoint { get; set; }
         public string? Scheme { get; set; }
         [NotMapped]
-        public string? ImageSrc { get; set; }
-        [NotMapped]
-        public string? SchemeSrc { get; set; }
-        [NotMapped]
         public DateTime? OrderDate { get; set; }
         [NotMapped]
         public string Name { get; set; } = null!;
