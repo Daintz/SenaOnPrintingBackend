@@ -31,4 +31,8 @@
     <ProjectReference Include="..\DataCape\DataCape.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contexts\" />
+  </ItemGroup>
+
 </Project>

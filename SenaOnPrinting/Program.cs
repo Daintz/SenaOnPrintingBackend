@@ -1,4 +1,6 @@
 
+
+
 using BusinessCape.Entensions;
 using PersistenceCape.Interfaces;
 using PersistenceCape.Repositories;
@@ -56,7 +58,10 @@ builder.Services.AddScoped<IFinishs, FinishRepository>();
 builder.Services.AddScoped<UnitMesureServices>();
 builder.Services.AddScoped<IUnitMesure, UnitMeasurreRepository>();
 
-builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\ImpositionPlanch")));
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\OrderProduction")));
+
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\SupplyPictogram")));//Esto lo agregué
+//builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\QuotationProvider")));//Esto lo agregué
 
 // Configurar las interfaces para que el controlador las pueda usar
 
@@ -278,6 +283,7 @@ app.UseStaticFiles(new StaticFileOptions
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
     RequestPath = "/Images"
 });
+
 
 app.UseHttpsRedirection();
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public class ProductModel
+    public   class ProductModel
     {
         public ProductModel()
         {
@@ -15,6 +15,7 @@ namespace DataCape.Models
         public string Name { get; set; } = null!;
         public string? Characteristics { get; set; }
         public bool? StatedAt { get; set; }
+        public decimal? Cost { get; set; }
 
         public virtual ICollection<QuotationClientDetailModel> QuotationClientDetails { get; set; }
     }

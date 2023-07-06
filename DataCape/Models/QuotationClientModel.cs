@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public class QuotationClientModel
+    public   class QuotationClientModel
     {
         public QuotationClientModel()
         {
@@ -16,7 +16,7 @@ namespace DataCape.Models
         public long? TypeServiceId { get; set; }
         public DateTime? OrderDate { get; set; }
         public DateTime? DeliverDate { get; set; }
-        public bool QuotationStatus { get; set; }
+        public int? QuotationStatus { get; set; }
         public bool? StatedAt { get; set; }
 
         public virtual ClientModel? Client { get; set; }

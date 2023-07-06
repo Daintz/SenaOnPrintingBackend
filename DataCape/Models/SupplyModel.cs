@@ -21,7 +21,13 @@ namespace DataCape.Models
         public decimal? AverageCost { get; set; }
         public long? WarehouseId { get; set; }
         public bool? StatedAt { get; set; }
+        public long? UnitMeasuresId { get; set; }
+        public long? SupplyPictogramsId { get; set; }
+        public long? SupplyCategoriesId { get; set; }
 
+        public virtual SupplyCategoryModel? SupplyCategories { get; set; }
+        public virtual SupplyPictogramModel? SupplyPictograms { get; set; }
+        public virtual UnitMeasureModel? UnitMeasures { get; set; }
         public virtual WarehouseModel? Warehouse { get; set; }
         public virtual ICollection<SupplyDetailModel> SupplyDetails { get; set; }
     }

@@ -15,14 +15,16 @@ namespace SenaOnPrinting.Controllers
     {
         private readonly RoleService _roleService;
         private readonly IMapper _mapper;
+        private readonly SENAONPRINTINGContext _context;
 
-        public RoleController(RoleService roleService, IMapper mapper)
+        public RoleController(RoleService roleService, IMapper mapper, SENAONPRINTINGContext context)
         {
             _roleService = roleService;
             _mapper = mapper;
+            _context = context;
         }
 
-        //g[AuthorizationFilter(ApplicationPermission.ReadRole)]
+       // [AuthorizationFilter(ApplicationPermission.ReadRole)]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -45,6 +47,19 @@ namespace SenaOnPrinting.Controllers
         public async Task<IActionResult> Add(RoleCreateDto roleDto)
         {
             var role = _mapper.Map<RoleModel>(roleDto);
+
+            //foreach (var permissionId in roleDto.PermissionIds)
+            //{
+            //    var permission = await _context.ApplicationPermissions.FindAsync(permissionId);
+            //    if (permission == null)
+            //    {
+            //        return BadRequest("Uno de los Ids rol no existe, por favor rectifique");
+            //    }
+            //    role.Permissions.Add(permission);
+            //}
+
+            //var permissions = _context.ApplicationPermissions.Where(p => roleDto.PermissionIds.Contains(p.Id)).ToList();
+            //role.Permissions = permissions; 
 
             await _roleService.Create(role);
             return Ok(role);

@@ -1,6 +1,5 @@
 ﻿using DataCape.Models;
 using Microsoft.EntityFrameworkCore;
-using PersistenceCape.Contexts;
 using PersistenceCape.Interfaces;
 
 namespace PersistenceCape.Repositories
@@ -40,7 +39,7 @@ namespace PersistenceCape.Repositories
         public async Task Delete(long id)
         {
             var role = await _context.Roles.FindAsync(id);
-            role.StatedAt = false;
+            role.StatedAt = !role.StatedAt;
             await _context.SaveChangesAsync();
         }
     }

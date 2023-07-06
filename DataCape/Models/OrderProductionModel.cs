@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataCape.Models
 {
@@ -22,6 +23,16 @@ namespace DataCape.Models
         public string? Program { get; set; }
         public string? TypePoint { get; set; }
         public string? Scheme { get; set; }
+        [NotMapped]
+        public DateTime? OrderDate { get; set; }
+        [NotMapped]
+        public string Name { get; set; } = null!;
+        [NotMapped]
+        public string Product { get; set; } = null!;
+        [NotMapped]
+        public DateTime? DeliverDate { get; set; }
+
+
         public virtual PaperCutModel? IdPaperCutNavigation { get; set; }
         public virtual QuotationClientDetailModel? QuotationClientDetail { get; set; }
         public virtual UserModel? User { get; set; }

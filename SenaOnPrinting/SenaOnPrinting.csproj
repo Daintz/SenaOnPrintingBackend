@@ -33,6 +33,11 @@
 
   <ItemGroup>
     <Folder Include="Images\OrderProduction\" />
+    <Folder Include="Images\QuotationProvider\" />
+    <Folder Include="Images\QuotationProvider\" />
+    <Folder Include="Images\SupplyPictogram\" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

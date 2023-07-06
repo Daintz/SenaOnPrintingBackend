@@ -1,7 +1,7 @@
 ﻿using DataCape.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using PersistenceCape.Contexts;
+
 using PersistenceCape.Interfaces;
 
 namespace PersistenceCape.Repositories
@@ -43,7 +43,7 @@ namespace PersistenceCape.Repositories
         public async Task Delete(long id)
         {
             var user = await _context.Users.FindAsync(id);
-            user.StatedAt = false;
+            user.StatedAt = !user.StatedAt;
             await _context.SaveChangesAsync();
         }
     }

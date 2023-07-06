@@ -5,6 +5,9 @@ using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Microsoft.Extensions.Hosting;
+
 
 namespace SenaOnPrinting.Controllers
 {
@@ -14,17 +17,28 @@ namespace SenaOnPrinting.Controllers
     {
         private readonly SupplyPictogramsServices _SupplyPictogramsServices;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public SupplyPictogrmasController(SupplyPictogramsServices SupplyPictogramsServices, IMapper mapper)
+        public SupplyPictogrmasController(SupplyPictogramsServices SupplyPictogramsServices, IMapper mapper, IWebHostEnvironment hostEnvironment)
         {
             _SupplyPictogramsServices = SupplyPictogramsServices;
             _mapper = mapper;
+            _hostEnvironment = hostEnvironment;
         }
         // GET: api/<ClientController>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            var PictogramFile = "https";
+            var host = Request.Host;
+            var pathBase = Request.PathBase.ToString();
             var supplyPictograms = await _SupplyPictogramsServices.GetAllAsync();
+            foreach (var supplypictogram in supplyPictograms )
+            {
+                supplypictogram.PictogramFile = string.Format("{0}://{1}/{2}Images/SupplyPictogram/{3}",
+                    PictogramFile, host, pathBase, supplypictogram.PictogramFile);
+                supplypictogram.PictogramFile = supplypictogram.PictogramFile;
+            }
             return Ok(supplyPictograms);
         }
 
@@ -42,22 +56,55 @@ namespace SenaOnPrinting.Controllers
 
         // POST api/<ClientController>
         [HttpPost]
-        public async Task<IActionResult> Add(SupplyPictogramsCreateDto SupplypictogramDto)
-        {
-            var supplyPictogramCreate = _mapper.Map<SupplyPictogramModel>(SupplypictogramDto);
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Add([FromForm] SupplyPictogramsCreateDto supplypictogramDto)
+        { 
+            supplypictogramDto.PictogramFile = await SaveImages(supplypictogramDto.PictogramFileInfo); //Aquí está la conversión Explicita
+        
+            var supplyPictogramCreate = _mapper.Map<SupplyPictogramModel>(supplypictogramDto);
 
             await _SupplyPictogramsServices.AddAsync(supplyPictogramCreate);
+
             return Ok(supplyPictogramCreate);
         }
+        [NonAction]
+          
+        public async Task<string> SaveImages(Microsoft.AspNetCore.Http.IFormFile PictogramFileInfo)
+        {
+            //string imageName = new string(Path.GetFileNameWithoutExtension(PictogramFileInfo.FileName).Take(10).ToArray()).Replace(' ','_');
+            string imageName = new string(Path.GetFileNameWithoutExtension(PictogramFileInfo.FileName).Take(10).ToArray()).Replace(' ', '_');
+            imageName = imageName + Path.GetExtension(PictogramFileInfo.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images\\SupplyPictogram\\", imageName);
+
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await PictogramFileInfo.CopyToAsync(fileStream);
+            }
+            return imageName;
+        }
+
 
         // PUT api/<ClientController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(long id, SupplyPictogramsUpdateDto SupplyPictogramDto)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Update(long id, [FromForm] SupplyPictogramsUpdateDto supplyPictogramDto)
         {
-            var SupplyPictogramUpdate = await _SupplyPictogramsServices.GetByIdAsync(SupplyPictogramDto.Id);
-            _mapper.Map(SupplyPictogramDto, SupplyPictogramUpdate);
-            await _SupplyPictogramsServices.UpdateAsync(SupplyPictogramUpdate);
-            return NoContent();
+            if (id != supplyPictogramDto.Id)
+            {
+                return BadRequest();
+            }
+
+            var supplyPictogramUpdate = await _SupplyPictogramsServices.GetByIdAsync(supplyPictogramDto.Id);
+
+
+            supplyPictogramUpdate.PictogramFile = await SaveImages(supplyPictogramDto.PictogramFileInfo); //Aquí está la conversión Explicita
+
+
+
+            _mapper.Map(supplyPictogramDto, supplyPictogramUpdate);
+
+            await _SupplyPictogramsServices.UpdateAsync(supplyPictogramUpdate);
+            return Ok(supplyPictogramUpdate);
         }
 
         // DELETE api/<ClientController>/5
