@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using BusinessCape.DTOs.ImpositionPlanch;
 using BusinessCape.DTOs.Supply;
+using BusinessCape.DTOs.SupplyDetails;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -22,19 +24,19 @@ namespace SenaOnPrinting.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var supplyCategories = await _supplyService.GetAllAsync();
-            return Ok(supplyCategories);
+            var supply = await _supplyService.GetAllAsync();
+            return Ok(supply);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(long id)
         {
-            var supplyCategory = await _supplyService.GetByIdAsync(id);
-            if (supplyCategory == null)
+            var supply = await _supplyService.GetByIdAsync(id);
+            if (supply == null)
             {
                 return NotFound();
             }
-            return Ok(supplyCategory);
+            return Ok(supply);
         }
 
         [HttpPost]
@@ -47,35 +49,29 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(SupplyUpdateDto supplyDto)
+
+        public async Task<IActionResult> Update(long id, SupplyUpdateDto supplyDto)
         {
-            var supplyToUpdate = await _supplyService.GetByIdAsync(supplyDto.IdSupply);
+            if (id != supplyDto.Id)
+            {
+                return BadRequest();
+            }
+
+            var supplyToUpdate = await _supplyService.GetByIdAsync(supplyDto.Id);
+
+            _mapper.Map(supplyDto, supplyToUpdate);
 
             await _supplyService.UpdateAsync(supplyToUpdate);
             return Ok(supplyToUpdate);
         }
 
+
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> ChangeState(long id)
         {
-            await _supplyService.DeleteAsync(id);
+            await _supplyService.ChangeState(id);
             return NoContent();
         }
 
-        [HttpDelete("status/{id}")]
-        public async Task<IActionResult> ChangeStatus(long id, bool statedAt)
-        {
-            var supplyToUpdate = await _supplyService.GetByIdAsync(id);
-
-            if (supplyToUpdate == null)
-            {
-                return NotFound("Supply wasn't found");
-            }
-
-            supplyToUpdate.StatedAt = statedAt;
-
-            await _supplyService.UpdateAsync(supplyToUpdate);
-            return Ok(supplyToUpdate);
-        }
     }
 }

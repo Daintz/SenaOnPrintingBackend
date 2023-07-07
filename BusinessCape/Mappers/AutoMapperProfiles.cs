@@ -185,6 +185,7 @@ namespace BusinessCape.Mappers
             CreateMap<SupplyPictogramsCreateDto, SupplyPictogramModel>();
             // PUT OR UPDATE //
             CreateMap<SupplyPictogramsUpdateDto, SupplyPictogramModel>();
+
             //SupplyDetails //
             // POST OR CREATE //
             CreateMap<SupplyDetailsCreateDto, SupplyDetailModel>();

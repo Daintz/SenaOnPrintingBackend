@@ -6,8 +6,8 @@ namespace PersistenceCape.Interfaces
     {
         Task<IEnumerable<SupplyModel>> GetAllAsync();
         Task<SupplyModel> GetByIdAsync(long id);
-        Task<SupplyModel> AddAsync(SupplyModel supplyCategory);
-        Task UpdateAsync(SupplyModel supplyCategory);
-        Task DeleteAsync(long id);
+        Task<SupplyModel> AddAsync(SupplyModel supply);
+        Task UpdateAsync(SupplyModel supply);
+        Task ChangeState(long id);
     }
 }

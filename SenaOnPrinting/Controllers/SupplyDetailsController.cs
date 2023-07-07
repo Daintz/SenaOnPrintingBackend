@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessCape.DTOs.SupplyCategory;
 using BusinessCape.DTOs.SupplyDetails;
 using BusinessCape.Services;
 using DataCape.Models;
@@ -49,6 +50,7 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpPut("{id}")]
+
         public async Task<IActionResult> Update(long id, SupplyDetailsUpdateDto supplyDetailDto)
         {
             if (id != supplyDetailDto.Id)
@@ -64,6 +66,7 @@ namespace SenaOnPrinting.Controllers
             return Ok(supplyDetailToUpdate);
         }
 
+     
         [HttpDelete("{id}")]
         public async Task<IActionResult> ChangeState(long id)
         {

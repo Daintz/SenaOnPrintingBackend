@@ -735,39 +735,39 @@ namespace DataCape.Models
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.SupplyCategoriesId).HasColumnName("supply_categories_id");
+                //entity.Property(e => e.SupplyCategoriesId).HasColumnName("supply_categories_id");
 
-                entity.Property(e => e.SupplyPictogramsId).HasColumnName("supply_pictograms_id");
+                //entity.Property(e => e.SupplyPictogramsId).HasColumnName("supply_pictograms_id");
 
                 entity.Property(e => e.SupplyType).HasColumnName("supply_type");
 
-                entity.Property(e => e.UnitMeasuresId).HasColumnName("unit_measures_id");
+                //entity.Property(e => e.UnitMeasuresId).HasColumnName("unit_measures_id");
 
                 entity.Property(e => e.UseInstructions)
                     .HasColumnType("text")
                     .HasColumnName("use_instructions");
 
-                entity.Property(e => e.WarehouseId).HasColumnName("warehouse_id");
+                //entity.Property(e => e.WarehouseId).HasColumnName("warehouse_id");
 
-                entity.HasOne(d => d.SupplyCategories)
-                    .WithMany(p => p.Supplies)
-                    .HasForeignKey(d => d.SupplyCategoriesId)
-                    .HasConstraintName("supply_categories_id");
+                //entity.HasOne(d => d.SupplyCategories)
+                //    .WithMany(p => p.Supplies)
+                //    .HasForeignKey(d => d.SupplyCategoriesId)
+                //    .HasConstraintName("supply_categories_id");
 
-                entity.HasOne(d => d.SupplyPictograms)
-                    .WithMany(p => p.Supplies)
-                    .HasForeignKey(d => d.SupplyPictogramsId)
-                    .HasConstraintName("supply_pictograms_id");
+                //entity.HasOne(d => d.SupplyPictograms)
+                //    .WithMany(p => p.Supplies)
+                //    .HasForeignKey(d => d.SupplyPictogramsId)
+                //    .HasConstraintName("supply_pictograms_id");
 
-                entity.HasOne(d => d.UnitMeasures)
-                    .WithMany(p => p.Supplies)
-                    .HasForeignKey(d => d.UnitMeasuresId)
-                    .HasConstraintName("unit_measures_id");
+                //entity.HasOne(d => d.UnitMeasures)
+                //    .WithMany(p => p.Supplies)
+                //    .HasForeignKey(d => d.UnitMeasuresId)
+                //    .HasConstraintName("unit_measures_id");
 
-                entity.HasOne(d => d.Warehouse)
-                    .WithMany(p => p.Supplies)
-                    .HasForeignKey(d => d.WarehouseId)
-                    .HasConstraintName("FK__supplies__wareho__367C1819");
+                //entity.HasOne(d => d.Warehouse)
+                //    .WithMany(p => p.Supplies)
+                //    .HasForeignKey(d => d.WarehouseId)
+                //    .HasConstraintName("FK__supplies__wareho__367C1819");
             });
 
             modelBuilder.Entity<SupplyCategoriesXSupplyModel>(entity =>
