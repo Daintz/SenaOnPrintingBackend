@@ -14,5 +14,7 @@ namespace PersistenceCape.Interfaces
         Task<QuotationClientModel> AddAsync(QuotationClientModel quotationClient);
         Task UpdateAsync(QuotationClientModel quotationClient);
         Task DeleteAsync(long id);
+
+        Task ChangeStatusQuotation(long id);
     }
 }
