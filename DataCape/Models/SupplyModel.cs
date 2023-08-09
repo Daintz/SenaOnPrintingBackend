@@ -3,27 +3,32 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public partial class SupplyModel
+    public class SupplyModel
     {
         public SupplyModel()
         {
             SupplyDetails = new HashSet<SupplyDetailModel>();
         }
 
-        public long IdSupply { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; } = null!;
-        public Guid MinimunUnitMeasureId { get; set; }
         public string? DangerIndicators { get; set; }
         public string? UseInstructions { get; set; }
         public string? Advices { get; set; }
         public int SupplyType { get; set; }
         public int SortingWord { get; set; }
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
         public decimal? AverageCost { get; set; }
-        public long IdWarehouse { get; set; }
+        public long? WarehouseId { get; set; }
         public bool? StatedAt { get; set; }
+        public long? UnitMeasuresId { get; set; }
+        public long? SupplyPictogramsId { get; set; }
+        public long? SupplyCategoriesId { get; set; }
 
-        public virtual WarehouseModel IdWarehouseNavigation { get; set; } = null!;
+        public virtual SupplyCategoryModel? SupplyCategories { get; set; }
+        public virtual SupplyPictogramModel? SupplyPictograms { get; set; }
+        public virtual UnitMeasureModel? UnitMeasures { get; set; }
+        public virtual WarehouseModel? Warehouse { get; set; }
         public virtual ICollection<SupplyDetailModel> SupplyDetails { get; set; }
     }
 }
