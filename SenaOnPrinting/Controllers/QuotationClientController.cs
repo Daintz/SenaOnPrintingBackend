@@ -67,5 +67,11 @@ namespace SenaOnPrinting.Controllers
             await _quotationClientService.DeleteAsync(id);
             return NoContent();
         }
+        [HttpDelete("ChangeStatus/{id}")]
+        public async Task<IActionResult> ChangeQuotationStatus(long id)
+        {
+            await _quotationClientService.ChangeQuotationStatus(id);
+            return NoContent();
+        }
     }
 }
