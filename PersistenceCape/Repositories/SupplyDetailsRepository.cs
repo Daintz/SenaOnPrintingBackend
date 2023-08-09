@@ -29,6 +29,7 @@ namespace persistencecape.repositories
             _context.Entry(supplyDetail).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+    
 
         public async Task<SupplyDetailModel> AddAsync(SupplyDetailModel supplyDetail)
         {

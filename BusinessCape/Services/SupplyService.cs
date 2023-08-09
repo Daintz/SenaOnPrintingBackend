@@ -1,5 +1,7 @@
 ﻿using DataCape.Models;
+using persistencecape.repositories;
 using PersistenceCape.Interfaces;
+using PersistenceCape.Repositories;
 
 namespace BusinessCape.Services
 {
@@ -22,19 +24,20 @@ namespace BusinessCape.Services
             return await _supplyRepository.GetByIdAsync(id);
         }
 
-        public async Task AddAsync(SupplyModel supplyCategory)
+        public async Task AddAsync(SupplyModel supply)
         {
-            await _supplyRepository.AddAsync(supplyCategory);
+            await _supplyRepository.AddAsync(supply);
         }
 
-        public async Task UpdateAsync(SupplyModel supplyCategory)
+        public async Task UpdateAsync(SupplyModel supply)
         {
-            await _supplyRepository.UpdateAsync(supplyCategory);
+            await _supplyRepository.UpdateAsync(supply);
         }
 
-        public async Task DeleteAsync(long id)
+        public async Task ChangeState(long id)
         {
-            await _supplyRepository.DeleteAsync(id);
+            await _supplyRepository.ChangeState(id);
         }
+       
     }
 }

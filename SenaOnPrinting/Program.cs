@@ -14,7 +14,7 @@ using persistencecape.repositories;
 using FluentValidation.AspNetCore;
 using BusinessCape.DTOs.SupplyCategory.Validators;
 using BusinessCape.DTOs.Product.Validators;
-using BusinessCape.DTOs.Supply.Validators;
+
 using BusinessCape.DTOs.Finish.Validator;
 
 using Microsoft.Extensions.FileProviders;
@@ -219,9 +219,6 @@ builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidator
 //============================|SUPPLY|==========================//
 builder.Services.AddScoped<SupplyService>();
 builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCreateDtoValidator>());
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyUpdateDtoValidator>());
-//==============================================================//
 
 
 

@@ -23,25 +23,29 @@ namespace PersistenceCape.Repositories
         {
             return await _context.Supplies.FindAsync(id);
         }
-
-        public async Task UpdateAsync(SupplyModel supplyCategory)
+        public async Task UpdateAsync(SupplyModel supply)
         {
-            _context.Entry(supplyCategory).State = EntityState.Modified;
+            _context.Entry(supply).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task<SupplyModel> AddAsync(SupplyModel supplyCategory)
+
+        public async Task<SupplyModel> AddAsync(SupplyModel supply)
         {
-            await _context.Supplies.AddAsync(supplyCategory);
+            await _context.Supplies.AddAsync(supply);
             await _context.SaveChangesAsync();
-            return supplyCategory;
+            return supply;
         }
 
-        public async Task DeleteAsync(long id)
+        public async Task ChangeState(long id)
         {
-            var supplyCategory = await _context.Supplies.FindAsync(id);
-            _context.Supplies.Remove(supplyCategory);
+            var supplyRepository = await _context.Supplies.FindAsync(id);
+
+            supplyRepository.StatedAt = !supplyRepository.StatedAt;
             await _context.SaveChangesAsync();
         }
+
+
+     
     }
 }
