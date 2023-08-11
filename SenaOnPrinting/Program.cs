@@ -210,8 +210,6 @@ builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidator
 //============================|SUPPLY|==========================//
 builder.Services.AddScoped<SupplyService>();
 builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCreateDtoValidator>());
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyUpdateDtoValidator>());
 //==============================================================//
 
 
