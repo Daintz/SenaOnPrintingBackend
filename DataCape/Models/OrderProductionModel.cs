@@ -31,7 +31,7 @@ namespace DataCape.Models
         public int? OrderStatus { get; set; }
 
         public virtual PaperCutModel? PaperCut { get; set; }
-        public virtual QuotationClientDetailModel? QuotationClientDetail { get; set; }
+        public virtual QuotationClientModel? QuotationClientDetail { get; set; }
         public virtual UserModel? User { get; set; } 
         public virtual ImpositionPlanchModel? ImpositionPlanch { get; set; }
     }
