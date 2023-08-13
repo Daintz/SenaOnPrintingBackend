@@ -4,7 +4,7 @@
     {
         public ProductModel() 
         { 
-            this.Quotations = new HashSet<QuotationModel>();
+            this.Quotations = new HashSet<QuotationClientModel>();
         }
         public long Id { get; set; }
         public string TypeProduct { get; set; } = null!;
@@ -14,6 +14,6 @@
         public decimal? Cost { get; set; }
 
 
-        public virtual ICollection<QuotationModel> Quotations { get; set;}
+        public virtual ICollection<QuotationClientModel> Quotations { get; set;}
     }
 }
