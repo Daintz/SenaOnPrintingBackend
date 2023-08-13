@@ -21,6 +21,9 @@ namespace DataCape.Models
         public virtual DbSet<SupplyDetailModel> SupplyDetails { get; set; } = null!;
         public virtual DbSet<TypeServiceModel> TypeServices { get; set; } = null!;
         public virtual DbSet<WarehouseModel> Warehouses { get; set; } = null!;
+        public virtual DbSet<QuotationClientModel> Quotations { get; set; } = null!;
+        public virtual DbSet<SupplyPictogramModel> SupplyPictograms { get; set; } = null!;
+        public virtual DbSet<QuotationProviderModel> QuotationProviderModels { get; set; } = null!;
 
     }
       
