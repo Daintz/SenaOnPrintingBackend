@@ -2,11 +2,18 @@
 {
     public class ProductModel
     {
+        public ProductModel() 
+        { 
+            this.Quotations = new HashSet<QuotationModel>();
+        }
         public long Id { get; set; }
         public string TypeProduct { get; set; } = null!;
         public string Name { get; set; } = null!;
         public string? Characteristics { get; set; }
         public bool? StatedAt { get; set; }
         public decimal? Cost { get; set; }
+
+
+        public virtual ICollection<QuotationModel> Quotations { get; set;}
     }
 }

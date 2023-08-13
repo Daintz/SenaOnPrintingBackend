@@ -22,6 +22,8 @@ namespace DataCape.Models
         public virtual DbSet<TypeServiceModel> TypeServices { get; set; } = null!;
         public virtual DbSet<WarehouseModel> Warehouses { get; set; } = null!;
 
+        public virtual DbSet<QuotationModel> Quotations { get; set; } = null!;
+
     }
       
 }
