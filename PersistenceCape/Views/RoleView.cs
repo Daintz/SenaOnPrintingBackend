@@ -13,7 +13,7 @@ namespace PersistenceCape.Views
         public long Id;
         public string Name;
         public string Description;
-        public List<PermissionsByRoleModel> Permissions;
+        public List<PermissionView> Permissions;
         public bool? StatedAt;
 
         //public RoleView(long Id, string Name, string Description, List<PermissionsByRoleModel> Permissions, bool StatedAt) {

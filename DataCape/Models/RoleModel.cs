@@ -21,8 +21,8 @@ namespace DataCape.Models
         [JsonIgnore]
         public virtual List<PermissionsByRoleModel> PermissionsByRoles { get; set; }
 
-        //[JsonIgnore]
-        //public virtual List<ApplicationPermissionModel> Permissions { get; set; }
+        [JsonIgnore]
+        public virtual List<ApplicationPermissionModel> Permissions { get; set; }
         public virtual List<UserModel> Users { get; set; }
     }
 }

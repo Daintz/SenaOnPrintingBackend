@@ -24,20 +24,29 @@ namespace PersistenceCape.Repositories
 
         public async Task<RoleModel> Show(long id)
         {
-            return await _context.Roles.FindAsync(id);
+            return await _context.Roles.Include(x => x.PermissionsByRoles)
+                .ThenInclude(x => x.Permission)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<RoleView> ShowWithPermissions(long id)
         {
-            return _context.Roles.Where(role => role.Id == id).Select(role =>
-            new RoleView()
-            {
-                Id = role.Id,
-                Name = role.Name,
-                Description = role.Description,
-                StatedAt = role.StatedAt,
-                Permissions = role.PermissionsByRoles
-            }).FirstOrDefaultAsync();
+            return _context.Roles.Include(role => role.PermissionsByRoles)
+                .Where(role => role.Id == id)
+                .Select(role =>
+                    new RoleView()
+                    {
+                        Id = role.Id,
+                        Name = role.Name,
+                        Description = role.Description,
+                        StatedAt = role.StatedAt,
+                        Permissions = role.PermissionsByRoles.Select(pbr => new PermissionView()
+                        {
+                            Id = pbr.PermissionId,
+                            Name = pbr.Permission.Name
+                        }).ToList()
+        }
+                ).FirstOrDefaultAsync();
 
             //return await _context.Roles.Include(role => role.PermissionsByRoles).Where(role => role.Id == id)
             //    .FirstOrDefaultAsync();
