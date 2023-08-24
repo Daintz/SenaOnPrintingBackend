@@ -155,8 +155,6 @@ builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>(
 builder.Services.AddScoped<ProviderService>(); 
 builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 
-builder.Services.AddScoped<WarehauseTypeService>();
-builder.Services.AddScoped<IWarehausetypeRepository,WarehauseTypeRepository>();
 
 builder.Services.AddScoped<WarehauseService>();
 builder.Services.AddScoped<IWarehauseRepository, WarehauseRepository>();

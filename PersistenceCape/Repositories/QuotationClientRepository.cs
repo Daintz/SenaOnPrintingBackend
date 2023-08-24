@@ -48,7 +48,7 @@ namespace PersistenceCape.Repositories
             await _context.SaveChangesAsync();
 
         }
-        public async Task ChangeQuotationStatus(long id)
+        public async Task ChangeStatusQuotation(long id)
         {
             var quotationClient = await _context.QuotationClients.FindAsync(id);
             if (quotationClient.QuotationStatus == 1)

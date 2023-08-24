@@ -30,7 +30,6 @@
   <ItemGroup>
     <Folder Include="DTOs\NewFolder\" />
     <Folder Include="DTOs\Provider\Validators\" />
-    <Folder Include="DTOs\WarehauseType\Validators\" />
     <Folder Include="DTOs\Warehause\Validators\" />
   </ItemGroup>
 
