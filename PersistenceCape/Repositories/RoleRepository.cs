@@ -1,6 +1,7 @@
 ﻿using DataCape.Models;
 using Microsoft.EntityFrameworkCore;
 using PersistenceCape.Interfaces;
+using PersistenceCape.Views;
 
 namespace PersistenceCape.Repositories
 {
@@ -15,12 +16,33 @@ namespace PersistenceCape.Repositories
 
         public async Task<IEnumerable<RoleModel>> Index()
         {
-            return await _context.Roles.ToListAsync();
+
+            return await _context.Roles.Include(role => role.PermissionsByRoles)
+                .ThenInclude(pbr => pbr.Permission).ToListAsync();
+            //return await _context.Roles.ToListAsync();
         }
 
         public async Task<RoleModel> Show(long id)
         {
             return await _context.Roles.FindAsync(id);
+        }
+
+        public Task<RoleView> ShowWithPermissions(long id)
+        {
+            return _context.Roles.Where(role => role.Id == id).Select(role =>
+            new RoleView()
+            {
+                Id = role.Id,
+                Name = role.Name,
+                Description = role.Description,
+                StatedAt = role.StatedAt,
+                Permissions = role.PermissionsByRoles
+            }).FirstOrDefaultAsync();
+
+            //return await _context.Roles.Include(role => role.PermissionsByRoles).Where(role => role.Id == id)
+            //    .FirstOrDefaultAsync();
+
+            //return await _context.Roles.FindAsync(id);
         }
 
         public async Task Update(RoleModel role)

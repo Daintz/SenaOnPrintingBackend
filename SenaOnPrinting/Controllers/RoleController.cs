@@ -32,10 +32,21 @@ namespace SenaOnPrinting.Controllers
             return Ok(roles);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("test/{id}")]
         public async Task<IActionResult> Show(long id)
         {
             var role = await _roleService.Show(id);
+            if (role == null)
+            {
+                return NotFound();
+            }
+            return Ok(role);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ShowWithPermissions(long id)
+        {
+            var role = await _roleService.ShowWithPermissions(id);
             if (role == null)
             {
                 return NotFound();
@@ -47,21 +58,29 @@ namespace SenaOnPrinting.Controllers
         public async Task<IActionResult> Add(RoleCreateDto roleDto)
         {
             var role = _mapper.Map<RoleModel>(roleDto);
+            await _roleService.Create(role);
 
-            //foreach (var permissionId in roleDto.PermissionIds)
-            //{
-            //    var permission = await _context.ApplicationPermissions.FindAsync(permissionId);
-            //    if (permission == null)
-            //    {
-            //        return BadRequest("Uno de los Ids rol no existe, por favor rectifique");
-            //    }
-            //    role.Permissions.Add(permission);
-            //}
+            foreach (var permissionId in roleDto.PermissionIds)
+            {
+                var permission = await _context.ApplicationPermissions.FindAsync(permissionId);
+                if (permission == null)
+                {
+                    return BadRequest("Uno de los Ids rol no existe, por favor rectifique");
+                }
+
+                var permissionsByRole = new PermissionsByRoleModel
+                {
+                    RoleId = role.Id,
+                    PermissionId = permission.Id
+                };
+
+                _context.PermissionsByRoles.Add(permissionsByRole);
+            }
 
             //var permissions = _context.ApplicationPermissions.Where(p => roleDto.PermissionIds.Contains(p.Id)).ToList();
-            //role.Permissions = permissions; 
+            //role.Permissions = permissions;
 
-            await _roleService.Create(role);
+            await _context.SaveChangesAsync();
             return Ok(role);
         }
 

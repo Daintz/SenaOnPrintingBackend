@@ -1,5 +1,6 @@
 ﻿using DataCape.Models;
 using PersistenceCape.Interfaces;
+using PersistenceCape.Views;
 
 namespace BusinessCape.Services
 {
@@ -20,6 +21,11 @@ namespace BusinessCape.Services
         public async Task<RoleModel> Show(long id)
         {
             return await _roleRepository.Show(id);
+        }
+
+        public async Task<RoleView> ShowWithPermissions(long id)
+        {
+            return await _roleRepository.ShowWithPermissions(id);
         }
 
         public async Task Create(RoleModel role)

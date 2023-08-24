@@ -457,6 +457,8 @@ namespace DataCape.Models
                     .WithMany(p => p.PermissionsByRoles)
                     .HasForeignKey(d => d.RoleId)
                     .HasConstraintName("FK__permissio__role___2DE6D218");
+
+                entity.HasKey(e => new { e.RoleId, e.PermissionId });
             });
 
             modelBuilder.Entity<ProductModel>(entity =>
