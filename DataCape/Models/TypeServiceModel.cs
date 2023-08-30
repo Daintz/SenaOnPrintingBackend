@@ -7,13 +7,13 @@ namespace DataCape.Models
     {
         public TypeServiceModel()
         {
-            QuotationClients = new HashSet<QuotationClientModel>();
+            QuotationClientDetails = new HashSet<QuotationClientDetailModel>();
         }
 
         public long Id { get; set; }
         public string Name { get; set; } = null!;
         public bool? StatedAt { get; set; }
 
-        public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
+        public virtual ICollection<QuotationClientDetailModel> QuotationClientDetails { get; set; }
     }
 }

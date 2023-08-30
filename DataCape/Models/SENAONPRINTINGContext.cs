@@ -547,11 +547,12 @@ namespace DataCape.Models
 
                 entity.Property(e => e.QuotationStatus).HasColumnName("quotation_status");
 
+                entity.Property(e => e.FullValue).HasColumnName("full_value");
+
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.TypeServiceId).HasColumnName("type_service_id");
+            
 
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 
@@ -559,11 +560,7 @@ namespace DataCape.Models
                     .WithMany(p => p.QuotationClients)
                     .HasForeignKey(d => d.ClientId)
                     .HasConstraintName("FK__quotation__clien__30C33EC3");
-
-                entity.HasOne(d => d.TypeService)
-                    .WithMany(p => p.QuotationClients)
-                    .HasForeignKey(d => d.TypeServiceId)
-                    .HasConstraintName("FK__quotation__type___31B762FC");
+           
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.QuotationClients)
@@ -577,32 +574,17 @@ namespace DataCape.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.FullValue).HasColumnName("full_value");
-
-                entity.Property(e => e.InkQuantity).HasColumnName("ink_quantity");
-
-                entity.Property(e => e.NumberOfPages).HasColumnName("number_of_pages");
-
-                entity.Property(e => e.ProductHeight).HasColumnName("product_height");
-
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
+                entity.Property(e => e.TypeServiceId).HasColumnName("type_service_id");
 
-                entity.Property(e => e.ProductQuantity).HasColumnName("product_quantity");
-
-                entity.Property(e => e.ProductWidth).HasColumnName("product_width");
+                entity.Property(e => e.Cost).HasColumnName("cost");
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
 
                 entity.Property(e => e.QuotationClientId).HasColumnName("quotation_client_id");
 
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.TechnicalSpecifications)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("technical_specifications");
-
-                entity.Property(e => e.UnitValue).HasColumnName("unit_value");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.QuotationClientDetails)
@@ -613,6 +595,11 @@ namespace DataCape.Models
                     .WithMany(p => p.QuotationClientDetails)
                     .HasForeignKey(d => d.QuotationClientId)
                     .HasConstraintName("FK__quotation__quota__2FCF1A8A");
+
+                entity.HasOne(d => d.TypeServiceModel)
+                   .WithMany(p => p.QuotationClientDetails)
+                   .HasForeignKey(d => d.TypeServiceId)
+                   .HasConstraintName("FK__quotation__typeser__2CIL1A8A");
             });
 
             modelBuilder.Entity<QuotationProviderModel>(entity =>

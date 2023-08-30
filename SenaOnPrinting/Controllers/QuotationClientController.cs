@@ -13,12 +13,17 @@ namespace SenaOnPrinting.Controllers
     public class QuotationClientController : ControllerBase
     {
         private readonly QuotationClientService _quotationClientService;
+        private readonly QuotationClientDetailService _quotationClientDetailService;
+
         private readonly IMapper _mapper;
 
-        public QuotationClientController(QuotationClientService quotationClientService, IMapper mapper)
+        public QuotationClientController(QuotationClientService quotationClientService, IMapper mapper, QuotationClientDetailService quotationClientDetailService)
         {
             _quotationClientService = quotationClientService;
             _mapper = mapper;
+            _quotationClientDetailService = quotationClientDetailService;
+
+
         }
         // GET: api/<QuotationClient>
         [HttpGet]
@@ -47,7 +52,18 @@ namespace SenaOnPrinting.Controllers
             var quotationClientToCreate = _mapper.Map<QuotationClientModel>(quotationClientDto);
 
             await _quotationClientService.AddAsync(quotationClientToCreate);
+            var newQuotationClientId = quotationClientToCreate.Id;
+            
+
+
+            // Agregar el detalle de cliente de cotización utilizando el nuevo ID
+            var quotationClientDetailDto = quotationClientDto.quotationClientDetailCreateDto[0];
+            var quotationClientDetailModel = _mapper.Map<QuotationClientDetailModel>(quotationClientDetailDto);
+            quotationClientDetailModel.QuotationClientId = newQuotationClientId; // Asignar el ID correcto
+            await _quotationClientDetailService.AddAsync(quotationClientDetailModel);
+
             return Ok(quotationClientToCreate);
+
         }
 
         // PUT api/<QuotationClient>/5
