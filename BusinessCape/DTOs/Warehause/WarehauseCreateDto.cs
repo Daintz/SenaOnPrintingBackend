@@ -9,14 +9,14 @@ namespace BusinessCape.DTOs.Warehause
 {
     public class WarehauseCreateDto
     {
-        public long? WarehouseTypeId { get; set; }
+        public long? TypeServiceId { get; set; }
         public string? Ubication { get; set; }
         public bool? StatedAt { get; set; }
         public WarehauseCreateDto()
         {
             StatedAt = true;
         }
-
+    
 
     }
 }

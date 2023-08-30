@@ -15,6 +15,6 @@ namespace DataCape.Models
         public string? Description { get; set; }
         public bool? StatedAt { get; set; }
 
-        //public virtual ICollection<SupplyModel> Supplies { get; set; }
+       // public virtual ICollection<SupplyModel> Supplies { get; set; }
     }
 }

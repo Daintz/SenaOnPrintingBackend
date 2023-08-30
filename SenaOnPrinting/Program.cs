@@ -8,14 +8,14 @@ using BusinessCape.Mappers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.Reflection.PortableExecutable;
 using BusinessCape.Services;
 using DataCape.Models;
 using persistencecape.repositories;
 using FluentValidation.AspNetCore;
 using BusinessCape.DTOs.SupplyCategory.Validators;
 using BusinessCape.DTOs.Product.Validators;
-using BusinessCape.DTOs.Supply.Validators;
+
+using BusinessCape.DTOs.Finish.Validator;
 
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
@@ -156,8 +156,6 @@ builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>(
 builder.Services.AddScoped<ProviderService>(); 
 builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 
-builder.Services.AddScoped<WarehauseTypeService>();
-builder.Services.AddScoped<IWarehausetypeRepository,WarehauseTypeRepository>();
 
 builder.Services.AddScoped<WarehauseService>();
 builder.Services.AddScoped<IWarehauseRepository, WarehauseRepository>();
@@ -201,6 +199,15 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductCreateDtoValidator>());
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductUpdateDtoValidator>());
 
+
+
+//============================|Finish|==========================//
+builder.Services.AddScoped<FinishServices>();
+builder.Services.AddScoped<IFinishs, FinishRepository>();
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<FinishCreateDTOValidator>());
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<FinishUpdateDTOValidator>());
+
+
 //=======================|SUPPLY CATEGORY|======================//
 builder.Services.AddScoped<SupplyCategoryService>();
 builder.Services.AddScoped<ISupplyCategoryRepository, SupplyCategoryRepository>();
@@ -211,7 +218,6 @@ builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidator
 //============================|SUPPLY|==========================//
 builder.Services.AddScoped<SupplyService>();
 builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
-//==============================================================//
 
 
 

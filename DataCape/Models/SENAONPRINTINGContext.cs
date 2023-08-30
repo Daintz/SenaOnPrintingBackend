@@ -52,7 +52,6 @@ namespace DataCape.Models
         public virtual DbSet<UnitMeasuresXSupplyModel> UnitMeasuresXSupplies { get; set; } = null!;
         public virtual DbSet<UserModel> Users { get; set; } = null!;
         public virtual DbSet<WarehouseModel> Warehouses { get; set; } = null!;
-        public virtual DbSet<WarehouseTypeModel> WarehouseTypes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -727,13 +726,13 @@ namespace DataCape.Models
 
                 entity.Property(e => e.SupplyType).HasColumnName("supply_type");
 
-
+        
 
                 entity.Property(e => e.UseInstructions)
                     .HasColumnType("text")
                     .HasColumnName("use_instructions");
 
-
+       
             });
 
             modelBuilder.Entity<SupplyCategoriesXSupplyModel>(entity =>
@@ -1089,33 +1088,9 @@ namespace DataCape.Models
                     .IsUnicode(false)
                     .HasColumnName("ubication");
 
-                entity.Property(e => e.WarehouseTypeId).HasColumnName("warehouse_type_id");
+                entity.Property(e => e.TypeServiceId).HasColumnName("type_services_id");
 
-                entity.HasOne(d => d.WarehouseType)
-                    .WithMany(p => p.Warehouses)
-                    .HasForeignKey(d => d.WarehouseTypeId)
-                    .HasConstraintName("FK__warehouse__wareh__47A6A41B");
-            });
-
-            modelBuilder.Entity<WarehouseTypeModel>(entity =>
-            {
-                entity.ToTable("warehouse_type");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Description)
-                    .HasMaxLength(150)
-                    .IsUnicode(false)
-                    .HasColumnName("description");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
-
-                entity.Property(e => e.StatedAt)
-                    .HasColumnName("stated_at")
-                    .HasDefaultValueSql("((1))");
+               
             });
 
             OnModelCreatingPartial(modelBuilder);

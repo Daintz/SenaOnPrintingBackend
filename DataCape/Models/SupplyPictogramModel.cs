@@ -17,6 +17,6 @@ namespace DataCape.Models
         public string? PictogramFile { get; set; }
         public bool? StatedAt { get; set; }
 
-        //public virtual ICollection<SupplyModel> Supplies { get; set; }
+       // public virtual ICollection<SupplyModel> Supplies { get; set; }
     }
 }

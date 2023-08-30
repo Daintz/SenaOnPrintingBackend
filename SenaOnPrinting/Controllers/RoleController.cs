@@ -24,7 +24,7 @@ namespace SenaOnPrinting.Controllers
             _context = context;
         }
 
-        //[AuthorizationFilter(ApplicationPermission.ReadRole)]
+       // [AuthorizationFilter(ApplicationPermission.ReadRole)]
         [HttpGet]
         public async Task<IActionResult> Index()
         {

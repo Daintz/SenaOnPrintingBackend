@@ -13,11 +13,13 @@ namespace BusinessCape.DTOs.QuotationClientDetail
         public long? ProductId { get; set; }
         public int Cost { get; set; }
         public int? Quantity { get; set; }
+        public bool? StatedAt { get; set; }
 
-        //public QuotationClientCreateDto()
-        //{
-        //    StatedAt = true;
-        //}
+        public QuotationClientDetailCreateDto()
+        {
+          StatedAt = true;
+        }
+
 
     }
 }
