@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataCape.Models
 {
-    public  class WarehouseModel
+    public class WarehouseModel
     {
         public WarehouseModel()
         {
@@ -12,12 +12,12 @@ namespace DataCape.Models
         }
 
         public long Id { get; set; }
-        public long? WarehouseTypeId { get; set; }
+        public long? TypeServiceId { get; set; }
         public string? Ubication { get; set; }
         public bool? StatedAt { get; set; }
 
-        public virtual WarehouseTypeModel? WarehouseType { get; set; }
-        //public virtual ICollection<SupplyModel> Supplies { get; set; }
+        public virtual TypeServiceModel? TypeServices { get; set; }
+        public virtual ICollection<SupplyModel> Supplies { get; set; }
         public virtual ICollection<SupplyDetailModel> SupplyDetails { get; set; }
     }
 }

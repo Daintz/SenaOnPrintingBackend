@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BusinessCape.DTOs.Warehause;
-using BusinessCape.DTOs.WarehauseType;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Http;

@@ -14,7 +14,6 @@ using BusinessCape.DTOs.TypeDocument;
 using BusinessCape.DTOs.User;
 using BusinessCape.DTOs.Provider;
 using BusinessCape.DTOs.Warehause;
-using BusinessCape.DTOs.WarehauseType;
 //using BusinessCape.DTOs.ImpositionPlate;
 //using BusinessCape.DTOs.Lineature;
 //using BusinessCape.DTOs.OrderProduction;
@@ -143,11 +142,6 @@ namespace BusinessCape.Mappers
             // PUT OR UPDATE //
             CreateMap<ProviderUpdateDto, ProviderModel>();
 
-            //============================|WarehauseType|==========================//
-            // POST OR CREATE //
-            CreateMap<WarehauseTypeCreateDto, WarehouseTypeModel>();
-            // PUT OR UPDATE //
-            CreateMap<WarehauseTypeUpdateDto, WarehouseTypeModel>();
 
             //============================|Warehause|==========================//
             // POST OR CREATE //

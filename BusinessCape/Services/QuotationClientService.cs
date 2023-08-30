@@ -1,5 +1,6 @@
 ﻿using DataCape.Models;
 using PersistenceCape.Interfaces;
+using PersistenceCape.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,10 @@ namespace BusinessCape.Services
         public async Task DeleteAsync(long id)
         {
             await _quotationClientRepository.DeleteAsync(id);
+        }
+        public async Task ChangeQuotationStatus(long id)
+        {
+            await _quotationClientRepository.ChangeStatusQuotation(id);
         }
     }
 }

@@ -95,7 +95,7 @@ namespace SenaOnPrinting.Controllers
             {
                 var token = user.ForgotPasswordToken;
                 var subject = "SENAonPrinting - Recuperar contraseña";
-                var forgotPasswordLink = $"http://127.0.0.1:5173/restaurar_contraseña?token={token}&email={email}";                
+                var forgotPasswordLink = $"http://localhost:5173/restaurar_contraseña?token={token}&email={email}";                
                 var message = new Message(new string[] { user.Email }, subject, forgotPasswordLink);
 
                 _emailRepository.SendEmail(message);
