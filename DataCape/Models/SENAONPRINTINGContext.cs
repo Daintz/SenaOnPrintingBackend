@@ -789,6 +789,8 @@ namespace DataCape.Models
                     .WithMany()
                     .HasForeignKey(d => d.SupplyId)
                     .HasConstraintName("FK__supply_ca__suppl__3A4CA8FD");
+
+                entity.HasKey(e => new { e.SupplyId, e.SupplyCategory });
             });
 
             modelBuilder.Entity<SupplyCategoryModel>(entity =>
@@ -817,13 +819,8 @@ namespace DataCape.Models
                 entity.ToTable("supply_details");
 
                 entity.Property(e => e.Id).HasColumnName("id");
+                //entity.Property(e => e.Batch).HasColumnName("batch");
 
-                entity.Property(e => e.ActualQuantity).HasColumnName("actual_quantity");
-
-                entity.Property(e => e.Batch)
-                    .HasMaxLength(25)
-                    .IsUnicode(false)
-                    .HasColumnName("batch");
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(250)
@@ -838,7 +835,6 @@ namespace DataCape.Models
                     .HasColumnType("datetime")
                     .HasColumnName("expiration_date");
 
-                entity.Property(e => e.InitialQuantity).HasColumnName("initial_quantity");
 
                 entity.Property(e => e.ProviderId).HasColumnName("provider_id");
 
@@ -857,12 +853,12 @@ namespace DataCape.Models
                 entity.HasOne(d => d.Provider)
                     .WithMany(p => p.SupplyDetails)
                     .HasForeignKey(d => d.ProviderId)
-                    .HasConstraintName("FK__supply_de__provi__3C34F16F");
+                    .HasConstraintName("provider_idContraint");
 
                 entity.HasOne(d => d.Supply)
                     .WithMany(p => p.SupplyDetails)
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("FK__supply_de__suppl__3D2915A8");
+                    .HasConstraintName("supply_idContraint");
 
                 entity.HasOne(d => d.Warehouse)
                     .WithMany(p => p.SupplyDetails)
