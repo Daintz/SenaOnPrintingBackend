@@ -22,7 +22,7 @@ namespace PersistenceCape.Repositories
         {
 
             return await _context.Supplies.Include(supply => supply.SupplyCategoriesXSupply)
-                .ThenInclude(pbr => pbr.SupplyCategory)
+                .ThenInclude(pbr => pbr.SupplyCategoryId)
                 //.Include(supply => supply.SupplyXSupplyPictogram)
                 //.ThenInclude(pbr => pbr.SupplyPictogram)
                 .Include(supply => supply.UnitMeasuresXSupply)

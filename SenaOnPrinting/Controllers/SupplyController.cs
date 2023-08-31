@@ -60,13 +60,13 @@ namespace SenaOnPrinting.Controllers
                 var supplyCategories = await _context.SupplyCategories.FindAsync(supplyCategoriesId);
                 if (supplyCategories == null)
                 {
-                    return BadRequest("");
+                    return BadRequest("ERROR EN LAS CATEGORIAS");
                 }
 
                 var supplyCategoriesXSupply = new SupplyCategoriesXSupplyModel
                 {
                     SupplyId = supplyToCreate.Id,
-                    SupplyCategory = supplyCategories.Id
+                    SupplyCategoryId = supplyCategories.Id
                 };
 
                 _context.SupplyCategoriesXSupplies.Add(supplyCategoriesXSupply);
@@ -77,7 +77,7 @@ namespace SenaOnPrinting.Controllers
                 var supplyPictograms = await _context.SupplyPictograms.FindAsync(supplyPictogramsId);
                 if (supplyPictograms == null)
                 {
-                    return BadRequest("");
+                    return BadRequest("ERROR EN LOS PICTOGRMAAS");
                 }
 
                 var supplyXSupplyPictogram = new SupplyXSupplyPictogramModel
@@ -94,7 +94,7 @@ namespace SenaOnPrinting.Controllers
                 var unitMeasures = await _context.UnitMeasures.FindAsync(unitMeasuresId);
                 if (unitMeasures == null)
                 {
-                    return BadRequest("");
+                    return BadRequest("ERROR EN LAS UNIDADES DE MEDIDA");
                 }
 
                 var unitMeasuresXSupplyModel = new UnitMeasuresXSupplyModel
