@@ -759,12 +759,12 @@ namespace DataCape.Models
                 entity.Property(e => e.SupplyId).HasColumnName("supply_id");
 
                 entity.HasOne(d => d.SupplyCategoryNavigation)
-                    .WithMany()
+                    .WithMany(d => d.SupplyCategoriesXSupply)
                     .HasForeignKey(d => d.SupplyCategoryId)
                     .HasConstraintName("FK__supply_ca__suppl__3B40CD36");
 
                 entity.HasOne(d => d.Supply)
-                    .WithMany()
+                    .WithMany(d => d.SupplyCategoriesXSupply)
                     .HasForeignKey(d => d.SupplyId)
                     .HasConstraintName("FK__supply_ca__suppl__3A4CA8FD");
 
@@ -907,12 +907,12 @@ namespace DataCape.Models
                 entity.Property(e => e.SupplyPictogramId).HasColumnName("supply_pictogram_id");
 
                 entity.HasOne(d => d.Supply)
-                    .WithMany()
+                    .WithMany(d => d.SupplyXSupplyPictogram)
                     .HasForeignKey(d => d.SupplyId)
                     .HasConstraintName("FK__supply_x___suppl__40F9A68C");
 
                 entity.HasOne(d => d.SupplyPictogram)
-                    .WithMany()
+                    .WithMany(d => d.SupplyXSupplyPictogram)
                     .HasForeignKey(d => d.SupplyPictogramId)
                     .HasConstraintName("FK__supply_x___suppl__41EDCAC5");
             });
@@ -989,9 +989,7 @@ namespace DataCape.Models
             });
 
             modelBuilder.Entity<UnitMeasuresXSupplyModel>(entity =>
-            {
-                entity.HasKey(t => new { t.SupplyId, t.UnitMeasureId });
-
+            {                
                 entity.ToTable("unit_measures_x_supply");
 
                 entity.Property(e => e.SupplyId).HasColumnName("supply_id");
@@ -999,14 +997,16 @@ namespace DataCape.Models
                 entity.Property(e => e.UnitMeasureId).HasColumnName("unit_measure_id");
 
                 entity.HasOne(d => d.Supply)
-                    .WithMany()
+                    .WithMany(d => d.UnitMeasuresXSupply)
                     .HasForeignKey(d => d.SupplyId)
                     .HasConstraintName("FK__unit_meas__suppl__43D61337");
 
                 entity.HasOne(d => d.UnitMeasure)
-                    .WithMany()
+                    .WithMany(d => d.UnitMeasuresXSupply)
                     .HasForeignKey(d => d.UnitMeasureId)
                     .HasConstraintName("FK__unit_meas__unit___44CA3770");
+
+                entity.HasKey(t => new { t.SupplyId, t.UnitMeasureId });
             });
 
             modelBuilder.Entity<UserModel>(entity =>

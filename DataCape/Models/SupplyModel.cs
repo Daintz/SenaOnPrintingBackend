@@ -34,13 +34,10 @@ namespace DataCape.Models
         //public virtual SupplyPictogramModel? SupplyPictograms { get; set; }
         //public virtual UnitMeasureModel? UnitMeasures { get; set; }
         [JsonIgnore]
-        [NotMapped]
         public virtual List<SupplyCategoriesXSupplyModel> SupplyCategoriesXSupply { get; set; }
-        [JsonIgnore]
-        [NotMapped]
+        [JsonIgnore]     
         public virtual List<SupplyXSupplyPictogramModel> SupplyXSupplyPictogram { get; set; }
         [JsonIgnore]
-        [NotMapped]
         public virtual List<UnitMeasuresXSupplyModel> UnitMeasuresXSupply { get; set; }
 
         //[JsonIgnore]
