@@ -3,6 +3,7 @@ using BusinessCape.DTOs.Product;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace SenaOnPrinting.Controllers
 {
@@ -12,11 +13,13 @@ namespace SenaOnPrinting.Controllers
     {
         private readonly ProductService _productService;
         private readonly IMapper _mapper;
+        private readonly SENAONPRINTINGContext _context;
 
-        public ProductController(ProductService productService, IMapper mapper)
+        public ProductController(ProductService productService, IMapper mapper, SENAONPRINTINGContext context)
         {
             _productService = productService;
             _mapper = mapper;
+            _context = context;
         }
 
         [HttpGet]
@@ -41,8 +44,27 @@ namespace SenaOnPrinting.Controllers
         public async Task<IActionResult> Add(ProductCreateDto supplyCategoryDto)
         {
             var productToCreate = _mapper.Map<ProductModel>(supplyCategoryDto);
-
             await _productService.AddAsync(productToCreate);
+
+            foreach (var supplyIds in supplyCategoryDto.SupplyIds)
+            {
+                var permission = await _context.Supplies.FindAsync(supplyIds);
+                if (permission == null)
+                {
+                    return BadRequest("Uno de los Ids rol no existe, por favor rectifique");
+                }
+
+                var SupplyXProduct = new SupplyXProductModel
+                {
+                    SupplyId = permission.Id,
+                    ProductId = productToCreate.Id
+                };
+
+                _context.SupplyXProducts.Add(SupplyXProduct);
+            }
+
+            _context.SaveChanges();
+           
             return Ok(productToCreate);
         }
 

@@ -464,27 +464,113 @@ namespace DataCape.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Characteristics)
-                    .HasColumnType("text")
-                    .HasColumnName("characteristics");
+                entity.Property(e => e.BackCover).HasColumnName("back_cover");
+
+                entity.Property(e => e.BackCoverCode)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("back_cover_code");
+
+                entity.Property(e => e.BackCoverInks).HasColumnName("back_cover_inks");
+
+                entity.Property(e => e.BackCoverPantone)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("back_cover_pantone");
+
+                entity.Property(e => e.Bindings)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("bindings");
 
                 entity.Property(e => e.Cost)
                     .HasColumnType("decimal(18, 0)")
                     .HasColumnName("cost");
+
+                entity.Property(e => e.Dimension)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("dimension");
+
+                entity.Property(e => e.FrontPage).HasColumnName("front_page");
+
+                entity.Property(e => e.FrontPageCode)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("front_page_code");
+
+                entity.Property(e => e.FrontPageInks).HasColumnName("Front_page_inks");
+
+                entity.Property(e => e.FrontPagePantone)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("front_page_pantone");
+
+                entity.Property(e => e.Inside).HasColumnName("inside");
+
+                entity.Property(e => e.InsideCode)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("inside_code");
+
+                entity.Property(e => e.InsideInks).HasColumnName("inside_inks");
+
+                entity.Property(e => e.InsidePantone)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("inside_pantone");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("name");
 
+                entity.Property(e => e.NumberPages).HasColumnName("number_pages");
+
+                entity.Property(e => e.Observations)
+                    .HasColumnType("text")
+                    .HasColumnName("observations");
+
+                entity.Property(e => e.PaperCutId).HasColumnName("paper_cut_id");
+
+                entity.Property(e => e.Size)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("size");
+
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Substratum)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("substratum");
+
+                entity.Property(e => e.SubstratumBackCover)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("substratum_back_cover");
+
+                entity.Property(e => e.SubstratumFrontPage)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("substratum_front_page");
+
+                entity.Property(e => e.SubstratumInside)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("substratum_inside");
 
                 entity.Property(e => e.TypeProduct)
                     .HasMaxLength(150)
                     .IsUnicode(false)
                     .HasColumnName("type_product");
+
+                entity.HasOne(d => d.PaperCut)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.PaperCutId)
+                    .HasConstraintName("FK_productspaper__6754599E");
             });
 
             modelBuilder.Entity<ProviderModel>(entity =>
@@ -883,6 +969,8 @@ namespace DataCape.Models
                     .WithMany()
                     .HasForeignKey(d => d.SupplyId)
                     .HasConstraintName("FK__supply_x___suppl__40058253");
+
+                entity.HasKey(e => new { e.SupplyId, e.ProductId});
             });
 
             modelBuilder.Entity<SupplyXSupplyPictogramModel>(entity =>
