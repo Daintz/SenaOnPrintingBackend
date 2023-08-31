@@ -437,15 +437,13 @@ namespace DataCape.Models
             {
                 entity.ToTable("permissions_by_role");
 
-                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.PermissionId).HasColumnName("permission_id");
 
                 entity.Property(e => e.RoleId).HasColumnName("role_id");
 
-                entity.Property(e => e.StatedAt)
-                    .HasColumnName("stated_at")
-                    .HasDefaultValueSql("((1))");
+         
+                   
 
                 entity.HasOne(d => d.Permission)
                     .WithMany(p => p.PermissionsByRoles)
