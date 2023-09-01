@@ -20,7 +20,7 @@ namespace PersistenceCape.Repositories
 
         public async Task<ProductModel> GetByIdAsync(long id)
         {
-            return await _context.Products.FindAsync(id);
+            return await _context.Products.Include(s => s.Supplies).ThenInclude(s => s.Supply).FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task UpdateAsync(ProductModel product)

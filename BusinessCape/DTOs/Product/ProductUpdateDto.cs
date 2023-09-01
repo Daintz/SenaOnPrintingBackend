@@ -1,6 +1,4 @@
-﻿using DataCape.Models;
-
-namespace BusinessCape.DTOs.Product
+﻿namespace BusinessCape.DTOs.Product
 {
     public class ProductUpdateDto
     {
@@ -11,7 +9,6 @@ namespace BusinessCape.DTOs.Product
         public long? PaperCutId { get; set; }
         public decimal? Cost { get; set; }
         public string? Observations { get; set; }
-        public bool? StatedAt { get; set; }
         public string Size { get; set; } = null!;
         public bool? FrontPage { get; set; }
         public bool? FrontPageInks { get; set; }
