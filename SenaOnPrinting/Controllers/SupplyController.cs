@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SenaOnPrinting.Filters;
 using SenaOnPrinting.Permissions;
+using Microsoft.EntityFrameworkCore;
 
 namespace SenaOnPrinting.Controllers
 {
@@ -19,11 +20,13 @@ namespace SenaOnPrinting.Controllers
     {
         private readonly SupplyService _supplyService;
         private readonly IMapper _mapper;
+        private readonly SENAONPRINTINGContext _context;
 
-        public SupplyController(SupplyService supplyService, IMapper mapper)
+        public SupplyController(SupplyService supplyService, IMapper mapper, SENAONPRINTINGContext context)
         {
             _supplyService = supplyService;
             _mapper = mapper;
+            _context = context;
         }
 
         [HttpGet]
@@ -46,10 +49,73 @@ namespace SenaOnPrinting.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Add(SupplyCreateDto supplyDto)
+        //{
+        //    var supplyToCreate = _mapper.Map<SupplyModel>(supplyDto);
+
+        //    await _supplyService.AddAsync(supplyToCreate);
+        //    return Ok(supplyToCreate);
+        //}
         {
             var supplyToCreate = _mapper.Map<SupplyModel>(supplyDto);
 
             await _supplyService.AddAsync(supplyToCreate);
+
+            foreach (var supplyCategoriesId in supplyDto.SupplyCategoriesId)
+            {
+                var supplyCategories = await _context.SupplyCategories.FindAsync(supplyCategoriesId);
+                if (supplyCategories == null)
+                {
+                    return BadRequest("ERROR EN LAS CATEGORIAS");
+                }
+
+                var supplyCategoriesXSupply = new SupplyCategoriesXSupplyModel
+                {
+                    SupplyId = supplyToCreate.Id,
+                    SupplyCategoryId = supplyCategories.Id
+                };
+
+                _context.SupplyCategoriesXSupplies.Add(supplyCategoriesXSupply);
+            }
+            //pictogramas
+            foreach (var supplyPictogramsId in supplyDto.SupplyPictogramsId)
+            {
+                var supplyPictograms = await _context.SupplyPictograms.FindAsync(supplyPictogramsId);
+                if (supplyPictograms == null)
+                {
+                    return BadRequest("ERROR EN LOS PICTOGRMAAS");
+                }
+
+                var supplyXSupplyPictogram = new SupplyXSupplyPictogramModel
+                {
+                    SupplyId = supplyToCreate.Id,
+                    SupplyPictogramId = supplyPictograms.Id
+                };
+
+                _context.SupplyXSupplyPictograms.Add(supplyXSupplyPictogram);
+            }
+            //Unidad de medida
+            foreach (var unitMeasuresId in supplyDto.UnitMeasuresId)
+            {
+                var unitMeasures = await _context.UnitMeasures.FindAsync(unitMeasuresId);
+                if (unitMeasures == null)
+                {
+                    return BadRequest("ERROR EN LAS UNIDADES DE MEDIDA");
+                }
+
+                var unitMeasuresXSupplyModel = new UnitMeasuresXSupplyModel
+                {
+                    SupplyId = supplyToCreate.Id,
+                    UnitMeasureId = unitMeasures.Id
+                };
+
+                _context.UnitMeasuresXSupplies.Add(unitMeasuresXSupplyModel);
+            }
+
+
+            //var permissions = _context.ApplicationPermissions.Where(p => roleDto.PermissionIds.Contains(p.Id)).ToList();
+            //role.Permissions = permissions;
+
+            await _context.SaveChangesAsync();
             return Ok(supplyToCreate);
         }
 
@@ -67,6 +133,66 @@ namespace SenaOnPrinting.Controllers
             _mapper.Map(supplyDto, supplyToUpdate);
 
             await _supplyService.UpdateAsync(supplyToUpdate);
+
+            _context.SupplyCategoriesXSupplies.RemoveRange(_context.SupplyCategoriesXSupplies.Where(d => d.SupplyId == supplyToUpdate.Id));
+            _context.SupplyXSupplyPictograms.RemoveRange(_context.SupplyXSupplyPictograms.Where(d => d.SupplyId == supplyToUpdate.Id));
+            _context.UnitMeasuresXSupplies.RemoveRange(_context.UnitMeasuresXSupplies.Where(d => d.SupplyId == supplyToUpdate.Id));
+
+            await _context.SaveChangesAsync();
+
+            foreach (var supplyCategoriesId in supplyDto.SupplyCategoriesId)
+            {
+                var supplyCategories = await _context.SupplyCategories.FindAsync(supplyCategoriesId);
+                if (supplyCategories == null)
+                {
+                    return BadRequest("ERROR EN LAS CATEGORIAS");
+                }
+
+                var supplyCategoriesXSupply = new SupplyCategoriesXSupplyModel
+                {
+                    SupplyId = supplyToUpdate.Id,
+                    SupplyCategoryId = supplyCategories.Id
+                };
+
+                _context.SupplyCategoriesXSupplies.Add(supplyCategoriesXSupply);
+            }
+            //pictogramas
+            foreach (var supplyPictogramsId in supplyDto.SupplyPictogramsId)
+            {
+                var supplyPictograms = await _context.SupplyPictograms.FindAsync(supplyPictogramsId);
+                if (supplyPictograms == null)
+                {
+                    return BadRequest("ERROR EN LOS PICTOGRMAAS");
+                }
+
+                var supplyXSupplyPictogram = new SupplyXSupplyPictogramModel
+                {
+                    SupplyId = supplyToUpdate.Id,
+                    SupplyPictogramId = supplyPictograms.Id
+                };
+
+                _context.SupplyXSupplyPictograms.Add(supplyXSupplyPictogram);
+            }
+            //Unidad de medida
+            foreach (var unitMeasuresId in supplyDto.UnitMeasuresId)
+            {
+                var unitMeasures = await _context.UnitMeasures.FindAsync(unitMeasuresId);
+                if (unitMeasures == null)
+                {
+                    return BadRequest("ERROR EN LAS UNIDADES DE MEDIDA");
+                }
+
+                var unitMeasuresXSupplyModel = new UnitMeasuresXSupplyModel
+                {
+                    SupplyId = supplyToUpdate.Id,
+                    UnitMeasureId = unitMeasures.Id
+                };
+
+                _context.UnitMeasuresXSupplies.Add(unitMeasuresXSupplyModel);
+            }
+
+            await _context.SaveChangesAsync();
+
             return Ok(supplyToUpdate);
         }
 

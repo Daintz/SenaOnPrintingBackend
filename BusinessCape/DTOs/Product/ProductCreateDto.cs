@@ -4,10 +4,6 @@ namespace BusinessCape.DTOs.Product
 {
     public class ProductCreateDto
     {
-        public ProductCreateDto()
-        {
-            QuotationClientDetails = new List<QuotationClientDetailModel>();
-        }
 
         public long Id { get; set; }
         public List<long> SupplyIds { get; set; }
@@ -30,16 +26,12 @@ namespace BusinessCape.DTOs.Product
         public bool? InsideInks { get; set; }
         public string? InsidePantone { get; set; }
         public string? InsideCode { get; set; }
-        public bool? NumberPages { get; set; }
+        public long? NumberPages { get; set; }
         public string? Bindings { get; set; }
         public string? Dimension { get; set; }
         public string? SubstratumFrontPage { get; set; }
         public string? SubstratumBackCover { get; set; }
         public string? SubstratumInside { get; set; }
         public string? Substratum { get; set; }
-
-        public virtual PaperCutModel? PaperCut { get; set; }
-        public virtual List<QuotationClientDetailModel> QuotationClientDetails { get; set; }
-        public virtual List<SupplyModel> Supplies { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace BusinessCape.DTOs.Supply
+﻿using DataCape.Models;
+
+namespace BusinessCape.DTOs.Supply
 {
     public class SupplyCreateDto
     {
@@ -12,9 +14,9 @@
         public decimal? AverageCost { get; set; }
 
         public bool? StatedAt { get; set; }
-        //public long? supply_categories_id { get; set; }
-        //public long? unit_measures_id { get; set; }
-        //public long? supply_pictograms_id { get; set; }
+        public List<long> UnitMeasuresId { get; set; } = null!;
+        public List<long> SupplyPictogramsId { get; set; } = null!;
+        public List<long> SupplyCategoriesId { get; set; } = null!;
         public SupplyCreateDto()
         {
             StatedAt = true;

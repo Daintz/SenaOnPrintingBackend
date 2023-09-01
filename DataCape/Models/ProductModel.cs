@@ -5,6 +5,7 @@
         public ProductModel()
         {
             QuotationClientDetails = new List<QuotationClientDetailModel>();
+            Supplies = new List<SupplyXProductModel>();
         }
 
         public long Id { get; set; }
@@ -27,7 +28,7 @@
         public bool? InsideInks { get; set; }
         public string? InsidePantone { get; set; }
         public string? InsideCode { get; set; }
-        public bool? NumberPages { get; set; }
+        public long? NumberPages { get; set; }
         public string? Bindings { get; set; }
         public string? Dimension { get; set; }
         public string? SubstratumFrontPage { get; set; }
@@ -37,7 +38,7 @@
 
         public virtual PaperCutModel? PaperCut { get; set; }
         public virtual List<QuotationClientDetailModel> QuotationClientDetails { get; set; }
-        public virtual List<SupplyModel> Supplies { get; set; }
+        public virtual List<SupplyXProductModel> Supplies { get; set; }
 
     }
 }

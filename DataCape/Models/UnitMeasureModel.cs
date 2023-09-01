@@ -8,6 +8,7 @@ namespace DataCape.Models
         public UnitMeasureModel()
         {
             InverseBase = new HashSet<UnitMeasureModel>();
+            UnitMeasuresXSupply = new List<UnitMeasuresXSupplyModel>();
             //Supplies = new HashSet<SupplyModel>();
         }
 
@@ -18,6 +19,8 @@ namespace DataCape.Models
         public long? BaseId { get; set; }
         public decimal? ConversionFactor { get; set; }
         public bool? StatedAt { get; set; }
+
+        public virtual List<UnitMeasuresXSupplyModel> UnitMeasuresXSupply { get; set; }
 
         public virtual UnitMeasureModel? Base { get; set; }
         public virtual ICollection<UnitMeasureModel> InverseBase { get; set; }
