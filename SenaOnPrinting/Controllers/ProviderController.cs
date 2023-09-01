@@ -2,14 +2,19 @@
 using BusinessCape.DTOs.Provider;
 using BusinessCape.Services;
 using DataCape.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SenaOnPrinting.Filters;
+using SenaOnPrinting.Permissions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [AuthorizationFilter(ApplicationPermission.Provider)]
     public class ProviderController : ControllerBase
     {
 

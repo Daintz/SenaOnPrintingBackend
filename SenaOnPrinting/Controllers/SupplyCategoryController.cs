@@ -2,12 +2,17 @@
 using BusinessCape.DTOs.SupplyCategory;
 using BusinessCape.Services;
 using DataCape.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SenaOnPrinting.Filters;
+using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
+    [AuthorizationFilter(ApplicationPermission.Supply)]
     public class SupplyCategoryController : ControllerBase
     {
         private readonly SupplyCategoryService _supplyCategoryService;

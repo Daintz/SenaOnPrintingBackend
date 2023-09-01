@@ -5,11 +5,15 @@ using DataCape.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SenaOnPrinting.Filters;
+using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/user")]
+    [AuthorizationFilter(ApplicationPermission.User)]
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;

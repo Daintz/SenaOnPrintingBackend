@@ -10,19 +10,24 @@ namespace DataCape.Models
         public long? QuotationClientDetailId { get; set; }
         public long? UserId { get; set; }
         public string? MaterialReception { get; set; }
+        public string? Program { get; set; }
         public string? ProgramVersion { get; set; }
         public double? Indented { get; set; }
+        public string? Lineature { get; set; }
         public string? ColorProfile { get; set; }
-        public string? SpecialInk { get; set; }
-        public string? InkCode { get; set; }
-        public long? IdPaperCut { get; set; }
-        public string? Image { get; set; }
-        public string? Observations { get; set; }
-        public bool? StatedAt { get; set; }
-        public int? OrderStatus { get; set; }
-        public string? Program { get; set; }
         public string? TypePoint { get; set; }
+        public string? Observations { get; set; }
+        public string? Image { get; set; }
         public string? Scheme { get; set; }
+        public long? ImpositionPlanchId { get; set; }
+        public long? MachineId { get; set; }
+        public int? OrderStatus { get; set; }
+        public bool StatedAt { get; set; }
+
+        public virtual ImpositionPlanchModel? ImpositionPlanch { get; set; }
+        public virtual MachineModel? Machine { get; set; }
+        public virtual QuotationClientDetailModel? QuotationClientDetail { get; set; }
+        public virtual UserModel? User { get; set; }
         [NotMapped]
         public DateTime? OrderDate { get; set; }
         [NotMapped]
@@ -32,9 +37,5 @@ namespace DataCape.Models
         [NotMapped]
         public DateTime? DeliverDate { get; set; }
 
-
-        public virtual PaperCutModel? IdPaperCutNavigation { get; set; }
-        public virtual QuotationClientDetailModel? QuotationClientDetail { get; set; }
-        public virtual UserModel? User { get; set; }
     }
 }

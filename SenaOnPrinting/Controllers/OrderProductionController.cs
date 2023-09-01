@@ -8,14 +8,19 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using BusinessCape.DTOs.OrderProduction;
+using SenaOnPrinting.Permissions;
+using Microsoft.AspNetCore.Authorization;
+using SenaOnPrinting.Filters;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [AuthorizationFilter(ApplicationPermission.Production)]
     public class OrderProductionController : ControllerBase
     {
         private readonly OrderProductionService _orderProductionService;

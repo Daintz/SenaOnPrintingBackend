@@ -29,6 +29,7 @@ namespace PersistenceCape.Repositories
         .Include(qcd => qcd.QuotationClient)
                 .ThenInclude(qc => qc.Client)
         .Include(qp => qp.Product)
+        .Include(qcd => qcd.TypeService)
         .ToListAsync();
 
             var quotationClientIdsInProduction = await _context.OrderProductions
@@ -40,10 +41,18 @@ namespace PersistenceCape.Repositories
             .Select(qtd => new QuotationClientDetailModel
             {
                 Id = qtd.Id,
+                OrderDate = qtd.QuotationClient.OrderDate,
+                DeliverDate = qtd.QuotationClient.DeliverDate,
+                ProductName = qtd.Product.Name,
+                Name = qtd.QuotationClient.Client.Name,
                 QuotationClientId = qtd.QuotationClientId,
+                TypeService = qtd.TypeService,
+                Quantity = qtd.Quantity
+
+
             });
 
-        return filteredQuotationClientDetails;
+            return filteredQuotationClientDetails;
         }
         public async Task<QuotationClientDetailModel> GetByIdAsync(long id)
         {
