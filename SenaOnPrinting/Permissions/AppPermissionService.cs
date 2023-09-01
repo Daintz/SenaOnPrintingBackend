@@ -18,12 +18,13 @@ namespace SenaOnPrinting.Permissions
         {
             ICollection<RoleModel> role = await _context.Set<UserModel>()
                 .Include(x => x.Role)
-                .ThenInclude(x => x.Permissions)
+                .ThenInclude(x => x.PermissionsByRoles)
+                .ThenInclude(x => x.Permission)
                 .Where(x => x.Id == id)
                 .Select(x => x.Role)
                 .ToArrayAsync();
 
-            var permissions = role.SelectMany(x => x.Permissions).Select(x => x.Name).ToHashSet();
+            var permissions = role.SelectMany(x => x.PermissionsByRoles).Select(x => x.Permission.Name).ToHashSet();
 
             return permissions;
         }

@@ -12,7 +12,8 @@ namespace DataCape.Models
             SupplyCategoriesXSupply = new List<SupplyCategoriesXSupplyModel>();
             SupplyXSupplyPictogram = new List<SupplyXSupplyPictogramModel>();
             UnitMeasuresXSupply = new List<UnitMeasuresXSupplyModel>();
-            SupplyDetails = new HashSet<SupplyDetailModel>();
+            SupplyDetails = new List<SupplyDetailModel>();
+            Products = new List<SupplyXProductModel>();
         }
 
         public long Id { get; set; }
@@ -45,6 +46,8 @@ namespace DataCape.Models
         //public virtual SupplyPictogramModel? SupplyPictogram { get; set; }
         //public virtual UnitMeasureModel? UnitMeasure { get; set; }
 
-        public virtual ICollection<SupplyDetailModel> SupplyDetails { get; set; }
+        public virtual List<SupplyDetailModel> SupplyDetails { get; set; }
+        public virtual List<SupplyXProductModel> Products { get; set; }
+
     }
 }

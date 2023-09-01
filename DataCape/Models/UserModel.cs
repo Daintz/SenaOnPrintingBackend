@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DataCape.Models
+﻿namespace DataCape.Models
 {
     public  class UserModel
     {

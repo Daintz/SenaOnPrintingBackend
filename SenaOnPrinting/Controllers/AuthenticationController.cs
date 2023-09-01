@@ -74,7 +74,7 @@ namespace SenaOnPrinting.Controllers
                 return StatusCode(StatusCodes.Status200OK, new { message = "Inicio de Sesion Exitoso", token = _token});
             } else
             {
-                return StatusCode(StatusCodes.Status401Unauthorized, new { message = "Inicio de Sesion Incorrecto, intente de nuevo", token = "" });
+                return StatusCode(StatusCodes.Status401Unauthorized, new { message = "Credenciales incorrectas, intente de nuevo", token = "" });
             }
         }
         [HttpDelete]

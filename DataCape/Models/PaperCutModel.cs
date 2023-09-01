@@ -15,5 +15,6 @@ namespace DataCape.Models
         public bool? StatedAt { get; set; }
 
         public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }
+        public virtual List<ProductModel> Products { get; set; }
     }
 }

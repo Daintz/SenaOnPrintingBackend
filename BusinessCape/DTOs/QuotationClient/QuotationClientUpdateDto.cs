@@ -9,13 +9,11 @@ namespace BusinessCape.DTOs.QuotationClient
 {
     public class QuotationClientUpdateDto
     {
-        public long Id { get; set; }
-        public long? UserId { get; set; }
-        public long? ClientId { get; set; }
-        public long? TypeServiceId { get; set; }
-        public DateTime? OrderDate { get; set; }
+        public long Id {get; set;}
+       public DateTime? OrderDate { get; set; }
         public DateTime? DeliverDate { get; set; }
-        public int QuotationStatus { get; set; }
+        public int? QuotationStatus { get; set; }
+        public int? FullValue { get; set; }
 
     }
 }
