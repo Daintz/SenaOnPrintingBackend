@@ -56,6 +56,8 @@ namespace SenaOnPrinting.Controllers
                 claims.AddClaim(new Claim(ClaimTypes.Name, user.Names));
                 claims.AddClaim(new Claim(ClaimTypes.Email, email));
                 claims.AddClaim(new Claim("role", user.RoleId.ToString()));
+                claims.AddClaim(new Claim("id", user.Id.ToString()));
+                //claims.AddClaim(new Claim("permissions", appPermissions.ToString()));
 
                 foreach (var permission in appPermissions)
                 {
