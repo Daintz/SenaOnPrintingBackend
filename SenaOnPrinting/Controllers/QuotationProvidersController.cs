@@ -7,11 +7,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using BusinessCape.DTOs.QuotationProviders;
 using BusinessCape.DTOs.SupplyPictograms;
+using SenaOnPrinting.Permissions;
+using Microsoft.AspNetCore.Authorization;
+using SenaOnPrinting.Filters;
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [AuthorizationFilter(ApplicationPermission.Provider)]
     public class QuotationProvidersController : ControllerBase
     {
         private readonly QuotationProvidersServices _quotation_providersServices;

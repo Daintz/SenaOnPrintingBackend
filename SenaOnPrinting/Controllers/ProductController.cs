@@ -2,12 +2,17 @@
 using BusinessCape.DTOs.Product;
 using BusinessCape.Services;
 using DataCape.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SenaOnPrinting.Filters;
+using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
+    [AuthorizationFilter(ApplicationPermission.Configuration)]
     public class ProductController : ControllerBase
     {
         private readonly ProductService _productService;

@@ -23,17 +23,18 @@ namespace SenaOnPrinting.Controllers
 
         private readonly AuthenticationService _service;
 
-        //private readonly IAppPermissionService _appPermissionService;
+        private readonly IAppPermissionService _appPermissionService;
 
         private readonly IEmailRepository _emailRepository;
 
         private bool result;
 
-        public AuthenticationController(AuthenticationService service, IConfiguration configuration, IEmailRepository emailRepository)
+        public AuthenticationController(AuthenticationService service, IConfiguration configuration, IEmailRepository emailRepository, IAppPermissionService appPermissionService)
         {
             _service = service;
             secret_key = configuration["Jwt:SecretKey"];
             _emailRepository = emailRepository;
+            _appPermissionService = appPermissionService;
         }
 
         [AllowAnonymous]
@@ -47,15 +48,19 @@ namespace SenaOnPrinting.Controllers
 
             if (user != null)
             {
-                //HashSet<String> appPermissions = await _appPermissionService.GetPermissionsAsync(user.Id);
+                HashSet<string> appPermissions = await _appPermissionService.GetPermissionsAsync(user.Id);
                 var secret = Encoding.ASCII.GetBytes(secret_key);
                 var claims = new ClaimsIdentity();
 
-                claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Names));
+                claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+                claims.AddClaim(new Claim(ClaimTypes.Name, user.Names));
                 claims.AddClaim(new Claim(ClaimTypes.Email, email));
                 claims.AddClaim(new Claim("role", user.RoleId.ToString()));
-                //claims.AddClaim(new Claim("permissions", appPermissions.ToString()));
 
+                foreach (var permission in appPermissions)
+                {
+                    claims.AddClaim(new Claim("permissions", permission));
+                }                
 
                 var token_descriptor = new SecurityTokenDescriptor
                 {

@@ -32,7 +32,7 @@ namespace SenaOnPrinting.Permissions
             if(appPermissions.Contains(requirement.AppPermission))
             {
                 context.Succeed(requirement);
-            }
+            } 
         }
     }
 }

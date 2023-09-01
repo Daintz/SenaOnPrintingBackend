@@ -96,11 +96,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-// Permissions Handler Configuration
+// Permissions Handler Configuration 
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton<IAuthorizationHandler, AppPermissionAuthHandler>();
 builder.Services.AddSingleton<IAuthorizationPolicyProvider, AppPermissionAuthProvider>();
 
+builder.Services.AddScoped<IAppPermissionService, AppPermissionService>();
 
 // Configurar las interfaces para que el controlador las pueda usar
 
