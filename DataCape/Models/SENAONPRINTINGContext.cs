@@ -456,6 +456,8 @@ namespace DataCape.Models
                     .WithMany(p => p.PermissionsByRoles)
                     .HasForeignKey(d => d.RoleId)
                     .HasConstraintName("FK__permissio__role___2DE6D218");
+
+                entity.HasKey(e => new { e.RoleId, e.PermissionId });
             });
 
             modelBuilder.Entity<ProductModel>(entity =>
@@ -464,27 +466,113 @@ namespace DataCape.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Characteristics)
-                    .HasColumnType("text")
-                    .HasColumnName("characteristics");
+                entity.Property(e => e.BackCover).HasColumnName("back_cover");
+
+                entity.Property(e => e.BackCoverCode)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("back_cover_code");
+
+                entity.Property(e => e.BackCoverInks).HasColumnName("back_cover_inks");
+
+                entity.Property(e => e.BackCoverPantone)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("back_cover_pantone");
+
+                entity.Property(e => e.Bindings)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("bindings");
 
                 entity.Property(e => e.Cost)
                     .HasColumnType("decimal(18, 0)")
                     .HasColumnName("cost");
+
+                entity.Property(e => e.Dimension)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("dimension");
+
+                entity.Property(e => e.FrontPage).HasColumnName("front_page");
+
+                entity.Property(e => e.FrontPageCode)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("front_page_code");
+
+                entity.Property(e => e.FrontPageInks).HasColumnName("Front_page_inks");
+
+                entity.Property(e => e.FrontPagePantone)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("front_page_pantone");
+
+                entity.Property(e => e.Inside).HasColumnName("inside");
+
+                entity.Property(e => e.InsideCode)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("inside_code");
+
+                entity.Property(e => e.InsideInks).HasColumnName("inside_inks");
+
+                entity.Property(e => e.InsidePantone)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("inside_pantone");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("name");
 
+                entity.Property(e => e.NumberPages).HasColumnName("number_pages");
+
+                entity.Property(e => e.Observations)
+                    .HasColumnType("text")
+                    .HasColumnName("observations");
+
+                entity.Property(e => e.PaperCutId).HasColumnName("paper_cut_id");
+
+                entity.Property(e => e.Size)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("size");
+
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Substratum)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("substratum");
+
+                entity.Property(e => e.SubstratumBackCover)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("substratum_back_cover");
+
+                entity.Property(e => e.SubstratumFrontPage)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("substratum_front_page");
+
+                entity.Property(e => e.SubstratumInside)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("substratum_inside");
 
                 entity.Property(e => e.TypeProduct)
                     .HasMaxLength(150)
                     .IsUnicode(false)
                     .HasColumnName("type_product");
+
+                entity.HasOne(d => d.PaperCut)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.PaperCutId)
+                    .HasConstraintName("FK_productspaper__6754599E");
             });
 
             modelBuilder.Entity<ProviderModel>(entity =>
@@ -544,11 +632,12 @@ namespace DataCape.Models
 
                 entity.Property(e => e.QuotationStatus).HasColumnName("quotation_status");
 
+                entity.Property(e => e.FullValue).HasColumnName("full_value");
+
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.TypeServiceId).HasColumnName("type_service_id");
+            
 
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 
@@ -556,11 +645,7 @@ namespace DataCape.Models
                     .WithMany(p => p.QuotationClients)
                     .HasForeignKey(d => d.ClientId)
                     .HasConstraintName("FK__quotation__clien__30C33EC3");
-
-                entity.HasOne(d => d.TypeService)
-                    .WithMany(p => p.QuotationClients)
-                    .HasForeignKey(d => d.TypeServiceId)
-                    .HasConstraintName("FK__quotation__type___31B762FC");
+           
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.QuotationClients)
@@ -574,32 +659,17 @@ namespace DataCape.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.FullValue).HasColumnName("full_value");
-
-                entity.Property(e => e.InkQuantity).HasColumnName("ink_quantity");
-
-                entity.Property(e => e.NumberOfPages).HasColumnName("number_of_pages");
-
-                entity.Property(e => e.ProductHeight).HasColumnName("product_height");
-
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
+                entity.Property(e => e.TypeServiceId).HasColumnName("type_service_id");
 
-                entity.Property(e => e.ProductQuantity).HasColumnName("product_quantity");
-
-                entity.Property(e => e.ProductWidth).HasColumnName("product_width");
+                entity.Property(e => e.Cost).HasColumnName("cost");
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
 
                 entity.Property(e => e.QuotationClientId).HasColumnName("quotation_client_id");
 
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.TechnicalSpecifications)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("technical_specifications");
-
-                entity.Property(e => e.UnitValue).HasColumnName("unit_value");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.QuotationClientDetails)
@@ -610,6 +680,11 @@ namespace DataCape.Models
                     .WithMany(p => p.QuotationClientDetails)
                     .HasForeignKey(d => d.QuotationClientId)
                     .HasConstraintName("FK__quotation__quota__2FCF1A8A");
+
+                entity.HasOne(d => d.TypeServiceModel)
+                   .WithMany(p => p.QuotationClientDetails)
+                   .HasForeignKey(d => d.TypeServiceId)
+                   .HasConstraintName("FK__quotation__typeser__2CIL1A8A");
             });
 
             modelBuilder.Entity<QuotationProviderModel>(entity =>
@@ -877,7 +952,8 @@ namespace DataCape.Models
 
             modelBuilder.Entity<SupplyXProductModel>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
+                entity.HasKey(e => new { e.SupplyId, e.ProductId});
 
                 entity.ToTable("supply_x_product");
 
@@ -886,14 +962,15 @@ namespace DataCape.Models
                 entity.Property(e => e.SupplyId).HasColumnName("supply_id");
 
                 entity.HasOne(d => d.Product)
-                    .WithMany()
+                    .WithMany(d => d.Supplies)
                     .HasForeignKey(d => d.ProductId)
                     .HasConstraintName("FK__supply_x___produ__3F115E1A");
 
                 entity.HasOne(d => d.Supply)
-                    .WithMany()
+                    .WithMany(d => d.Products)
                     .HasForeignKey(d => d.SupplyId)
                     .HasConstraintName("FK__supply_x___suppl__40058253");
+
             });
 
             modelBuilder.Entity<SupplyXSupplyPictogramModel>(entity =>
@@ -1099,10 +1176,7 @@ namespace DataCape.Models
 
                 entity.Property(e => e.TypeServiceId).HasColumnName("type_services_id");
 
-                entity.HasOne(d => d.TypeServices)
-                    .WithMany(p => p.Warehouses)
-                    .HasForeignKey(d => d.TypeServiceId)
-                    .HasConstraintName("FK__warehouse__wareh__47A6A41B");
+               
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -20,10 +20,10 @@ namespace PersistenceCape.Repositories
         private MimeMessage CreateEmailMessage(Message message)
         {
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("email", _emailConfiguration.From));
+            emailMessage.From.Add(new MailboxAddress("SENAonPrinting", _emailConfiguration.From));
             emailMessage.To.AddRange(message.To);
             emailMessage.Subject = message.Subject;
-            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Body };
+            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = message.Body };
 
             return emailMessage;
         }

@@ -21,14 +21,8 @@ namespace BusinessCape.DTOs.Product.Validators
             // VALIDATION FOR TYPEPRODUCT FIELD //
             RuleFor(x => x.TypeProduct).NotNull().WithMessage("TypeProduct can't be null");
             RuleFor(x => x.TypeProduct).NotEmpty().WithMessage("TypeProduct is required");
-            RuleFor(x => x.TypeProduct).MinimumLength(10).WithMessage("The typeProduct must contain more than 10 letters");
+            RuleFor(x => x.TypeProduct).MinimumLength(3).WithMessage("The typeProduct must contain more than 10 letters");
             RuleFor(x => x.TypeProduct).MaximumLength(255).WithMessage("The typeProduct must contain less than 255 letters");
-
-            // VALIDATION FOR CHARACTERISTICS FIELD //
-            RuleFor(x => x.Characteristics).NotNull().WithMessage("Characteristics can't be null");
-            RuleFor(x => x.Characteristics).NotEmpty().WithMessage("Characteristics is required");
-            RuleFor(x => x.Characteristics).MinimumLength(10).WithMessage("The characteristics must contain more than 10 letters");
-            RuleFor(x => x.Characteristics).MaximumLength(255).WithMessage("The characteristics must contain less than 255 letters");
         }
     }
 }

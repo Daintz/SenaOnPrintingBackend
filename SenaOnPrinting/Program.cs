@@ -197,10 +197,6 @@ builder.Services.AddScoped<ISupplyDetailsRepository, SupplyDetailsRepository>();
 //============================|PRODUCT|==========================//
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductCreateDtoValidator>());
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductUpdateDtoValidator>());
-
-
 
 //============================|Finish|==========================//
 builder.Services.AddScoped<FinishServices>();
@@ -222,7 +218,6 @@ builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
 //builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCreateDtoValidator>());
 //builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyUpdateDtoValidator>());
 //==============================================================//
-
 
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);

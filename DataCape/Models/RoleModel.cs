@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace DataCape.Models
@@ -7,9 +8,9 @@ namespace DataCape.Models
     {
         public RoleModel()
         {
-            PermissionsByRoles = new HashSet<PermissionsByRoleModel>();
-            Users = new HashSet<UserModel>();
-            Permissions = new HashSet<ApplicationPermissionModel>();
+            PermissionsByRoles = new List<PermissionsByRoleModel>();
+            Users = new List<UserModel>();
+            //Permissions = new List<ApplicationPermissionModel>();
         }
 
         public long Id { get; set; }
@@ -17,8 +18,11 @@ namespace DataCape.Models
         public string? Description { get; set; }
         public bool? StatedAt { get; set; }
 
-        public virtual ICollection<PermissionsByRoleModel> PermissionsByRoles { get; set; }
-        public virtual ICollection<ApplicationPermissionModel> Permissions { get; set; }
-        public virtual ICollection<UserModel> Users { get; set; }
+        [JsonIgnore]
+        public virtual List<PermissionsByRoleModel> PermissionsByRoles { get; set; }
+
+        [JsonIgnore]
+        public virtual List<ApplicationPermissionModel> Permissions { get; set; }
+        public virtual List<UserModel> Users { get; set; }
     }
 }

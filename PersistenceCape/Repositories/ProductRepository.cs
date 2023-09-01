@@ -15,7 +15,7 @@ namespace PersistenceCape.Repositories
 
         public async Task<IEnumerable<ProductModel>> GetAllAsync()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products.Include(s => s.Supplies).ThenInclude(s => s.Supply).ToListAsync();
         }
 
         public async Task<ProductModel> GetByIdAsync(long id)
