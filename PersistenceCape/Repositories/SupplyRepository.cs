@@ -37,7 +37,14 @@ namespace PersistenceCape.Repositories
 
     public async Task<SupplyModel> GetByIdAsync(long id)
         {
-            return await _context.Supplies.FindAsync(id);
+            return await _context.Supplies
+                .Include(supply => supply.UnitMeasuresXSupply)
+                .ThenInclude(pbr => pbr.UnitMeasure)
+                .Include(supply => supply.SupplyCategoriesXSupply)
+                .ThenInclude(pbr => pbr.SupplyCategoryNavigation)
+                .Include(supply => supply.SupplyXSupplyPictogram)
+                .ThenInclude(pbr => pbr.SupplyPictogram)
+                .FirstOrDefaultAsync(d => d.Id == id);
         }
         public async Task UpdateAsync(SupplyModel supply)
         {
