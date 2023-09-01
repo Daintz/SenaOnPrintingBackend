@@ -348,18 +348,21 @@ namespace DataCape.Models
                     .HasMaxLength(255)
                     .HasColumnName("color_profile");
 
-                entity.Property(e => e.IdPaperCut).HasColumnName("id_paper_cut");
-
                 entity.Property(e => e.Image)
                     .HasMaxLength(250)
                     .IsUnicode(false)
                     .HasColumnName("image");
 
+                entity.Property(e => e.ImpositionPlanchId).HasColumnName("imposition_planch_id");
+
                 entity.Property(e => e.Indented).HasColumnName("indented");
 
-                entity.Property(e => e.InkCode)
-                    .HasMaxLength(100)
-                    .HasColumnName("ink_code");
+                entity.Property(e => e.Lineature)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("lineature");
+
+                entity.Property(e => e.MachineId).HasColumnName("machine_id");
 
                 entity.Property(e => e.MaterialReception)
                     .HasMaxLength(255)
@@ -388,10 +391,6 @@ namespace DataCape.Models
                     .IsUnicode(false)
                     .HasColumnName("scheme");
 
-                entity.Property(e => e.SpecialInk)
-                    .HasMaxLength(255)
-                    .HasColumnName("special_ink");
-
                 entity.Property(e => e.StatedAt).HasColumnName("stated_at");
 
                 entity.Property(e => e.TypePoint)
@@ -401,20 +400,25 @@ namespace DataCape.Models
 
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 
-                entity.HasOne(d => d.IdPaperCutNavigation)
+                entity.HasOne(d => d.ImpositionPlanch)
                     .WithMany(p => p.OrderProductions)
-                    .HasForeignKey(d => d.IdPaperCut)
-                    .HasConstraintName("FK__order_pro__id_pa__2A164134");
+                    .HasForeignKey(d => d.ImpositionPlanchId)
+                    .HasConstraintName("FK__order_pro__impos__10566F31");
+
+                entity.HasOne(d => d.Machine)
+                    .WithMany(p => p.OrderProductions)
+                    .HasForeignKey(d => d.MachineId)
+                    .HasConstraintName("FK__order_pro__machi__0F624AF8");
 
                 entity.HasOne(d => d.QuotationClientDetail)
                     .WithMany(p => p.OrderProductions)
                     .HasForeignKey(d => d.QuotationClientDetailId)
-                    .HasConstraintName("FK__order_pro__quota__2B0A656D");
+                    .HasConstraintName("FK__order_pro__quota__114A936A");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.OrderProductions)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__order_pro__user___2BFE89A6");
+                    .HasConstraintName("FK__order_pro__user___123EB7A3");
             });
 
             modelBuilder.Entity<PaperCutModel>(entity =>
@@ -679,7 +683,7 @@ namespace DataCape.Models
                     .HasForeignKey(d => d.QuotationClientId)
                     .HasConstraintName("FK__quotation__quota__2FCF1A8A");
 
-                entity.HasOne(d => d.TypeServiceModel)
+                entity.HasOne(d => d.TypeService)
                    .WithMany(p => p.QuotationClientDetails)
                    .HasForeignKey(d => d.TypeServiceId)
                    .HasConstraintName("FK__quotation__typeser__2CIL1A8A");
