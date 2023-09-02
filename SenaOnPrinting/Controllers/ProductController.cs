@@ -10,10 +10,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SenaOnPrinting.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    [AuthorizationFilter(ApplicationPermission.Configuration)]
+    //[AuthorizationFilter(ApplicationPermission.Configuration)]
     public class ProductController : ControllerBase
     {
         private readonly ProductService _productService;
