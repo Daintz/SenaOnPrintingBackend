@@ -477,10 +477,20 @@ namespace DataCape.Models
 
                 entity.Property(e => e.BackCoverInks).HasColumnName("back_cover_inks");
 
+                entity.Property(e => e.BackCoverNumberInks)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("back_cover_number_inks");
+
                 entity.Property(e => e.BackCoverPantone)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("back_cover_pantone");
+
+                entity.Property(e => e.Cover)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("cover");
 
                 entity.Property(e => e.Bindings)
                     .HasMaxLength(100)
@@ -505,6 +515,11 @@ namespace DataCape.Models
 
                 entity.Property(e => e.FrontPageInks).HasColumnName("Front_page_inks");
 
+                entity.Property(e => e.FrontPageNumberInks)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("front_page_number_inks");
+
                 entity.Property(e => e.FrontPagePantone)
                     .HasMaxLength(100)
                     .IsUnicode(false)
@@ -518,6 +533,11 @@ namespace DataCape.Models
                     .HasColumnName("inside_code");
 
                 entity.Property(e => e.InsideInks).HasColumnName("inside_inks");
+
+                entity.Property(e => e.InsideNumberInks)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("inside_number_inks");
 
                 entity.Property(e => e.InsidePantone)
                     .HasMaxLength(100)
@@ -550,11 +570,6 @@ namespace DataCape.Models
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("substratum");
-
-                entity.Property(e => e.SubstratumBackCover)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("substratum_back_cover");
 
                 entity.Property(e => e.SubstratumFrontPage)
                     .HasMaxLength(100)
@@ -1177,6 +1192,7 @@ namespace DataCape.Models
                     .HasColumnName("ubication");
 
 
+<<<<<<< HEAD
 
 
                 entity.Property(e => e.TypeServiceId).HasColumnName("type_services_id");
@@ -1184,6 +1200,8 @@ namespace DataCape.Models
                     .WithMany(p => p.Warehouses)
                     .HasForeignKey(d => d.TypeServiceId)
                     .HasConstraintName("FK__warehouse__wareh__47A6A41B");
+=======
+>>>>>>> c951d6da442f1fdad38af704bdf2706b73654c1b
             });
 
 

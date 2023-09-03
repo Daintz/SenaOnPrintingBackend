@@ -10,10 +10,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SenaOnPrinting.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    [AuthorizationFilter(ApplicationPermission.Configuration)]
+    //[AuthorizationFilter(ApplicationPermission.Configuration)]
     public class ProductController : ControllerBase
     {
         private readonly ProductService _productService;
@@ -84,8 +84,32 @@ namespace SenaOnPrinting.Controllers
             var productToUpdate = await _productService.GetByIdAsync(productDto.Id);
 
             _mapper.Map(productDto, productToUpdate);
-
+            
             await _productService.UpdateAsync(productToUpdate);
+
+            _context.SupplyXProducts.RemoveRange(_context.SupplyXProducts.Where(d => d.ProductId == productToUpdate.Id));
+
+            await _context.SaveChangesAsync();
+
+            foreach (var supplyIds in productDto.SupplyIds)
+            {
+                var supplies = await _context.Supplies.FindAsync(supplyIds);
+                if (supplies == null)
+                {
+                    return BadRequest("Uno de los Ids insumos no existe, por favor rectifique");
+                }
+
+                var SupplyXProduct = new SupplyXProductModel
+                {
+                    SupplyId = supplies.Id,
+                    ProductId = productToUpdate.Id
+                };
+
+                _context.SupplyXProducts.Add(SupplyXProduct);
+            }
+
+            await _context.SaveChangesAsync();
+
             return Ok(productToUpdate);
         }
 

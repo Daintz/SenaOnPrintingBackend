@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SenaOnPrinting.Filters;
 using SenaOnPrinting.Permissions;
+using System.Web.Http.Filters;
 
 namespace SenaOnPrinting.Controllers
 {
