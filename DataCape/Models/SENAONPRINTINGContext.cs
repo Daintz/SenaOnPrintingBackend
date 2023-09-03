@@ -1193,7 +1193,6 @@ namespace DataCape.Models
 
                 entity.Property(e => e.TypeServiceId).HasColumnName("type_services_id");
 
-               
             });
 
             OnModelCreatingPartial(modelBuilder);
