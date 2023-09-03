@@ -1176,10 +1176,18 @@ namespace DataCape.Models
                     .IsUnicode(false)
                     .HasColumnName("ubication");
 
-                entity.Property(e => e.TypeServiceId).HasColumnName("type_services_id");
 
-               
+
+
+                entity.Property(e => e.TypeServiceId).HasColumnName("type_services_id");
+                entity.HasOne(d => d.TypeServices)
+                    .WithMany(p => p.Warehouses)
+                    .HasForeignKey(d => d.TypeServiceId)
+                    .HasConstraintName("FK__warehouse__wareh__47A6A41B");
             });
+
+
+       
 
             OnModelCreatingPartial(modelBuilder);
         }

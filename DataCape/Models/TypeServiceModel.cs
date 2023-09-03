@@ -8,6 +8,7 @@ namespace DataCape.Models
         public TypeServiceModel()
         {
             QuotationClientDetails = new HashSet<QuotationClientDetailModel>();
+            Warehouses= new HashSet<WarehouseModel>();
         }
 
         public long Id { get; set; }
@@ -15,5 +16,6 @@ namespace DataCape.Models
         public bool? StatedAt { get; set; }
 
         public virtual ICollection<QuotationClientDetailModel> QuotationClientDetails { get; set; }
+        public virtual ICollection<WarehouseModel> Warehouses { get; set;}
     }
 }
