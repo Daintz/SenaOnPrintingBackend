@@ -5,10 +5,10 @@ namespace DataCape.Models
 {
     public class SupplyPictogramModel
     {
-        //public SupplyPictogramModel()
-        //{
-        //    Supplies = new HashSet<SupplyModel>();
-        //}
+        public SupplyPictogramModel()
+        {
+            SupplyXSupplyPictogram = new List<SupplyXSupplyPictogramModel>();
+        }
 
         public long Id { get; set; }
         public string Code { get; set; } = null!;
@@ -17,6 +17,8 @@ namespace DataCape.Models
         public string? PictogramFile { get; set; }
         public bool? StatedAt { get; set; }
 
-       // public virtual ICollection<SupplyModel> Supplies { get; set; }
+        public virtual List<SupplyXSupplyPictogramModel> SupplyXSupplyPictogram { get; set; }
+
+        //public virtual ICollection<SupplyModel> Supplies { get; set; }
     }
 }

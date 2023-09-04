@@ -14,6 +14,7 @@ using persistencecape.repositories;
 using FluentValidation.AspNetCore;
 using BusinessCape.DTOs.SupplyCategory.Validators;
 using BusinessCape.DTOs.Product.Validators;
+//using BusinessCape.DTOs.Supply.Validators;
 
 using BusinessCape.DTOs.Finish.Validator;
 
@@ -96,11 +97,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-// Permissions Handler Configuration
+// Permissions Handler Configuration 
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton<IAuthorizationHandler, AppPermissionAuthHandler>();
 builder.Services.AddSingleton<IAuthorizationPolicyProvider, AppPermissionAuthProvider>();
 
+builder.Services.AddScoped<IAppPermissionService, AppPermissionService>();
 
 // Configurar las interfaces para que el controlador las pueda usar
 
@@ -196,10 +198,6 @@ builder.Services.AddScoped<ISupplyDetailsRepository, SupplyDetailsRepository>();
 //============================|PRODUCT|==========================//
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductCreateDtoValidator>());
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductUpdateDtoValidator>());
-
-
 
 //============================|Finish|==========================//
 builder.Services.AddScoped<FinishServices>();
@@ -218,7 +216,9 @@ builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidator
 //============================|SUPPLY|==========================//
 builder.Services.AddScoped<SupplyService>();
 builder.Services.AddScoped<ISupplyRepository, SupplyRepository>();
-
+//builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyCreateDtoValidator>());
+//builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SupplyUpdateDtoValidator>());
+//==============================================================//
 
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);

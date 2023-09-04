@@ -2,13 +2,18 @@
 using BusinessCape.DTOs.Warehause;
 using BusinessCape.Services;
 using DataCape.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SenaOnPrinting.Filters;
+using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [AuthorizationFilter(ApplicationPermission.Warehouse)]
     public class WarehauseController : Controller
     {
         private readonly WarehauseService _warehauseService;

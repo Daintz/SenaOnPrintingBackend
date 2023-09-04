@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using PersistenceCape.Interfaces;
+using System.Data;
 
 namespace PersistenceCape.Repositories
 {
@@ -15,13 +16,35 @@ namespace PersistenceCape.Repositories
         }
 
         public async Task<IEnumerable<SupplyModel>> GetAllAsync()
+        //{
+        //    return await _context.Supplies.ToListAsync();
+        //}
         {
-            return await _context.Supplies.ToListAsync();
+
+            return await _context.Supplies.Include(supply => supply.UnitMeasuresXSupply)
+                .ThenInclude(pbr => pbr.UnitMeasure)
+                .Include(supply => supply.SupplyCategoriesXSupply)
+                .ThenInclude(pbr => pbr.SupplyCategoryNavigation)
+                .Include(supply => supply.SupplyXSupplyPictogram)
+                .ThenInclude(pbr => pbr.SupplyPictogram)
+                .ToListAsync();
+
+          
+
+
+            //return await _context.Roles.ToListAsync();
         }
 
-        public async Task<SupplyModel> GetByIdAsync(long id)
+    public async Task<SupplyModel> GetByIdAsync(long id)
         {
-            return await _context.Supplies.FindAsync(id);
+            return await _context.Supplies
+                .Include(supply => supply.UnitMeasuresXSupply)
+                .ThenInclude(pbr => pbr.UnitMeasure)
+                .Include(supply => supply.SupplyCategoriesXSupply)
+                .ThenInclude(pbr => pbr.SupplyCategoryNavigation)
+                .Include(supply => supply.SupplyXSupplyPictogram)
+                .ThenInclude(pbr => pbr.SupplyPictogram)
+                .FirstOrDefaultAsync(d => d.Id == id);
         }
         public async Task UpdateAsync(SupplyModel supply)
         {

@@ -10,11 +10,10 @@ namespace DataCape.Models
         public long? ProviderId { get; set; }
         public string? Description { get; set; }
         public decimal? SupplyCost { get; set; }
-        public string? Batch { get; set; }
-        public int InitialQuantity { get; set; }
+        
         public DateTime EntryDate { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public int? ActualQuantity { get; set; }
+       
         public bool? StatedAt { get; set; }
         public long? WarehouseId { get; set; }
 

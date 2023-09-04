@@ -2,15 +2,18 @@
 using BusinessCape.DTOs.Role;
 using BusinessCape.Services;
 using DataCape.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SenaOnPrinting.Filters;
 using SenaOnPrinting.Permissions;
-using System.Web.Http.Filters;
 
 namespace SenaOnPrinting.Controllers
 {
+
+    [Authorize]
     [ApiController]
     [Route("api/role")]
+    [AuthorizationFilter(ApplicationPermission.User)]
     public class RoleController : ControllerBase
     {
         private readonly RoleService _roleService;
@@ -24,7 +27,6 @@ namespace SenaOnPrinting.Controllers
             _context = context;
         }
 
-       // [AuthorizationFilter(ApplicationPermission.ReadRole)]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -43,6 +45,7 @@ namespace SenaOnPrinting.Controllers
             return Ok(role);
         }
 
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> ShowWithPermissions(long id)
         {
@@ -54,6 +57,7 @@ namespace SenaOnPrinting.Controllers
             return Ok(role);
         }
 
+        
         [HttpPost]
         public async Task<IActionResult> Add(RoleCreateDto roleDto)
         {
@@ -84,6 +88,7 @@ namespace SenaOnPrinting.Controllers
             return Ok(role);
         }
 
+        
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, RoleUpdateDto roleDto)
         {
@@ -93,6 +98,7 @@ namespace SenaOnPrinting.Controllers
             return NoContent();
         }
 
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {

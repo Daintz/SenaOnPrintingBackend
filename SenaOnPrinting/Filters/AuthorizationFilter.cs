@@ -3,10 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Filters
-{
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class AuthorizationFilter : AuthorizeAttribute
-    {        public AuthorizationFilter(ApplicationPermission appPermission) : base(policy: appPermission.ToString())
+{    
+    public sealed class AuthorizationFilterAttribute : AuthorizeAttribute
+    {        public AuthorizationFilterAttribute(ApplicationPermission appPermission) : base(policy: appPermission.ToString())
         {
             
         }

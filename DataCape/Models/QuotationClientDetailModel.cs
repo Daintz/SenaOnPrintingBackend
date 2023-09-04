@@ -20,6 +20,8 @@ namespace DataCape.Models
         public int Cost { get; set; }
         public int? Quantity { get; set; }
         public bool? StatedAt { get; set; }
+        [NotMapped]
+        public DateTime? OrderDate { get; set; }
 
        
         public virtual QuotationClientModel QuotationClient { get; set; }

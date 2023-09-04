@@ -8,6 +8,6 @@ namespace SenaOnPrinting.Permissions
         {
             AppPermission = appPermission;
         }
-        public String AppPermission { get; }
+        public string AppPermission { get; }
     }
 }

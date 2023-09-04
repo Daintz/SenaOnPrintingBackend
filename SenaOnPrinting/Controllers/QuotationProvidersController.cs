@@ -7,11 +7,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using BusinessCape.DTOs.QuotationProviders;
 using BusinessCape.DTOs.SupplyPictograms;
+using SenaOnPrinting.Permissions;
+using Microsoft.AspNetCore.Authorization;
+using SenaOnPrinting.Filters;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.Data.SqlClient;
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [AuthorizationFilter(ApplicationPermission.Provider)]
     public class QuotationProvidersController : ControllerBase
     {
         private readonly QuotationProvidersServices _quotation_providersServices;
@@ -25,7 +32,7 @@ namespace SenaOnPrinting.Controllers
             _mapper = mapper;
             _hostEnvironment = hostEnvironment;
         }
-        
+
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -107,6 +114,20 @@ namespace SenaOnPrinting.Controllers
         {
             await _quotation_providersServices.DeleteAsync(id);
             return NoContent();
+        }
+        [HttpGet("file/{id}")]
+        public async Task<IActionResult> DownloadFile(int id)
+        {
+            var file = await _quotation_providersServices.GetByIdAsync(id);
+
+            if (file == null)
+            {
+                return NotFound();
+            }
+            var filePath = "Images/SupplyPictogram/" + file.QuotationFile;
+            var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+
+            return File(fileStream, "application/octet-stream", Path.GetFileName(filePath));
         }
     }
 }

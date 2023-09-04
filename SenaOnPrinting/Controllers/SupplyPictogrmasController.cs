@@ -7,12 +7,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using Microsoft.Extensions.Hosting;
-
+using Microsoft.AspNetCore.Authorization;
+using SenaOnPrinting.Filters;
+using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [AuthorizationFilter(ApplicationPermission.Configuration)]
     public class SupplyPictogrmasController : ControllerBase
     {
         private readonly SupplyPictogramsServices _SupplyPictogramsServices;
