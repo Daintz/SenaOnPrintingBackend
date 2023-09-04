@@ -7,7 +7,6 @@ using BusinessCape.DTOs.UnitMesureUpdate;
 using DataCape;
 
 using BusinessCape.DTOs.ImpositionPlanch;
-using BusinessCape.DTOs.Lineature;
 using BusinessCape.DTOs.OrderProduction;
 using BusinessCape.DTOs.Role;
 using BusinessCape.DTOs.TypeDocument;
@@ -26,11 +25,9 @@ using BusinessCape.DTOs.Warehause;
 
 using DataCape.Models;
 using BusinessCape.DTOs.Client;
-using BusinessCape.DTOs.GrammageCaliber;
 using BusinessCape.DTOs.PaperCut;
 using BusinessCape.DTOs.QuotationClient;
 using BusinessCape.DTOs.QuotationClientDetail;
-using BusinessCape.DTOs.Substrate;
 using BusinessCape.DTOs.Finish;
 using BusinessCape.DTOs.QuotationProviders;
 using BusinessCape.DTOs.TypeServices;
@@ -65,12 +62,6 @@ namespace BusinessCape.Mappers
             CreateMap<OrderProductionCreateDto, OrderProductionModel>();
             // PUT OR UPDATE //
             CreateMap<OrderProductionUpdateDto, OrderProductionModel>();
-
-            //============================|LINEATURE|==========================//
-            // POST OR CREATE //
-            CreateMap<LineatureCreateDto, LineatureModel>();
-            // PUT OR UPDATE //
-            CreateMap<LineatureUpdateDto, LineatureModel>();
 
             //============================|IMPOSITION PLANCH|==========================//
             // POST OR CREATE //
@@ -149,21 +140,12 @@ namespace BusinessCape.Mappers
             // PUT OR UPDATE //
             CreateMap<WarehauseUpdateDto, WarehouseModel>();
 
-            //=======================|GRAMMAGE CALIBER|=======================//
-            // POST OR CREATE //
-            CreateMap<GrammageCaliberCreateDto, GrammageCaliberModel>();
-            // PUT OR UPDATE //
-            CreateMap<GrammageCaliberUpdateDto, GrammageCaliberModel>();
             //=======================|PAPER CUT|=======================//
             // POST OR CREATE //
             CreateMap<PaperCutCreateDto, PaperCutModel>();
             // PUT OR UPDATE //
             CreateMap<PaperCutUpdateDto, PaperCutModel>();
-            //=======================|SUBSTRATES|=======================//
-            // POST OR CREATE //
-            CreateMap<SubstrateCreateDto, SubstrateModel>();
-            // PUT OR UPDATE //
-            CreateMap<SubstrateUpdateDto, SubstrateModel>();
+
             //========================|QUOTATION PROVIDER|===================//
             // POST OR CREATE //
             CreateMap<QuotationProvidersCreateDto, QuotationProviderModel>();

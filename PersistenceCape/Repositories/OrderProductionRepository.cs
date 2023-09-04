@@ -47,8 +47,9 @@ namespace PersistenceCape.Repositories
             Program = op.Program,
             TypePoint = op.TypePoint,
             Scheme = $"{scheme}://{host}/{pathBase}Images/OrderProduction/{op.Scheme}",
-            
+            ProductId = op.QuotationClientDetail.ProductId,
         })
+
          .ToListAsync();
 
        }
