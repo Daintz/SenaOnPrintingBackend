@@ -9,8 +9,8 @@ namespace BusinessCape.DTOs.QuotationClientDetail
 {
     public class QuotationClientDetailCreateDto
     {
-        public long? TypeServiceId { get; set; }
-        public long? ProductId { get; set; }
+        public long TypeServiceId { get; set; }
+        public long ProductId { get; set; }
         public int Cost { get; set; }
         public int? Quantity { get; set; }
         public bool? StatedAt { get; set; }

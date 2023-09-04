@@ -10,6 +10,7 @@ namespace BusinessCape.DTOs.QuotationClient
 {
     public class QuotationClientCreateDto
     {
+
         public long? UserId { get; set; }
         public long? ClientId { get; set; }
         public int Code { get; set; }

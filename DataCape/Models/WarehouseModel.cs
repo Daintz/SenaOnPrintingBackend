@@ -7,7 +7,7 @@ namespace DataCape.Models
     {
         public WarehouseModel()
         {
-            // Supplies = new HashSet<SupplyModel>();
+            Supplies = new HashSet<SupplyModel>();
             SupplyDetails = new HashSet<SupplyDetailModel>();
         }
 
