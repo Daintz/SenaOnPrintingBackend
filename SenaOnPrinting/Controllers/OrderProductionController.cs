@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BusinessCape.DTOs.ImpositionPlanch;
-using BusinessCape.DTOs.Lineature;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +16,10 @@ using SenaOnPrinting.Filters;
 
 namespace SenaOnPrinting.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    [AuthorizationFilter(ApplicationPermission.Production)]
+    //[AuthorizationFilter(ApplicationPermission.Production)]
     public class OrderProductionController : ControllerBase
     {
         private readonly OrderProductionService _orderProductionService;

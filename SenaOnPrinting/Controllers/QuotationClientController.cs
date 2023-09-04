@@ -11,10 +11,10 @@ using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    [AuthorizationFilter(ApplicationPermission.Client)]
+    //[AuthorizationFilter(ApplicationPermission.Client)]
     public class QuotationClientController : ControllerBase
     {
         private readonly QuotationClientService _quotationClientService;
@@ -49,7 +49,13 @@ namespace SenaOnPrinting.Controllers
             }
             return Ok(quotationClient);
         }
+        [HttpGet("Approved")]
 
+        public async Task<IActionResult> GetAllApproved()
+        {
+            var quotationclientDetail = await _quotationClientService.GetApprovedQuotationAsync();
+            return Ok(quotationclientDetail);
+        }
         // POST api/<QuotationClient>
         [HttpPost]
         public async Task<IActionResult> Add(QuotationClientCreateDto quotationClientDto)

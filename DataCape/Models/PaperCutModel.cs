@@ -7,14 +7,13 @@ namespace DataCape.Models
     {
         public PaperCutModel()
         {
-            OrderProductions = new HashSet<OrderProductionModel>();
+            Products = new HashSet<ProductModel>();
         }
 
         public long Id { get; set; }
         public string Name { get; set; } = null!;
         public bool? StatedAt { get; set; }
 
-        public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }
-        public virtual List<ProductModel> Products { get; set; }
+        public virtual ICollection<ProductModel> Products { get; set; }
     }
 }
