@@ -22,7 +22,10 @@ namespace BusinessCape.Services
         {
             return await _quotationClientRepository.GetAllAsync();
         }
-
+        public async Task<IEnumerable<QuotationClientModel>> GetApprovedQuotationAsync()
+        {
+            return await _quotationClientRepository.GetApprovedQuotationAsync();
+        }
         public async Task<QuotationClientModel> GetByIdAsync(long id)
         {
             return await _quotationClientRepository.GetByIdAsync(id);

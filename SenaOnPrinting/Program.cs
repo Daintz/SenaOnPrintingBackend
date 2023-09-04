@@ -118,21 +118,13 @@ builder.Services.AddScoped<IQuotationClientRepository, QuotationClientRepository
 // -------------  CLIENTS --------------//
 builder.Services.AddScoped<ClientService>();
 builder.Services.AddScoped<IClientsRepository, ClientRepository>();
-// -------------  SUBSTRATES --------------//
-builder.Services.AddScoped<SubstrateService>();
-builder.Services.AddScoped<ISubstratesRepository, SubstrateRepository>();
+
 // -------------  PAPER CUT --------------//
 builder.Services.AddScoped<PaperCutService>();
 builder.Services.AddScoped<IPaperCutRepository, PaperCutRepository>();
-// -------------  GRAMMAGE CALIBER --------------//
-builder.Services.AddScoped<GrammageCaliberService>();
-builder.Services.AddScoped<IGrammageCaliberRepository, GrammageCaliberRepository>();
 
 builder.Services.AddScoped<OrderProductionService>();
 builder.Services.AddScoped<IOrderProductionRepository, OrderProductionRepository>();
-
-builder.Services.AddScoped<LineatureService>();
-builder.Services.AddScoped<ILineatureRepository, LineatureRepository>();
 
 builder.Services.AddScoped<ImpositionPlanchService>();
 builder.Services.AddScoped<IImpositionPlanchRepository, ImpositionPlanchRepository>();

@@ -19,15 +19,9 @@ namespace DataCape.Models
         public virtual DbSet<ApplicationPermissionModel> ApplicationPermissions { get; set; } = null!;
         public virtual DbSet<ClientModel> Clients { get; set; } = null!;
         public virtual DbSet<FinishModel> Finishes { get; set; } = null!;
-        public virtual DbSet<FinishXQuotationClientDetailModel> FinishXQuotationClientDetails { get; set; } = null!;
-        public virtual DbSet<GrammageCaliberModel> GrammageCalibers { get; set; } = null!;
-        public virtual DbSet<GrammageCaliberXQuotationClientDetailModel> GrammageCaliberXQuotationClientDetails { get; set; } = null!;
+        public virtual DbSet<FinishXProductModel> FinishXQuotationClientDetails { get; set; } = null!;
         public virtual DbSet<ImpositionPlanchModel> ImpositionPlanches { get; set; } = null!;
-        public virtual DbSet<ImpositionPlanchXOrderProductionModel> ImpositionPlanchXOrderProductions { get; set; } = null!;
-        public virtual DbSet<LineatureModel> Lineatures { get; set; } = null!;
-        public virtual DbSet<LineatureXOrderProductionModel> LineatureXOrderProductions { get; set; } = null!;
         public virtual DbSet<MachineModel> Machines { get; set; } = null!;
-        public virtual DbSet<MachinesXQuotationClientModel> MachinesXQuotationClients { get; set; } = null!;
         public virtual DbSet<OrderProductionModel> OrderProductions { get; set; } = null!;
         public virtual DbSet<PaperCutModel> PaperCuts { get; set; } = null!;
         public virtual DbSet<PermissionsByRoleModel> PermissionsByRoles { get; set; } = null!;
@@ -37,8 +31,6 @@ namespace DataCape.Models
         public virtual DbSet<QuotationClientDetailModel> QuotationClientDetails { get; set; } = null!;
         public virtual DbSet<QuotationProviderModel> QuotationProviders { get; set; } = null!;
         public virtual DbSet<RoleModel> Roles { get; set; } = null!;
-        public virtual DbSet<SubstrateModel> Substrates { get; set; } = null!;
-        public virtual DbSet<SubstrateXQuotationClientDetailModel> SubstrateXQuotationClientDetails { get; set; } = null!;
         public virtual DbSet<SupplyModel> Supplies { get; set; } = null!;
         public virtual DbSet<SupplyCategoriesXSupplyModel> SupplyCategoriesXSupplies { get; set; } = null!;
         public virtual DbSet<SupplyCategoryModel> SupplyCategories { get; set; } = null!;
@@ -140,68 +132,27 @@ namespace DataCape.Models
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<FinishXQuotationClientDetailModel>(entity =>
+            modelBuilder.Entity<FinishXProductModel>(entity =>
             {
-                entity.HasNoKey();
 
-                entity.ToTable("finish_x_quotation_client_detail");
+                entity.ToTable("finish_x_product");
 
                 entity.Property(e => e.FinishId).HasColumnName("finish_id");
 
-                entity.Property(e => e.QuotationClientDetailId).HasColumnName("quotation_client_detail_id");
+                entity.Property(e => e.ProductId).HasColumnName("product_id");
 
                 entity.HasOne(d => d.Finish)
                     .WithMany()
                     .HasForeignKey(d => d.FinishId)
-                    .HasConstraintName("FK__finish_x___finis__208CD6FA");
+                    .HasConstraintName("FK__finish_x___finis__0D7A0286");
 
-                entity.HasOne(d => d.QuotationClientDetail)
+                entity.HasOne(d => d.Product)
                     .WithMany()
-                    .HasForeignKey(d => d.QuotationClientDetailId)
-                    .HasConstraintName("FK__finish_x___quota__2180FB33");
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK__finish_x___produ__0E6E26BF");
+                entity.HasKey(e => new { e.FinishId, e.ProductId});
             });
 
-            modelBuilder.Entity<GrammageCaliberModel>(entity =>
-            {
-                entity.ToTable("grammage_caliber");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(150)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
-
-                entity.Property(e => e.StatedAt)
-                    .HasColumnName("stated_at")
-                    .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.Type)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("type");
-            });
-
-            modelBuilder.Entity<GrammageCaliberXQuotationClientDetailModel>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("grammage_caliber_x_quotation_client_detail");
-
-                entity.Property(e => e.GrammageCaliberId).HasColumnName("grammage_caliber_id");
-
-                entity.Property(e => e.OrderProductionId).HasColumnName("order_production_id");
-
-                entity.HasOne(d => d.GrammageCaliber)
-                    .WithMany()
-                    .HasForeignKey(d => d.GrammageCaliberId)
-                    .HasConstraintName("FK__grammage___gramm__22751F6C");
-
-                entity.HasOne(d => d.OrderProduction)
-                    .WithMany()
-                    .HasForeignKey(d => d.OrderProductionId)
-                    .HasConstraintName("FK__grammage___order__236943A5");
-            });
 
             modelBuilder.Entity<ImpositionPlanchModel>(entity =>
             {
@@ -217,64 +168,6 @@ namespace DataCape.Models
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
-            });
-
-            modelBuilder.Entity<ImpositionPlanchXOrderProductionModel>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("imposition_planch_x_order_production");
-
-                entity.Property(e => e.ImpositionPlanchId).HasColumnName("imposition_planch_id");
-
-                entity.Property(e => e.OrderProductionId).HasColumnName("order_production_id");
-
-                entity.HasOne(d => d.ImpositionPlanch)
-                    .WithMany()
-                    .HasForeignKey(d => d.ImpositionPlanchId)
-                    .HasConstraintName("FK__impositio__impos__245D67DE");
-
-                entity.HasOne(d => d.OrderProduction)
-                    .WithMany()
-                    .HasForeignKey(d => d.OrderProductionId)
-                    .HasConstraintName("FK__impositio__order__25518C17");
-            });
-
-            modelBuilder.Entity<LineatureModel>(entity =>
-            {
-                entity.ToTable("lineature");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Lineature)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("lineature");
-
-                entity.Property(e => e.StatedAt)
-                    .HasColumnName("stated_at")
-                    .HasDefaultValueSql("((1))");
-            });
-
-            modelBuilder.Entity<LineatureXOrderProductionModel>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("lineature_x_order_production");
-
-                entity.Property(e => e.LineatureId).HasColumnName("lineature_id");
-
-                entity.Property(e => e.OrderProductionId).HasColumnName("order_production_id");
-
-                entity.HasOne(d => d.Lineature)
-                    .WithMany()
-                    .HasForeignKey(d => d.LineatureId)
-                    .HasConstraintName("FK__lineature__linea__2645B050");
-
-                entity.HasOne(d => d.OrderProduction)
-                    .WithMany()
-                    .HasForeignKey(d => d.OrderProductionId)
-                    .HasConstraintName("FK__lineature__order__2739D489");
             });
 
             modelBuilder.Entity<MachineModel>(entity =>
@@ -315,27 +208,6 @@ namespace DataCape.Models
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
-            });
-
-            modelBuilder.Entity<MachinesXQuotationClientModel>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("machines_x_quotation_client");
-
-                entity.Property(e => e.MachineId).HasColumnName("machine_id");
-
-                entity.Property(e => e.QuotationClientId).HasColumnName("quotation_client_id");
-
-                entity.HasOne(d => d.Machine)
-                    .WithMany()
-                    .HasForeignKey(d => d.MachineId)
-                    .HasConstraintName("FK__machines___machi__282DF8C2");
-
-                entity.HasOne(d => d.QuotationClient)
-                    .WithMany()
-                    .HasForeignKey(d => d.QuotationClientId)
-                    .HasConstraintName("FK__machines___quota__29221CFB");
             });
 
             modelBuilder.Entity<OrderProductionModel>(entity =>
@@ -446,9 +318,6 @@ namespace DataCape.Models
 
                 entity.Property(e => e.RoleId).HasColumnName("role_id");
 
-         
-                   
-
                 entity.HasOne(d => d.Permission)
                     .WithMany(p => p.PermissionsByRoles)
                     .HasForeignKey(d => d.PermissionId)
@@ -477,10 +346,20 @@ namespace DataCape.Models
 
                 entity.Property(e => e.BackCoverInks).HasColumnName("back_cover_inks");
 
+                entity.Property(e => e.BackCoverNumberInks)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("back_cover_number_inks");
+
                 entity.Property(e => e.BackCoverPantone)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("back_cover_pantone");
+
+                entity.Property(e => e.Cover)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("cover");
 
                 entity.Property(e => e.Bindings)
                     .HasMaxLength(100)
@@ -505,6 +384,11 @@ namespace DataCape.Models
 
                 entity.Property(e => e.FrontPageInks).HasColumnName("Front_page_inks");
 
+                entity.Property(e => e.FrontPageNumberInks)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("front_page_number_inks");
+
                 entity.Property(e => e.FrontPagePantone)
                     .HasMaxLength(100)
                     .IsUnicode(false)
@@ -518,6 +402,11 @@ namespace DataCape.Models
                     .HasColumnName("inside_code");
 
                 entity.Property(e => e.InsideInks).HasColumnName("inside_inks");
+
+                entity.Property(e => e.InsideNumberInks)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("inside_number_inks");
 
                 entity.Property(e => e.InsidePantone)
                     .HasMaxLength(100)
@@ -550,11 +439,6 @@ namespace DataCape.Models
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("substratum");
-
-                entity.Property(e => e.SubstratumBackCover)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("substratum_back_cover");
 
                 entity.Property(e => e.SubstratumFrontPage)
                     .HasMaxLength(100)
@@ -737,47 +621,6 @@ namespace DataCape.Models
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
-            });
-
-            modelBuilder.Entity<SubstrateModel>(entity =>
-            {
-                entity.ToTable("substrates");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Cost)
-                    .HasColumnType("decimal(18, 0)")
-                    .HasColumnName("cost");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
-
-                entity.Property(e => e.StatedAt)
-                    .HasColumnName("stated_at")
-                    .HasDefaultValueSql("((1))");
-            });
-
-            modelBuilder.Entity<SubstrateXQuotationClientDetailModel>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("substrate_x_quotation_client_detail");
-
-                entity.Property(e => e.QuotationClientDetailId).HasColumnName("quotation_client_detail_id");
-
-                entity.Property(e => e.SubstrateId).HasColumnName("substrate_id");
-
-                entity.HasOne(d => d.QuotationClientDetail)
-                    .WithMany()
-                    .HasForeignKey(d => d.QuotationClientDetailId)
-                    .HasConstraintName("FK__substrate__quota__3493CFA7");
-
-                entity.HasOne(d => d.Substrate)
-                    .WithMany()
-                    .HasForeignKey(d => d.SubstrateId)
-                    .HasConstraintName("FK__substrate__subst__3587F3E0");
             });
 
             modelBuilder.Entity<SupplyModel>(entity =>
@@ -1177,8 +1020,6 @@ namespace DataCape.Models
                     .IsUnicode(false)
                     .HasColumnName("ubication");
 
-
-               
             });
 
             OnModelCreatingPartial(modelBuilder);

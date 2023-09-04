@@ -27,13 +27,13 @@ namespace SenaOnPrinting.Controllers
             var quotationclientDetail = await _quotationclientDetailService.GetAllAsync();
             return Ok(quotationclientDetail);
         }
-        [HttpGet("Approved")]
+        //[HttpGet("Approved")]
 
-        public async Task<IActionResult> GetAllApproved()
-        {
-            var quotationclientDetail = await _quotationclientDetailService.GetApprovedQuotationAsync();
-            return Ok(quotationclientDetail);
-        }
+        //public async Task<IActionResult> GetAllApproved()
+        //{
+        //    var quotationclientDetail = await _quotationclientDetailService.GetApprovedQuotationAsync();
+        //    return Ok(quotationclientDetail);
+        //}
         // GET api/<QuotationClientDetail>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(long id)

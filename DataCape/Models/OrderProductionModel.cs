@@ -36,6 +36,7 @@ namespace DataCape.Models
         public string Product { get; set; } = null!;
         [NotMapped]
         public DateTime? DeliverDate { get; set; }
-
+        [NotMapped]
+        public long? ProductId { get; set; }
     }
 }
