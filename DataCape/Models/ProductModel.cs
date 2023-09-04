@@ -42,7 +42,5 @@
         public virtual PaperCutModel? PaperCut { get; set; }
         public virtual List<QuotationClientDetailModel> QuotationClientDetails { get; set; }
         public virtual List<SupplyXProductModel> Supplies { get; set; }
-
-        public virtual List<QuotationClientDetailModel> QuotationClientDetails { get; set; }
     }
 }

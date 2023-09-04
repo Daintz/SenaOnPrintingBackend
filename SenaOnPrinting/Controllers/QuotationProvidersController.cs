@@ -15,10 +15,10 @@ using Microsoft.Data.SqlClient;
 
 namespace SenaOnPrinting.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    [AuthorizationFilter(ApplicationPermission.Provider)]
+    //[AuthorizationFilter(ApplicationPermission.Provider)]
     public class QuotationProvidersController : ControllerBase
     {
         private readonly QuotationProvidersServices _quotation_providersServices;

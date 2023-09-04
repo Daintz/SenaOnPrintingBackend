@@ -12,6 +12,7 @@ namespace DataCape.Models
         }
 
         public long Id { get; set; }
+
         public long? UserId { get; set; }
         public long? ClientId { get; set; }
         public int Code { get; set; }
@@ -20,10 +21,6 @@ namespace DataCape.Models
         public int? QuotationStatus { get; set; }
         public int? FullValue { get; set; }
         public bool? StatedAt { get; set; }
-        [NotMapped]
-        public string ProductName { get; set; } = null!;
-        [NotMapped]
-        public string TypeServiceName { get; set; } = null!;
         [NotMapped]
         public int? Quantity { get; set; }
         [NotMapped]

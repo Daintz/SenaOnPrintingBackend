@@ -41,7 +41,7 @@ namespace PersistenceCape.Repositories
                 .Include(qc => qc.QuotationClientDetails)
                     .ThenInclude(qcd => qcd.Product)
                 .Include(qc => qc.QuotationClientDetails)
-                    .ThenInclude(qcd => qcd.TypeService)
+                    .ThenInclude(qcd => qcd.TypeServiceModel)
                 .Select(qc => new QuotationClientModel
                 {
                     Id = qc.Id,
@@ -68,7 +68,7 @@ namespace PersistenceCape.Repositories
                     Quantity = qcd.Quantity,
                     StatedAt = qcd.StatedAt,
                     ProductName = qcd.Product.Name,
-                    TypeServiceName = qcd.TypeService.Name
+                    TypeServiceName = qcd.TypeServiceModel.Name,
                 })
                 .ToListAsync();
 

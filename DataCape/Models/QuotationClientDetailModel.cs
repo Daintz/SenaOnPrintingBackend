@@ -23,7 +23,10 @@ namespace DataCape.Models
         [NotMapped]
         public DateTime? OrderDate { get; set; }
 
-       
+        [NotMapped]
+        public string ProductName { get; set; } = null!;
+        [NotMapped]
+        public string TypeServiceName { get; set; } = null!;
         public virtual QuotationClientModel QuotationClient { get; set; }
         [JsonIgnore]
         public virtual ProductModel Product { get; set; }

@@ -7,14 +7,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SenaOnPrinting.Filters;
 using SenaOnPrinting.Permissions;
-using System.Web.Http.Filters;
 
 namespace SenaOnPrinting.Controllers
 {
     //[Authorize]
     [ApiController]
     [Route("api/user")]
-    //[AuthorizationFilter(ApplicationPermission.User)]
+   //[AuthorizationFilter(ApplicationPermission.User)]
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
