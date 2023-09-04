@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,8 +8,9 @@ namespace DataCape.Models
     public class QuotationClientDetailModel
     {
         public QuotationClientDetailModel()
+
         {
-            OrderProductions = new HashSet<OrderProductionModel>();
+            OrderProductions = new List<OrderProductionModel>();
         }
 
         public long Id { get; set; }
@@ -21,17 +23,11 @@ namespace DataCape.Models
         [NotMapped]
         public DateTime? OrderDate { get; set; }
 
-        [NotMapped]
-        public string ProductName { get; set; } = null!;
-        [NotMapped]
-        public string TypeServiceName { get; set; } = null!;
-        [NotMapped]
-        public DateTime? DeliverDate { get; set; }
-        [NotMapped]
-        public string Name { get; set; } = null!;
-        public virtual ProductModel? Product { get; set; }
+       
         public virtual QuotationClientModel QuotationClient { get; set; }
-        public virtual TypeServiceModel? TypeService { get; set; }
-        public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }
+        [JsonIgnore]
+        public virtual ProductModel Product { get; set; }
+        public virtual TypeServiceModel TypeServiceModel { get; set; }
+        public virtual List<OrderProductionModel> OrderProductions { get; set; }
     }
 }

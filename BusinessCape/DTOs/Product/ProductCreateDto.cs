@@ -4,7 +4,6 @@ namespace BusinessCape.DTOs.Product
 {
     public class ProductCreateDto
     {
-
         public long Id { get; set; }
         public List<long> SupplyIds { get; set; }
 

@@ -557,20 +557,20 @@ namespace DataCape.Models
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
 
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.QuotationClientDetails)
-                    .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__quotation__produ__2EDAF651");
+          
 
                 entity.HasOne(d => d.QuotationClient)
                     .WithMany(p => p.QuotationClientDetails)
                     .HasForeignKey(d => d.QuotationClientId)
                     .HasConstraintName("FK__quotation__quota__2FCF1A8A");
 
-                entity.HasOne(d => d.TypeService)
-                   .WithMany(p => p.QuotationClientDetails)
-                   .HasForeignKey(d => d.TypeServiceId)
-                   .HasConstraintName("FK__quotation__typeser__2CIL1A8A");
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.QuotationClientDetails)
+                    .HasForeignKey(d => d.ProductId);
+
+                entity.HasOne(d => d.TypeServiceModel)
+                    .WithMany(p => p.QuotationClientDetails)
+                    .HasForeignKey(d => d.TypeServiceId);
             });
 
             modelBuilder.Entity<QuotationProviderModel>(entity =>
@@ -1010,6 +1010,7 @@ namespace DataCape.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.TypeServiceId).HasColumnName("type_services_id");
                 entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
@@ -1018,12 +1019,6 @@ namespace DataCape.Models
                     .HasMaxLength(150)
                     .IsUnicode(false)
                     .HasColumnName("ubication");
-
-                entity.Property(e => e.TypeServiceId).HasColumnName("type_services_id");
-                entity.HasOne(d => d.TypeServices)
-                    .WithMany(p => p.WarehouseModels)
-                    .HasForeignKey(d => d.TypeServiceId)
-                    .HasConstraintName("FK_warehousewareh_47A6A41B");
 
             });
 
