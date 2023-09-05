@@ -12,7 +12,7 @@ namespace DataCape.Models
         }
 
         public long Id { get; set; }
-        public long? TypeServiceId { get; set; }
+        public long TypeServiceId { get; set; }
         public string? Ubication { get; set; }
         public bool? StatedAt { get; set; }
 

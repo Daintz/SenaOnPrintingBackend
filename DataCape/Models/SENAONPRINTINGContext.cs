@@ -1011,7 +1011,13 @@ namespace DataCape.Models
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.TypeServiceId).HasColumnName("type_services_id");
-                entity.Property(e => e.StatedAt)
+                entity.HasOne(d => d.TypeServices)
+                    .WithMany(p => p.Warehouses)
+                    .HasForeignKey(d => d.TypeServiceId)
+                    .HasConstraintName("FK__warehouse__wareh__47A6A41B");
+           
+
+            entity.Property(e => e.StatedAt)
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
 

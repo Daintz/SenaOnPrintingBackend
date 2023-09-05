@@ -10,10 +10,10 @@ using SenaOnPrinting.Permissions;
 namespace SenaOnPrinting.Controllers
 {
 
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/role")]
-    [AuthorizationFilter(ApplicationPermission.User)]
+    //[AuthorizationFilter(ApplicationPermission.User)]
     public class RoleController : ControllerBase
     {
         private readonly RoleService _roleService;
