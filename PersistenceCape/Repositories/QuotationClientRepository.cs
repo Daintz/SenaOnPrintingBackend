@@ -20,12 +20,20 @@ namespace PersistenceCape.Repositories
 
         public async Task<IEnumerable<QuotationClientModel>> GetAllAsync()
         {
-            return await _context.QuotationClients.ToListAsync();
+            return await _context.QuotationClients.Include(x=>x.Client).ToListAsync();
         }
 
         public async Task<QuotationClientModel> GetByIdAsync(long id)
         {
             return await _context.QuotationClients.FindAsync(id);
+        }
+        public async Task<int> GetLastQuotationCodeAsync()
+        {
+            var lastQuotation = await _context.QuotationClients
+                .OrderByDescending(c => c.Code)
+                .FirstOrDefaultAsync();
+
+            return lastQuotation?.Code + 1 ?? 1;
         }
 
         public async Task UpdateAsync(QuotationClientModel quotationClient)

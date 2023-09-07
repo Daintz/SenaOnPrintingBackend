@@ -17,7 +17,7 @@ namespace PersistenceCape.Repositories
 
         public async Task<IEnumerable<UserModel>> Index()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.Include(x => x.Role).Include(x => x.TypeDocument).ToListAsync();
         }
 
         public async Task<UserModel> Show(long id)

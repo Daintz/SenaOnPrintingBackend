@@ -117,5 +117,12 @@ namespace SenaOnPrinting.Controllers
             await _quotationClientService.ChangeQuotationStatus(id);
             return NoContent();
         }
+
+        [HttpGet("lastCode")]
+        public async Task<ActionResult<int>> GetLastQuotationCode()
+        {
+            var lastCode = await _quotationClientService.GetLastQuotationCodeAsync();
+            return Ok(lastCode);
+        }
     }
 }

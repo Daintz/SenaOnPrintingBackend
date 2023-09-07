@@ -29,6 +29,8 @@ namespace PersistenceCape.Repositories
                 .ThenInclude(qc => qc.Client)
         .Include(op => op.QuotationClientDetail)
             .ThenInclude(qp => qp.Product)
+        .Include(op => op.QuotationClientDetail)
+            .ThenInclude(qcd => qcd.TypeServiceModel)
         .Select(op => new OrderProductionModel()
         {
             Id = op.Id,
@@ -36,6 +38,7 @@ namespace PersistenceCape.Repositories
             OrderDate = op.QuotationClientDetail.QuotationClient.OrderDate,
             Name = op.QuotationClientDetail.QuotationClient.Client.Name,
             Product = op.QuotationClientDetail.Product.Name,
+            Quantity = op.QuotationClientDetail.Quantity,
             DeliverDate = op.QuotationClientDetail.QuotationClient.DeliverDate,
             OrderStatus = op.OrderStatus,
             StatedAt = op.StatedAt,
@@ -47,13 +50,17 @@ namespace PersistenceCape.Repositories
             Program = op.Program,
             TypePoint = op.TypePoint,
             Scheme = $"{scheme}://{host}/{pathBase}Images/OrderProduction/{op.Scheme}",
-            //ProductId = op.QuotationClientDetail.ProductId,
+            ProductId = op.QuotationClientDetail.ProductId,
+            UserName = op.User.Names,
+            ImpositionPlanchName = op.ImpositionPlanch.Name,
+            MachineName = op.Machine.Name,
+            TypeService = op.QuotationClientDetail.TypeServiceModel.Name
         })
 
          .ToListAsync();
 
-       }
-    
+        }
+
 
         public async Task<OrderProductionModel> GetByIdAsync(long id)
         {
@@ -86,7 +93,8 @@ namespace PersistenceCape.Repositories
             {
                 orderProduction.OrderStatus = 3;
             }
-            else if (orderProduction.OrderStatus == 3) { 
+            else if (orderProduction.OrderStatus == 3)
+            {
                 orderProduction.OrderStatus = 4;
             }
             else
@@ -97,3 +105,4 @@ namespace PersistenceCape.Repositories
         }
     }
 }
+

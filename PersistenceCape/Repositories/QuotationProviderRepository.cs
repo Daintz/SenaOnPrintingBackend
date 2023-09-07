@@ -29,13 +29,13 @@ namespace PersistenceCape.Repositories
 
         public async Task<IEnumerable<QuotationProviderModel>> GetAllAsync()
         {
-            return await _context.QuotationProviders.Select(x => new QuotationProviderModel
+            return await _context.QuotationProviders.Include(x=>x.Provider).Select(x => new QuotationProviderModel
             {
                 Id = x.Id,
                 QuotationDate = x.QuotationDate,
                 QuotationFile = x.QuotationFile,
                 FullValue = x.FullValue,
-                ProviderId = x.ProviderId,
+                Provider = x.Provider,
                 StatedAt = x.StatedAt,
             }).ToListAsync();
 

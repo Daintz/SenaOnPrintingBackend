@@ -17,5 +17,7 @@ namespace PersistenceCape.Interfaces
         Task DeleteAsync(long id);
 
         Task ChangeStatusQuotation(long id);
+
+        Task<int> GetLastQuotationCodeAsync();
     }
 }

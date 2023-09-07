@@ -38,5 +38,17 @@ namespace DataCape.Models
         public DateTime? DeliverDate { get; set; }
         [NotMapped]
         public long? ProductId { get; set; }
+        [NotMapped]
+        public int? Quantity { get; set; }
+
+
+        [NotMapped]
+        public string UserName { get; set; } = null!;
+        [NotMapped]
+        public string ImpositionPlanchName { get; set; } = null!;
+        [NotMapped]
+        public string MachineName { get; set; } = null!;
+        [NotMapped]
+        public string TypeService { get; set; } = null!;
     }
 }

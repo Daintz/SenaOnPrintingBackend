@@ -88,13 +88,38 @@ namespace SenaOnPrinting.Controllers
             return Ok(role);
         }
 
-        
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, RoleUpdateDto roleDto)
         {
             var role = await _roleService.Show(roleDto.Id);
             _mapper.Map(roleDto, role);
             await _roleService.Update(role);
+
+            _context.PermissionsByRoles.RemoveRange(_context.PermissionsByRoles.Where(x => x.RoleId == role.Id));
+            await _context.SaveChangesAsync();
+
+            foreach (var permissionId in roleDto.PermissionIds)
+            {
+                var permission = await _context.ApplicationPermissions.FindAsync(permissionId);
+                if (permission == null)
+                {
+                    return BadRequest("Uno de los Ids rol no existe, por favor rectifique");
+                }
+
+                var permissionsByRole = new PermissionsByRoleModel
+                {
+                    RoleId = role.Id,
+                    PermissionId = permission.Id
+                };
+
+                _context.PermissionsByRoles.Add(permissionsByRole);
+            }
+
+            //var permissions = _context.ApplicationPermissions.Where(p => roleDto.PermissionIds.Contains(p.Id)).ToList();
+            //role.Permissions = permissions;
+
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 

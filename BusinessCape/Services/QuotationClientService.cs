@@ -49,5 +49,9 @@ namespace BusinessCape.Services
         {
             await _quotationClientRepository.ChangeStatusQuotation(id);
         }
+        public async Task<int> GetLastQuotationCodeAsync()
+        {
+            return await _quotationClientRepository.GetLastQuotationCodeAsync();
+        }
     }
 }

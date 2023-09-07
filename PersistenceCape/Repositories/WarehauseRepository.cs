@@ -19,7 +19,7 @@ namespace PersistenceCape.Repositories
         }
         public async Task<IEnumerable<WarehouseModel>> GetAllAsync()
         {
-            return await _context.Warehouses.ToListAsync(); 
+            return await _context.Warehouses.Include(x => x.TypeServices).ToListAsync(); 
         }
         public async Task<WarehouseModel> GetByIdAsync(long id)
         {
