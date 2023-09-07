@@ -11,10 +11,10 @@ using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    [AuthorizationFilter(ApplicationPermission.Client)]
+    //[AuthorizationFilter(ApplicationPermission.Client)]
     public class ClientController : ControllerBase
     {
         private readonly ClientService _clientService;
