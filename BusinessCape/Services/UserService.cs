@@ -32,6 +32,11 @@ namespace BusinessCape.Services
             await _userRepository.Update(user);
         }
 
+        public async Task UpdateProfile(UserModel user)
+        {
+            await _userRepository.Update(user);
+        }
+
         public async Task Delete(long id)
         {
             await _userRepository.Delete(id);

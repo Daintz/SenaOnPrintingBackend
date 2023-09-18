@@ -13,6 +13,7 @@ namespace PersistenceCape.Interfaces
         Task<UserModel> Show(long id);
         Task<UserModel> Create(UserModel user);
         Task Update(UserModel user);
+        Task UpdateProfile(UserModel user);
         Task Delete(long id);
     }
 }

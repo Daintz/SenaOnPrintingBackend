@@ -32,6 +32,13 @@ namespace PersistenceCape.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateProfile(UserModel user)
+        {
+            //user.PasswordDigest = encryptPassword(user.PasswordDigest);
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<UserModel> Create(UserModel user)
         {
             //user.PasswordDigest = encryptPassword(user.PasswordDigest);

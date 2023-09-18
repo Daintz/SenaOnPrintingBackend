@@ -63,6 +63,34 @@ namespace SenaOnPrinting.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/profile")]
+        public async Task<IActionResult> UpdateProfile(long id, ProfileUpdateDto userDto)
+        {
+            var user = await _userService.Show(userDto.Id);
+
+            if (VerifyPassword(userDto.CurrentPassword, user)) {
+                if (userDto.NewPassword.Equals(userDto.ConfirmPassword))
+                {
+                    user.Names = userDto.Names;
+                    user.Surnames = userDto.Surnames;
+                    user.DocumentNumber = userDto.DocumentNumber;
+                    user.TypeDocumentId = userDto.TypeDocumentId;
+                    user.Phone = userDto.Phone;
+                    user.Address = userDto.Address;
+                    user.PasswordDigest = encryptPassword(userDto.NewPassword);
+
+                    await _userService.Update(user);
+                    return NoContent();
+                } else
+                {
+                    return StatusCode(StatusCodes.Status422UnprocessableEntity, new { message = "La nueva contraseña no coincide" });
+                }
+            } else
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, new { message = "La contraseña no coincide con la actual"});
+            }
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
@@ -77,6 +105,15 @@ namespace SenaOnPrinting.Controllers
             string password_digest = passwordHasher.HashPassword(null, password);
 
             return password_digest;
+        }
+
+        private bool VerifyPassword(string password, UserModel user)
+        {
+            var passwordHasher = new PasswordHasher<UserModel>();
+
+            var is_valid = passwordHasher.VerifyHashedPassword(user, user.PasswordDigest, password);
+
+            return is_valid == PasswordVerificationResult.Success;
         }
     }
 }
