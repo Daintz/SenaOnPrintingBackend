@@ -87,7 +87,7 @@ namespace SenaOnPrinting.Controllers
                 }
             } else
             {
-                return StatusCode(StatusCodes.Status401Unauthorized, new { message = "La contraseña no coincide con la actual"});
+                return StatusCode(StatusCodes.Status422UnprocessableEntity, new { message = "La contraseña no coincide con la actual"});
             }
         }
 
