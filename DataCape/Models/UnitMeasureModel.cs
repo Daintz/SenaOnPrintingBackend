@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 
 namespace DataCape.Models
@@ -9,6 +10,7 @@ namespace DataCape.Models
         {
             InverseBase = new HashSet<UnitMeasureModel>();
             UnitMeasuresXSupply = new List<UnitMeasuresXSupplyModel>();
+            BuySuppliesDetails = new List<BuySuppliesDetailModel>();
             //Supplies = new HashSet<SupplyModel>();
         }
 
@@ -19,11 +21,13 @@ namespace DataCape.Models
         public long? BaseId { get; set; }
         public decimal? ConversionFactor { get; set; }
         public bool? StatedAt { get; set; }
-
+        [JsonIgnore]
         public virtual List<UnitMeasuresXSupplyModel> UnitMeasuresXSupply { get; set; }
 
         public virtual UnitMeasureModel? Base { get; set; }
         public virtual ICollection<UnitMeasureModel> InverseBase { get; set; }
         //public virtual ICollection<SupplyModel> Supplies { get; set; }
+        [JsonIgnore]
+        public virtual List<BuySuppliesDetailModel> BuySuppliesDetails { get; set; }
     }
 }

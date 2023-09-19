@@ -183,8 +183,13 @@ builder.Services.AddScoped<SupplyPictogramsServices>();
 builder.Services.AddScoped<ISupplyPictogramsRepository, SupplyPictogramsRepository>();
 
 //============================|SUPPLYDETAILS|==========================//
-builder.Services.AddScoped<SupplyDetailsService>();
-builder.Services.AddScoped<ISupplyDetailsRepository, SupplyDetailsRepository>();
+//builder.Services.AddScoped<BuySupplyService>();
+//builder.Services.AddScoped<ISupplyDetailsRepository, BuySupplyRepository>();
+
+//============================|SUPPLY PURCHASE|==========================//
+builder.Services.AddScoped<BuySupplyService>();
+builder.Services.AddScoped<IBuySupplyRepository, BuySupplyRepository>();
+
 //==============================================================//
 
 //============================|PRODUCT|==========================//

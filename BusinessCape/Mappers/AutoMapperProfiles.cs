@@ -32,7 +32,8 @@ using BusinessCape.DTOs.Finish;
 using BusinessCape.DTOs.QuotationProviders;
 using BusinessCape.DTOs.TypeServices;
 using BusinessCape.DTOs.SupplyPictograms;
-using BusinessCape.DTOs.SupplyDetails;
+using BusinessCape.DTOs.BuySupply;
+using BusinessCape.DTOs.BuySuppliesDetail;
 using BusinessCape.DTOs.Product;
 using BusinessCape.DTOs.SupplyCategory;
 using BusinessCape.DTOs.Supply;
@@ -162,11 +163,17 @@ namespace BusinessCape.Mappers
             // PUT OR UPDATE //
             CreateMap<SupplyPictogramsUpdateDto, SupplyPictogramModel>();
 
-            //SupplyDetails //
+            //SUPPLY PURCHASE //
             // POST OR CREATE //
-            CreateMap<SupplyDetailsCreateDto, SupplyDetailModel>();
+            CreateMap<BuySuppliesCreateDto, BuySupplyModel>();
             // PUT OR UPDATE //
-            CreateMap<SupplyDetailsUpdateDto, SupplyDetailModel>();
+            CreateMap<BuySuppliesUpdateDto, BuySupplyModel>();
+
+            //SUPPLY PURCHASE DETAIL//
+            // POST OR CREATE //
+            CreateMap<BuySuppliesDetailsCreateDto, BuySuppliesDetailModel>();
+            // PUT OR UPDATE //
+            CreateMap<BuySuppliesDetailsUpdateDto, BuySuppliesDetailModel>();
 
             //============================|PRODUCT|==========================//
             // POST OR CREATE //

@@ -34,7 +34,9 @@ namespace DataCape.Models
         public virtual DbSet<SupplyModel> Supplies { get; set; } = null!;
         public virtual DbSet<SupplyCategoriesXSupplyModel> SupplyCategoriesXSupplies { get; set; } = null!;
         public virtual DbSet<SupplyCategoryModel> SupplyCategories { get; set; } = null!;
-        public virtual DbSet<SupplyDetailModel> SupplyDetails { get; set; } = null!;
+        //public virtual DbSet<SupplyDetailModel> SupplyDetails { get; set; } = null!;
+        public virtual DbSet<BuySuppliesDetailModel> BuySuppliesDetails { get; set; } = null!;
+        public virtual DbSet<BuySupplyModel> BuySupplies { get; set; } = null!;
         public virtual DbSet<SupplyPictogramModel> SupplyPictograms { get; set; } = null!;
         public virtual DbSet<SupplyXProductModel> SupplyXProducts { get; set; } = null!;
         public virtual DbSet<SupplyXSupplyPictogramModel> SupplyXSupplyPictograms { get; set; } = null!;
@@ -712,27 +714,19 @@ namespace DataCape.Models
                     .HasDefaultValueSql("((1))");
             });
 
-            modelBuilder.Entity<SupplyDetailModel>(entity =>
+            modelBuilder.Entity<BuySupplyModel>(entity =>
             {
-                entity.ToTable("supply_details");
+                entity.ToTable("buy_supplies");
 
                 entity.Property(e => e.Id).HasColumnName("id");
-                //entity.Property(e => e.Batch).HasColumnName("batch");
-
 
                 entity.Property(e => e.Description)
-                    .HasMaxLength(250)
                     .IsUnicode(false)
                     .HasColumnName("description");
 
                 entity.Property(e => e.EntryDate)
-                    .HasColumnType("datetime")
+                    .HasColumnType("date")
                     .HasColumnName("entry_date");
-
-                entity.Property(e => e.ExpirationDate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("expiration_date");
-
 
                 entity.Property(e => e.ProviderId).HasColumnName("provider_id");
 
@@ -740,29 +734,65 @@ namespace DataCape.Models
                     .HasColumnName("stated_at")
                     .HasDefaultValueSql("((1))");
 
+                entity.HasOne(d => d.Provider)
+                    .WithMany(p => p.BuySupplies)
+                    .HasForeignKey(d => d.ProviderId)
+                    .HasConstraintName("FK__buy_suppl__provi__68487DD7");
+            });
+
+            modelBuilder.Entity<BuySuppliesDetailModel>(entity =>
+            {
+                entity.ToTable("buy_supplies_details");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.BuySuppliesId).HasColumnName("buy_supplies_id");
+
+                entity.Property(e => e.ExpirationDate)
+                    .HasColumnType("date")
+                    .HasColumnName("expiration_date");
+
+                entity.Property(e => e.SecurityFile)
+                    .IsUnicode(false)
+                    .HasColumnName("security_file");
+
+                entity.Property(e => e.StatedAt)
+                    .HasColumnName("stated_at")
+                    .HasDefaultValueSql("((1))");
+
                 entity.Property(e => e.SupplyCost)
-                    .HasColumnType("decimal(8, 2)")
+                    .HasColumnType("decimal(10, 2)")
                     .HasColumnName("supply_cost");
 
                 entity.Property(e => e.SupplyId).HasColumnName("supply_id");
 
+                entity.Property(e => e.SupplyQuantity).HasColumnName("supply_quantity");
+
+                entity.Property(e => e.UnitMeasuresId).HasColumnName("unit_measures_id");
+
                 entity.Property(e => e.WarehouseId).HasColumnName("warehouse_id");
 
-                entity.HasOne(d => d.Provider)
-                    .WithMany(p => p.SupplyDetails)
-                    .HasForeignKey(d => d.ProviderId)
-                    .HasConstraintName("provider_idContraint");
+                entity.HasOne(d => d.BuySupplies)
+                    .WithMany(p => p.BuySuppliesDetails)
+                    .HasForeignKey(d => d.BuySuppliesId)
+                    .HasConstraintName("FK__buy_suppl__buy_s__693CA210");
 
                 entity.HasOne(d => d.Supply)
-                    .WithMany(p => p.SupplyDetails)
+                    .WithMany(p => p.BuySuppliesDetails)
                     .HasForeignKey(d => d.SupplyId)
-                    .HasConstraintName("supply_idContraint");
+                    .HasConstraintName("FK__buy_suppl__suppl__6A30C649");
+
+                entity.HasOne(d => d.UnitMeasures)
+                    .WithMany(p => p.BuySuppliesDetails)
+                    .HasForeignKey(d => d.UnitMeasuresId)
+                    .HasConstraintName("FK_buy_supplies_details_unit_measures");
 
                 entity.HasOne(d => d.Warehouse)
-                    .WithMany(p => p.SupplyDetails)
+                    .WithMany(p => p.BuySuppliesDetails)
                     .HasForeignKey(d => d.WarehouseId)
-                    .HasConstraintName("warehouse_id");
+                    .HasConstraintName("FK__buy_suppl__wareh__6B24EA82");
             });
+            
 
             modelBuilder.Entity<SupplyPictogramModel>(entity =>
             {

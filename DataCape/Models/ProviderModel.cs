@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 
 namespace DataCape.Models
@@ -8,7 +9,7 @@ namespace DataCape.Models
         public ProviderModel()
         {
             QuotationProviders = new HashSet<QuotationProviderModel>();
-            SupplyDetails = new HashSet<SupplyDetailModel>();
+            BuySupplies = new List<BuySupplyModel>();
         }
 
         public long Id { get; set; }
@@ -21,5 +22,7 @@ namespace DataCape.Models
 
         public virtual ICollection<QuotationProviderModel> QuotationProviders { get; set; }
         public virtual ICollection<SupplyDetailModel> SupplyDetails { get; set; }
+        [JsonIgnore]
+        public virtual List<BuySupplyModel> BuySupplies { get; set; }
     }
 }

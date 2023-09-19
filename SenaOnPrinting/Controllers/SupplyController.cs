@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BusinessCape.DTOs.ImpositionPlanch;
 using BusinessCape.DTOs.Supply;
-using BusinessCape.DTOs.SupplyDetails;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Authorization;

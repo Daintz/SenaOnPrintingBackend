@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace DataCape.Models
 {
@@ -12,8 +12,9 @@ namespace DataCape.Models
             SupplyCategoriesXSupply = new List<SupplyCategoriesXSupplyModel>();
             SupplyXSupplyPictogram = new List<SupplyXSupplyPictogramModel>();
             UnitMeasuresXSupply = new List<UnitMeasuresXSupplyModel>();
-            SupplyDetails = new List<SupplyDetailModel>();
+            //SupplyDetails = new List<SupplyDetailModel>();
             Products = new List<SupplyXProductModel>();
+            BuySuppliesDetails = new List<BuySuppliesDetailModel>();
         }
 
         public long Id { get; set; }
@@ -34,11 +35,8 @@ namespace DataCape.Models
         //public virtual SupplyCategoryModel? SupplyCategories { get; set; }
         //public virtual SupplyPictogramModel? SupplyPictograms { get; set; }
         //public virtual UnitMeasureModel? UnitMeasures { get; set; }
-        [JsonIgnore]
-        public virtual List<SupplyCategoriesXSupplyModel> SupplyCategoriesXSupply { get; set; }
-        [JsonIgnore]     
-        public virtual List<SupplyXSupplyPictogramModel> SupplyXSupplyPictogram { get; set; }
-        [JsonIgnore]
+        public virtual List<SupplyCategoriesXSupplyModel> SupplyCategoriesXSupply { get; set; }        
+        public virtual List<SupplyXSupplyPictogramModel> SupplyXSupplyPictogram { get; set; }        
         public virtual List<UnitMeasuresXSupplyModel> UnitMeasuresXSupply { get; set; }
 
         //[JsonIgnore]
@@ -46,8 +44,10 @@ namespace DataCape.Models
         //public virtual SupplyPictogramModel? SupplyPictogram { get; set; }
         //public virtual UnitMeasureModel? UnitMeasure { get; set; }
 
-        public virtual List<SupplyDetailModel> SupplyDetails { get; set; }
+        //public virtual List<SupplyDetailModel> SupplyDetails { get; set; }
         public virtual List<SupplyXProductModel> Products { get; set; }
+        [JsonIgnore]
+        public virtual List<BuySuppliesDetailModel> BuySuppliesDetails { get; set; }
 
     }
 }
