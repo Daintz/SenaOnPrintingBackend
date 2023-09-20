@@ -20,20 +20,31 @@ namespace PersistenceCape.Repositories
 
         public async Task<IEnumerable<QuotationClientModel>> GetAllAsync()
         {
-            return await _context.QuotationClients.Include(x=>x.Client).ToListAsync();
+            return await _context.QuotationClients
+       .Include(x => x.Client) // Incluye los datos del cliente relacionado
+       .Include(x => x.QuotationClientDetails) // Incluye los detalles de la cotización relacionados
+           .ThenInclude(detail => detail.Product) // Incluye los productos relacionados en los detalles
+       .ToListAsync();
         }
 
         public async Task<QuotationClientModel> GetByIdAsync(long id)
         {
             return await _context.QuotationClients.FindAsync(id);
         }
+
         public async Task<int> GetLastQuotationCodeAsync()
         {
             var lastQuotation = await _context.QuotationClients
-                .OrderByDescending(c => c.Code)
+                .OrderByDescending(qc => qc.Code)
                 .FirstOrDefaultAsync();
 
-            return lastQuotation?.Code + 1 ?? 1;
+            if (lastQuotation != null)
+            {
+                return lastQuotation.Code;
+            }
+
+            // Si no hay cotizaciones registradas, puedes devolver un valor predeterminado o lanzar una excepción.
+            return 1; // Valor predeterminado si no hay cotizaciones.
         }
 
         public async Task UpdateAsync(QuotationClientModel quotationClient)
