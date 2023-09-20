@@ -163,13 +163,13 @@ namespace BusinessCape.Mappers
             // PUT OR UPDATE //
             CreateMap<SupplyPictogramsUpdateDto, SupplyPictogramModel>();
 
-            //SUPPLY PURCHASE //
+            //===========================|SUPPLY PURCHASE|=========================//
             // POST OR CREATE //
             CreateMap<BuySuppliesCreateDto, BuySupplyModel>();
             // PUT OR UPDATE //
             CreateMap<BuySuppliesUpdateDto, BuySupplyModel>();
 
-            //SUPPLY PURCHASE DETAIL//
+            //===========================|SUPPLY PURCHASE DETAILS|=========================//
             // POST OR CREATE //
             CreateMap<BuySuppliesDetailsCreateDto, BuySuppliesDetailModel>();
             // PUT OR UPDATE //

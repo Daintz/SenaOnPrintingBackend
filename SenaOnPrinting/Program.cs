@@ -191,6 +191,11 @@ builder.Services.AddScoped<BuySupplyService>();
 builder.Services.AddScoped<IBuySupplyRepository, BuySupplyRepository>();
 
 //==============================================================//
+//============================|SUPPLY PURCHASE DETAILS|==========================//
+builder.Services.AddScoped<BuySupplyDetailsService>();
+builder.Services.AddScoped<IBuySuppliesDetailRepository, BuySuppliesDetailRepository>();
+
+//==============================================================//
 
 //============================|PRODUCT|==========================//
 builder.Services.AddScoped<ProductService>();
