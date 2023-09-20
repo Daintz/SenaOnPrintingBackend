@@ -1,15 +1,19 @@
 ﻿using DataCape.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BusinessCape.DTOs.BuySuppliesDetail
 {
     public class BuySuppliesDetailsCreateDto
     {
-        public long Id { get; set; }
         public long? BuySuppliesId { get; set; }
         public long? SupplyId { get; set; }
         public decimal? SupplyCost { get; set; }
@@ -17,6 +21,7 @@ namespace BusinessCape.DTOs.BuySuppliesDetail
         public DateTime? ExpirationDate { get; set; }
         public long? WarehouseId { get; set; }
         public string? SecurityFile { get; set; }
+        public Microsoft.AspNetCore.Http.IFormFile? SecurityFileInfo { get; set; } = null!;
         public bool? StatedAt { get; set; }
         public long? UnitMeasuresId { get; set; }
         public BuySuppliesDetailsCreateDto()

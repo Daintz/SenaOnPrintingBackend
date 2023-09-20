@@ -1,38 +1,44 @@
 ﻿using AutoMapper;
 using BusinessCape.DTOs.BuySupply;
+using BusinessCape.DTOs.QuotationProviders;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using SenaOnPrinting.Filters;
 using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
-   // [Authorize]
+    // [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/buy_supplies")]
     //[AuthorizationFilter(ApplicationPermission.Supply)]
     public class BuySuppliesController : ControllerBase
     {
-        private readonly BuySupplyService _buySupplyService;        
-        private readonly IMapper _mapper;
+        private readonly BuySupplyService _buySupplyService;
+        private readonly BuySupplyDetailsService _buySupplyDetailsService;
 
+        private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly SENAONPRINTINGContext _context;
-        public BuySuppliesController(BuySupplyService buySupplyService, IMapper mapper, SENAONPRINTINGContext context)
+
+        public BuySuppliesController(BuySupplyService buySupplyService, IMapper mapper, SENAONPRINTINGContext context, IWebHostEnvironment hostEnvironment)
         {
             _buySupplyService = buySupplyService;
             _mapper = mapper;
             _context = context;
+            _hostEnvironment = hostEnvironment;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetAll()
         {
-            var buySupplies = await _context.BuySupplies.Include(a => a.Provider).ToListAsync();
-            return Ok(buySupplies);
+            var quotationClient = await _buySupplyService.Index();
+            return Ok(quotationClient);
         }
 
         [HttpGet("{id}")]
@@ -55,37 +61,50 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(BuySuppliesCreateDto buySupplyDto)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Add([FromForm] BuySuppliesCreateDto buySupplyDto)
         {
-            
-            var buySupply = _mapper.Map<BuySupplyModel>(buySupplyDto);
+            var buySupplyCreate = _mapper.Map<BuySupplyModel>(buySupplyDto);
+            await _buySupplyService.Create(buySupplyCreate);
+            var buySupplyId = buySupplyCreate.Id;
 
-            await _buySupplyService.Create(buySupply);
-            var buySupplyId = buySupply.Id;
-
-            foreach (var detail in buySupplyDto.BuySuppliesDetails)
+            foreach (var detail in buySupplyDto.BuySuppliesDetailsCreateDto)
             {
-                var buySupplyDetail = new BuySuppliesDetailModel
+                if (detail.SecurityFile != null && detail.SecurityFile.Length > 0)
                 {
-                    BuySuppliesId = buySupplyId,
-                    SupplyId = detail.SupplyId,
-                    SecurityFile = detail.SecurityFile,
-                    SupplyCost = detail.SupplyCost,
-                    SupplyQuantity = detail.SupplyQuantity,
-                    ExpirationDate = detail.ExpirationDate,
-                    WarehouseId = detail.WarehouseId,
-                    UnitMeasuresId = detail.UnitMeasuresId,
-                    StatedAt = true
-                };
+                    // Aquí puedes guardar el archivo como sea necesario, por ejemplo, en el sistema de archivos o en la base de datos.
+                    // Por simplicidad, lo almacenaremos en el sistema de archivos.
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(detail.SecurityFileInfo.FileName);
+                    var filePath = Path.Combine(_hostEnvironment.ContentRootPath, "Uploads", fileName);
 
-                _context.BuySuppliesDetails.Add(buySupplyDetail);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await detail.SecurityFileInfo.CopyToAsync(fileStream);
+                    }
 
+                    var buySupplyDetail = new BuySuppliesDetailModel
+                    {
+                        BuySuppliesId = buySupplyId,
+                        SupplyId = detail.SupplyId,
+                        SecurityFile = fileName, // Aquí almacenamos el nombre del archivo
+                        SupplyCost = detail.SupplyCost,
+                        SupplyQuantity = detail.SupplyQuantity,
+                        ExpirationDate = detail.ExpirationDate,
+                        WarehouseId = detail.WarehouseId,
+                        UnitMeasuresId = detail.UnitMeasuresId,
+                        StatedAt = true
+                    };
+
+                    _context.BuySuppliesDetails.Add(buySupplyDetail);
+                }
             }
 
             await _context.SaveChangesAsync();
 
-            return Ok(buySupply);
+            return Ok(buySupplyCreate);
         }
+
+
 
         [HttpPut("{id}")]
 
@@ -96,15 +115,15 @@ namespace SenaOnPrinting.Controllers
                 return BadRequest();
             }
 
-            var buySupply = await _buySupplyService.Show(buySupplyDto.Id);
+            var buySupplyToUpdate = await _buySupplyService.Show(buySupplyDto.Id);
 
-            _mapper.Map(buySupplyDto, buySupply);
+            _mapper.Map(buySupplyDto, buySupplyToUpdate);
 
-            await _buySupplyService.Update(buySupply);
-            return Ok(buySupply);
+            await _buySupplyService.Update(buySupplyToUpdate);
+            return Ok(buySupplyToUpdate);
         }
 
-     
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> ChangeState(long id)
         {

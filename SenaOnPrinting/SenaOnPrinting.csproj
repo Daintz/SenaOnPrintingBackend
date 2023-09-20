@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Images\BuySuppliesDetail\" />
     <Folder Include="Images\OrderProduction\" />
     <Folder Include="Images\QuotationProvider\" />
     <Folder Include="Images\QuotationProvider\" />

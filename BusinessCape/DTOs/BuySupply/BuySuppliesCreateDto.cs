@@ -11,7 +11,7 @@ namespace BusinessCape.DTOs.BuySupply
 {
     public class BuySuppliesCreateDto
     {
-        public long Id { get; set; }
+
         public string? Description { get; set; }
         public long? ProviderId { get; set; }
         public DateTime? EntryDate { get; set; }
@@ -21,6 +21,6 @@ namespace BusinessCape.DTOs.BuySupply
             StatedAt = true;
         }
 
-        public List<BuySuppliesDetailsCreateDto> BuySuppliesDetails { get; set; }
+        public List<BuySuppliesDetailsCreateDto> BuySuppliesDetailsCreateDto { get; set; }
     }
 }
