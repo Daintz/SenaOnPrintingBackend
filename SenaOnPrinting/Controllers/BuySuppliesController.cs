@@ -15,7 +15,7 @@ using SenaOnPrinting.Permissions;
 namespace SenaOnPrinting.Controllers
 {
     // [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/buy_supplies")]
     [ApiController]
     //[AuthorizationFilter(ApplicationPermission.Supply)]
     public class BuySuppliesController : ControllerBase
@@ -23,10 +23,8 @@ namespace SenaOnPrinting.Controllers
         private readonly BuySupplyService _buySupplyService;        
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _hostEnvironment;
-
-        private readonly IMapper _mapper;
-        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly SENAONPRINTINGContext _context;
+
         public BuySuppliesController(BuySupplyService buySupplyService, IMapper mapper, SENAONPRINTINGContext context, IWebHostEnvironment hostEnvironment)
         {
             _buySupplyService = buySupplyService;
@@ -86,7 +84,7 @@ namespace SenaOnPrinting.Controllers
             await _buySupplyService.Create(buySupply);
             var buySupplyId = buySupply.Id;
 
-            return Ok(buySupplyCreate);
+            return Ok(buySupply);
         }
 
 
