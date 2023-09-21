@@ -19,7 +19,6 @@ namespace DataCape.Models
         public string Area { get; set; } = null!;
         public string Regional { get; set; } = null!;
         public bool? StatedAt { get; set; }
-
         [JsonIgnore]
         public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
     }

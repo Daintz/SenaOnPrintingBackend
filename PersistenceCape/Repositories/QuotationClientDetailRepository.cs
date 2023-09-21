@@ -54,17 +54,17 @@ namespace PersistenceCape.Repositories
 
         //    return filteredQuotationClientDetails;
         //}
+
         public async Task<QuotationClientDetailModel> GetByIdAsync(long id)
         {
 
             return await _context.QuotationClientDetails
                 .Include(supply => supply.Product)
-                .ThenInclude(pbr => pbr.QuotationClientDetails)
+                    .ThenInclude(pbr => pbr.QuotationClientDetails)
                 .FirstOrDefaultAsync(d => d.Id == id);
 
 
         }
-
         public async Task UpdateAsync(QuotationClientDetailModel quotationclientDetail)
         {
             _context.Entry(quotationclientDetail).State = EntityState.Modified;

@@ -29,7 +29,6 @@ namespace DataCape.Models
         public string TypeServiceName { get; set; } = null!;
         [JsonIgnore]
         public virtual QuotationClientModel QuotationClient { get; set; }
-        
         public virtual ProductModel Product { get; set; }
         public virtual TypeServiceModel TypeServiceModel { get; set; }
         public virtual List<OrderProductionModel> OrderProductions { get; set; }
