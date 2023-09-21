@@ -6,6 +6,7 @@ namespace DataCape.Models
 {
     public partial class BuySuppliesDetailModel
     {
+
         public long Id { get; set; }
         public long? BuySuppliesId { get; set; }
         public long? SupplyId { get; set; }
@@ -17,9 +18,10 @@ namespace DataCape.Models
         public bool? StatedAt { get; set; }
         public long? UnitMeasuresId { get; set; }
         [JsonIgnore]
-        public virtual BuySupplyModel? BuySupplies { get; set; }
-        public virtual SupplyModel? Supply { get; set; }
-        public virtual UnitMeasureModel? UnitMeasures { get; set; }
-        public virtual WarehouseModel? Warehouse { get; set; }
+        public virtual BuySupplyModel BuySupplies { get; set; }
+        public virtual SupplyModel Supply { get; set; }
+        public virtual UnitMeasureModel UnitMeasures { get; set; }
+        public virtual WarehouseModel Warehouse { get; set; }
+
     }
 }

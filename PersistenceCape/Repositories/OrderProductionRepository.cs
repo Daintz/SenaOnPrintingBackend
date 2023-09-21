@@ -54,7 +54,11 @@ namespace PersistenceCape.Repositories
             UserName = op.User.Names,
             ImpositionPlanchName = op.ImpositionPlanch.Name,
             MachineName = op.Machine.Name,
-            TypeService = op.QuotationClientDetail.TypeServiceModel.Name
+            TypeService = op.QuotationClientDetail.TypeServiceModel.Name,
+            ImpositionPlanchId = op.ImpositionPlanchId,
+            MachineId = op.MachineId,
+            Indented = op.Indented,
+            Lineature = op.Lineature
         })
 
          .ToListAsync();
@@ -105,4 +109,3 @@ namespace PersistenceCape.Repositories
         }
     }
 }
-

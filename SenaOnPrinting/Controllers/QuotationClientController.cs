@@ -42,18 +42,21 @@ namespace SenaOnPrinting.Controllers
 
         // GET api/<QuotationClient>/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(long id)
+       public async Task<ActionResult<QuotationClientModel>> GetById(long id)
         {
-            var quotationClient = await _context.QuotationClients
-                .Include(d => d.QuotationClientDetails)
-                .ThenInclude(d => d.Product)
-                .FirstOrDefaultAsync(d => d.Id == id);
-            if (quotationClient == null)
+            var quotation = await _context.QuotationClients
+                .Include(q => q.QuotationClientDetails) // Incluye los detalles de la cotización
+                    .ThenInclude(d => d.Product) // Incluye los productos relacionados en los detalles
+                .FirstOrDefaultAsync(q => q.Id == id);
+
+            if (quotation == null)
             {
                 return NotFound();
             }
-            return Ok(quotationClient);
+
+            return quotation;
         }
+
         [HttpGet("Approved")]
 
         public async Task<IActionResult> GetAllApproved()
@@ -61,6 +64,15 @@ namespace SenaOnPrinting.Controllers
             var quotationclientDetail = await _quotationClientService.GetApprovedQuotationAsync();
             return Ok(quotationclientDetail);
         }
+
+        
+        [HttpGet("LastCode")]
+        public async Task<IActionResult> GetLastQuotationCode()
+        {
+            var lastCode = await _quotationClientService.GetLastQuotationCodeAsync();
+            return Ok(lastCode);
+        }
+
         // POST api/<QuotationClient>
         [HttpPost]
         public async Task<IActionResult> Add(QuotationClientCreateDto quotationClientDto)
@@ -118,11 +130,5 @@ namespace SenaOnPrinting.Controllers
             return NoContent();
         }
 
-        [HttpGet("lastCode")]
-        public async Task<ActionResult<int>> GetLastQuotationCode()
-        {
-            var lastCode = await _quotationClientService.GetLastQuotationCodeAsync();
-            return Ok(lastCode);
-        }
     }
 }

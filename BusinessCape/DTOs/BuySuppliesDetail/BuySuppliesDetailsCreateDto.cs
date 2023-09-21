@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BusinessCape.DTOs.BuySuppliesDetail
 {
     public class BuySuppliesDetailsCreateDto
     {
-        public long Id { get; set; }
         public long? BuySuppliesId { get; set; }
         public long? SupplyId { get; set; }
         public decimal? SupplyCost { get; set; }

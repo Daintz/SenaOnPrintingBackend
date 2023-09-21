@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessCape.DTOs.BuySuppliesDetail;
 using BusinessCape.DTOs.BuySupply;
+using BusinessCape.DTOs.QuotationProviders;
 using BusinessCape.Services;
 using DataCape.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -13,9 +14,9 @@ using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
-   // [Authorize]
+    // [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/buy_supplies")]
     //[AuthorizationFilter(ApplicationPermission.Supply)]
     public class BuySuppliesController : ControllerBase
     {
@@ -23,6 +24,8 @@ namespace SenaOnPrinting.Controllers
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _hostEnvironment;
 
+        private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly SENAONPRINTINGContext _context;
         public BuySuppliesController(BuySupplyService buySupplyService, IMapper mapper, SENAONPRINTINGContext context, IWebHostEnvironment hostEnvironment)
         {
@@ -33,7 +36,7 @@ namespace SenaOnPrinting.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetAll()
         {
             var buySupplies = await _context.BuySupplies
                 .Include(a => a.Provider)
@@ -83,8 +86,10 @@ namespace SenaOnPrinting.Controllers
             await _buySupplyService.Create(buySupply);
             var buySupplyId = buySupply.Id;
 
-            return Ok(buySupply);
+            return Ok(buySupplyCreate);
         }
+
+
 
         [HttpPut("{id}")]
 
@@ -95,15 +100,15 @@ namespace SenaOnPrinting.Controllers
                 return BadRequest();
             }
 
-            var buySupply = await _buySupplyService.Show(buySupplyDto.Id);
+            var buySupplyToUpdate = await _buySupplyService.Show(buySupplyDto.Id);
 
-            _mapper.Map(buySupplyDto, buySupply);
+            _mapper.Map(buySupplyDto, buySupplyToUpdate);
 
-            await _buySupplyService.Update(buySupply);
-            return Ok(buySupply);
+            await _buySupplyService.Update(buySupplyToUpdate);
+            return Ok(buySupplyToUpdate);
         }
 
-     
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> ChangeState(long id)
         {

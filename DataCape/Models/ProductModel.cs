@@ -1,4 +1,6 @@
-﻿namespace DataCape.Models
+﻿using System.Text.Json.Serialization;
+
+namespace DataCape.Models
 {
     public partial class ProductModel
     {
@@ -40,6 +42,7 @@
         public string? Substratum { get; set; }
 
         public virtual PaperCutModel? PaperCut { get; set; }
+        [JsonIgnore]
         public virtual List<QuotationClientDetailModel> QuotationClientDetails { get; set; }
         public virtual List<SupplyXProductModel> Supplies { get; set; }
     }
