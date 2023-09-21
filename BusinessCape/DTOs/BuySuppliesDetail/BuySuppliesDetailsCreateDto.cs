@@ -1,4 +1,5 @@
 ﻿using DataCape.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace BusinessCape.DTOs.BuySuppliesDetail
         public DateTime? ExpirationDate { get; set; }
         public long? WarehouseId { get; set; }
         public string? SecurityFile { get; set; }
+        public IFormFile? SecurityFileInfo { get; set; } = null!;
         public bool? StatedAt { get; set; }
         public long? UnitMeasuresId { get; set; }
         public BuySuppliesDetailsCreateDto()

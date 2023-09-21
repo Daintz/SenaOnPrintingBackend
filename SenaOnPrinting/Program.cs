@@ -29,6 +29,8 @@ using PersistenceCape.Seed;
 using Microsoft.AspNetCore.Authorization;
 using SenaOnPrinting.Permissions;
 using System.Text.Json.Serialization;
+using BusinessCape.DTOs.BuySuppliesDetail;
+using BusinessCape.DTOs.BuySupply;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -237,8 +239,6 @@ builder.Services.AddSwaggerGen(option =>
         BearerFormat = "JWT",
         Scheme = "bearer"
     });
-
-    option.OperationFilter<AuthenticationFilter>();
 }
 );
 
