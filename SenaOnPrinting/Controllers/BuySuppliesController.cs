@@ -37,7 +37,15 @@ namespace SenaOnPrinting.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var quotationClient = await _buySupplyService.Index();
+            var quotationClient = await _context.BuySupplies
+                .Include(a => a.Provider)
+                .Include(a => a.BuySuppliesDetails)
+                .ThenInclude(a => a.Supply)
+                .Include(a => a.BuySuppliesDetails)
+                .ThenInclude(a => a.Warehouse)
+                .Include(a => a.BuySuppliesDetails)
+                .ThenInclude(a => a.UnitMeasures)
+                .ToListAsync();
             return Ok(quotationClient);
         }
 

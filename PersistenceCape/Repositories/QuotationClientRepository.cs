@@ -21,10 +21,11 @@ namespace PersistenceCape.Repositories
         public async Task<IEnumerable<QuotationClientModel>> GetAllAsync()
         {
             return await _context.QuotationClients
-       .Include(x => x.Client) // Incluye los datos del cliente relacionado
-       .Include(x => x.QuotationClientDetails) // Incluye los detalles de la cotización relacionados
-           .ThenInclude(detail => detail.Product) // Incluye los productos relacionados en los detalles
-       .ToListAsync();
+                   .Include(x => x.User)
+                   .Include(x => x.Client) // Incluye los datos del cliente relacionado
+                   .Include(x => x.QuotationClientDetails) // Incluye los detalles de la cotización relacionados
+                   .ThenInclude(detail => detail.Product) // Incluye los productos relacionados en los detalles
+                   .ToListAsync();
         }
 
         public async Task<QuotationClientModel> GetByIdAsync(long id)

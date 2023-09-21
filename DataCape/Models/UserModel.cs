@@ -1,4 +1,6 @@
-﻿namespace DataCape.Models
+﻿using System.Text.Json.Serialization;
+
+namespace DataCape.Models
 {
     public  class UserModel
     {
@@ -24,6 +26,7 @@
         public virtual RoleModel Role { get; set; } = null!;
         public virtual TypeDocumentModel TypeDocument { get; set; } = null!;
         public virtual ICollection<OrderProductionModel> OrderProductions { get; set; }
+        [JsonIgnore]
         public virtual ICollection<QuotationClientModel> QuotationClients { get; set; }
     }
 }
