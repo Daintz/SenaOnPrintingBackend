@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace DataCape.Models
 {
@@ -14,7 +15,7 @@ namespace DataCape.Models
         public long Id { get; set; }
         public string Name { get; set; } = null!;
         public bool? StatedAt { get; set; }
-
+        [JsonIgnore]
         public virtual ICollection<QuotationClientDetailModel> QuotationClientDetails { get; set; }
         public virtual ICollection<WarehouseModel> Warehouses { get; set;}
     }

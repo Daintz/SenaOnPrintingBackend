@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace DataCape.Models
 {
@@ -27,8 +27,8 @@ namespace DataCape.Models
         public string ProductName { get; set; } = null!;
         [NotMapped]
         public string TypeServiceName { get; set; } = null!;
-        public virtual QuotationClientModel QuotationClient { get; set; }
         [JsonIgnore]
+        public virtual QuotationClientModel QuotationClient { get; set; }
         public virtual ProductModel Product { get; set; }
         public virtual TypeServiceModel TypeServiceModel { get; set; }
         public virtual List<OrderProductionModel> OrderProductions { get; set; }
