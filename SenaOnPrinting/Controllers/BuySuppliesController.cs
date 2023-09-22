@@ -74,10 +74,16 @@ namespace SenaOnPrinting.Controllers
             var buySupply = _mapper.Map<BuySupplyModel>(buySupplyDto);
 
             var lastBuySupply = await _context.BuySupplies.OrderBy(d => d.Id).LastOrDefaultAsync();
+            long lastId = 0;
+            if (lastBuySupply  != null)
+            {
+                 lastId = lastBuySupply.Id;
+            }
+           
 
             for (var index = 0; index < buySupplyDto.BuySuppliesDetails.Count(); index++)
             {
-                var securityFile = await SaveFile(buySupplyDto.BuySuppliesDetails[index].SecurityFileInfo, lastBuySupply.Id+1);
+                var securityFile = await SaveFile(buySupplyDto.BuySuppliesDetails[index].SecurityFileInfo, lastId+1);
                 buySupply.BuySuppliesDetails[index].SecurityFile = securityFile;
             }
 

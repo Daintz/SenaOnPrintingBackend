@@ -21,19 +21,16 @@ namespace PersistenceCape.Repositories
         public async Task<IEnumerable<QuotationClientModel>> GetAllAsync()
         {
             return await _context.QuotationClients
-            .Include(d => d.Client)
-            .Include(d => d.User)
-            .Include(x => x.QuotationClientDetails) // Incluye los detalles de la cotización relacionados
-            .ThenInclude(detail => detail.Product) // Incluye los productos relacionados en los detalles
-            .ToListAsync();
+                   .Include(x => x.User)
+                   .Include(x => x.Client) // Incluye los datos del cliente relacionado
+                   .Include(x => x.QuotationClientDetails) // Incluye los detalles de la cotización relacionados
+                   .ThenInclude(detail => detail.Product) // Incluye los productos relacionados en los detalles
+                   .ToListAsync();
         }
 
         public async Task<QuotationClientModel> GetByIdAsync(long id)
         {
-            return await _context.QuotationClients
-            .Include(d => d.Client)
-            .Include(d => d.User)
-            .FirstOrDefaultAsync(d => d.Id == id);
+            return await _context.QuotationClients.FindAsync(id);
         }
 
         public async Task<int> GetLastQuotationCodeAsync()
@@ -94,24 +91,34 @@ namespace PersistenceCape.Repositories
                     TypeServiceName = qcd.TypeServiceModel.Name,
                 })
                 .ToListAsync();
-
-            var quotationClientIdsInProduction = await _context.OrderProductions
+            // Obtener los IDs de quotationClientDetails con orden de producción
+            var quotationClientDetailIdsInProduction = await _context.OrderProductions
                 .Select(po => po.QuotationClientDetailId)
                 .Distinct()
                 .ToListAsync();
 
-            // Filtra las cotizaciones que ya están en orden de producción
-            quotationClients = quotationClients
-                .Where(qc => !quotationClientIdsInProduction.Contains(qc.Id))
+            // Filtrar los quotationClientDetails que tienen una orden de producción
+            quotationClientDetails = quotationClientDetails
+                .Where(qcd => !quotationClientDetailIdsInProduction.Contains(qcd.Id))
                 .ToList();
 
-            // Combina las propiedades en la lista de cotizaciones cliente
+            // Filtrar las cotizaciones cliente que tienen al menos un quotationClientDetail con orden de producción
+            var validQuotationClientIds = quotationClientDetails.Select(qcd => qcd.QuotationClientId).ToList();
+            quotationClients = quotationClients
+                .Where(qc => validQuotationClientIds.Contains(qc.Id))
+                .ToList();
+
+            // Combinar las propiedades en la lista de cotizaciones cliente
             foreach (var quotationClient in quotationClients)
             {
                 quotationClient.QuotationClientDetails = quotationClientDetails
                     .Where(qcd => qcd.QuotationClientId == quotationClient.Id)
                     .ToList();
             }
+
+            // Aquí obtendrás quotationClients que tienen al menos un quotationClientDetail con orden de producción,
+            // y los quotationClientDetails estarán limitados a aquellos con orden de producción.
+
 
             return quotationClients;
         }
@@ -146,4 +153,3 @@ namespace PersistenceCape.Repositories
         }
     }
 }
-

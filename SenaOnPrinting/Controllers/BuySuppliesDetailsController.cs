@@ -23,7 +23,23 @@ namespace SenaOnPrinting.Controllers
             _mapper = mapper;
             _hostEnvironment = hostEnvironment;
         }
-        // GET: api/<BuySuppliesDetail>
+
+        [HttpGet("file/{id}")]
+        public async Task<IActionResult> DownloadFile(int id)
+        {
+            var file = await _buySuppliesDetailService.GetByIdAsync(id);
+
+            if (file == null)
+            {
+                return NotFound();
+            }
+            var filePath = $"SecurityFiles/buySupply_{file.BuySuppliesId}/{file.SecurityFile}";
+            var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+
+            return new FileContentResult(fileBytes, "application/pdf");
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

@@ -37,6 +37,7 @@
     <Folder Include="Images\QuotationProvider\" />
     <Folder Include="Images\QuotationProvider\" />
     <Folder Include="SecurityFiles\" />
+    <Folder Include="SecurityFiles\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
