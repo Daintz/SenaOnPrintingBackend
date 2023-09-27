@@ -12,10 +12,13 @@ using Microsoft.AspNetCore.Authorization;
 using SenaOnPrinting.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Data.SqlClient;
+using SenaOnPrinting.Helpers;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Specialized;
+using Azure.Storage.Sas;
 
 namespace SenaOnPrinting.Controllers
-{
-    //[Authorize]
+{    
     [Route("api/[controller]")]
     [ApiController]
     //[AuthorizationFilter(ApplicationPermission.Provider)]
@@ -23,34 +26,29 @@ namespace SenaOnPrinting.Controllers
     {
         private readonly QuotationProvidersServices _quotation_providersServices;
         private readonly IMapper _mapper;
-        private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly BlobServiceClient _blobServiceClient;
 
-
-        public QuotationProvidersController(QuotationProvidersServices quotation_providersServices, IMapper mapper, IWebHostEnvironment hostEnvironment)
+        public QuotationProvidersController(QuotationProvidersServices quotation_providersServices, IMapper mapper, IWebHostEnvironment hostEnvironment, BlobServiceClient blobServiceClient)
         {
             _quotation_providersServices = quotation_providersServices;
             _mapper = mapper;
-            _hostEnvironment = hostEnvironment;
+            _blobServiceClient = blobServiceClient;
         }
 
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var scheme = "https";
-            var host = Request.Host;
-            var pathBase = Request.PathBase.ToString();
             var quotationProviders = await _quotation_providersServices.GetAllAsync();
             foreach (var quotationProvider in quotationProviders)
             {
-                quotationProvider.QuotationFile = string.Format("{0}://{1}/{2}Images/QuotationProvider/{3}",
-                    scheme, host, pathBase, quotationProvider.QuotationFile);
-                quotationProvider.QuotationFile = quotationProvider.QuotationFile;
+                var Url = await CreateServiceSASBlob(quotationProvider.QuotationFile, null, "quotationprovider");
+                quotationProvider.QuotationFile = Url.ToString();
             }
             return Ok(quotationProviders);
         }
 
-
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(long id)
         {
@@ -62,11 +60,12 @@ namespace SenaOnPrinting.Controllers
             return Ok(quotation_providersCategory);
         }
         // POST api/<ClientController>
+        [Authorize]
         [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Add([FromForm] QuotationProvidersCreateDto quotationProvidersCreateDto)
         {
-            quotationProvidersCreateDto.QuotationFile = await SaveImages(quotationProvidersCreateDto.QuotationFileInfo); //Aquí está la conversión Explicita
+            quotationProvidersCreateDto.QuotationFile = await SaveBlob(quotationProvidersCreateDto.QuotationFileInfo, "quotationprovider"); //Aquí está la conversión Explicita
 
             var quotationProvidersCreate = _mapper.Map<QuotationProviderModel>(quotationProvidersCreateDto);
 
@@ -74,22 +73,8 @@ namespace SenaOnPrinting.Controllers
 
             return Ok(quotationProvidersCreate);
         }
-        [NonAction]
 
-        public async Task<string> SaveImages(Microsoft.AspNetCore.Http.IFormFile QuotationFileInfo)
-        {
-            //string imageName = new string(Path.GetFileNameWithoutExtension(PictogramFileInfo.FileName).Take(10).ToArray()).Replace(' ','_');
-            string imageName = new string(Path.GetFileNameWithoutExtension(QuotationFileInfo.FileName).Take(10).ToArray()).Replace(' ', '_');
-            imageName = imageName + Path.GetExtension(QuotationFileInfo.FileName);
-            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images\\SupplyPictogram\\", imageName);
-
-            using (var fileStream = new FileStream(imagePath, FileMode.Create))
-            {
-                await QuotationFileInfo.CopyToAsync(fileStream);
-            }
-            return imageName;
-        }
-
+        [Authorize]
         [HttpPut("{id}")]
         [Consumes("multipart/form-data")]
 
@@ -101,7 +86,7 @@ namespace SenaOnPrinting.Controllers
             }
 
             var quotationProvidersToUpdate = await _quotation_providersServices.GetByIdAsync(quotationProviderDto.Id);
-            quotationProvidersToUpdate.QuotationFile = await SaveImages(quotationProviderDto.QuotationFileInfo);
+            quotationProvidersToUpdate.QuotationFile = await SaveBlob(quotationProviderDto.QuotationFileInfo, "quotationprovider");
 
             _mapper.Map(quotationProviderDto, quotationProvidersToUpdate);
             await _quotation_providersServices.UpdateAsync(quotationProvidersToUpdate);
@@ -109,6 +94,7 @@ namespace SenaOnPrinting.Controllers
             return Ok(quotationProvidersToUpdate);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
@@ -118,16 +104,103 @@ namespace SenaOnPrinting.Controllers
         [HttpGet("file/{id}")]
         public async Task<IActionResult> DownloadFile(int id)
         {
-            var file = await _quotation_providersServices.GetByIdAsync(id);
+            var quotationProvider = await _quotation_providersServices.GetByIdAsync(id);
 
-            if (file == null)
+            if (quotationProvider == null)
             {
                 return NotFound();
             }
-            var filePath = "Images/SupplyPictogram/" + file.QuotationFile;
-            var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            var file = await DownloadBlob(quotationProvider.QuotationFile, "quotationprovider");
+            if (file == null)
+            {
+                return UnprocessableEntity();
+            }
+            return file;
+        }
 
-            return File(fileStream, "application/octet-stream", Path.GetFileName(filePath));
+        [NonAction]
+        public async Task<string> SaveBlob(Microsoft.AspNetCore.Http.IFormFile blob, string dir = "default")
+        {
+            string blobName = new string(Path.GetFileNameWithoutExtension(blob.FileName).Take(10).ToArray()).Replace(' ', '_');
+            blobName = blobName + Path.GetExtension(blob.FileName);
+
+            var blobContainerClient = _blobServiceClient.GetBlobContainerClient(dir);
+
+            await blobContainerClient.CreateIfNotExistsAsync();
+
+            var blobClient = blobContainerClient.GetBlobClient(blobName);
+
+            using (var fileStream = blob.OpenReadStream())
+            {
+                await blobClient.UploadAsync(fileStream, true);
+            }
+            return blobName;
+        }
+
+        [NonAction]
+        public async Task<Uri> CreateServiceSASBlob(string fileName, string storedPolicyName = null, string dir = "default")
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                return null;
+            }
+            else
+            {
+
+                var blobContainerClient = _blobServiceClient.GetBlobContainerClient(dir);
+
+                var blobClient = blobContainerClient.GetBlobClient(fileName);
+
+
+                // Check if BlobContainerClient object has been authorized with Shared Key
+                if (blobClient.CanGenerateSasUri)
+                {
+                    // Create a SAS token that's valid for one day
+                    BlobSasBuilder sasBuilder = new BlobSasBuilder()
+                    {
+                        BlobContainerName = blobClient.GetParentBlobContainerClient().Name,
+                        BlobName = fileName,
+                        Resource = "b"
+                    };
+
+                    if (storedPolicyName == null)
+                    {
+                        sasBuilder.ExpiresOn = DateTimeOffset.UtcNow.AddDays(1);
+                        sasBuilder.SetPermissions(BlobContainerSasPermissions.Read);
+                    }
+                    else
+                    {
+                        sasBuilder.Identifier = storedPolicyName;
+                    }
+
+                    Uri sasURI = blobClient.GenerateSasUri(sasBuilder);
+
+                    return sasURI;
+                }
+                else
+                {
+                    // Client object is not authorized via Shared Key
+                    return null;
+                }
+            }
+        }
+
+        [NonAction]
+        public async Task<IActionResult> DownloadBlob(string fileName, string dir = "default")
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+                return null;
+
+            var blobContainerClient = _blobServiceClient.GetBlobContainerClient(dir);
+            var blobClient = blobContainerClient.GetBlobClient(fileName);
+
+            if (!await blobClient.ExistsAsync())
+                return null;
+
+            var response = await blobClient.DownloadAsync();
+            var stream = response.Value.Content;
+
+            return File(stream, response.Value.ContentType, fileName);
         }
     }
 }

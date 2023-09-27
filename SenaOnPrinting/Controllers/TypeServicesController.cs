@@ -4,9 +4,11 @@ using DataCape.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BusinessCape.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class TypeServicesController : ControllerBase

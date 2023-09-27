@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class impositionPlanchController : ControllerBase

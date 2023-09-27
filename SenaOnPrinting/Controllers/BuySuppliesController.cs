@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Specialized;
+using Azure.Storage.Sas;
+using BusinessCape.DTOs.BuySuppliesDetail;
 using BusinessCape.DTOs.BuySupply;
 using BusinessCape.DTOs.QuotationProviders;
 using BusinessCape.Services;
@@ -9,36 +13,66 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using SenaOnPrinting.Filters;
+using SenaOnPrinting.Helpers;
 using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
-    // [Authorize]
-    [Route("api/[controller]")]
+    //[Authorize]
+    [Route("api/buy_supplies")]
     [ApiController]
     //[AuthorizationFilter(ApplicationPermission.Supply)]
     public class BuySuppliesController : ControllerBase
     {
         private readonly BuySupplyService _buySupplyService;
-        private readonly BuySupplyDetailsService _buySupplyDetailsService;
-
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly BlobServiceClient _blobServiceClient;
         private readonly SENAONPRINTINGContext _context;
 
-        public BuySuppliesController(BuySupplyService buySupplyService, IMapper mapper, SENAONPRINTINGContext context, IWebHostEnvironment hostEnvironment)
+        public BuySuppliesController(BuySupplyService buySupplyService, IMapper mapper, SENAONPRINTINGContext context, IWebHostEnvironment hostEnvironment, BlobServiceClient blobServiceClient)
         {
             _buySupplyService = buySupplyService;
             _mapper = mapper;
             _context = context;
             _hostEnvironment = hostEnvironment;
+            _blobServiceClient = blobServiceClient;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var quotationClient = await _buySupplyService.Index();
-            return Ok(quotationClient);
+            var buySupplies = await _context.BuySupplies
+                .Include(a => a.Provider)
+                .Include(a => a.BuySuppliesDetails)
+                .ThenInclude(a => a.Supply)
+                .ThenInclude(a => a.SupplyXSupplyPictogram)
+                .ThenInclude(a => a.SupplyPictogram)
+                .Include(a => a.BuySuppliesDetails)
+                .ThenInclude(a => a.Warehouse)
+                .Include(a => a.BuySuppliesDetails)
+                .ThenInclude(a => a.UnitMeasures)
+                .ToListAsync();
+
+            foreach (var buySupply in buySupplies)
+            {
+                foreach (var detail in buySupply.BuySuppliesDetails)
+                {
+                    var UrlSecurityFile = await CreateServiceSASBlob(detail.SecurityFile, null, $"buysupply{buySupply.Id}", true);
+                    detail.SecurityFile = UrlSecurityFile.ToString();
+
+                    foreach (var pictogramXsupply in detail.Supply.SupplyXSupplyPictogram)
+                    {
+                        if (!pictogramXsupply.SupplyPictogram.PictogramFile.Contains("https"))
+                        {
+                            //var UrlPictogram = await CreateServiceSASBlob(pictogramXsupply.SupplyPictogram.PictogramFile, null, "supplypictogram");
+                            //pictogramXsupply.SupplyPictogram.PictogramFile = UrlPictogram.ToString();
+                        }
+                    }
+                }
+            }
+
+            return Ok(buySupplies);
         }
 
         [HttpGet("{id}")]
@@ -48,6 +82,8 @@ namespace SenaOnPrinting.Controllers
                 .Include(a => a.Provider)
                 .Include(a => a.BuySuppliesDetails)
                 .ThenInclude(a => a.Supply)
+                .ThenInclude(a => a.SupplyXSupplyPictogram)
+                .ThenInclude(a => a.SupplyPictogram)
                 .Include(a => a.BuySuppliesDetails)
                 .ThenInclude(a => a.Warehouse)
                 .Include(a => a.BuySuppliesDetails)
@@ -57,51 +93,48 @@ namespace SenaOnPrinting.Controllers
             {
                 return NotFound();
             }
+
+            foreach (var detail in buySupply.BuySuppliesDetails)
+            {
+                var UrlSecurityFile = await CreateServiceSASBlob(detail.SecurityFile, null, $"buysupply{buySupply.Id}", true);
+                detail.SecurityFile = UrlSecurityFile.ToString();
+
+                foreach (var pictogramXsupply in detail.Supply.SupplyXSupplyPictogram)
+                {
+
+                    if (!pictogramXsupply.SupplyPictogram.PictogramFile.Contains("https")) { 
+                        var UrlPictogram = await CreateServiceSASBlob(pictogramXsupply.SupplyPictogram.PictogramFile, null, "supplypictogram");
+                        pictogramXsupply.SupplyPictogram.PictogramFile = UrlPictogram.ToString();
+                    }
+                }
+            }
             return Ok(buySupply);
         }
 
         [HttpPost]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Add([FromForm] BuySuppliesCreateDto buySupplyDto)
+        public async Task<IActionResult> Create([FromForm] BuySuppliesCreateDto buySupplyDto)
         {
-            var buySupplyCreate = _mapper.Map<BuySupplyModel>(buySupplyDto);
-            await _buySupplyService.Create(buySupplyCreate);
-            var buySupplyId = buySupplyCreate.Id;
 
-            foreach (var detail in buySupplyDto.BuySuppliesDetailsCreateDto)
+            var buySupply = _mapper.Map<BuySupplyModel>(buySupplyDto);
+
+            var lastBuySupply = await _context.BuySupplies.OrderBy(d => d.Id).LastOrDefaultAsync();
+            long lastId = 0;
+            if (lastBuySupply != null)
             {
-                if (detail.SecurityFile != null && detail.SecurityFile.Length > 0)
-                {
-                    // Aquí puedes guardar el archivo como sea necesario, por ejemplo, en el sistema de archivos o en la base de datos.
-                    // Por simplicidad, lo almacenaremos en el sistema de archivos.
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(detail.SecurityFileInfo.FileName);
-                    var filePath = Path.Combine(_hostEnvironment.ContentRootPath, "Uploads", fileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await detail.SecurityFileInfo.CopyToAsync(fileStream);
-                    }
-
-                    var buySupplyDetail = new BuySuppliesDetailModel
-                    {
-                        BuySuppliesId = buySupplyId,
-                        SupplyId = detail.SupplyId,
-                        SecurityFile = fileName, // Aquí almacenamos el nombre del archivo
-                        SupplyCost = detail.SupplyCost,
-                        SupplyQuantity = detail.SupplyQuantity,
-                        ExpirationDate = detail.ExpirationDate,
-                        WarehouseId = detail.WarehouseId,
-                        UnitMeasuresId = detail.UnitMeasuresId,
-                        StatedAt = true
-                    };
-
-                    _context.BuySuppliesDetails.Add(buySupplyDetail);
-                }
+                lastId = lastBuySupply.Id;
             }
 
-            await _context.SaveChangesAsync();
 
-            return Ok(buySupplyCreate);
+            for (var index = 0; index < buySupplyDto.BuySuppliesDetails.Count(); index++)
+            {
+                var securityFile = await SaveBlob(buySupplyDto.BuySuppliesDetails[index].SecurityFileInfo, $"buysupply{lastId + 1}");
+                buySupply.BuySuppliesDetails[index].SecurityFile = securityFile;
+            }
+
+            await _buySupplyService.Create(buySupply);
+            var buySupplyId = buySupply.Id;
+
+            return Ok(buySupply);
         }
 
 
@@ -131,5 +164,79 @@ namespace SenaOnPrinting.Controllers
             return NoContent();
         }
 
+        [NonAction]
+        public async Task<string> SaveBlob(Microsoft.AspNetCore.Http.IFormFile blob, string dir = "default")
+        {
+            string blobName = new string(Path.GetFileNameWithoutExtension(blob.FileName).Take(10).ToArray()).Replace(' ', '_');
+            blobName = blobName + Path.GetExtension(blob.FileName);
+
+            var blobContainerClient = _blobServiceClient.GetBlobContainerClient($"buysupplies");
+
+            await blobContainerClient.CreateIfNotExistsAsync();
+
+            var blobClient = blobContainerClient.GetBlobClient($"{dir}/{blobName}");
+
+            using (var fileStream = blob.OpenReadStream())
+            {
+                await blobClient.UploadAsync(fileStream, true);
+            }
+            return blobName;
+        }
+
+        [NonAction]
+        public async Task<Uri> CreateServiceSASBlob(string fileName, string storedPolicyName = null, string dir = "default", bool isBuySupply = false)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                return null;
+            }
+            else
+            {
+                string containerName = "buysupplies";
+                string blobName = $"{dir}/{fileName}";
+                if (isBuySupply)
+                {
+                    containerName = dir;
+                    blobName = fileName;
+                }
+                var blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+
+                await blobContainerClient.CreateIfNotExistsAsync();
+
+                var blobClient = blobContainerClient.GetBlobClient(blobName);
+
+
+                // Check if BlobContainerClient object has been authorized with Shared Key
+                if (blobClient.CanGenerateSasUri)
+                {
+                    // Create a SAS token that's valid for one day
+                    BlobSasBuilder sasBuilder = new BlobSasBuilder()
+                    {
+                        BlobContainerName = blobClient.GetParentBlobContainerClient().Name,
+                        BlobName = fileName,
+                        Resource = "b"
+                    };
+
+                    if (storedPolicyName == null)
+                    {
+                        sasBuilder.ExpiresOn = DateTimeOffset.UtcNow.AddDays(1);
+                        sasBuilder.SetPermissions(BlobContainerSasPermissions.Read);
+                    }
+                    else
+                    {
+                        sasBuilder.Identifier = storedPolicyName;
+                    }
+
+                    Uri sasURI = blobClient.GenerateSasUri(sasBuilder);
+
+                    return sasURI;
+                }
+                else
+                {
+                    // Client object is not authorized via Shared Key
+                    return null;
+                }
+            }
+        }
     }
 }

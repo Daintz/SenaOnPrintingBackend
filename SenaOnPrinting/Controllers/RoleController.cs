@@ -10,7 +10,7 @@ using SenaOnPrinting.Permissions;
 namespace SenaOnPrinting.Controllers
 {
 
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/role")]
     //[AuthorizationFilter(ApplicationPermission.User)]

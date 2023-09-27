@@ -21,6 +21,6 @@ namespace BusinessCape.DTOs.BuySupply
             StatedAt = true;
         }
 
-        public List<BuySuppliesDetailsCreateDto> BuySuppliesDetailsCreateDto { get; set; }
+        public List<BuySuppliesDetailsCreateDto> BuySuppliesDetails { get; set; }
     }
 }
