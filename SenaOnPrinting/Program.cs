@@ -31,12 +31,23 @@ using SenaOnPrinting.Permissions;
 using System.Text.Json.Serialization;
 using BusinessCape.DTOs.BuySuppliesDetail;
 using BusinessCape.DTOs.BuySupply;
+using Azure.Storage.Blobs;
+using SenaOnPrinting.Helpers;
+using Microsoft.Extensions.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddInjectionInfraestructure(Configuration);
+
+
+// Configure Azure Blob Storage connection
+builder.Services.AddSingleton(x =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("BlobStorageConnection");
+    return new BlobServiceClient(connectionString);
+});
 
 //cors
 builder.Services.AddCors(options =>
@@ -62,9 +73,9 @@ builder.Services.AddScoped<IFinishs, FinishRepository>();
 builder.Services.AddScoped<UnitMesureServices>();
 builder.Services.AddScoped<IUnitMesure, UnitMeasurreRepository>();
 
-builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\OrderProduction")));
+//builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\OrderProduction")));
 
-builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\SupplyPictogram")));//Esto lo agregué
+//builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\SupplyPictogram")));//Esto lo agregué
 //builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images\\QuotationProvider")));//Esto lo agregué
 
 // Configurar las interfaces para que el controlador las pueda usar
@@ -246,6 +257,12 @@ builder.Services.AddSwaggerGen(option =>
     });
 }
 );
+builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
+builder.Services.AddAzureClients(clientBuilder =>
+{
+    clientBuilder.AddBlobServiceClient(builder.Configuration["ConnectionStrings:BlobStorageConnection:blob"], preferMsi: true);
+    clientBuilder.AddQueueServiceClient(builder.Configuration["ConnectionStrings:BlobStorageConnection:queue"], preferMsi: true);
+});
 
 var app = builder.Build();
 
@@ -275,11 +292,11 @@ if (app.Environment.IsDevelopment())
 
 }
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
-    RequestPath = "/Images"
-});
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+//    RequestPath = "/Images"
+//});
 
 
 app.UseHttpsRedirection();

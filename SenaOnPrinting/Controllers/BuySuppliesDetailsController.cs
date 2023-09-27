@@ -6,9 +6,12 @@ using DataCape.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BusinessCape.DTOs.QuotationProviders;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Specialized;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SenaOnPrinting.Controllers
-{
+{    
     [Route("api/[controller]")]
     [ApiController]
     public class BuySuppliesDetailController : ControllerBase
@@ -16,111 +19,50 @@ namespace SenaOnPrinting.Controllers
         private readonly BuySupplyDetailsService _buySuppliesDetailService;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly BlobServiceClient _blobServiceClient;
 
-        public BuySuppliesDetailController(BuySupplyDetailsService BuySuppliesDetailService, IMapper mapper, IWebHostEnvironment hostEnvironment)
+        public BuySuppliesDetailController(BuySupplyDetailsService BuySuppliesDetailService, IMapper mapper, IWebHostEnvironment hostEnvironment, BlobServiceClient blobServiceClient)
         {
             _buySuppliesDetailService = BuySuppliesDetailService;
             _mapper = mapper;
             _hostEnvironment = hostEnvironment;
+            _blobServiceClient = blobServiceClient;
         }
 
         [HttpGet("file/{id}")]
         public async Task<IActionResult> DownloadFile(int id)
         {
-            var file = await _buySuppliesDetailService.GetByIdAsync(id);
+            var BuySupplyDetail = await _buySuppliesDetailService.GetByIdAsync(id);
 
+            if (BuySupplyDetail == null)
+            {
+                return NotFound();
+            }
+            var file = await DownloadBlob(BuySupplyDetail.SecurityFile, $"buysupply{BuySupplyDetail.BuySuppliesId}");
             if (file == null)
             {
-                return NotFound();
+                return UnprocessableEntity();
             }
-            var filePath = $"SecurityFiles/buySupply_{file.BuySuppliesId}/{file.SecurityFile}";
-            var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
-
-            return new FileContentResult(fileBytes, "application/pdf");
+            return file;
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var scheme = "https";
-            var host = Request.Host;
-            var pathBase = Request.PathBase.ToString();
-            var buySuppliesDetails = await _buySuppliesDetailService.GetAllAsync();
-            foreach (var buySuppliesDetail in buySuppliesDetails)
-            {
-                buySuppliesDetail.SecurityFile = string.Format("{0}://{1}/{2}Images/BuySuppliesDetail/{3}",
-                    scheme, host, pathBase, buySuppliesDetail.SecurityFile);
-                buySuppliesDetail.SecurityFile = buySuppliesDetail.SecurityFile;
-            }
-            return Ok(buySuppliesDetails);
-        }
-        //[HttpGet("Approved")]
-
-        //public async Task<IActionResult> GetAllApproved()
-        //{
-        //    var BuySuppliesDetail = await _BuySuppliesDetailService.GetApprovedQuotationAsync();
-        //    return Ok(BuySuppliesDetail);
-        //}
-        // GET api/<BuySuppliesDetail>/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(long id)
-        {
-            var BuySuppliesDetail = await _buySuppliesDetailService.GetByIdAsync(id);
-            if (BuySuppliesDetail == null)
-            {
-                return NotFound();
-            }
-            return Ok(BuySuppliesDetail);
-        }
-
-        // POST api/<BuySuppliesDetail>
-        [HttpPost]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Add([FromForm] BuySuppliesDetailsCreateDto buySuppliesDetailCreateDto, long id)
-        {
-
-            buySuppliesDetailCreateDto.SecurityFile = await SaveImages(buySuppliesDetailCreateDto.SecurityFileInfo);
-
-            var BuySuppliesDetailToCreate = _mapper.Map<BuySuppliesDetailModel>(buySuppliesDetailCreateDto);
-
-            // Aquí deberías configurar el ID usando el parámetro idCot
-            BuySuppliesDetailToCreate.SupplyId = id;
-
-            await _buySuppliesDetailService.AddAsync(BuySuppliesDetailToCreate);
-            return Ok(BuySuppliesDetailToCreate);
-        }
         [NonAction]
-
-        public async Task<string> SaveImages(Microsoft.AspNetCore.Http.IFormFile SecurityFileInfo)
+        public async Task<IActionResult> DownloadBlob(string fileName, string dir = "default")
         {
-            //string imageName = new string(Path.GetFileNameWithoutExtension(PictogramFileInfo.FileName).Take(10).ToArray()).Replace(' ','_');
-            string imageName = new string(Path.GetFileNameWithoutExtension(SecurityFileInfo.FileName).Take(10).ToArray()).Replace(' ', '_');
-            imageName = imageName + Path.GetExtension(SecurityFileInfo.FileName);
-            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images\\BuySuppliesDetail\\", imageName);
+            if (string.IsNullOrWhiteSpace(fileName))
+                return null;
 
-            using (var fileStream = new FileStream(imagePath, FileMode.Create))
-            {
-                await SecurityFileInfo.CopyToAsync(fileStream);
-            }
-            return imageName;
-        }
-        // PUT api/<BuySuppliesDetail>/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(long id, BuySuppliesDetailsUpdateDto BuySuppliesDetailUpdateDto)
-        {
-            var BuySuppliesDetailToUpdate = await _buySuppliesDetailService.GetByIdAsync(BuySuppliesDetailUpdateDto.Id);
-            _mapper.Map(BuySuppliesDetailUpdateDto, BuySuppliesDetailToUpdate);
-            await _buySuppliesDetailService.UpdateAsync(BuySuppliesDetailToUpdate);
-            return NoContent();
-        }
+            var blobContainerClient = _blobServiceClient.GetBlobContainerClient("buysupplies");
+            var blobClient = blobContainerClient.GetBlobClient($"{dir}/{fileName}");
 
-        // DELETE api/<BuySuppliesDetail>/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
-        {
-            await _buySuppliesDetailService.DeleteAsync(id);
-            return NoContent();
+            if (!await blobClient.ExistsAsync())
+                return null;
+
+            var response = await blobClient.DownloadAsync();
+            var stream = response.Value.Content;
+
+            return File(stream, response.Value.ContentType, fileName);
         }
     }
 }

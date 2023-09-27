@@ -3,11 +3,13 @@ using BusinessCape.DTOs.QuotationClient;
 using BusinessCape.DTOs.QuotationClientDetail;
 using BusinessCape.Services;
 using DataCape.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class QuotationClientDetailController : ControllerBase

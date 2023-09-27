@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SenaOnPrinting.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     //[AuthorizationFilter(ApplicationPermission.Configuration)]

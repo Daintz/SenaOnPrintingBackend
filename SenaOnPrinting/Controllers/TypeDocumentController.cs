@@ -2,10 +2,12 @@
 using BusinessCape.DTOs.TypeDocument;
 using BusinessCape.Services;
 using DataCape.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SenaOnPrinting.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/type_document")]
     public class TypeDocumentController : ControllerBase
