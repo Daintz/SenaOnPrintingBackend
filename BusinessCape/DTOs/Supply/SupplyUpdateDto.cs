@@ -11,6 +11,8 @@
         public int SortingWord { get; set; }
         public int? Quantity { get; set; }
         public decimal? AverageCost { get; set; }
+        public DateTime ExpirationDate { get; set; }
+        public long? WarehouseId { get; set; }
         public List<long> UnitMeasuresId { get; set; } = null!;
         public List<long> SupplyPictogramsId { get; set; } = null!;
         public List<long> SupplyCategoriesId { get; set; } = null!;

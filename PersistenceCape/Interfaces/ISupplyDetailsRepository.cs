@@ -13,6 +13,9 @@ namespace PersistenceCape.Interfaces
         Task<SupplyDetailModel> GetByIdAsync(long id);
         Task<SupplyDetailModel> AddAsync(SupplyDetailModel supplyDetail);
         Task UpdateAsync(SupplyDetailModel supplyDetail);
+        //Task<IEnumerable<SupplySupplyDetailsModel>> GetSupplyDetailsForSupplyAsync(long supplyDetail);
+
+
         Task ChangeState(long id);
     }
 }

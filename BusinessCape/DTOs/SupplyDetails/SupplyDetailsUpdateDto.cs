@@ -16,9 +16,9 @@ namespace BusinessCape.DTOs.SupplyDetails
         public decimal? SupplyCost { get; set; }
         
         public DateTime EntryDate { get; set; }
-        public DateTime ExpirationDate { get; set; }
+
        
-        public long? WarehouseId { get; set; }
+        
         //public string? security_file { get; set; }
         //public Microsoft.AspNetCore.Http.IFormFile? security_fileInfo { get; set; } = null!;
         //public string? supplies_label { get; set; }

@@ -12,6 +12,8 @@ namespace BusinessCape.DTOs.Supply
         public int SortingWord { get; set; }
         public int? Quantity { get; set; }
         public decimal? AverageCost { get; set; }
+        public DateTime ExpirationDate { get; set; }
+        public long? WarehouseId { get; set; }
 
         public bool? StatedAt { get; set; }
         public List<long> UnitMeasuresId { get; set; } = null!;

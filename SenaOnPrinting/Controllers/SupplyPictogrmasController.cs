@@ -13,10 +13,10 @@ using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    [AuthorizationFilter(ApplicationPermission.Configuration)]
+    //[AuthorizationFilter(ApplicationPermission.Configuration)]
     public class SupplyPictogrmasController : ControllerBase
     {
         private readonly SupplyPictogramsServices _SupplyPictogramsServices;

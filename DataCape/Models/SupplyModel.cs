@@ -12,7 +12,7 @@ namespace DataCape.Models
             SupplyCategoriesXSupply = new List<SupplyCategoriesXSupplyModel>();
             SupplyXSupplyPictogram = new List<SupplyXSupplyPictogramModel>();
             UnitMeasuresXSupply = new List<UnitMeasuresXSupplyModel>();
-            SupplyDetails = new List<SupplyDetailModel>();
+            SupplyDetails = new List<SupplySupplyDetailsModel>();
             Products = new List<SupplyXProductModel>();
         }
 
@@ -25,8 +25,12 @@ namespace DataCape.Models
         public int SortingWord { get; set; }
         public int? Quantity { get; set; }
         public decimal? AverageCost { get; set; }
+        public DateTime ExpirationDate { get; set; }
+        public long? WarehouseId { get; set; }
 
         public bool? StatedAt { get; set; }
+
+        public virtual WarehouseModel? Warehouse { get; set; }
         //public long? UnitMeasuresId { get; set; }
         //public long? SupplyPictogramsId { get; set; }
         //public long? SupplyCategoriesId { get; set; }
@@ -46,7 +50,7 @@ namespace DataCape.Models
         //public virtual SupplyPictogramModel? SupplyPictogram { get; set; }
         //public virtual UnitMeasureModel? UnitMeasure { get; set; }
 
-        public virtual List<SupplyDetailModel> SupplyDetails { get; set; }
+        public virtual List<SupplySupplyDetailsModel> SupplyDetails { get; set; }
         public virtual List<SupplyXProductModel> Products { get; set; }
 
     }

@@ -7,8 +7,8 @@ namespace DataCape.Models
     {
         public WarehouseModel()
         {
-            //Supplies = new HashSet<SupplyModel>();
-            SupplyDetails = new HashSet<SupplyDetailModel>();
+            Supplies = new HashSet<SupplyModel>();
+            //SupplyDetails = new HashSet<SupplyDetailModel>();
         }
 
         public long Id { get; set; }
@@ -17,6 +17,6 @@ namespace DataCape.Models
         public bool? StatedAt { get; set; }
 
         public virtual TypeServiceModel TypeServices { get; set; }
-        public virtual ICollection<SupplyDetailModel> SupplyDetails { get; set; }
+        public virtual ICollection<SupplyModel> Supplies { get; set; }
     }
 }

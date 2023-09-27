@@ -40,6 +40,13 @@ namespace BusinessCape.Services
             await _supplyDetailRepository.UpdateAsync(supplyDetail);
         }
 
+        //public async Task<IEnumerable<SupplySupplyDetailsModel>> GetSupplyDetailsForSupplyAsync(long supplyDetail)
+        //{
+        //    return await _supplyDetailRepository.GetSupplyDetailsForSupplyAsync(supplyDetail);
+        //}
+
+
+
         public async Task ChangeState(long id)
         {
             await _supplyDetailRepository.ChangeState(id);
