@@ -65,8 +65,8 @@ namespace SenaOnPrinting.Controllers
                     {
                         if (!pictogramXsupply.SupplyPictogram.PictogramFile.Contains("https"))
                         {
-                            //var UrlPictogram = await CreateServiceSASBlob(pictogramXsupply.SupplyPictogram.PictogramFile, null, "supplypictogram");
-                            //pictogramXsupply.SupplyPictogram.PictogramFile = UrlPictogram.ToString();
+                            var UrlPictogram = await CreateServiceSASBlob(pictogramXsupply.SupplyPictogram.PictogramFile, null, "supplypictogram");
+                            pictogramXsupply.SupplyPictogram.PictogramFile = UrlPictogram.ToString();
                         }
                     }
                 }
@@ -194,7 +194,7 @@ namespace SenaOnPrinting.Controllers
             {
                 string containerName = "buysupplies";
                 string blobName = $"{dir}/{fileName}";
-                if (isBuySupply)
+                if (!isBuySupply)
                 {
                     containerName = dir;
                     blobName = fileName;
@@ -213,7 +213,7 @@ namespace SenaOnPrinting.Controllers
                     BlobSasBuilder sasBuilder = new BlobSasBuilder()
                     {
                         BlobContainerName = blobClient.GetParentBlobContainerClient().Name,
-                        BlobName = fileName,
+                        BlobName = blobName,
                         Resource = "b"
                     };
 

@@ -61,8 +61,10 @@ namespace SenaOnPrinting.Controllers
 
             var response = await blobClient.DownloadAsync();
             var stream = response.Value.Content;
-
-            return File(stream, response.Value.ContentType, fileName);
+            var memoryStream = new MemoryStream();
+            //return File(stream, response.Value.ContentType, fileName);
+            stream.CopyTo(memoryStream);
+            return new FileContentResult(memoryStream.ToArray(), "application/pdf");
         }
     }
 }
