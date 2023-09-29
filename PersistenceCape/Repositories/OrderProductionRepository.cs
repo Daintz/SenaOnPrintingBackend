@@ -11,18 +11,13 @@ namespace PersistenceCape.Repositories
     public class OrderProductionRepository : IOrderProductionRepository
     {
         private readonly SENAONPRINTINGContext _context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        public OrderProductionRepository(SENAONPRINTINGContext context, IHttpContextAccessor httpContextAccessor)
+        public OrderProductionRepository(SENAONPRINTINGContext context)
         {
             _context = context;
-            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IEnumerable<OrderProductionModel>> GetAllAsync()
         {
-            var scheme = "https";
-            var host = _httpContextAccessor.HttpContext.Request.Host.Value;
-            var pathBase = _httpContextAccessor.HttpContext.Request.PathBase.Value;
             return await _context.OrderProductions
          .Include(op => op.QuotationClientDetail)
             .ThenInclude(qcd => qcd.QuotationClient)
@@ -45,11 +40,11 @@ namespace PersistenceCape.Repositories
             MaterialReception = op.MaterialReception,
             ProgramVersion = op.ProgramVersion,
             ColorProfile = op.ColorProfile,
-            Image = $"{scheme}://{host}/{pathBase}Images/OrderProduction/{op.Image}",
+            Image = op.Image,
             Observations = op.Observations,
             Program = op.Program,
             TypePoint = op.TypePoint,
-            Scheme = $"{scheme}://{host}/{pathBase}Images/OrderProduction/{op.Scheme}",
+            Scheme = op.Scheme,
             ProductId = op.QuotationClientDetail.ProductId,
             UserName = op.User.Names,
             ImpositionPlanchName = op.ImpositionPlanch.Name,

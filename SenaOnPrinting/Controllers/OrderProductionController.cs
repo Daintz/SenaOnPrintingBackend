@@ -63,6 +63,13 @@ namespace SenaOnPrinting.Controllers
         public async Task<IActionResult> GetById(long id)
         {
             var orderProduction = await _orderProductionService.GetByIdAsync(id);
+
+            var UrlScheme = await CreateServiceSASBlob(orderProduction.Scheme, null, "orderproduction");
+            var UrlImage = await CreateServiceSASBlob(orderProduction.Image, null, "orderproduction");
+
+            orderProduction.Scheme = UrlScheme.ToString();
+            orderProduction.Image = UrlImage.ToString();
+
             if (orderProduction == null)
             {
                 return NotFound();
