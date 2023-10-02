@@ -183,6 +183,10 @@ builder.Services.AddScoped<ITypeServicesRepository, TypeServicesRepository>();
 builder.Services.AddScoped<SupplyPictogramsServices>();
 builder.Services.AddScoped<ISupplyPictogramsRepository, SupplyPictogramsRepository>();
 
+//============================|SUPPLYSUPPLYDETAILS|==========================//
+builder.Services.AddScoped<SupplySupplyDetailsService>();
+builder.Services.AddScoped<ISupplySupplyDetailsRepository, SupplySupplyDetailsRepository>();
+
 //============================|SUPPLYDETAILS|==========================//
 builder.Services.AddScoped<SupplyDetailsService>();
 builder.Services.AddScoped<ISupplyDetailsRepository, SupplyDetailsRepository>();

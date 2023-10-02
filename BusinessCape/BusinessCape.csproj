@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataCape\DataCape.csproj" />
     <ProjectReference Include="..\PersistenceCape\PersistenceCape.csproj" />
   </ItemGroup>
 

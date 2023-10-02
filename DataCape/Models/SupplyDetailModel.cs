@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataCape.Models
 {
@@ -9,7 +10,7 @@ namespace DataCape.Models
     {
         public SupplyDetailModel()
         {
-            Supply = new List<SupplySupplyDetailsModel>();
+            Supplies = new List<SupplySupplyDetailsModel>();
         }
         public long Id { get; set; }
         public long? ProviderId { get; set; }
@@ -20,9 +21,8 @@ namespace DataCape.Models
         public bool? StatedAt { get; set; }
 
 
-        [JsonIgnore]
-        public virtual List<SupplySupplyDetailsModel> Supply { get; set; }
+       
+        public virtual List<SupplySupplyDetailsModel> Supplies { get; set; }
         public virtual ProviderModel? Provider { get; set; }
-        public long? SupplyDetailsId { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace DataCape.Models
             SupplyCategoriesXSupply = new List<SupplyCategoriesXSupplyModel>();
             SupplyXSupplyPictogram = new List<SupplyXSupplyPictogramModel>();
             UnitMeasuresXSupply = new List<UnitMeasuresXSupplyModel>();
-            SupplyDetails = new List<SupplySupplyDetailsModel>();
+            SupplyXDetail = new List<SupplySupplyDetailsModel>();
             Products = new List<SupplyXProductModel>();
         }
 
@@ -50,7 +50,7 @@ namespace DataCape.Models
         //public virtual SupplyPictogramModel? SupplyPictogram { get; set; }
         //public virtual UnitMeasureModel? UnitMeasure { get; set; }
 
-        public virtual List<SupplySupplyDetailsModel> SupplyDetails { get; set; }
+        public virtual List<SupplySupplyDetailsModel> SupplyXDetail { get; set; }
         public virtual List<SupplyXProductModel> Products { get; set; }
 
     }

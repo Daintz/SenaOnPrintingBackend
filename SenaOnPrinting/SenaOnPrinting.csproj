@@ -28,14 +28,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BusinessCape\BusinessCape.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Images\SupplyDetails\" />
     <Folder Include="Images\OrderProduction\" />
     <Folder Include="Images\QuotationProvider\" />
     <Folder Include="Images\QuotationProvider\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessCape\BusinessCape.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

@@ -773,7 +773,7 @@ namespace DataCape.Models
 
             modelBuilder.Entity<SupplySupplyDetailsModel>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
 
                 entity.HasKey(e => new { e.SupplyId, e.supplydetails_id });
@@ -785,12 +785,12 @@ namespace DataCape.Models
                 entity.Property(e => e.SupplyId).HasColumnName("supply_id");
 
                 entity.HasOne(d => d.SupplyDetail)
-                    .WithMany(d => d.Supply)
+                    .WithMany(d => d.Supplies)
                     .HasForeignKey(d => d.supplydetails_id)
                     .HasConstraintName("FK_SupplySupplyDetails_SupplyDetails");
 
                 entity.HasOne(d => d.Supply)
-                    .WithMany(d => d.SupplyDetails)
+                    .WithMany(d => d.SupplyXDetail)
                     .HasForeignKey(d => d.SupplyId)
                     .HasConstraintName("FK_SupplySupplyDetails_Supply");
 

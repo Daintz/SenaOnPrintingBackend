@@ -5,26 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-
+using BusinessCape.DTOs.SupplySupplyDetails;
+using System.ComponentModel.DataAnnotations;
 
 namespace BusinessCape.DTOs.SupplyDetails
 {
     public class SupplyDetailsCreateDto
     {
+        [Required]
         public long ProviderId { get; set; }
         public string Description { get; set; }
+        [Required]
         public DateTime EntryDate { get; set; }
-        public bool StatedAt { get; set; }
-        //public string? security_file { get; set; }
-        //public Microsoft.AspNetCore.Http.IFormFile? security_fileInfo { get; set; } = null!;
-        public float? FullValue { get; set; }
+        public List<SupplySupplyDetailsCreateDto> Supplies { get; set; }
 
-        public List<long> SupplyId { get; set; } = null!;
-        public SupplyDetailsCreateDto()
-        {
-            StatedAt = true;
-        }
-        
 
 
     }

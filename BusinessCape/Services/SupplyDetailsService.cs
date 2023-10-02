@@ -1,4 +1,5 @@
 ﻿using DataCape.Models;
+using persistencecape.repositories;
 using PersistenceCape.Interfaces;
 using PersistenceCape.Repositories;
 using System;
@@ -30,8 +31,21 @@ namespace BusinessCape.Services
             return await _supplyDetailRepository.GetByIdAsync(id);
         }
 
+        public async Task<IEnumerable<SupplyDetailModel>> GetSuppplySupplyAsync()
+        {
+            return await _supplyDetailRepository.GetSuppplySupplyAsync();
+        }
+
         public async Task AddAsync(SupplyDetailModel supplyDetail)
         {
+            supplyDetail.StatedAt = true;
+            decimal? fullValue = 0;
+            foreach (var supply in supplyDetail.Supplies)
+            {
+                fullValue += supply.Quantity * supply.SupplyCost;
+            }
+            supplyDetail.FullValue = (float)fullValue;
+
             await _supplyDetailRepository.AddAsync(supplyDetail);
         }
 
@@ -39,6 +53,12 @@ namespace BusinessCape.Services
         {
             await _supplyDetailRepository.UpdateAsync(supplyDetail);
         }
+        // Este método nuevo llama al método GetSupplySupplyDetailsForSupplyAsync() del repositorio para obtener los datos necesarios.
+
+        //public async Task<IEnumerable<SupplyDetailModel>> GetSupplyDetailsWithSupplySupplyDetailsAsync(long supplyDetailsId)
+        //{
+        //    return await _supplyDetailRepository.GetSupplySupplyDetailsForSupplyAsync(supplyDetailsId);
+        //}
 
         //public async Task<IEnumerable<SupplySupplyDetailsModel>> GetSupplyDetailsForSupplyAsync(long supplyDetail)
         //{

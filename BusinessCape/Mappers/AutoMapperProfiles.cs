@@ -36,6 +36,7 @@ using BusinessCape.DTOs.SupplyDetails;
 using BusinessCape.DTOs.Product;
 using BusinessCape.DTOs.SupplyCategory;
 using BusinessCape.DTOs.Supply;
+using BusinessCape.DTOs.SupplySupplyDetails;
 
 namespace BusinessCape.Mappers
 {
@@ -167,6 +168,11 @@ namespace BusinessCape.Mappers
             CreateMap<SupplyDetailsCreateDto, SupplyDetailModel>();
             // PUT OR UPDATE //
             CreateMap<SupplyDetailsUpdateDto, SupplyDetailModel>();
+
+            //SupplySupplyDetails //
+            // POST OR CREATE //
+            CreateMap<SupplySupplyDetailsCreateDto, SupplySupplyDetailsModel>();
+
 
             //============================|PRODUCT|==========================//
             // POST OR CREATE //
