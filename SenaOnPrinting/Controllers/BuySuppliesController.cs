@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using SenaOnPrinting.Filters;
-using SenaOnPrinting.Helpers;
 using SenaOnPrinting.Permissions;
 
 namespace SenaOnPrinting.Controllers

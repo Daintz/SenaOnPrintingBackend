@@ -11,7 +11,6 @@ using SenaOnPrinting.Permissions;
 using Microsoft.AspNetCore.Authorization;
 using SenaOnPrinting.Filters;
 using Azure.Storage.Sas;
-using SenaOnPrinting.Helpers;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
 

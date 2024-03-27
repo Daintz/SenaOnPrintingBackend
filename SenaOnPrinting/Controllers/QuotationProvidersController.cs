@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Authorization;
 using SenaOnPrinting.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Data.SqlClient;
-using SenaOnPrinting.Helpers;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
 using Azure.Storage.Sas;

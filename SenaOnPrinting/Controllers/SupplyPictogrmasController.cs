@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using SenaOnPrinting.Filters;
 using SenaOnPrinting.Permissions;
-using SenaOnPrinting.Helpers;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
 using Azure.Storage.Sas;
